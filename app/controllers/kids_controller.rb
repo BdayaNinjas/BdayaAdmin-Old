@@ -6,7 +6,7 @@ class KidsController < ApplicationController
   end
 
   def list
-    @kids = Kid.all
+    @kids = Kid.all.order_by([[ :age, :asc ]])
   end
 
    def show
