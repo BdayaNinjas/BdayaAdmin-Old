@@ -1,0 +1,34 @@
+<% @page_title = "Members List" %>
+
+<div class="member list">
+  <h2>Members</h2>
+  
+  <%= link_to("Add New Member", {:action => 'new'}, :class => 'action new') %>
+
+  <div><%= pluralize(@members.size, 'member') %> found</div>
+  
+  <table class="listing" summary="Member list">
+    <tr class="header">
+      <th>Member</th>
+      <th>Email</th>
+      <th>Semester</th>
+      <th>Major</th>
+      <th>Committee</th>
+      <th>Actions</th>
+    </tr>
+    <% @members.each do |member| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= member.name %></td>
+      <td class="center"><%= member.email %></td>
+      <td class="center"><%= member.semester %></td>
+      <td class="center"><%= member.major %></td>
+      <td class="center"><%= member.committee %></td>
+      <td class="actions">
+        <%= link_to("Show", {:action => 'show', :id => member.id}, :class => 'action show') %>
+        <%= link_to("Edit", {:action => 'edit', :id => member.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => member.id}, :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
