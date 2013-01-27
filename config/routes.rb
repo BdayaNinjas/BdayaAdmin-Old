@@ -1,4 +1,14 @@
 BdayaAdmin::Application.routes.draw do
+  get "members/list"
+
+  get "members/show"
+
+  get "members/new"
+
+  get "members/edit"
+
+  get "members/delete"
+
   get "kids/list"
 
   get "kids/new"
