@@ -7,4 +7,7 @@ class Member
   field :semester, type: Integer
   field :major, type: String
   field :committee, type: String
+
+  #freeSessions
+  #has_many courses
 end
