@@ -1,0 +1,23 @@
+
+<table summary="Kid form fields">
+  <tr>
+    <th><%= f.label(:name) %></th>
+    <td><%= f.text_field(:name) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:age) %></th>
+    <td><%= f.text_field(:age) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:address) %></th>
+    <td><%= f.text_field(:address) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:notes) %></th>
+    <td><%= f.text_field(:notes ) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:created_at, "Added") %></th>
+    <td><%= f.datetime_select(:created_at, :order => [:month, :day, :year]) %></td>
+  </tr>
+</table>
