@@ -7,6 +7,7 @@ class Member
   field :semester, type: Integer
   field :major, type: String
   field :committee, type: String
+  field :role, type: Integer
 
   #freeSessions
   has_and_belongs_to_many :courses
