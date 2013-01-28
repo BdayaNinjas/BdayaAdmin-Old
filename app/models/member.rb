@@ -8,8 +8,9 @@ class Member
   field :major, type: String
   field :committee, type: String
 
-  has_many :tasks
-  
+  embedded_in :creates, class_name: "Task", inverse_of: :created_by
+  embeds_many :has, class_name: "Task", inverse_of: :assigned_to
+
   #freeSessions
   #has_many courses
 end
