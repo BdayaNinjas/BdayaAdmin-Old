@@ -8,6 +8,8 @@ class Member
   field :major, type: String
   field :committee, type: String
 
+  has_many :tasks
+  
   #freeSessions
   #has_many courses
 end
