@@ -4,6 +4,7 @@ class Member
 
   field :name, type: String
   field :email, type: String
+  field :password, type: String
   field :semester, type: Integer
   field :major, type: String
   field :committee, type: String

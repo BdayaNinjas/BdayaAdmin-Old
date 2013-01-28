@@ -7,7 +7,24 @@
 
   <%= form_for(:member, :url => {:action => 'create'}) do |f| %>
   
-    <%= render(:partial => "form", :locals => {:f => f}) %>
+	<table summary="Member form fields">
+	  <tr>
+	    <th><%= f.label(:name) %></th>
+	    <td><%= f.text_field(:name) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:email) %></th>
+	    <td><%= f.text_field(:email) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:committee) %></th>
+	    <td><%= f.text_field(:committee) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:role) %></th>
+	    <td><%= f.text_field(:role) %></td>
+	  </tr>
+	</table>
     
     <div class="form-buttons">
       <%= submit_tag("Create Member") %>

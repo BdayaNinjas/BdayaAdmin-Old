@@ -14,6 +14,7 @@
       <th>Semester</th>
       <th>Major</th>
       <th>Committee</th>
+      <th>Role</th>
       <th>Actions</th>
     </tr>
     <% @members.each do |member| %>
@@ -23,6 +24,7 @@
       <td class="center"><%= member.semester %></td>
       <td class="center"><%= member.major %></td>
       <td class="center"><%= member.committee %></td>
+      <td class="center"><%= member.role %></td>
       <td class="actions">
         <%= link_to("Show", {:action => 'show', :id => member.id}, :class => 'action show') %>
         <%= link_to("Edit", {:action => 'edit', :id => member.id}, :class => 'action edit') %>
