@@ -9,8 +9,8 @@ class Member
   field :committee, type: String
   field :role, type: Integer
 
-  embedded_in :creates, class_name: "Task", inverse_of: :created_by
-  embeds_many :has, class_name: "Task", inverse_of: :assigned_to
+  has_many :created_tasks, class_name: "Task", inverse_of: :created_by
+  has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
 
   #freeSessions
   has_and_belongs_to_many :courses

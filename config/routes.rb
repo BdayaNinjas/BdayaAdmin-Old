@@ -19,6 +19,8 @@ BdayaAdmin::Application.routes.draw do
 
   get "kids/show"
 
+  get "tasks/show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -6,6 +6,10 @@ class Task
   field :status, type: Integer
   field :deadline, type: Date
 
-  embeds_one :created_by, class_name: "Member", inverse_of: :creates
-  embedded_in :assigned_to, class_name: "Member", inverse_of: :has
+  belongs_to :created_by, class_name: "Member", inverse_of: :created_tasks
+  belongs_to :assigned_to, class_name: "Member", inverse_of: :assigned_tasks
+
+  def self.get_tasks (member)
+  	member.has
+  end
 end

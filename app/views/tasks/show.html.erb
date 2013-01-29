@@ -1,0 +1,6 @@
+<%= link_to("Back to member", {:controller => 'members', :action => 'show', :id => @member.id}, :class => 'action show') %>
+<ul>
+	<% @tasks.each do |task| %>
+	<li><%= task.description %></li>
+	<% end %>
+</ul>
