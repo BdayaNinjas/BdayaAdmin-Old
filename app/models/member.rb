@@ -25,21 +25,36 @@ class Member
   has_many :created_tasks, class_name: "Task", inverse_of: :created_by
   has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
 
-
+=begin
+  This Method to get the pending requests assigned to this member
+  Author:Diab
+  Committee/Project : Logistics
+=end
   def get_pending_requests
     r = Request.where(:assigned => self , :done => false)
     return r
   end
 
+=begin
+  This Method to get the done requests assigned to this member
+  Author:Diab
+  Committee/Project : Logistics
+=end
   def get_done_requests
     r = Request.where(:assigned => self , :done => true)
     return r
   end  
 
+=begin
+  This Method to reply to a pending request with the room that has been reserved
+  Author:Diab
+  Committee/Project : Logistics
+=end
   def reply_request(request , assigned_room)
     request.room = assigned_room
     #send_notification(request.needers)
   end
+  
 =begin
   This Method to get the members who teach a certain semester
   Author : Diab
