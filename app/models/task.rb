@@ -10,6 +10,6 @@ class Task
   belongs_to :assigned_to, class_name: "Member", inverse_of: :assigned_tasks
 
   def self.get_tasks (member)
-  	member.has
+  	member.assigned_tasks
   end
 end
