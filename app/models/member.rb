@@ -12,6 +12,9 @@ class Member
   has_many :created_tasks, class_name: "Task", inverse_of: :created_by
   has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
 
+  has_many :sarted_meetings, class_name: "Meeting", inverse_of: :creator
+  has_and_belongs_to_many :attending_meetings, class_name: "Meeting", inverse_of: :attendees
+
   #freeSessions
   has_and_belongs_to_many :courses
   has_many :sessions
