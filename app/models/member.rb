@@ -29,6 +29,7 @@ class Member
 =end  
   def get_pending_requests
     r = Request.where(:assigned => self , :done => false)
+    return r
   end
 
 =begin
@@ -38,6 +39,7 @@ class Member
 =end  
   def get_done_requests
     r = Request.where(:assigned => self , :done => true)
+    return r
   end  
 
 =begin
@@ -48,6 +50,32 @@ class Member
   def reply_request(request , assigned_room)
     request.room = assigned_room
     #send_notification(request.needers)
+  end
+=begin
+  This Method to get the members who teach a certain semester
+  Author : Diab
+  Committee/Project : Academics  
+=end
+  def self.get_members_teach_semester(s)
+    cor = Course.where(:semester => s)
+    mem = []
+    cor.each do |c|
+      mem << Member.where(:courses.include? c)
+    end   
+
+    return mem 
+  end
+
+=begin
+  This Method to get the members who teach a certain course
+  Author : Diab
+  Committee/Project : Academics  
+=end
+  def self.get_members_teach_course(c)
+    
+    mem = Member.where(:courses.include? c)
+    
+    return mem 
   end
 
 end
