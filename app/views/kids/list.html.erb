@@ -17,12 +17,11 @@
     </tr>
     <% @kids.each do |kid| %>
     <tr class="<%= cycle('odd', 'even') %>">
-      <td><%= kid.name %></td>
+      <td><%= link_to(kid.name, {:action => 'show', :id => kid.id}, :class => 'action show') %></td>
       <td class="center"><%= kid.age %></td>
       <td class="center"><%= kid.address %></td>
       <td class="center"><%= kid.notes %></td>
       <td class="actions">
-        <%= link_to("Show", {:action => 'show', :id => kid.id}, :class => 'action show') %>
         <%= link_to("Edit", {:action => 'edit', :id => kid.id}, :class => 'action edit') %>
         <%= link_to("Delete", {:action => 'delete', :id => kid.id}, :class => 'action delete') %>
       </td>

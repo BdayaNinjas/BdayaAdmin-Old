@@ -19,14 +19,13 @@
     </tr>
     <% @members.each do |member| %>
     <tr class="<%= cycle('odd', 'even') %>">
-      <td><%= member.name %></td>
+      <td><%= link_to(member.name, {:action => 'show', :id => member.id}, :class => 'action show') %></td>
       <td class="center"><%= member.email %></td>
       <td class="center"><%= member.semester %></td>
       <td class="center"><%= member.major %></td>
       <td class="center"><%= member.committee %></td>
       <td class="center"><%= member.role %></td>
       <td class="actions">
-        <%= link_to("Show", {:action => 'show', :id => member.id}, :class => 'action show') %>
         <%= link_to("Edit", {:action => 'edit', :id => member.id}, :class => 'action edit') %>
         <%= link_to("Delete", {:action => 'delete', :id => member.id}, :class => 'action delete') %>
       </td>
