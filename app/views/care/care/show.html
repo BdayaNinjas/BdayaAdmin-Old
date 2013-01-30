@@ -1,0 +1,45 @@
+<% @page_title = "Show Kid: #{@kid.name}" %>
+
+<div class="kid show">
+  <h2>Show Kid</h2>
+
+  <table summary="Kid detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @kid.name %></td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td><%= @kid.age %></td>
+    </tr>
+    <tr>
+      <th>Address</th>
+      <td><%= @kid.address %></td>
+    </tr>
+    <tr>
+      <th>Strengths</th>
+      <td><%= @kid.strengths %></td>
+    </tr>
+    <tr>
+      <th>Weaknesses</th>
+      <td><%= @kid.weaknesses %></td>
+    </tr>
+    <tr>
+      <th>Notes</th>
+      <td><%= @kid.address %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @kid.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @kid.updated_at %></td>
+    </tr>
+    <tr><td class="actions">
+        <%= link_to("Edit", {:action => 'edit', :id => @kid.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => @kid.id}, :class => 'action delete') %>
+    </td></tr>
+  </table>
+  
+</div>
