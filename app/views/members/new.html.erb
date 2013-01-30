@@ -18,11 +18,11 @@
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:committee) %></th>
-	    <td><%= f.text_field(:committee) %></td>
+	    <td><%= f.select(:committee, ['Yes', 'Care', 'Geneh', 'HR', 'PR', 'FR', 'Academics', 'IT']) %></td>
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:role) %></th>
-	    <td><%= f.text_field(:role) %></td>
+	    <td><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></td>
 	  </tr>
 	</table>
     
