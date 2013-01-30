@@ -15,6 +15,7 @@ class Member
     #start
   has_and_belongs_to_many :courses
   has_many :sessions
+  has_many :notifications
   has_and_belongs_to_many :needed_requests, class_name: "Request", inverse_of: :needers
   has_many :assigned_requests, class_name: "Request", inverse_of: :assigned
     #end
@@ -80,6 +81,43 @@ class Member
     mem = Member.where(:courses.include? c)
     
     return mem 
+  end
+
+
+=begin
+  This 8 Methods to get the all members categorized by committees
+  Author : Omar
+=end
+  def getYesMembers
+    return Member.where(:committee => 'Yes')
+  end
+
+  def getCareMembers
+    return Member.where(:committee => 'Care')
+  end
+
+  def getGenehMember
+    return Member.where(:committee => 'Geneh')
+  end
+
+  def getAcademicsMembers
+    return Member.where(:committee => 'Academics')
+  end
+    
+  def getFRMembers
+    return Member.where(:committee => 'FR')
+  end
+
+  def getPRMembers
+    return Member.where(:committee => 'PR')
+  end
+
+  def getHRMembers
+    return Member.where(:committee => 'HR')
+  end
+
+  def getITMembers
+    return Member.where(:committee => 'IT')
   end
 
 end
