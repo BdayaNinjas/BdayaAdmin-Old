@@ -1,4 +1,6 @@
 BdayaAdmin::Application.routes.draw do
+  devise_for :members
+
   get "members/list"
 
   get "members/show"
@@ -20,6 +22,8 @@ BdayaAdmin::Application.routes.draw do
   get "kids/show"
 
   get "tasks/show"
+
+  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
