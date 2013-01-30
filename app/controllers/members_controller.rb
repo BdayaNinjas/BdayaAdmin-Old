@@ -9,7 +9,7 @@ class MembersController < ApplicationController
     @members = Member.all
   end
 
-   def show
+  def show
     @member = Member.find(params[:id])
   end
    
