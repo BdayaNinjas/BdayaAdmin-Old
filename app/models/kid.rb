@@ -5,7 +5,5 @@ class Kid
   field :name, type: String
   field :age, type: Integer
   field :address, type: String
-  field :strengths, type: String
-  field :weaknesses, type: String
   field :notes, type: String
 end

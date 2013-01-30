@@ -12,8 +12,6 @@
       <th>Kid</th>
       <th>Age</th>
       <th>Address</th>
-      <th>Strengths</th>
-      <th>Weaknsesses</th>
       <th>Notes</th>
       <th>Actions</th>
     </tr>
@@ -22,8 +20,6 @@
       <td><%= link_to(kid.name, {:action => 'show', :id => kid.id}, :class => 'action show') %></td>
       <td class="center"><%= kid.age %></td>
       <td class="center"><%= kid.address %></td>
-      <td class="center"><%= kid.strengths %></td>
-      <td class="center"><%= kid.weaknesses %></td>
       <td class="center"><%= kid.notes %></td>
       <td class="actions">
         <%= link_to("Edit", {:action => 'edit', :id => kid.id}, :class => 'action edit') %>
