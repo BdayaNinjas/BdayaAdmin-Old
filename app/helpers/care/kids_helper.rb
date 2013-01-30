@@ -1,0 +1,2 @@
+module Care::KidsHelper
+end

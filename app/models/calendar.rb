@@ -4,7 +4,7 @@ class Calendar
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :commitee , type: String
+  field :committee , type: String
   field :events, type: Hash , default: {}
 
   before_create -> { self.initialize_calendar! }
