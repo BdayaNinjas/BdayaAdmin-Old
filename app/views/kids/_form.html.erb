@@ -13,15 +13,11 @@
     <td><%= f.text_field(:address) %></td>
   </tr>
   <tr>
-    <th><%= f.label(:strengths) %></th>
-    <td><%= f.text_area(:strengths, :size => '50x5') %></td>
-  </tr>
-  <tr>
-    <th><%= f.label(:weaknesses) %></th>
-    <td><%= f.text_area(:weaknesses, :size => '50x5') %></td>
-  </tr>
-  <tr>
     <th><%= f.label(:notes) %></th>
-    <td><%= f.text_area(:notes, :size => '50x5') %></td>
+    <td><%= f.text_field(:notes ) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:created_at, "Added") %></th>
+    <td><%= f.datetime_select(:created_at, :order => [:month, :day, :year]) %></td>
   </tr>
 </table>

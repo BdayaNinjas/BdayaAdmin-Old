@@ -59,6 +59,21 @@ class MembersController < ApplicationController
     redirect_to(:action => 'list')
   end
 
+
+=begin
+  This Method returns all Bdaya members categorized according to committees 
+  Author : Omar
+=end
+  def getMembersPerCommittee
+    @yes = Member.getYesMembers
+    @care = Member.getCareMembers
+    @geneh = Member.getGenehMembers
+    @academics = Member.getAcademicsMembers
+    @FR = Member.getFRMembers
+    @PR = Member.getPRMembers
+    @HR = Member.getHRMembers
+    @IT = Member.getITMembers
+  end
   # def get_my_tasks
   #   @member = Member.find(params[:id])
   #   @tasks = Task.get_tasks(@member)

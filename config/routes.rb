@@ -1,10 +1,4 @@
 BdayaAdmin::Application.routes.draw do
-
-  namespace :care do
-    resources :kids
-  end
-
-
   get "members/list"
 
   get "members/show"
