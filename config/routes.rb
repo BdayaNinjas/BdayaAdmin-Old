@@ -2,18 +2,9 @@ BdayaAdmin::Application.routes.draw do
 
   namespace :care do
     resources :kids
+    resources :members
   end
-
-  get "members/list"
-
-  get "members/show"
-
-  get "members/new"
-
-  get "members/edit"
-
-  get "members/delete"
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
