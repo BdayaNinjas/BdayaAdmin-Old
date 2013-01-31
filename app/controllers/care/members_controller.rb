@@ -1,7 +1,9 @@
 class Care::MembersController < Care::CareController
 	
   def index
-    @members = Member.all.where(:committee => 'Care')
+    @head = Member.where(:committee => 'Care').where(:role => 'Head')
+    @vices = Member.where(:committee => 'Care').where(:role => 'Vice Head')
+    @members = Member.where(:committee => 'Care').where(:role => 'Member')
   end
 
   def show

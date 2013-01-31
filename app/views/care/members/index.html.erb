@@ -1,31 +1,35 @@
 <% @page_title = "Members List" %>
 
-<div class="member list">
-  <h2>Members</h2>
+<div>
+  <center><h2>Care</h2></center>
+
+  <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
+  <h3>Vices: <% @vices.each do |vice| %>
+    <%= link_to(vice.name, {:action => 'show', :id => vice.id}) %>
+    <%end%></h3> 
+  <h3>Members</h3>
 
   <div><%= pluralize(@members.size, 'member') %> found</div>
   
-  <table class="listing" summary="Member list">
-    <tr class="header">
+  <table summary="Member list">
+    <tr>
       <th>Member</th>
       <th>Email</th>
       <th>Semester</th>
       <th>Major</th>
-      <th>Committee</th>
       <th>Role</th>
       <th>Actions</th>
     </tr>
     <% @members.each do |member| %>
-    <tr class="<%= cycle('odd', 'even') %>">
-      <td><%= link_to(member.name, {:action => 'show', :id => member.id}, :class => 'action show') %></td>
-      <td class="center"><%= member.email %></td>
-      <td class="center"><%= member.semester %></td>
-      <td class="center"><%= member.major %></td>
-      <td class="center"><%= member.committee %></td>
-      <td class="center"><%= member.role %></td>
-      <td class="actions">
-        <%= link_to("Edit", {:action => 'edit', :id => member.id}, :class => 'action edit') %>
-        <%= link_to("Delete", {:action => 'delete', :id => member.id}, :class => 'action delete') %>
+    <tr>
+      <td><%= link_to(member.name, {:action => 'show', :id => member.id}) %></td>
+      <td><%= member.email %></td>
+      <td><%= member.semester %></td>
+      <td><%= member.major %></td>
+      <td><%= member.role %></td>
+      <td>
+        <%= link_to("Edit", {:action => 'edit', :id => member.id}) %>
+        <%= link_to("Delete", {:action => 'delete', :id => member.id}) %>
       </td>
     </tr>
     <% end %>

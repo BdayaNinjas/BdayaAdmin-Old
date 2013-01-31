@@ -1,15 +1,15 @@
 <% @page_title = "Create Kid" %>
 
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", {:action => 'index'}) %>
 
-<div class="kid new">
+<div>
   <h2>Create Kid</h2>
 
   <%= form_for(:kid, :url => {:action => 'create'}) do |f| %>
   
     <%= render(:partial => "form", :locals => {:f => f}) %>
     
-    <div class="form-buttons">
+    <div>
       <%= submit_tag("Create Kid") %>
     </div>
     
