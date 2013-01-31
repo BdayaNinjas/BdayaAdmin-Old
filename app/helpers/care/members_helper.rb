@@ -1,0 +1,2 @@
+module Care::MembersHelper
+end

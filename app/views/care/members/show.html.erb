@@ -1,0 +1,47 @@
+<% @page_title = "Show Member: #{@member.name}" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to("View Tasks", {:controller => 'tasks', :action => 'show', :id => @member.id}) %>
+
+<div class="member show">
+  <h2>Show Member</h2>
+
+  <table summary="Member detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @member.name %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @member.email %></td>
+    </tr>
+    <tr>
+      <th>Semester</th>
+      <td><%= @member.semester %></td>
+    </tr>
+    <tr>
+      <th>Major</th>
+      <td><%= @member.major %></td>
+    </tr>
+    <tr>
+      <th>Committee</th>
+      <td><%= @member.committee %></td>
+    </tr>
+    <tr>
+      <th>Role</th>
+      <td><%= @member.role %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @member.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @member.updated_at %></td>
+    </tr>
+    <tr><td class="actions">
+        <%= link_to("Edit", {:action => 'edit', :id => @member.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => @member.id}, :class => 'action delete') %>
+    </td></tr>
+  </table>
+</div>
