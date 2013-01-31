@@ -1,22 +1,56 @@
 class Care::KidsController < Care::CareController
 
-	def show
-		@kid = Kid.find(params[:id])
-	end
+  def index
+    @kids = Kid.all.order_by([[ :age, :asc ]])
+  end
 
-	def index
-		@kids = Kid.all
-	end
-
-	def new
-		@kid = Kid.new
-	end
-
-	def create
-		@kid = Kid.create(params[:kid])
-	end
-
-	def edit
-		@kid = Kid.find(params[:id])
-	end
+  def show
+    @kid = Kid.find(params[:id])
+  end
+   
+  def new
+    @kid = Kid.new
+  end
+   
+  def create
+    # Instantiate a new object using form parameters
+    @kid = Kid.new(params[:kid])
+    # Save the object
+    if @kid.save
+      # If save succeeds, redirect to the index action
+      flash[:notice] = "Kid added."
+      redirect_to(:action => 'index')
+    else
+      # If save fails, redisplay the form so user can fix problems
+      render('new')
+    end
+  end
+   
+  def edit
+    @kid = Kid.find(params[:id])
+  end
+   
+  def update
+    @kid = Kid.find(params[:id])
+    # Update the object
+    if @kid.update_attributes(params[:kid])
+      # If update succeeds, redirect to the show action
+      flash[:notice] = "Kid updated."
+      redirect_to(:action => 'show', :id => @kid.id)
+    else
+      # If save fails, redisplay the form so user can fix problems
+      render('edit')
+    end
+  end
+   
+  def delete
+    @kid = Kid.find(params[:id])
+  end
+   
+  def destroy
+    kid = Kid.find(params[:id])
+    kid.destroy
+    flash[:notice] = "Kid deleted."
+    redirect_to(:action => 'index')
+  end
 end
