@@ -1,4 +1,30 @@
 BdayaAdmin::Application.routes.draw do
+  devise_for :members
+
+  get "members/list"
+
+  get "members/show"
+
+  get "members/new"
+
+  get "members/edit"
+
+  get "members/delete"
+
+  get "kids/list"
+
+  get "kids/new"
+
+  get "kids/edit"
+
+  get "kids/delete"
+
+  get "kids/show"
+
+  get "tasks/show"
+
+  root :to => "home#index"
+
 
   namespace :care do
     resources :kids
