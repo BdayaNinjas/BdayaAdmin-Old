@@ -4,7 +4,6 @@ BdayaAdmin::Application.routes.draw do
     resources :kids
   end
 
-
   get "members/list"
 
   get "members/show"
@@ -14,18 +13,6 @@ BdayaAdmin::Application.routes.draw do
   get "members/edit"
 
   get "members/delete"
-
-  get "kids/list"
-
-  get "kids/new"
-
-  get "kids/edit"
-
-  get "kids/delete"
-
-  get "kids/show"
-
-  get "tasks/show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
