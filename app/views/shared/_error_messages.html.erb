@@ -1,0 +1,10 @@
+<% if object && object.errors.size > 0 %>
+  <div id="errorExplanation">
+    <p><%= pluralize(object.errors.size, "problem") %><p>
+    <ul>
+    <% object.errors.full_messages.each do |msg| %>
+      <li style='color:#ff0000;'><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

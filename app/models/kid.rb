@@ -3,10 +3,9 @@ class Kid
   include Mongoid::Timestamps
 
   field :name, type: String
-  validates_presence_of :name, :message => "Name must be provided."
+  validates :name, :presence => true
   field :age, type: Integer
-  validates :age, :presence => true
-  validates_numericality_of :age, :greater_than => 0, :less_than => 19, :message => "Age has to be a number between 1 and 18."
+  validates :age, :presence => true, :numericality => {:greater_than => 0, :less_than => 19}
   field :address, type: String
   field :strengths, type: String
   field :weaknesses, type: String
