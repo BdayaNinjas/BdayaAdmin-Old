@@ -5,7 +5,7 @@
 <div>
   <h2>Delete Member</h2>
   
-  <%= form_for(:member, :url => {:action => 'destroy', :id => @member.id}) do |f| -%>
+  <%= form_for(:member, :url => {:action => 'destroy', :id => @member.id}, :method => 'DELETE') do |f| -%>
 
     <p>Are you sure you want to permanently delete <%= @member.name %>?</p>
   

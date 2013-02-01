@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+require 'mongo'
+require 'rubygems'
 
 
 gem 'rails', '3.2.8'
@@ -7,6 +9,7 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mongoid'
+gem 'mongo_mapper'
 gem 'bson_ext'
 
 # Gems used only for assets and not required
@@ -22,6 +25,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'devise'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

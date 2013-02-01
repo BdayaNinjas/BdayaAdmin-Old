@@ -1,15 +1,10 @@
-class KidsController < ApplicationController
+class Care::KidsController < Care::CareController
 
   def index
-    list
-    render('list')
-  end
-
-  def list
     @kids = Kid.all.order_by([[ :age, :asc ]])
   end
 
-   def show
+  def show
     @kid = Kid.find(params[:id])
   end
    
@@ -22,9 +17,9 @@ class KidsController < ApplicationController
     @kid = Kid.new(params[:kid])
     # Save the object
     if @kid.save
-      # If save succeeds, redirect to the list action
-      flash[:notice] = "Kid created."
-      redirect_to(:action => 'list')
+      # If save succeeds, redirect to the index action
+      flash[:notice] = "Kid added."
+      redirect_to(:action => 'index')
     else
       # If save fails, redisplay the form so user can fix problems
       render('new')
@@ -39,7 +34,7 @@ class KidsController < ApplicationController
     @kid = Kid.find(params[:id])
     # Update the object
     if @kid.update_attributes(params[:kid])
-      # If update succeeds, redirect to the list action
+      # If update succeeds, redirect to the show action
       flash[:notice] = "Kid updated."
       redirect_to(:action => 'show', :id => @kid.id)
     else
@@ -55,7 +50,7 @@ class KidsController < ApplicationController
   def destroy
     kid = Kid.find(params[:id])
     kid.destroy
-    flash[:notice] = "Kid destroyed."
-    redirect_to(:action => 'list')
+    flash[:notice] = "Kid deleted."
+    redirect_to(:action => 'index')
   end
 end

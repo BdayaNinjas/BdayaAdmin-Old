@@ -1,0 +1,35 @@
+<% @page_title = "Kids List" %>
+
+<div>
+  <h2>Kids</h2>
+  
+  <%= link_to("Add New Kid to Care", {:action => 'new'}) %>
+
+  <div><%= pluralize(@kids.size, 'kid') %> found</div>
+  
+  <table summary="Kid list">
+    <tr>
+      <th>Kid</th>
+      <th>Age</th>
+      <th>Address</th>
+      <th>Strengths</th>
+      <th>Weaknsesses</th>
+      <th>Notes</th>
+      <th>Actions</th>
+    </tr>
+    <% @kids.each do |kid| %>
+    <tr>
+      <td><%= link_to(kid.name, {:action => 'show', :id => kid.id}) %></td>
+      <td><%= kid.age %></td>
+      <td><%= kid.address %></td>
+      <td><%= kid.strengths %></td>
+      <td><%= kid.weaknesses %></td>
+      <td><%= kid.notes %></td>
+      <td>
+        <%= link_to("Edit", {:action => 'edit', :id => kid.id}) %>
+        <%= link_to("Delete", {:action => 'delete', :id => kid.id}) %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,15 +1,10 @@
 class MembersController < ApplicationController
 
   def index
-    list
-    render('list')
-  end
-
-  def list
     @members = Member.all
   end
 
-   def show
+  def show
     @member = Member.find(params[:id])
   end
    
@@ -22,9 +17,9 @@ class MembersController < ApplicationController
     @member = Member.new(params[:member])
     # Save the object
     if @member.save
-      # If save succeeds, redirect to the list action
-      flash[:notice] = "Member created."
-      redirect_to(:action => 'list')
+      # If save succeeds, redirect to the index action
+      flash[:notice] = "Member added."
+      redirect_to(:action => 'index')
     else
       # If save fails, redisplay the form so user can fix problems
       render('new')
@@ -39,7 +34,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     # Update the object
     if @member.update_attributes(params[:member])
-      # If update succeeds, redirect to the list action
+      # If update succeeds, redirect to the show action
       flash[:notice] = "Member updated."
       redirect_to(:action => 'show', :id => @member.id)
     else
@@ -55,8 +50,29 @@ class MembersController < ApplicationController
   def destroy
     member = Member.find(params[:id])
     member.destroy
-    flash[:notice] = "Member destroyed."
-    redirect_to(:action => 'list')
+    flash[:notice] = "Member deleted."
+    redirect_to(:action => 'index')
   end
 
+
+=begin
+  This Method returns all Bdaya members categorized according to committees 
+  Author : Omar
+=end
+  def getMembersPerCommittee
+    @yes = Member.getYesMembers
+    @care = Member.getCareMembers
+    @geneh = Member.getGenehMembers
+    @academics = Member.getAcademicsMembers
+    @FR = Member.getFRMembers
+    @PR = Member.getPRMembers
+    @HR = Member.getHRMembers
+    @IT = Member.getITMembers
+  end
+
+  # def get_my_tasks
+  #   @member = Member.find(params[:id])
+  #   @tasks = Task.get_tasks(@member)
+  #   render ('tasks')
+  # end 
 end

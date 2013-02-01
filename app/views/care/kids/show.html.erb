@@ -1,8 +1,8 @@
 <% @page_title = "Show Kid: #{@kid.name}" %>
 
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", {:action => 'index'}) %>
 
-<div class="kid show">
+<div>
   <h2>Show Kid</h2>
 
   <table summary="Kid detail view">
@@ -19,8 +19,16 @@
       <td><%= @kid.address %></td>
     </tr>
     <tr>
+      <th>Strengths</th>
+      <td><%= @kid.strengths %></td>
+    </tr>
+    <tr>
+      <th>Weaknesses</th>
+      <td><%= @kid.weaknesses %></td>
+    </tr>
+    <tr>
       <th>Notes</th>
-      <td><%= @kid.address %></td>
+      <td><%= @kid.notes %></td>
     </tr>
     <tr>
       <th>Created</th>
@@ -30,6 +38,10 @@
       <th>Updated</th>
       <td><%= @kid.updated_at %></td>
     </tr>
+    <tr><td>
+        <%= link_to("Edit", {:action => 'edit', :id => @kid.id}) %>
+        <%= link_to("Delete", {:action => 'delete', :id => @kid.id}) %>
+    </td></tr>
   </table>
   
 </div>

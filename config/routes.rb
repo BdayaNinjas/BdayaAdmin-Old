@@ -1,26 +1,18 @@
 BdayaAdmin::Application.routes.draw do
-  get "members/list"
+  devise_for :members, :path => "members", :path_names => { :sign_in => 'sign_in', :sign_out => 'sign_out', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up' }
+  #devise_for :members, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
 
-  get "members/show"
+  devise_scope :members do
+    get "sign_in", :to => "devise/sessions#new"
+  end
 
-  get "members/new"
+  root :to => "home#index"
 
-  get "members/edit"
-
-  get "members/delete"
-
-  get "kids/list"
-
-  get "kids/new"
-
-  get "kids/edit"
-
-  get "kids/delete"
-
-  get "kids/show"
-
-  get "tasks/show"
-
+  namespace :care do
+    resources :kids
+    resources :members
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,7 +1,7 @@
 <% @page_title = "Show Member: #{@member.name}" %>
 
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
-<%= link_to("View Tasks", {:controller => 'tasks', :action => 'index', :id => @member.id}) %>
+<%= link_to("<< Back to List", {:action => 'index'}) %>
+<%= link_to("View Tasks", {:controller => 'tasks', :action => 'show', :id => @member.id}) %>
 
 <div>
   <h2>Show Member</h2>
@@ -40,8 +40,8 @@
       <td><%= @member.updated_at %></td>
     </tr>
     <tr><td>
-        <%= link_to("Edit", {:action => 'edit', :id => @member.id}) %>
-        <%= link_to("Delete", {:action => 'delete', :id => @member.id}) %>
+        <%= link_to("Edit", {:action => 'edit', :id => @member.id})%>
+        <%= link_to("Delete", {:action => 'delete', :id => @member.id})%>
     </td></tr>
   </table>
 </div>
