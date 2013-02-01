@@ -1,0 +1,24 @@
+<% @page_title = "Create Member" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="task new">
+  <h2>Create Member</h2>
+
+  <%= form_for(:member, :url => {:action => 'create'}) do |f| %>
+  
+	<table summary="Member form fields">
+	  <tr>
+	    <th><%= f.label(:description) %></th>
+	    <td><%= f.text_field(:description) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:deadline) %></th>
+	    <td><%= f.text_field(:deadline) %></td>
+	  </tr>
+	</table>
+    <div class="form-buttons">
+      <%= submit_tag("Create Task") %>
+    </div>
+  <% end %>
+</div>

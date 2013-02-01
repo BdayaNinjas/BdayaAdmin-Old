@@ -1,0 +1,34 @@
+<% @page_title = "Tasks List" %>
+
+<div class="tasks list">
+  <h2>Assigned Tasks</h2>
+  
+  <%= link_to("Add New Task", {:action => 'new'}, :class => 'action new') %>
+
+  <div><%= pluralize(@tasks.size, 'task') %> found</div>
+  
+  <table class="listing" summary="Tasks list">
+    <tr class="header">
+      <th>Descritpion</th>
+      <th>Status</th>
+      <th>Deadline</th>
+      <th>Comment</th>
+      <th>Actions</th>
+    </tr>
+    <% @tasks.each do |task| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= task.description %></td>
+      <td class="center"><%= task.status %></td>
+      <td class="center"><%= task.deadline %></td>
+      <td class="center"><%= task.comment %></td>
+      <td class="actions">
+        <% if (task.status == "Not_done" || task.status == "Re_opened") %>
+          <%= link_to("Done", {:action => 'Done', :id => @member.id, :task_id => task.id}) %>
+        <% elsif (task.status == "Done") %>
+          <%= link_to("Re_open", {:action => 'Re_open', :id => @member.id, :task_id => task.id}) %>
+        <%end%>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
