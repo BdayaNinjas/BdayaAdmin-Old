@@ -59,15 +59,8 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     @meeting.update_attributes(:title => params[:meeting][:title],:meeting_minutes1 => params[:meeting][:meeting_minutes1], :meeting_minutes2 => params[:meeting][:meeting_minutes2], :meeting_minutes3 => params[:meeting][:meeting_minutes3], :room => params[:meeting][:room] )
     @meeting.attendees.each do |attender|
-      if(params[:meeting][:attendance] == "attended_#{attender.id}"){
-        @meeting.attendance << [attender.id,"attended"]
-      }
-      if(params[:meeting][:attendance] == "apsent_#{attender.id}"){
-        @meeting.attendance << [attender.id,"apsent"]
-
-      }
-      if(params[:meeting][:attendance] == "excused_#{attender.id}"){
-        @meeting.attendance << [attender.id,"excused"]
+      if(params[:meeting]['attendance_#{attender.id}'] != nil){
+        @meeting.attendance << [attender.id,params[:meeting]['attendance_#{attender.id}']]
       }
     end
 

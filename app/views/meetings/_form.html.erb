@@ -31,12 +31,9 @@
   <div class="field">
     <% @meeting.attendees.each do |attender| %>
       <tr>
-        <td><%= radio_button_tag(:attendance, "attended_#{attender.id}") %>
-        <%= label_tag(:attend, "Attended") %></td>
-        <td><%= radio_button_tag(:attendance, "apsent_#{attender.id}") %>
-        <%= label_tag(:attend, "Apsent") %></td>
-        <td><%= radio_button_tag(:attendance, "execused_#{attender.id}") %>
-        <%= label_tag(:attend, "Execused") %></td>
+        <td><p><%= radio_button_tag 'attendance_#{attender.id}', 'attended' %> Attended </p></td>
+        <td><p><%= radio_button_tag 'attendance_#{attender.id}', 'absent' %> Absent </p></td>
+        <td><p><%= radio_button_tag 'attendance_#{attender.id}', 'execused' %> Execused </p></td>
         <td><%= attender.name %></td>
       </tr>
     <% end %>
