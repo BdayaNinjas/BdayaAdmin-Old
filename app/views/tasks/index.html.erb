@@ -3,7 +3,8 @@
 <div class="tasks list">
   <h2>Assigned Tasks</h2>
   
-  <%= link_to("Add New Task", {:action => 'new'}, :class => 'action new') %>
+  <%= link_to("Add New Task", {:action => 'new', :id => @member_id }) %>
+<%= link_to("Back to Member", {:controller => 'members', :action => 'show'}) %>
 
   <div><%= pluralize(@tasks.size, 'task') %> found</div>
   
@@ -27,6 +28,7 @@
         <% elsif (task.status == "Done") %>
           <%= link_to("Re_open", {:action => 'Re_open', :id => @member.id, :task_id => task.id}) %>
         <%end%>
+        <%= link_to("Extend Deadline", {:action => 'edit', :member_id => @member.id, :id => task.id}) %>
       </td>
     </tr>
     <% end %>

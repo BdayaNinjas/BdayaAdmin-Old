@@ -13,6 +13,10 @@ BdayaAdmin::Application.routes.draw do
     resources :members
   end
   
+  resources :members do
+    resources :tasks
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

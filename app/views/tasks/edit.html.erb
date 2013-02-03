@@ -1,0 +1,22 @@
+<% @page_title = "Edit Task:" %>
+
+<div>
+  <h2>Update Task</h2>
+
+  <%= form_for(:task, :url => {:action => 'update', :member_id => @member.id, :id => @task.id, :method => 'PUT' }) do |f| %>
+	<table summary="Task form fields">
+	  <tr>
+	    <th><%= f.label(:deadline) %></th>
+	    <td><%= f.text_field(:deadline) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:excuse) %></th>
+	    <td><%= f.text_field(:excuse) %></td>
+	  </tr>
+	</table>
+    <div>
+      <%= submit_tag("Update Task") %>
+    </div>
+    
+  <% end %>
+</div>
