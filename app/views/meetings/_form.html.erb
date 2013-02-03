@@ -1,0 +1,52 @@
+<%= form_for(@meeting) do |f| %>
+  <% if @meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+
+      <ul>
+      <% @meeting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :meeting_minutes1 %><br />
+    <%= f.text_field :meeting_minutes1 %>
+  </div>
+    <div class="field">
+    <%= f.label :meeting_minutes2 %><br />
+    <%= f.text_field :meeting_minutes2 %>
+  </div>
+    <div class="field">
+    <%= f.label :meeting_minutes3 %><br />
+    <%= f.text_field :meeting_minutes3 %>
+  </div>
+
+  <div class="field">
+    <% @meeting.attendees.each do |attender| %>
+      <tr>
+        <td><%= radio_button_tag(:attendance, "attended_#{attender.id}") %>
+        <%= label_tag(:attend, "Attended") %></td>
+        <td><%= radio_button_tag(:attendance, "apsent_#{attender.id}") %>
+        <%= label_tag(:attend, "Apsent") %></td>
+        <td><%= radio_button_tag(:attendance, "execused_#{attender.id}") %>
+        <%= label_tag(:attend, "Execused") %></td>
+        <td><%= attender.name %></td>
+      </tr>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :room %><br />
+    <%= f.text_field :room %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
