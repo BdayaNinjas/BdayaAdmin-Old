@@ -12,6 +12,9 @@ class Care::MembersController < Care::CareController
    
   def edit
     @member = Member.find(params[:id])
+    if(!(current_member.email==@member.email||(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
+      redirect_to(:action => 'index')
+    end
   end
    
   def update
@@ -29,6 +32,9 @@ class Care::MembersController < Care::CareController
    
   def delete
     @member = Member.find(params[:id])
+    if(!(current_member.email!=@member.email&&(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
+      redirect_to(:action => 'index')
+    end
   end
    
   def destroy

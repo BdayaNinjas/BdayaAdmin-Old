@@ -9,7 +9,11 @@ class MembersController < ApplicationController
   end
    
   def new
-    @member = Member.new
+    if(!(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')))
+      redirect_to(:action => 'index')
+    else
+      @member = Member.new
+    end
   end
    
   def create
@@ -28,6 +32,9 @@ class MembersController < ApplicationController
    
   def edit
     @member = Member.find(params[:id])
+    if(!(current_member.email==@member.email||(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
+      redirect_to(:action => 'index')
+    end
   end
    
   def update
@@ -45,6 +52,9 @@ class MembersController < ApplicationController
    
   def delete
     @member = Member.find(params[:id])
+    if(!(current_member.email!=@member.email&&(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
+      redirect_to(:action => 'index')
+    end
   end
    
   def destroy
