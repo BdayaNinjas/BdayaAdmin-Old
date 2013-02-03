@@ -69,7 +69,7 @@ class Member
   Committee/Project : Logistics
 =end
   def get_pending_requests
-    r = Request.where(:assigned => self , :done => false)
+    r = Request.where(:assigned => self , :done => false).to_a
     return r
   end
 
@@ -79,7 +79,7 @@ class Member
   Committee/Project : Logistics
 =end
   def get_done_requests
-    r = Request.where(:assigned => self , :done => true)
+    r = Request.where(:assigned => self , :done => true).to_a
     return r
   end  
 
