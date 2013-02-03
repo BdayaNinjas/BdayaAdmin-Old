@@ -1,7 +1,6 @@
 class Request
   include Mongoid::Document
   field :session_type, type: Integer
-  field :timing, type: Time
   field :done , type: Boolean
   field :room , type: String
 

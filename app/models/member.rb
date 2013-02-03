@@ -120,6 +120,29 @@ class Member
     return mem 
   end
 
+=begin
+  This Method to create an Academic Session and send a request to Logistics
+  to reserve a room for it
+  Author : Diab
+  Committee/Project : Academics
+=end
+  def create_session (c , m , t)
+    s = Session.new
+    s.course = c
+    s.member = m
+    t.timing = t
+    s.save
+
+    r = Request.new
+    r.session = s
+    r.session_type = 1
+    r.done = false
+    r.room = "TBD"
+    r.assigned = Member.where(:role => 2 , :committee => "Logistics")
+    r.save
+    r.needers << self
+    r.needers << t
+  end
 
 =begin
   This 8 Methods to get the all members categorized by committees
