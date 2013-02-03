@@ -3,7 +3,9 @@
 <div>
   <h2>Kids</h2>
   
+  <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
   <%= link_to("Add New Kid to Care", {:action => 'new'}) %>
+  <% end %>
 
   <div><%= pluralize(@kids.size, 'kid') %> found</div>
   
@@ -15,7 +17,9 @@
       <th>Strengths</th>
       <th>Weaknsesses</th>
       <th>Notes</th>
+      <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
       <th>Actions</th>
+      <% end %>
     </tr>
     <% @kids.each do |kid| %>
     <tr>
@@ -25,10 +29,12 @@
       <td><%= kid.strengths %></td>
       <td><%= kid.weaknesses %></td>
       <td><%= kid.notes %></td>
+      <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
       <td>
         <%= link_to("Edit", {:action => 'edit', :id => kid.id}) %>
         <%= link_to("Delete", {:action => 'delete', :id => kid.id}) %>
       </td>
+      <% end %>
     </tr>
     <% end %>
   </table>
