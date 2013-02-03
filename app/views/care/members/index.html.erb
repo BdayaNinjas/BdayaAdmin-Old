@@ -2,7 +2,7 @@
 
 <div>
   <center><h2>Care</h2></center>
-  <% if (@head.length==1) %>
+  <% if (@head.length>0) %>
   <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
   <%end%>
   <h3>Vices: <% @vices.each do |vice| %>
@@ -18,8 +18,9 @@
       <th>Email</th>
       <th>Semester</th>
       <th>Major</th>
-      <th>Role</th>
+      <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
       <th>Actions</th>
+      <% end %>
     </tr>
     <% @members.each do |member| %>
     <tr>
@@ -27,10 +28,13 @@
       <td><%= member.email %></td>
       <td><%= member.semester %></td>
       <td><%= member.major %></td>
-      <td><%= member.role %></td>
       <td>
-        <%= link_to("Edit", {:action => 'edit', :id => member.id}) %>
+        <% if(current_member.email==member.email||(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+          <%= link_to("Edit", {:action => 'edit', :id => member.id}) %>
+        <% end %>
+        <% if(current_member.email!=member.email&&(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
         <%= link_to("Delete", {:action => 'delete', :id => member.id}) %>
+        <% end %>
       </td>
     </tr>
     <% end %>
