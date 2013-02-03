@@ -2,8 +2,9 @@
 
 <div>
   <center><h2>Care</h2></center>
-
+  <% if (@head.length==1) %>
   <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
+  <%end%>
   <h3>Vices: <% @vices.each do |vice| %>
     <%= link_to(vice.name, {:action => 'show', :id => vice.id}) %>
     <%end%></h3> 
