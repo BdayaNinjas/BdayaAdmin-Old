@@ -80,9 +80,4 @@ class MembersController < ApplicationController
     @IT = Member.getITMembers
   end
 
-  # def get_my_tasks
-  #   @member = Member.find(params[:id])
-  #   @tasks = Task.get_tasks(@member)
-  #   render ('tasks')
-  # end 
 end

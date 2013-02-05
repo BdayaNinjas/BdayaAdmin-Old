@@ -26,21 +26,31 @@ class TasksController < ApplicationController
 		render ('index')
 	end
 
-	def new 
+	def new
+		@member = Member.find(params[:id])
 		@task = Task.new
 	end
 
-	# def create
-	# 	@member = Member.find(params[:id])
-	# 	@tasks = Task.get_tasks(@member)
-	# 	@task = Task.new(params[:member])
-	# 	@task.save
-	# 	render ('index')
-	# end
+	def create
+		@member = Member.find(params[:member_id])
+		@tasks = Task.get_tasks(@member)
+		@task = Task.new(params[:id])
+		@task.assigned_to = @member
+		@task.save
+		render ('index')
+	end
 
-	# def extend
-	# 	@task = Task.find(params[:id])
-	# 	if (@task.assigned_to.id == param)
-	# 	end
-	# end
+	def edit
+		@member = Member.find(params[:member_id])
+		@task = Task.find(params[:id])
+	end
+
+	def update
+		@task = Task.find(params[:id])
+		@member = Member.find(params[:member_id])
+    	@task.update_attributes(params[:task])
+    	redirect_to member_tasks_path(id: params[:member_id])
+      	#render ('index')
+    end
+
 end
