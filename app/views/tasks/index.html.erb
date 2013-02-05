@@ -3,8 +3,8 @@
 <div class="tasks list">
   <h2>Assigned Tasks</h2>
   
-  <%= link_to("Add New Task", {:action => 'new', :id => @member_id }) %>
-<%= link_to("Back to Member", {:controller => 'members', :action => 'show'}) %>
+  <%= link_to("Add New Task", {:controller => 'tasks', :action => 'new', :id => @member.id }) %>
+<%= link_to("Back to Member", {:controller => 'members', :action => 'show', :id=> @member.id}) %>
 
   <div><%= pluralize(@tasks.size, 'task') %> found</div>
   

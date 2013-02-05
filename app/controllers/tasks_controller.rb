@@ -27,7 +27,7 @@ class TasksController < ApplicationController
 	end
 
 	def new
-		@member = Member.find(params[:member_id])
+		@member = Member.find(params[:id])
 		@task = Task.new
 	end
 
@@ -48,7 +48,9 @@ class TasksController < ApplicationController
 	def update
 		@task = Task.find(params[:id])
 		@member = Member.find(params[:member_id])
-    	@task.update_attributes(params[:id])
-      	render ('index')
+    	@task.update_attributes(params[:task])
+    	redirect_to member_tasks_path(id: params[:member_id])
+      	#render ('index')
     end
+
 end

@@ -5,7 +5,7 @@
 <div>
   <h2>Update Member</h2>
 
-  <%= form_for(:member, :url => {:action => 'update', :id => @member.id}) do |f| %>
+  <%= form_for(@member, :url => {:action => 'update', :id => @member.id}) do |f| %>
 	  
 	<table summary="Member form fields">
 	  <tr>

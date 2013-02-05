@@ -3,7 +3,7 @@
 <div>
   <h2>Update Task</h2>
 
-  <%= form_for(:task, :url => {:action => 'update', :member_id => @member.id, :id => @task.id, :method => 'PUT' }) do |f| %>
+  <%= form_for @task, :url => {:controller => 'tasks', :action => 'update', :member_id => @member.id} do |f| %>
 	<table summary="Task form fields">
 	  <tr>
 	    <th><%= f.label(:deadline) %></th>
@@ -17,6 +17,5 @@
     <div>
       <%= submit_tag("Update Task") %>
     </div>
-    
   <% end %>
 </div>
