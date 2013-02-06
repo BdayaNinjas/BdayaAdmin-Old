@@ -22,6 +22,14 @@
     <%= f.label :room %><br />
     <%= f.text_field :room %>
   </div>
+  <div class="field">
+    <%= f.label :attendee_ids %><br />
+    <%= f.collection_select :attendee_ids, Member.order_by(:name.asc), :id, :name,{},{multiple: true} %>
+  </div>
+  <div class="field">
+    <%= f.label :meeting_time %><br />
+    <%= f.text_field :meeting_time %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
