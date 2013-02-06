@@ -9,4 +9,5 @@ class Evaluation
   	field :criteria5, type:Integer
   	field :criteria6, type:Integer
 
-belongs_to :member, class_name: "Member", inverse_of: :evaluations
+	belongs_to :member, class_name: "Member", inverse_of: :evaluations
+end

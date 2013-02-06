@@ -3,3 +3,4 @@ class CareEvaluation < Evaluation
 	include Mongoid::Timestamps
 
 
+end
