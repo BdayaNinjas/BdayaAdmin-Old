@@ -2,7 +2,7 @@ class Committee
 	include Mongoid::Document
 
   	field :name, type:String
-  	filed :type, type:Integer
+  	field :type, type:Integer
 
 	has_one :head, class_name: "Member", inverse_of: :hcommittee
 	has_many :vices, class_name: "Member", inverse_of: :vcommittee
