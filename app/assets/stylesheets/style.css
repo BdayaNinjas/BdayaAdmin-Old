@@ -1,0 +1,238 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	
+	font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+	font-family: 'Rambla', sans-serif;	  
+}
+
+img#logo {
+	position: relative;
+	margin-top: -65px;
+	margin-bottom: 20px;
+}
+
+/*Top Bar*/
+
+div#topbar {
+	height: 60px;
+	position: relative;
+}
+
+div#topbar-content {	
+	background: #f3f6f8; /* Old browsers */
+	background: -moz-linear-gradient(top, #f3f6f8 0%, #dbe5e9 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f6f8), color-stop(100%,#dbe5e9)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #f3f6f8 0%,#dbe5e9 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #f3f6f8 0%,#dbe5e9 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #f3f6f8 0%,#dbe5e9 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #f3f6f8 0%,#dbe5e9 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f6f8', endColorstr='#dbe5e9',GradientType=0 ); /* IE6-9 */
+	
+	height: 100%;		
+}
+
+div#topbar-shadow {
+	background: url("../images/topbar-shadow.png") repeat-x center bottom;
+	height: 30px;
+}
+
+div#user-info {
+	float: right;
+	width: 280px;
+}
+
+div#vertical-bar {
+	width: 1px;
+	height: 100%;
+	background: #a7c5cf;
+	border-right: 1px solid #e5f3f7;
+	float: left;
+
+	-moz-box-shadow: 0px 0px 7px #bfdbe6;
+	-webkit-box-shadow: 0px 0px 7px #bfdbe6;
+	box-shadow: 0px 0px 7px #bfdbe6;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=7, Direction=0, Color='#bfdbe6')"; /* For IE 8 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=7, Direction=0, Color='#bfdbe6'); /* For IE 5.5 - 7 */
+	
+}
+
+div#info {
+	padding: 5px 5px 5px 10px;
+}
+
+div#pp {
+	float: right;
+	background: url("../pp/gasser.jpg") no-repeat center center;
+	width: 44px;
+	height: 45px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px; /* future proofing */
+}
+
+img#pp-glow {
+	margin: 1px 1px 0px 0px;
+	float: right;
+}
+
+div#badges {
+	float: right;
+	background: white;
+	margin: 5px;
+	padding: 2px 4px 0px 3px;
+	
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px; /* future proofing */
+	
+	-moz-box-shadow: 1px 1px 1px #c5dee8;
+	-webkit-box-shadow: 1px 1px 1px #c5dee8;
+	box-shadow: 1px 1px 1px #c5dee8;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=120, Color='#c5dee8')"; /* For IE 8 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=120, Color='#c5dee8'); /* For IE 5.5 - 7 */
+	
+}
+
+div.name {
+	color: #668e9f;
+	font-size: 22px;
+	
+	-moz-text-shadow: 1px 1px 1px #bdddea;
+	-webkit-text-shadow: 1px 1px 1px #bdddea;
+	text-shadow: 1px 1px 1px #bdddea;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=120, Color='#bdddea')"; /* For IE 8 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=120, Color='#bdddea'); /* For IE 5.5 - 7 */
+	
+}
+
+div.fname {
+	font-weight: bold;
+}
+
+div#center {
+	height: 100%;
+	margin-top: 5px;
+}
+
+/*Left Bar*/
+
+div#leftbar {
+	width: 100px;
+	height: 100%;
+	float: left;
+}
+
+div#leftbar-content {
+	height: 100%;
+	margin-right: 26px;	
+	background: #dae8ea; /* Old browsers */
+	background: -moz-linear-gradient(left,  #dae8ea 0%, #d3e2e3 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#dae8ea), color-stop(100%,#d3e2e3)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #dae8ea 0%,#d3e2e3 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #dae8ea 0%,#d3e2e3 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #dae8ea 0%,#d3e2e3 100%); /* IE10+ */
+	background: linear-gradient(to right,  #dae8ea 0%,#d3e2e3 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dae8ea', endColorstr='#d3e2e3',GradientType=1 ); /* IE6-9 */
+	
+}
+
+div#leftbar-shadow {
+	width: 26px;
+	height: 100%;
+	float: right;
+	background: url("../images/leftbar-shadow.png") repeat-y center center;
+}
+
+div#home-icon {
+	background: url("../images/icons.png") no-repeat 0px 0px;
+	width: 45px;
+	height: 40px;
+}
+div#committee-icon {
+	background: url("../images/icons.png") no-repeat 0px -40px;
+	width: 45px;
+	height: 40px;
+}
+div#calendar-icon {
+	background: url("../images/icons.png") no-repeat 0px -80px;
+	width: 45px;
+	height: 40px;
+}
+div#edit-icon {
+	background: url("../images/icons.png") no-repeat 0px -120px;
+	width: 45px;
+	height: 40px;
+}
+
+div#home-icon:hover {
+	background: url("../images/icons.png") no-repeat -45px 0px;
+}
+div#committee-icon:hover {
+	background: url("../images/icons.png") no-repeat -45px -40px;
+}
+div#calendar-icon:hover {
+	background: url("../images/icons.png") no-repeat -45px -80px;
+}
+div#edit-icon:hover {
+	background: url("../images/icons.png") no-repeat -45px -120px;
+}
+
+div.leftbar-icon{
+	margin: 10px 0px 0px 17px;
+}
+
+div#icons-seperate {
+	margin-top: 20px;
+	background: url("../images/icons-seperate.png") no-repeat bottom right;
+	width: 88px;
+	height: 3px;
+}
+
+/*Right Bar*/
+
+div#rightbar {
+	width: 300px;
+	height: 100%;
+	float: right;
+	
+	-webkit-transition:all 0.3s ease-in-out;
+	-moz-transition:all 0.3s ease-in-out;
+	-o-transition:all 0.3s ease-in-out;
+	transition:all 0.3s ease-in-out;
+}
+
+div#rightbar:hover {
+	width: 330px;
+}
+
+div#rightbar-content {
+	height: 100%;
+	margin-left: 27px;
+	
+	background: #76c0d8; /* Old browsers */
+	background: url("../images/patt.png") repeat, -moz-linear-gradient(left,  #76c0d8 0%, #8dd9f2 100%); /* FF3.6+ */
+	background: url("../images/patt.png") repeat, -webkit-gradient(linear, left top, right top, color-stop(0%,#76c0d8), color-stop(100%,#8dd9f2)); /* Chrome,Safari4+ */
+	background: url("../images/patt.png") repeat, -webkit-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* Chrome10+,Safari5.1+ */
+	background: url("../images/patt.png") repeat, -o-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* Opera 11.10+ */
+	background: url("../images/patt.png") repeat, -ms-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* IE10+ */
+	background: linear-gradient(to right,  #76c0d8 0%,#8dd9f2 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76c0d8', endColorstr='#8dd9f2',GradientType=1 ); /* IE6-9 */
+
+}
+
+div#rightbar-shadow {
+	float: left;
+	width: 27px;
+	height: 100%;
+	background: url("../images/rightbar-shadow.png") repeat-y center left;
+}
+
+/*Content*/
+
+div#content {
+	height: 100%;
+	padding: 20px;
+	margin-left: 100px;
+}
+

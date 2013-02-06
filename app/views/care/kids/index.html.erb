@@ -1,41 +1,59 @@
-<% @page_title = "Kids List" %>
-
-<div>
-  <h2>Kids</h2>
+<head>
+  <% @page_title = "Kids List" %>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>spreadsheet</title>
   
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag 'stylesheets/spreadsheets', :media => 'screen' %>
+</head>
+
+<body>
+
   <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
   <%= link_to("Add New Kid to Care", {:action => 'new'}) %>
   <% end %>
 
   <div><%= pluralize(@kids.size, 'kid') %> found</div>
   
-  <table summary="Kid list">
-    <tr>
-      <th>Kid</th>
-      <th>Age</th>
-      <th>Address</th>
-      <th>Strengths</th>
-      <th>Weaknsesses</th>
-      <th>Notes</th>
-      <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-      <th>Actions</th>
-      <% end %>
-    </tr>
-    <% @kids.each do |kid| %>
-    <tr>
-      <td><%= link_to(kid.name, {:action => 'show', :id => kid.id}) %></td>
-      <td><%= kid.age %></td>
-      <td><%= kid.address %></td>
-      <td><%= kid.strengths %></td>
-      <td><%= kid.weaknesses %></td>
-      <td><%= kid.notes %></td>
-      <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-      <td>
-        <%= link_to("Edit", {:action => 'edit', :id => kid.id}) %>
-        <%= link_to("Delete", {:action => 'delete', :id => kid.id}) %>
-      </td>
-      <% end %>
-    </tr>
-    <% end %>
-  </table>
-</div>
+  <div class="spreadsheet">
+    <div class="spread-head">Kids list</div>
+    
+    <table>
+      <thead>
+          <tr>
+             <th>Kid</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Strengths</th>
+            <th>Weaknsesses</th>
+            <th>Notes</th>
+            <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+            <th>Actions</th>
+            <% end %>
+          </tr>
+      </thead>
+      <tbody>
+        <% @kids.each do |kid| %>
+            <tr>
+              <td><%= link_to(kid.name, {:action => 'show', :id => kid.id}) %></td>
+              <td><%= kid.age %></td>
+              <td><%= kid.address %></td>
+              <td><%= kid.strengths %></td>
+              <td><%= kid.weaknesses %></td>
+              <td><%= kid.notes %></td>
+              <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+              <td>
+                <%= link_to("Edit", {:action => 'edit', :id => kid.id}) %>
+                <%= link_to("Delete", {:action => 'delete', :id => kid.id}) %>
+              </td>
+              <% end %>
+            </tr>
+            <% end %>
+      </tbody>
+    </table>
+    
+    <div class="spread-footer">
+      
+    </div>
+  </div>
+</body>
