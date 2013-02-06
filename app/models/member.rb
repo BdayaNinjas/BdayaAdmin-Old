@@ -44,7 +44,6 @@ class Member
   #field :email, type: String
   field :semester, type: Integer
   field :major, type: String
-  field :committee, type: String
   field :role, type: String
 
   #freeSessions
