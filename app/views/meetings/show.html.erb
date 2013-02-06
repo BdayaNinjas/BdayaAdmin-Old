@@ -21,8 +21,8 @@
 </p>
 
 <b>Attendees:</b>
-  <%= @meeting.attendees.each do |attendee| %>
-        <%= Member.find(attendee).email %>
+  <% @meeting.attendees.each do |attendee| %>
+        <%= Member.find(attendee).name %>
      <% end %>
 </p>
 
