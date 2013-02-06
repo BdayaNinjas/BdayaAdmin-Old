@@ -20,6 +20,12 @@
   <%= @meeting.meeting_minutes3 %>
 </p>
 
+<b>Attendees:</b>
+  <%= @meeting.attendees.each do |attendee| %>
+        <%= Member.find(attendee).email %>
+     <% end %>
+</p>
+
 <p>
   <b>Room:</b>
   <%= @meeting.room %>
