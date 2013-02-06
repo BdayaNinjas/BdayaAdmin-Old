@@ -21,9 +21,13 @@
 </p>
 
 <b>Attendees:</b>
-  <% @meeting.attendees.each do |attendee| %>
+  <% if(@meeting.attendees.count > 0) %>
+      <% @meeting.attendees.each do |attendee| %>
         <%= Member.find(attendee).name %>
-     <% end %>
+      <%end%> 
+    <%else%>
+      <%= "No Invitees Yet" %>
+    <%end%>
 </p>
 
 <p>

@@ -1,7 +1,5 @@
 class Calendar
   include Mongoid::Document
-
-  include Mongoid::Document
   include Mongoid::Timestamps
 
   field :committee , type: String
