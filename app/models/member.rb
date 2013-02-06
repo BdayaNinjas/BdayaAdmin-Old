@@ -134,16 +134,36 @@ class Member
   end
 
 =begin
+  This Method to get the members who teach a certain major
+  Author : Diab
+  Committee/Project : Academics  
+=end
+  def self.get_members_teach_major(m)
+    
+    cor = Course.where(:major => m)
+    mem = []
+    cor.each do |c|
+      Member.all.each do |m|
+        if(m.courses.include? c)    
+         mem <<  m
+             end
+          end 
+          end  
+
+    return mem 
+  end
+
+=begin
   This Method to create an Academic Session and send a request to Logistics
   to reserve a room for it
   Author : Diab
   Committee/Project : Academics
 =end
-  def create_session (c , m , t)
+  def self.create_session (c , m , t , n)
     s = Session.new
     s.course = c
     s.member = m
-    t.timing = t
+    s.timing = t
     s.save
 
     r = Request.new
@@ -153,7 +173,7 @@ class Member
     r.room = "TBD"
     r.assigned = Member.where(:role => 2 , :committee => "Logistics")
     r.save
-    r.needers << self
+    r.needers << Member.where(:role => 1 , :committee => "Academics")
     r.needers << t
   end
 
