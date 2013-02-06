@@ -3,13 +3,9 @@
 <%= link_to("<< Back to List", {:action => 'index'}) %>
 
 <div>
-  <h2>Show Kid</h2>
+  <h2><%= @kid.name %></h2>
 
   <table summary="Kid detail view">
-    <tr>
-      <th>Name</th>
-      <td><%= @kid.name %></td>
-    </tr>
     <tr>
       <th>Age</th>
       <td><%= @kid.age %></td>
