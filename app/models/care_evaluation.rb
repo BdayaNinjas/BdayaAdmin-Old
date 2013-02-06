@@ -1,3 +1,5 @@
 class CareEvaluation < Evaluation
-	Include Mongoid::Document
-	Include Mongoid::Timestamps
+	include Mongoid::Document
+	include Mongoid::Timestamps
+
+

@@ -1,6 +1,6 @@
 class Committee
-	Include Mongoid::Document
-	Include Mongoid::Timestamps
+	include Mongoid::Document
+	include Mongoid::Timestamps
 
   	field :name, type:String
   	filed :type, type:Integer
