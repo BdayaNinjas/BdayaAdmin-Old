@@ -134,6 +134,26 @@ class Member
   end
 
 =begin
+  This Method to get the members who teach a certain major
+  Author : Diab
+  Committee/Project : Academics  
+=end
+  def self.get_members_teach_major(m)
+    
+    cor = Course.where(:major => m)
+    mem = []
+    cor.each do |c|
+      Member.all.each do |m|
+        if(m.courses.include? c)    
+         mem <<  m
+             end
+          end 
+          end  
+
+    return mem 
+  end
+
+=begin
   This Method to create an Academic Session and send a request to Logistics
   to reserve a room for it
   Author : Diab
