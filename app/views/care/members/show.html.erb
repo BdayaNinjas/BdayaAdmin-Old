@@ -4,13 +4,9 @@
 <%= link_to("View Tasks", {:controller => 'tasks', :action => 'show', :id => @member.id}) %>
 
 <div>
-  <h2>Show Member</h2>
+  <h2><%= @member.name %></h2>
 
   <table summary="Member detail view">
-    <tr>
-      <th>Name</th>
-      <td><%= @member.name %></td>
-    </tr>
     <tr>
       <th>Email</th>
       <td><%= @member.email %></td>
