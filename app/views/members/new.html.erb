@@ -8,6 +8,7 @@
   <%= form_for(:member, :url => {:action => 'create'}) do |f| %>
   
 	<table summary="Member form fields">
+	  
 	  <tr>
 	    <th><%= f.label(:name) %></th>
 	    <td><%= f.text_field(:name) %></td>
@@ -17,8 +18,12 @@
 	    <td><%= f.text_field(:email) %></td>
 	  </tr>
 	  <tr>
-	    <th><%= f.label(:committee) %></th>
-	    <td><%= f.select(:committee, ['None', 'Yes', 'Care', 'Geneh', 'HR', 'PR', 'FR', 'Academics', 'IT']) %></td>
+	    <th><%= f.label(:password) %></th>
+	    <td><%= f.text_field(:password) %></td>
+	  </tr>
+	  <tr>
+		<th><%= f.label(:committee_id, "Committee") %></th>
+		<td><%= f.select(:committee_id, @committees.collect {|p| [p.name, p.id]}) %></td>
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:role) %></th>

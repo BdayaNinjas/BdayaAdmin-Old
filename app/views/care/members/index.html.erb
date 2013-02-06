@@ -28,7 +28,7 @@
             <th>Email</th>
             <th>Semester</th>
             <th>Major</th>
-            <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+            <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
             <th>Actions</th>
             <% end %>
           </tr>
@@ -41,10 +41,10 @@
             <td><%= member.semester %></td>
             <td><%= member.major %></td>
             <td>
-              <% if(current_member.email==member.email||(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+              <% if(current_member.email==member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
                 <%= link_to("Edit", {:action => 'edit', :id => member.id}) %>
               <% end %>
-              <% if(current_member.email!=member.email&&(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
+              <% if(current_member.email!=member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
               <%= link_to("Delete", {:action => 'delete', :id => member.id}) %>
               <% end %>
             </td>

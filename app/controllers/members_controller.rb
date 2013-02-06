@@ -9,10 +9,11 @@ class MembersController < ApplicationController
   end
    
   def new
-    if(!(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')))
+    if(!(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')))
       redirect_to(:action => 'index')
     else
       @member = Member.new
+      @committees = Committee.all
     end
   end
    
@@ -26,13 +27,15 @@ class MembersController < ApplicationController
       redirect_to(:action => 'index')
     else
       # If save fails, redisplay the form so user can fix problems
+      new
       render('new')
     end
   end
    
   def edit
+    @committees = Committee.all
     @member = Member.find(params[:id])
-    if(!(current_member.email==@member.email||(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
+    if(!(current_member.email==@member.email||(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
       redirect_to(:action => 'index')
     end
   end
@@ -46,13 +49,14 @@ class MembersController < ApplicationController
       redirect_to(:action => 'show', :id => @member.id)
     else
       # If save fails, redisplay the form so user can fix problems
+      edit
       render('edit')
     end
   end
    
   def delete
     @member = Member.find(params[:id])
-    if(!(current_member.email!=@member.email&&(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
+    if(!(current_member.email!=@member.email&&(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
       redirect_to(:action => 'index')
     end
   end

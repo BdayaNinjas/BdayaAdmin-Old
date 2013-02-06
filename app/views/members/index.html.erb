@@ -9,7 +9,7 @@
 
   <h2>Members</h2>
   
-  <% if(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+  <% if(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
   <%= link_to("Add New Member", {:action => 'new'}) %>
   <% end %>
 
@@ -27,7 +27,7 @@
             <th>Major</th>
             <th>Committee</th>
             <th>Role</th>
-            <% if(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+            <% if(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
             <th>Actions</th>
             <% end %>
           </tr>
@@ -39,13 +39,13 @@
             <td><%= member.email %></td>
             <td><%= member.semester %></td>
             <td><%= member.major %></td>
-            <td><%= member.committee %></td>
+            <td><%= member.committee.name %></td>
             <td><%= member.role %></td>
             <td>
-              <% if(current_member.email==member.email||(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+              <% if(current_member.email==member.email||(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
                 <%= link_to("Edit", {:action => 'edit', :id => member.id}) %>
               <% end %>
-              <% if(current_member.email!=member.email&&(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
+              <% if(current_member.email!=member.email&&(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
               <%= link_to("Delete", {:action => 'delete', :id => member.id}) %>
               <% end %>
             </td>
