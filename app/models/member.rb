@@ -103,8 +103,12 @@ class Member
     cor = Course.where(:semester => s)
     mem = []
     cor.each do |c|
-      mem << Member.where(:courses.include? c)
-    end   
+      Member.all.each do |m|
+        if(m.courses.include? c)    
+         mem <<  m
+             end
+          end 
+          end  
 
     return mem 
   end
@@ -116,9 +120,15 @@ class Member
 =end
   def self.get_members_teach_course(c)
     
-    mem = Member.where(:courses.include? c)
-    
-    return mem 
+    #mem = Member.where(:courses.include? (c))
+    #mem = Member.all
+    mem = Array.new
+    Member.all.each do |m|
+        if(m.courses.include? c)    
+         mem <<  m
+             end
+          end   
+   return mem
   end
 
 =begin
