@@ -58,12 +58,15 @@ class Member
   has_many :assigned_requests, class_name: "Request", inverse_of: :assigned
     #end
 
-  has_many :sarted_meetings, class_name: "Meeting", inverse_of: :creator
+  has_many :created_meetings, class_name: "Meeting", inverse_of: :creator
   has_and_belongs_to_many :attending_meetings, class_name: "Meeting", inverse_of: :attendees
 
   embeds_many :created_tasks, class_name: "Task", inverse_of: :created_by
   embeds_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
 
+  belongs_to :hcommittee, class_name: "Committee", inverse_of: :head
+  belongs_to :vcommittee, class_name: "Committee", inverse_of: :vices
+  belongs_to :committee, class_name: "Committee", inverse_of: :members
 =begin
   This Method to get the pending requests assigned to this member
   Author:Diab
