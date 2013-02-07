@@ -26,22 +26,34 @@ $(document).ready(function(){
  
 
 	// delete a row
-	$("delete-row > a").click(function(e) {		
-		// do ajax request here
-		e.preventDefault();
-		$.ajax({
-			url:$(this).attr("href"),
-			method:"delete",
-		});
-		$(this).closest("tr").toggle();
-		return false;
-	});
+	// $("delete-row > a").click(function(e) {		
+	// 	// do ajax request here
+	// 	e.preventDefault();
+	// 	$.ajax({
+	// 		url:$(this).attr("href"),
+	// 		method:"delete",
+	// 	});
+	// 	$(this).closest("tr").toggle();
+	// 	return false;
+	// });
 	
-	//update a row
-	$(".update-row").click(function() {		
-		// toggle the input fields
-	});
-	
+	// //update a row
+	// $(".update-row").click(function() {		
+	// 	// toggle the input fields
+	// });
+$(".delete-row").click(function() {	  
+ 	// do ajax request here
+
+ 	var $form =$(this).closest("tr").find("form");
+
+ 	$.ajax({
+ 	 type : "DELETE",
+ 	 cache : false,
+ 	 url : $form.attr('action'),
+ 	 data : $form.serializeArray()
+ 	});
+ 	window.location.reload();
+ });	
 	
 	
 	/* -------------------------------------------------------------------- 

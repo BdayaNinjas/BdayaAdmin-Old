@@ -69,8 +69,8 @@ class TasksController < ApplicationController
  #    end
 
  	def destroy 
- 		@task = Task.find(params[:member_id])
- 		@task.destroy
+ 		task = Task.find(params[:member_id])
+ 		task.destroy
  	end
 
  	def extend_deadline
