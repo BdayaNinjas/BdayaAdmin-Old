@@ -13,7 +13,7 @@ class SponsersController < ApplicationController
 
 	def create
 		@sponser = Sponser.create!(params[:sponser])
-		redirect_to ("index")
+		redirect_to sponsers_path
 	end
 
 	def edit
@@ -23,11 +23,11 @@ class SponsersController < ApplicationController
 	def update
 		@sponser = Sponser.find(params[:id])
 		@sponser.update_attributes(params[:sponser])
-		redirect_to ('index')
+		redirect_to sponsers_path
 	end
 
 	def destroy
 		Sponser.find(params[:id]).destroy
-		redirect_to ("index")
+		redirect_to sponsers_path
 	end
 end
