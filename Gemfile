@@ -8,7 +8,7 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mongoid'
+gem 'mongoid', '2.4.3'
 gem 'mongo_mapper'
 gem 'bson_ext'
 
@@ -27,6 +27,8 @@ end
 gem 'jquery-rails'
 
 gem 'devise'
+
+gem 'devise_invitable'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
