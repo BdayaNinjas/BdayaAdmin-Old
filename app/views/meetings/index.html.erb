@@ -1,28 +1,115 @@
-<h1>Listing meetings</h1>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Meetings</title>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Meeting minutes 1</th>
-    <th>Meeting minutes 2</th>
-    <th>Meeting minutes 3</th>
-    <th>Room</th>
-  </tr>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <script src="http://malsup.github.com/jquery.form.js"></script> 
+  <script> 
+  $(document).ready(function() { 
+  $(".save").click(function() { 
+    var $form = $('.myForm');
+ $.ajax({
+  type : "POST",
+  cache : false,
+  url : $form.attr('action'),
+  data : $form.serializeArray(),
+  success : function(data) {
+    alert("helloooo!");
+  }
+  });
 
-<% @meetings.each do |meeting| %>
-  <tr>
-    <td><%= meeting.title %></td>
-    <td><%= meeting.meeting_minutes1 %></td>
-    <td><%= meeting.meeting_minutes2 %></td>
-    <td><%= meeting.meeting_minutes3 %></td>
-    <td><%= meeting.room %></td>
-    <td><%= link_to 'Show', meeting %></td>
-    <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-    <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+   });
+  }); 
+  </script>
+</head>
+
+<body>
+
+  <div class="spreadsheet">
+
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+      <h1>Meetings</h1>
+
+      <!-- filter field -->
+      <input value="filter..." />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Meeting Minutes 1</th>
+          <th>Meeting Minutes 2</th>
+          <th>Meeting Minutes 3</th>
+          <th>Room</th>
+          <th>Meeting Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <% @meetings.each do |meeting| %>
+          <tr>
+            <%= form_for(meeting, :html => { :class => 'myForm'} ) do |f|%>
+
+            <td><%= meeting.title %>
+                <%= f.text_field :title %>
+            </td>
+            <td>
+              <% if(meeting.meeting_minutes1 == "" || meeting.meeting_minutes1 == nil) %>
+              <%= "Not Entered" %>
+              <%else%>
+              <%=meeting.meeting_minutes1%>
+              <%end%> 
+            </td>
+
+            <td>
+              <% if(meeting.meeting_minutes2 == "" || meeting.meeting_minutes1 == nil) %>
+              <%= "Not Entered" %>
+              <%else%>
+              <%=meeting.meeting_minutes2%>
+              <%end%> 
+            </td>
+
+            <td>
+              <% if(meeting.meeting_minutes2 == "" || meeting.meeting_minutes1 == nil) %>
+              <%= "Not Entered" %>
+              <%else%>
+              <%=meeting.meeting_minutes2%>
+              <%end%> 
+            </td> 
+            <td><%= meeting.room %></td>
+            <td><%= meeting.meeting_time.to_date %></td>
+
+            <td><%= link_to 'Show', meeting %>
+            <%= link_to 'Edit', edit_meeting_path(meeting) %>
+            <%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+          <%end%>
+          </tr>
+          <% end %>
+
+          <!-- add this if row is editable -->
+
+</td>
+</tr>
+
+</tbody>
 </table>
 
+<div class="spread-footer">
+  <!-- tab, add this if table is editable -->
+  <div class="tab edit-spreadsheet">Edit</div>
+  <!-- keep buttons if edit is enabled -->
+  <div class="btn green save">Save</div>
+  <div class="btn red cancel">Cancel</div>
+</div>
 <br />
 
 <%= link_to 'New Meeting', new_meeting_path %>
+
+</div>
+
+</body>

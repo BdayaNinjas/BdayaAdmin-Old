@@ -1,8 +1,9 @@
 class Committee
-	include Mongoid::Document
+  include Mongoid::Document
 
   field :name, type:String
   field :type, type:Integer
+
   field :evaluation_criteria, type:Array
 
  	has_one :head, class_name: "Member", inverse_of: :hcommittee

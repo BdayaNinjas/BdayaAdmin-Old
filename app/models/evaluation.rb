@@ -1,6 +1,6 @@
 class Evaluation
-	include Mongoid::Document
-	include Mongoid::Timestamps
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :criteria1, type:Integer
  	field :criteria2, type:Integer
