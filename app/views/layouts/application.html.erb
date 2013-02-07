@@ -17,7 +17,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= yield %>
+<% if member_signed_in? %>
+    <%= yield %>
+<% else %>
+    You are not logged in.
+<% end %>
 
 </body>
 </html>
