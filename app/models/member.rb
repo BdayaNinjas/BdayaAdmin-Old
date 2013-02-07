@@ -181,36 +181,44 @@ class Member
   This 8 Methods to get the all members categorized by committees
   Author : Omar
 =end
-  def getYesMembers
-    return Member.where(:committee => 'Yes')
+  def self.getYesMembers
+    yes = Committee.where(:name => 'Yes')
+    return yes.members
   end
 
-  def getCareMembers
-    return Member.where(:committee => 'Care')
+  def self.getCareMembers
+     care = Committee.where(:name => 'Care')
+    return care.members
   end
 
-  def getGenehMember
-    return Member.where(:committee => 'Geneh')
+  def self.getGenehMember
+      geneh = Committee.where(:name => 'Geneh')
+    return geneh.members
   end
 
-  def getAcademicsMembers
-    return Member.where(:committee => 'Academics')
+  def self.getAcademicsMembers
+     academics = Committee.where(:name => 'Academics')
+    return academics.members
   end
     
-  def getFRMembers
-    return Member.where(:committee => 'FR')
+  def self.getFRMembers
+     fr = Committee.where(:name => 'FR')
+    return fr.members
   end
 
-  def getPRMembers
-    return Member.where(:committee => 'PR')
+  def self.getPRMembers
+     pr = Committee.where(:name => 'PR')
+    return pr.members
   end
 
-  def getHRMembers
-    return Member.where(:committee => 'HR')
+  def self.getHRMembers
+     hr = Committee.where(:name => 'HR')
+    return hr.members
   end
 
-  def getITMembers
-    return Member.where(:committee => 'IT')
+  def self.getITMembers
+     it = Committee.where(:name => 'IT')
+    return it.members
   end
 
 end
