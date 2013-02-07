@@ -1,7 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'mongoid'
+
+# Bundle edge Rails instead:
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+gem 'mongoid', '2.4.3'
+gem 'mongo'
 gem 'bson_ext'
 gem 'jquery-rails'
 gem 'devise'
@@ -13,6 +18,12 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'jquery-rails'
+
+gem 'devise'
+
+gem 'devise_invitable'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

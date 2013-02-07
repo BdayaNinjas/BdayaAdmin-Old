@@ -1,9 +1,9 @@
 class Care::MembersController < Care::CareController
 	
   def index
-    @head = Member.where(:committee => 'Care').where(:role => 'Head')
-    @vices = Member.where(:committee => 'Care').where(:role => 'Vice Head')
-    @members = Member.where(:committee => 'Care').where(:role => 'Member')
+    @members=Committee.find_by(name: "Care").members.where(:role => 'Member')
+    @head=Committee.find_by(name: "Care").members.where(:role => 'Head')
+    @vices=Committee.find_by(name: "Care").members.where(:role => 'Vice Head')
   end
 
   def show
@@ -12,7 +12,7 @@ class Care::MembersController < Care::CareController
    
   def edit
     @member = Member.find(params[:id])
-    if(!(current_member.email==@member.email||(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
+    if(!(current_member.email==@member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
       redirect_to(:action => 'index')
     end
   end
@@ -32,7 +32,7 @@ class Care::MembersController < Care::CareController
    
   def delete
     @member = Member.find(params[:id])
-    if(!(current_member.email!=@member.email&&(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
+    if(!(current_member.email!=@member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
       redirect_to(:action => 'index')
     end
   end
