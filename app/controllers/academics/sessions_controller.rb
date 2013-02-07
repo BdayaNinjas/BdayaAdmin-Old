@@ -10,8 +10,8 @@ class Academics::SessionsController < ApplicationController
 		@notes = params[:notes]
 		@time = params[:timing]
 
-		Session.create_session (c , m , t , n)
-		#redirect_to :action => index
+		Session.create_session (@course , @teacher , @time , @notes)
+		redirect_to sessions_path
 	end
 
 	def update

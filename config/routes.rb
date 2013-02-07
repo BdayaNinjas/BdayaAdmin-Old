@@ -23,7 +23,7 @@ BdayaAdmin::Application.routes.draw do
     resources :tasks
   end
 
-  resources :academics do
+  namespace :academics do
     resources :members
     resources :sessions
   end
