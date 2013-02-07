@@ -1,0 +1,110 @@
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Sponsers</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <script src="http://malsup.github.com/jquery.form.js"></script> 
+  <script> 
+  $(document).ready(function() { 
+  $(".save").click(function() { 
+    var $form = $('.myForm');
+ $.ajax({
+  type : "POST",
+  cache : false,
+  url : $form.attr('action'),
+  data : $form.serializeArray(),
+  success : function(data) {
+    alert("helloooo!");
+  }
+  });
+
+   });
+  }); 
+  </script>
+</head>
+
+<body>
+
+  <div class="spreadsheet">
+
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+      <h1>Sponsors</h1>
+
+      <!-- filter field -->
+      <input value="filter..." />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Person</th>
+          <th>E-Mail</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Comments</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <% @sponsers.each do |sponser| %>
+          <tr>
+            <%= form_for(sponser, :html => { :class => 'myForm'} ) do |f|%>
+
+            <td><%= sponser.company %>
+                <%= f.text_field :company %>
+            </td>
+            
+            <td><%= sponser.person %>
+                <%= f.text_field :person %>
+            </td>
+            
+            <td><%= sponser.phone %>
+                <%= f.text_field :phone %>
+            </td>
+            
+            <td><%= sponser.email %>
+                <%= f.text_field :email %>
+            </td>
+            
+            <td><%= sponser.address %>
+                <%= f.text_field :address %>
+            </td>
+
+            <td><%= sponser.comments %>
+                <%= f.text_field :comments %>
+            </td>
+
+            <td>
+            <%= link_to 'Edit', edit_sponser_path(sponser) %>
+            <%= link_to 'Destroy', sponser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+          <%end%>
+          </tr>
+          <% end %>
+
+          <!-- add this if row is editable -->
+
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="spread-footer">
+  <!-- tab, add this if table is editable -->
+  <div class="tab edit-spreadsheet">Edit</div>
+  <!-- keep buttons if edit is enabled -->
+  <div class="btn green save">Save</div>
+  <div class="btn red cancel">Cancel</div>
+</div>
+<br />
+
+<%= link_to 'New Sponser', new_sponser_path %>
+
+</div>
+
+</body>

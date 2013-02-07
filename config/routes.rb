@@ -8,6 +8,7 @@ BdayaAdmin::Application.routes.draw do
   # map.connect ':care/:kids/:index'
   # map.root :controller => "home"
 
+
   namespace :care do
     resources :kids
     resources :members
@@ -21,6 +22,16 @@ BdayaAdmin::Application.routes.draw do
   resources :members do
     resources :tasks
   end
+
+  resources :academics do
+    resources :members
+    resources :sessions
+  end
+
+  resources :logistics do
+    resources :requests
+  end
+  resources :sponsers
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
