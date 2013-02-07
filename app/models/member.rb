@@ -4,7 +4,7 @@ class Member
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -17,7 +17,7 @@ class Member
 
   ## Rememberable
   field :remember_created_at, :type => Time
-  field :invitation_token
+  # field :invitation_token
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
@@ -62,7 +62,7 @@ class Member
 
   has_many :created_tasks, class_name: "Task", inverse_of: :created_by
   has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
-  field :invitation_sent_at
+  # field :invitation_sent_at
 
   belongs_to :hcommittee, class_name: "Committee", inverse_of: :head
   belongs_to :vcommittee, class_name: "Committee", inverse_of: :vices
@@ -96,6 +96,8 @@ class Member
 =end
   def reply_request(request , assigned_room)
     request.room = assigned_room
+    request.done = true
+    request.save
     #send_notification(request.needers)
   end
   
@@ -156,29 +158,7 @@ class Member
     return mem 
   end
 
-=begin
-  This Method to create an Academic Session and send a request to Logistics
-  to reserve a room for it
-  Author : Diab
-  Committee/Project : Academics
-=end
-  def self.create_session (c , m , t , n)
-    s = Session.new
-    s.course = c
-    s.member = m
-    s.timing = t
-    s.save
 
-    r = Request.new
-    r.session = s
-    r.session_type = 1
-    r.done = false
-    r.room = "TBD"
-    r.assigned = Member.where(:role => 2 , :committee => "Logistics")
-    r.save
-    r.needers << Member.where(:role => 1 , :committee => "Academics")
-    r.needers << t
-  end
 
 =begin
   This 8 Methods to get the all members categorized by committees

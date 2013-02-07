@@ -1,0 +1,21 @@
+<% @page_title = "Edit Sponser:" %>
+
+<div>
+  <h2>Assign Room</h2>
+
+  <%= form_for @request, :url => {:controller => 'requests', :action => 'update'} do |f| %>
+	<table summary="Request form fields">
+	 
+	  <tr>
+	    <th><%= f.label(:room) %></th>
+	    <td><%= f.text_field(:room) %></td>
+	  </tr>
+
+	 
+	  
+	</table>
+    <div>
+      <%= submit_tag("Assign Room") %>
+    </div>
+  <% end %>
+</div>
