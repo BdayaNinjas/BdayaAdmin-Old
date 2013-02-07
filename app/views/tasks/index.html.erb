@@ -13,6 +13,7 @@
       <th>Descritpion</th>
       <th>Status</th>
       <th>Deadline</th>
+      <th>Requested Deadline</th>
       <th>Comment</th>
       <th>Excuse</th>
       <th>Actions</th>
@@ -22,6 +23,7 @@
       <td><%= task.description %></td>
       <td class="center"><%= task.status %></td>
       <td class="center"><%= task.deadline %></td>
+      <td class="center"><%= task.requested_deadline %></td>
       <td class="center"><%= task.comment %></td>
       <td class="center"><%= task.excuse %></td>
       <td class="actions">
@@ -30,9 +32,9 @@
         <% elsif (task.status == "Done" && current_member == task.created_by) %>
           <%= link_to("Re_open", {:action => 'Re_open', :id => @member.id, :task_id => task.id}) %>
         <%end%>
-        <% if (current_member == task.assigned_to) %>
+        <% if (current_member == task.assigned_to && task.request == false) %>
         <%= link_to("Extend Deadline", {:action => 'edit', :member_id => @member.id, :id => task.id}) %>
-        <% elsif (current_member == task.created_by) %>
+        <% elsif (current_member == task.created_by && task.request == true) %>
         <%= link_to("Approve", {:action => 'approve', :member_id => @member.id, :id => task.id}) %>
         <%= link_to("Disapprove", {:action => 'disapprove', :member_id => @member.id, :id => task.id}) %>
         <% end %>

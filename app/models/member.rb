@@ -60,12 +60,14 @@ class Member
   has_many :created_meetings, class_name: "Meeting", inverse_of: :creator
   has_and_belongs_to_many :attending_meetings, class_name: "Meeting", inverse_of: :attendees
 
-  embeds_many :created_tasks, class_name: "Task", inverse_of: :created_by
-  embeds_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
+  has_many :created_tasks, class_name: "Task", inverse_of: :created_by
+  has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
 
   belongs_to :hcommittee, class_name: "Committee", inverse_of: :head
   belongs_to :vcommittee, class_name: "Committee", inverse_of: :vices
   belongs_to :committee, class_name: "Committee", inverse_of: :members
+
+  has_many :evaluations, class_name: "Evaluation", inverse_of: :member
 =begin
   This Method to get the pending requests assigned to this member
   Author:Diab
@@ -161,36 +163,46 @@ class Member
   This 8 Methods to get the all members categorized by committees
   Author : Omar
 =end
-  def getYesMembers
-    return Member.where(:committee => 'Yes')
+
+  def self.getYesMembers
+    return Committee.find_by(name: "Yes").members
   end
 
-  def getCareMembers
-    return Member.where(:committee => 'Care')
+  def self.getCareMembers
+    return Committee.find_by(name: "Yes").members
   end
 
-  def getGenehMember
-    return Member.where(:committee => 'Geneh')
+  def self.getGenehMembers
+    return Committee.find_by(name: "Geneh").members
   end
 
-  def getAcademicsMembers
-    return Member.where(:committee => 'Academics')
+  def self.getAcademicsMembers
+    return Committee.find_by(name: "Academics").members
+  end
+  
+  def self.getTeamMembers
+    return Committee.find_by(name: "Team").members
   end
     
-  def getFRMembers
-    return Member.where(:committee => 'FR')
+  def self.getFRMembers
+    return Committee.find_by(name: "FR").members
   end
 
-  def getPRMembers
-    return Member.where(:committee => 'PR')
+  def self.getPRMembers
+    return Committee.find_by(name: "PR").members
   end
 
-  def getHRMembers
-    return Member.where(:committee => 'HR')
+  def self.getHRMembers
+    return Committee.find_by(name: "HR").members
   end
 
-  def getITMembers
-    return Member.where(:committee => 'IT')
+  def self.getITMembers
+    return Committee.find_by(name: "IT").members
   end
+
+  def self.getCommitteeMembers (committee_name)
+    return Committee.find_by(name: committee_name).members
+  end
+  
 
 end
