@@ -34,9 +34,9 @@ class Session
     r.session_type = 1
     r.done = false
     r.room = "TBD"
-    r.assigned = Member.where(:role => 2 , :committee => "Logistics")
+    r.assigned = Committee.find_by(:name => "Logistics").head
     r.save
-    r.needers << Member.where(:role => 2 , :committee => "Academics")
+    r.needers << Committee.find_by(:name => "Academics").head
     r.needers << t
   end
    
