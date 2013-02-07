@@ -59,8 +59,23 @@ class TasksController < ApplicationController
 		@task = Task.find(params[:id])
 	end
 
-	def update
-		@task = Task.find(params[:id])
+	# def update
+	# 	puts "************** s#{params[:task]}"
+	# 	@task = Task.find(params[:task][:id])
+	# 	@member = Member.find(params[:member_id])
+ #    	@task.update_attributes(params[:task])
+ #    	@task.update_attributes(:request => true)
+ #    	redirect_to member_tasks_path(id: params[:member_id])
+ #    end
+
+ 	def destroy 
+ 		@task = Task.find(params[:member_id])
+ 		@task.destroy
+ 	end
+
+ 	def extend_deadline
+		# puts "************** s#{params[:task]}"
+		@task = Task.find(params[:task_id])
 		@member = Member.find(params[:member_id])
     	@task.update_attributes(params[:task])
     	@task.update_attributes(:request => true)

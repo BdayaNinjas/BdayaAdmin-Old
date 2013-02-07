@@ -20,6 +20,7 @@ BdayaAdmin::Application.routes.draw do
   
   resources :members do
     resources :tasks
+      post :extend_deadline
   end
 
   # The priority is based upon order of creation:
