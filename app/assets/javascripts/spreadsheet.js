@@ -4,7 +4,7 @@ $(document).ready(function(){
 		Actions to be implemented by the backenders using Ajax
 	--------------------------------------------------------------------  */ 
 	// saving changes (post forms)
-	$(".save").click(function() {		
+	$(".save").click(function() {
 		// do ajax post here
 		// on success: editOff(this);
 		
@@ -20,8 +20,6 @@ $(document).ready(function(){
 				alert("asd");
 		     }
 		    });
-		});
-		
 	});
 	
 	// delete a row
@@ -43,8 +41,6 @@ $(document).ready(function(){
 	
 	
 	
-	
-	
 	/* -------------------------------------------------------------------- 
 		Essential functionalities for the spreadsheet
 		***Don't Change***
@@ -61,7 +57,7 @@ $(document).ready(function(){
 
 	function editOn(x) {
 		var spreadsheet = $(x).closest(".spreadsheet");
-		
+
 		spreadsheet.find("td.edit").toggle();
 		spreadsheet.find(".spread-head").width("-=17");
 		spreadsheet.find(".spread-footer").width("-=17");
