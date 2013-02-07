@@ -163,6 +163,10 @@ div.spreadsheet table {
 	border-collapse:collapse;	
 }
 
+div.spreadsheet table input {
+	width: 100px;
+}
+
 table, th, td {
   border-right: 1px solid #dcdcdc;
 }

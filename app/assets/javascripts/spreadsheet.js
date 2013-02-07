@@ -36,6 +36,20 @@ $(document).ready(function(){
 	// 	$(this).closest("tr").toggle();
 	// 	return false;
 	// });
+
+	$(".delete-row").click(function() {			
+		// do ajax request here
+
+		var $form =$(this).closest("tr").find("form");
+
+		$.ajax({
+		    type     : "DELETE",
+		    cache    : false,
+		    url      : $form.attr('action'),
+		    data     : $form.serializeArray()
+		});
+		window.location.reload();
+	});
 	
 	// //update a row
 	// $(".update-row").click(function() {		
