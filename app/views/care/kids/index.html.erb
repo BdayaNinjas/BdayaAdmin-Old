@@ -1,57 +1,95 @@
 <head>
-  <% @page_title = "Kids List" %>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag 'stylesheets/spreadsheets', :media => 'screen' %>
+  <% @page_title = "Kids List" %>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag 'javascripts/spreadsheet' %>
+  <%= stylesheet_link_tag 'stylesheets/spreadsheet', :media => 'screen' %>
 </head>
 
 <body>
-
-  <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-  <%= link_to("Add New Kid to Care", {:action => 'new'}) %>
-  <% end %>
-
-  <div><%= pluralize(@kids.size, 'kid') %> found</div>
   
   <div class="spreadsheet">
-    <div class="spread-head">Kids list</div>
+    
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+
+      <h1>Kids</h1>
+      <div style="padding-left:7em"><%= pluralize(@kids.size, 'kid') %> found</div>
+    </div>
     
     <table>
       <thead>
           <tr>
-             <th>Kid</th>
+            <th>Kid</th>
             <th>Age</th>
             <th>Address</th>
             <th>Strengths</th>
             <th>Weaknsesses</th>
             <th>Notes</th>
-            <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-            <th>Actions</th>
-            <% end %>
           </tr>
       </thead>
+      
       <tbody>
         <% @kids.each do |kid| %>
-            <tr>
-              <td><%= link_to(kid.name, {:action => 'show', :id => kid.id}) %></td>
-              <td><%= kid.age %></td>
-              <td><%= kid.address %></td>
-              <td><%= kid.strengths %></td>
-              <td><%= kid.weaknesses %></td>
-              <td><%= kid.notes %></td>
-              <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-              <td>
-                <%= link_to("Edit", {:action => 'edit', :id => kid.id}) %>
-                <%= link_to("Delete", {:action => 'delete', :id => kid.id}) %>
-              </td>
-              <% end %>
-            </tr>
-            <% end %>
+        <tr>
+          <%= form_for(kid, :url => {:action => 'update', :id => kid.id}, :method => 'PUT') do |f| %>
+          <td>
+            <p class="cell-data"><%= link_to(kid.name, {:action => 'show', :id => kid.id}) %></p>
+            <div class="cell-edit"><%= f.text_field(:name) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.age %></p>
+            <div class="cell-edit"><%= f.text_field(:age) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.address %></p>
+            <div class="cell-edit"><%= f.text_field(:address) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.strengths %></p>
+            <div class="cell-edit"><%= f.text_area(:strengths, :size => '50x5') %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.weaknesses %></p>
+            <div class="cell-edit"><%= f.text_area(:weaknesses, :size => '50x5') %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.notes %></p>
+            <div class="cell-edit"><%= f.text_area(:notes, :size => '50x5') %></div>
+          </td>
+          <!-- add this if row is editable -->
+          <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+              <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div></td>
+          <% end %>
+          <% end %>
+        </tr>
+        <% end %>
+        
+        <!-- Create new data" form here -->
+        <tr class="add-row">
+          <%= form_for(:kid, :url => {:action => 'create'}) do |f| %>
+          <td><%= f.text_field(:name) %></td>
+          <td><%= f.text_field(:age) %></td>
+          <td><%= f.text_field(:address) %></td>
+          <td><%= f.text_area(:strengths, :size => '50x5') %></td>
+          <td><%= f.text_area(:weaknesses, :size => '50x5') %></td>
+          <td><%= f.text_area(:notes, :size => '50x5') %></td>
+          <% end %>
+        </tr>
+        
       </tbody>
     </table>
     
     <div class="spread-footer">
-      
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+      <div class="btn green add">+</div>
+      <% end %>
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
     </div>
   </div>
+  
 </body>
