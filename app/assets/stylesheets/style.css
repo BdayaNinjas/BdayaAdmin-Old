@@ -10,13 +10,16 @@ img#logo {
 	position: relative;
 	margin-top: -65px;
 	margin-bottom: 20px;
+	z-index: 10;
 }
+
 
 /*Top Bar*/
 
 div#topbar {
 	height: 60px;
 	position: relative;
+	z-index: 1;
 }
 
 div#topbar-content {	
@@ -33,7 +36,7 @@ div#topbar-content {
 }
 
 div#topbar-shadow {
-	background: url("images/topbar-shadow.png") repeat-x center bottom;
+	background: url("/images/topbar-shadow.png") repeat-x center bottom;
 	height: 30px;
 }
 
@@ -63,7 +66,7 @@ div#info {
 
 div#pp {
 	float: right;
-	background: url("pp/gasser.jpg") no-repeat center center;
+	background: url("/pp/gasser.jpg") no-repeat center center;
 	width: 44px;
 	height: 45px;
 	-moz-border-radius: 3px;
@@ -110,17 +113,14 @@ div.fname {
 	font-weight: bold;
 }
 
-div#center {
-	height: 100%;
-	margin-top: 5px;
-}
-
 /*Left Bar*/
 
 div#leftbar {
+	position: absolute;
 	width: 100px;
-	height: 100%;
-	float: left;
+	left: 0;
+	top: 65px;
+	bottom: 0px;
 }
 
 div#leftbar-content {
@@ -141,41 +141,41 @@ div#leftbar-shadow {
 	width: 26px;
 	height: 100%;
 	float: right;
-	background: url("images/leftbar-shadow.png") repeat-y center center;
+	background: url("/images/leftbar-shadow.png") repeat-y center center;
 }
 
 div#home-icon {
-	background: url("images/icons.png") no-repeat 0px 0px;
+	background: url("/images/icons.png") no-repeat 0px 0px;
 	width: 45px;
 	height: 40px;
 }
 div#committee-icon {
-	background: url("images/icons.png") no-repeat 0px -40px;
+	background: url("/images/icons.png") no-repeat 0px -40px;
 	width: 45px;
 	height: 40px;
 }
 div#calendar-icon {
-	background: url("images/icons.png") no-repeat 0px -80px;
+	background: url("/images/icons.png") no-repeat 0px -80px;
 	width: 45px;
 	height: 40px;
 }
 div#edit-icon {
-	background: url("images/icons.png") no-repeat 0px -120px;
+	background: url("/images/icons.png") no-repeat 0px -120px;
 	width: 45px;
 	height: 40px;
 }
 
 div#home-icon:hover {
-	background: url("images/icons.png") no-repeat -45px 0px;
+	background: url("/images/icons.png") no-repeat -45px 0px;
 }
 div#committee-icon:hover {
-	background: url("images/icons.png") no-repeat -45px -40px;
+	background: url("/images/icons.png") no-repeat -45px -40px;
 }
 div#calendar-icon:hover {
-	background: url("images/icons.png") no-repeat -45px -80px;
+	background: url("/images/icons.png") no-repeat -45px -80px;
 }
 div#edit-icon:hover {
-	background: url("images/icons.png") no-repeat -45px -120px;
+	background: url("/images/icons.png") no-repeat -45px -120px;
 }
 
 div.leftbar-icon{
@@ -184,7 +184,7 @@ div.leftbar-icon{
 
 div#icons-seperate {
 	margin-top: 20px;
-	background: url("images/icons-seperate.png") no-repeat bottom right;
+	background: url("/images/icons-seperate.png") no-repeat bottom right;
 	width: 88px;
 	height: 3px;
 }
@@ -193,8 +193,10 @@ div#icons-seperate {
 
 div#rightbar {
 	width: 300px;
-	height: 100%;
-	float: right;
+	position: absolute;
+	right: 0px;
+	top: 65px;
+	bottom: 0px;
 	
 	-webkit-transition:all 0.3s ease-in-out;
 	-moz-transition:all 0.3s ease-in-out;
@@ -211,11 +213,11 @@ div#rightbar-content {
 	margin-left: 27px;
 	
 	background: #76c0d8; /* Old browsers */
-	background: url("images/patt.png") repeat, -moz-linear-gradient(left,  #76c0d8 0%, #8dd9f2 100%); /* FF3.6+ */
-	background: url("images/patt.png") repeat, -webkit-gradient(linear, left top, right top, color-stop(0%,#76c0d8), color-stop(100%,#8dd9f2)); /* Chrome,Safari4+ */
-	background: url("images/patt.png") repeat, -webkit-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* Chrome10+,Safari5.1+ */
-	background: url("images/patt.png") repeat, -o-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* Opera 11.10+ */
-	background: url("images/patt.png") repeat, -ms-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* IE10+ */
+	background: url("/images/patt.png") repeat, -moz-linear-gradient(left,  #76c0d8 0%, #8dd9f2 100%); /* FF3.6+ */
+	background: url("/images/patt.png") repeat, -webkit-gradient(linear, left top, right top, color-stop(0%,#76c0d8), color-stop(100%,#8dd9f2)); /* Chrome,Safari4+ */
+	background: url("/images/patt.png") repeat, -webkit-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* Chrome10+,Safari5.1+ */
+	background: url("/images/patt.png") repeat, -o-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* Opera 11.10+ */
+	background: url("/images/patt.png") repeat, -ms-linear-gradient(left,  #76c0d8 0%,#8dd9f2 100%); /* IE10+ */
 	background: linear-gradient(to right,  #76c0d8 0%,#8dd9f2 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76c0d8', endColorstr='#8dd9f2',GradientType=1 ); /* IE6-9 */
 
@@ -225,14 +227,14 @@ div#rightbar-shadow {
 	float: left;
 	width: 27px;
 	height: 100%;
-	background: url("images/rightbar-shadow.png") repeat-y center left;
+	background: url("/images/rightbar-shadow.png") repeat-y center left;
 }
 
 /*Content*/
 
 div#content {
-	height: 100%;
 	padding: 20px;
 	margin-left: 100px;
+	margin-right: 300px;
 }
 

@@ -4,26 +4,29 @@ $(document).ready(function(){
 		Actions to be implemented by the backenders using Ajax
 	--------------------------------------------------------------------  */ 
 	// saving changes (post forms)
-	$(".save").click(function() {
-		// do ajax post here
-		// on success: editOff(this);
-		
-		$(this).closest(".spreadsheet").find("table > tbody").find(".edited-row").each(function() {			
-			var $form = $(this).find("form");
-			alert($form.attr('action'));
-				$.ajax({
-				type     : "POST",
-				cache    : false,
-				url      : $form.attr('action'),
-				data     : $form.serializeArray(),
-				success  : function(data) {
-				alert("asd");
-		     }
-		    });
-	});
-	
+ $(".save").click(function() {
+ 	// do ajax post here
+ 	// on success: editOff(this);
+ 	 
+ 	 $(this).closest(".spreadsheet").find("table > tbody").find(".edited-row").each(function() {	  
+ 	 var $form = $(this).find("form");
+ 	 alert($form.attr('action'));
+ 	 $.ajax({
+ 	 type : "POST",
+ 	 cache : false,
+ 	 url : $form.attr('action'),
+ 	 data : $form.serializeArray(),
+ 	 complete : function(data) {
+ 	 alert(form.parent().attr("class") == "add-row edited-row");
+ 	 // if (form.parent().attr("class") == "add-row edited-row")
+ 	 }
+ 	 });
+ 	});
+ });
+ 
+
 	// delete a row
-	$("a").click(function(e) {		
+	$("delete-row > a").click(function(e) {		
 		// do ajax request here
 		e.preventDefault();
 		$.ajax({
@@ -83,9 +86,9 @@ $(document).ready(function(){
 		});
 	});
 	// new row
-	$(".add").click(function() {
-		$(this).closest(".spreadsheet").find(".add-row").attr("class", "edited-row");
-	})
+	 $(".add").click(function() {
+ 	$(this).closest(".spreadsheet").find(".add-row").addClass("edited-row").toggle();
+ });
 	
 	
 });
