@@ -6,6 +6,7 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mongoid', '2.4.3'
+gem 'mongo'
 gem 'bson_ext'
 gem 'jquery-rails'
 gem 'devise'
