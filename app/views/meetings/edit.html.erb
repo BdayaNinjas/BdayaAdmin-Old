@@ -1,6 +1,83 @@
-<h1>Editing meeting</h1>
+<h1>Editing Meeting</h1>
 
-<%= render 'form' %>
+<%= form_for(@meeting) do |f| %>
+
+  <% if @meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+
+      <ul>
+        <% @meeting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <% if(DateTime.now.end_of_day > @meeting.meeting_time) %>
+    <div class="field">
+      <%= f.label :meeting_minutes1 %><br />
+      <%= f.text_field :meeting_minutes1 %>
+    </div>
+    <div class="field">
+      <%= f.label :meeting_minutes2 %><br />
+      <%= f.text_field :meeting_minutes2 %>
+    </div>
+    <div class="field">
+      <%= f.label :meeting_minutes3 %><br />
+      <%= f.text_field :meeting_minutes3 %>
+    </div>
+    <% if(@meeting.attendees.count > 0)%>
+      <div class="field">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Attended</th>
+            <th>Absent</th>
+            <th>Execused</th>
+          </tr>
+
+          <% @meeting.attendees.each do |attender| %>
+            <tr>
+              <td><%= attender.name %></td>
+              <% @case = nil; %>
+              <% @meeting.attendance.each do |record|
+                    if(record[0] == attender.id)
+                      @case = record[1]
+                    end
+                  end %>
+              <td><%= 
+              if(@case != nil)
+                @case
+              else
+                "Not Entered"
+              end %></td>
+              <td><%= radio_button_tag 'attendance_'+attender.id, 'Attended' %> Attended </td>
+              <td><%= radio_button_tag 'attendance_'+attender.id, 'Absent' %> Absent </td>
+              <td><%= radio_button_tag 'attendance_'+attender.id, 'Execused' %> Execused </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <%end%>
+  <%end%>
+  <div class="field">
+    <%= f.label :room %><br />
+    <%= f.text_field :room %>
+  </div>
+  <div class="field">
+    <%= f.label :meeting_time %><br />
+    <%= f.text_field :meeting_time,value: @meeting.meeting_time.to_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @meeting %> |
 <%= link_to 'Back', meetings_path %>

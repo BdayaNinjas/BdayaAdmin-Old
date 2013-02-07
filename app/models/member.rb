@@ -1,5 +1,6 @@
 class Member
   include Mongoid::Document
+  include Mongoid::Timestamps
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -37,13 +38,12 @@ class Member
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-  include Mongoid::Timestamps
+
 
   field :name, type: String
   #field :email, type: String
   field :semester, type: Integer
   field :major, type: String
-  field :committee, type: String
   field :role, type: String
 
   #freeSessions
@@ -57,13 +57,18 @@ class Member
   has_many :assigned_requests, class_name: "Request", inverse_of: :assigned
     #end
 
-  has_many :sarted_meetings, class_name: "Meeting", inverse_of: :creator
+  has_many :created_meetings, class_name: "Meeting", inverse_of: :creator
   has_and_belongs_to_many :attending_meetings, class_name: "Meeting", inverse_of: :attendees
 
   has_many :created_tasks, class_name: "Task", inverse_of: :created_by
   has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
   field :invitation_sent_at
 
+  belongs_to :hcommittee, class_name: "Committee", inverse_of: :head
+  belongs_to :vcommittee, class_name: "Committee", inverse_of: :vices
+  belongs_to :committee, class_name: "Committee", inverse_of: :members
+
+  has_many :evaluations, class_name: "Evaluation", inverse_of: :member
 =begin
   This Method to get the pending requests assigned to this member
   Author:Diab
@@ -103,8 +108,12 @@ class Member
     cor = Course.where(:semester => s)
     mem = []
     cor.each do |c|
-      mem << Member.where(:courses.include? c)
-    end   
+      Member.all.each do |m|
+        if(m.courses.include? c)    
+         mem <<  m
+             end
+          end 
+          end  
 
     return mem 
   end
@@ -116,8 +125,34 @@ class Member
 =end
   def self.get_members_teach_course(c)
     
-    mem = Member.where(:courses.include? c)
+    #mem = Member.where(:courses.include? (c))
+    #mem = Member.all
+    mem = Array.new
+    Member.all.each do |m|
+        if(m.courses.include? c)    
+         mem <<  m
+             end
+          end   
+   return mem
+  end
+
+=begin
+  This Method to get the members who teach a certain major
+  Author : Diab
+  Committee/Project : Academics  
+=end
+  def self.get_members_teach_major(m)
     
+    cor = Course.where(:major => m)
+    mem = []
+    cor.each do |c|
+      Member.all.each do |m|
+        if(m.courses.include? c)    
+         mem <<  m
+             end
+          end 
+          end  
+
     return mem 
   end
 
@@ -127,11 +162,11 @@ class Member
   Author : Diab
   Committee/Project : Academics
 =end
-  def create_session (c , m , t)
+  def self.create_session (c , m , t , n)
     s = Session.new
     s.course = c
     s.member = m
-    t.timing = t
+    s.timing = t
     s.save
 
     r = Request.new
@@ -141,7 +176,7 @@ class Member
     r.room = "TBD"
     r.assigned = Member.where(:role => 2 , :committee => "Logistics")
     r.save
-    r.needers << self
+    r.needers << Member.where(:role => 1 , :committee => "Academics")
     r.needers << t
   end
 
@@ -149,36 +184,46 @@ class Member
   This 8 Methods to get the all members categorized by committees
   Author : Omar
 =end
-  def getYesMembers
-    return Member.where(:committee => 'Yes')
+
+  def self.getYesMembers
+    return Committee.find_by(name: "Yes").members
   end
 
-  def getCareMembers
-    return Member.where(:committee => 'Care')
+  def self.getCareMembers
+    return Committee.find_by(name: "Yes").members
   end
 
-  def getGenehMember
-    return Member.where(:committee => 'Geneh')
+  def self.getGenehMembers
+    return Committee.find_by(name: "Geneh").members
   end
 
-  def getAcademicsMembers
-    return Member.where(:committee => 'Academics')
+  def self.getAcademicsMembers
+    return Committee.find_by(name: "Academics").members
+  end
+  
+  def self.getTeamMembers
+    return Committee.find_by(name: "Team").members
   end
     
-  def getFRMembers
-    return Member.where(:committee => 'FR')
+  def self.getFRMembers
+    return Committee.find_by(name: "FR").members
   end
 
-  def getPRMembers
-    return Member.where(:committee => 'PR')
+  def self.getPRMembers
+    return Committee.find_by(name: "PR").members
   end
 
-  def getHRMembers
-    return Member.where(:committee => 'HR')
+  def self.getHRMembers
+    return Committee.find_by(name: "HR").members
   end
 
-  def getITMembers
-    return Member.where(:committee => 'IT')
+  def self.getITMembers
+    return Committee.find_by(name: "IT").members
   end
+
+  def self.getCommitteeMembers (committee_name)
+    return Committee.find_by(name: committee_name).members
+  end
+  
 
 end

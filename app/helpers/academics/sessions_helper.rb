@@ -1,0 +1,2 @@
+module Academics::SessionsHelper
+end

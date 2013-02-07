@@ -4,13 +4,9 @@
 <%= link_to("View Tasks", {:controller => 'tasks', :action => 'index', :id => @member.id}) %>
 
 <div>
-  <h2>Show Member</h2>
+  <h2><%= @member.name %></h2>
 
   <table summary="Member detail view">
-    <tr>
-      <th>Name</th>
-      <td><%= @member.name %></td>
-    </tr>
     <tr>
       <th>Email</th>
       <td><%= @member.email %></td>
@@ -25,7 +21,7 @@
     </tr>
     <tr>
       <th>Committee</th>
-      <td><%= @member.committee %></td>
+      <td><%= @member.committee.name %></td>
     </tr>
     <tr>
       <th>Role</th>

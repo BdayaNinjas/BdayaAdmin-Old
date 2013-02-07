@@ -7,17 +7,39 @@
 
 <p>
   <b>Meeting minutes1:</b>
-  <%= @meeting.meeting_minutes1 %>
+    <% if(@meeting.meeting_minutes1 == "" || @meeting.meeting_minutes1 == nil) %>
+      <%= "Not Entered" %>
+    <%else%>
+      <%=@meeting.meeting_minutes1%>
+    <%end%> 
 </p>
 
 <p>
   <b>Meeting minutes2:</b>
-  <%= @meeting.meeting_minutes2 %>
+    <% if(@meeting.meeting_minutes2 == "" || @meeting.meeting_minutes2 == nil) %>
+      <%= "Not Entered" %>
+    <%else%>
+      <%=@meeting.meeting_minutes2%>
+    <%end%> 
 </p>
 
 <p>
   <b>Meeting minutes3:</b>
-  <%= @meeting.meeting_minutes3 %>
+    <% if(@meeting.meeting_minutes3 == "" || @meeting.meeting_minutes3 == nil) %>
+      <%= "Not Entered" %>
+    <%else%>
+      <%=@meeting.meeting_minutes3%>
+    <%end%> 
+  </p>
+
+<b>Attendees:</b>
+  <% if(@meeting.attendees.count > 0) %>
+      <% @meeting.attendees.each do |attendee| %>
+        <%= Member.find(attendee).name + " / " %>
+      <%end%> 
+    <%else%>
+      <%= "No Invitees Yet" %>
+    <%end%>
 </p>
 
 <p>
@@ -25,6 +47,10 @@
   <%= @meeting.room %>
 </p>
 
+<p>
+  <b>Meeting Date:</b>
+  <%= @meeting.meeting_time.to_date %>
+</p>
 
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back', meetings_path %>

@@ -5,7 +5,7 @@
 <div>
   <h2>Update Member</h2>
 
-  <%= form_for(:member, :url => {:action => 'update', :id => @member.id}) do |f| %>
+  <%= form_for(@member, :url => {:action => 'update', :id => @member.id}, :method => 'PUT') do |f| %>
 	  
 	<table summary="Member form fields">
 	  <tr>
@@ -25,8 +25,8 @@
 	    <td><%= f.text_field(:major) %></td>
 	  </tr>
 	  <tr>
-	    <th><%= f.label(:committee) %></th>
-	    <td><%= f.select(:committee, ['None', 'Yes', 'Care', 'Geneh', 'HR', 'PR', 'FR', 'Academics', 'IT']) %></td>
+		<th><%= f.label(:committee_id, "Committee") %></th>
+		<td><%= f.select(:committee_id, @committees.collect {|p| [p.name, p.id]}) %></td>
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:role) %></th>

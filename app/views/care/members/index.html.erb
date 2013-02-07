@@ -1,6 +1,12 @@
-<% @page_title = "Members List" %>
+<head>
+  <% @page_title = "Care Members" %>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag 'stylesheets/spreadsheets', :media => 'screen' %>
+</head>
 
-<div>
+<body>
+
   <center><h2>Care</h2></center>
   <% if (@head.length>0) %>
   <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
@@ -12,31 +18,43 @@
 
   <div><%= pluralize(@members.size, 'member') %> found</div>
   
-  <table summary="Member list">
-    <tr>
-      <th>Member</th>
-      <th>Email</th>
-      <th>Semester</th>
-      <th>Major</th>
-      <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-      <th>Actions</th>
-      <% end %>
-    </tr>
-    <% @members.each do |member| %>
-    <tr>
-      <td><%= link_to(member.name, {:action => 'show', :id => member.id}) %></td>
-      <td><%= member.email %></td>
-      <td><%= member.semester %></td>
-      <td><%= member.major %></td>
-      <td>
-        <% if(current_member.email==member.email||(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
-          <%= link_to("Edit", {:action => 'edit', :id => member.id}) %>
+  <div class="spreadsheet">
+    <div class="spread-head">Members list</div>
+    
+    <table>
+      <thead>
+          <tr>
+            <th>Member</th>
+            <th>Email</th>
+            <th>Semester</th>
+            <th>Major</th>
+            <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+            <th>Actions</th>
+            <% end %>
+          </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <td><%= link_to(member.name, {:action => 'show', :id => member.id}) %></td>
+            <td><%= member.email %></td>
+            <td><%= member.semester %></td>
+            <td><%= member.major %></td>
+            <td>
+              <% if(current_member.email==member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+                <%= link_to("Edit", {:action => 'edit', :id => member.id}) %>
+              <% end %>
+              <% if(current_member.email!=member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
+              <%= link_to("Delete", {:action => 'delete', :id => member.id}) %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-        <% if(current_member.email!=member.email&&(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
-        <%= link_to("Delete", {:action => 'delete', :id => member.id}) %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
-</div>
+      </tbody>
+    </table>
+    
+    <div class="spread-footer">
+      
+    </div>
+  </div>
+</body>
