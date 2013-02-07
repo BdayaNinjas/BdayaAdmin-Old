@@ -9,7 +9,7 @@ class Care::KidsController < Care::CareController
   end
    
   def new
-    if(!(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
+    if(!(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
       redirect_to(:action => 'index')
     else
       @kid = Kid.new
@@ -31,7 +31,7 @@ class Care::KidsController < Care::CareController
   end
    
   def edit
-    if(!(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
+    if(!(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
       redirect_to(:action => 'index')
     else
       @kid = Kid.find(params[:id])
@@ -52,7 +52,7 @@ class Care::KidsController < Care::CareController
   end
    
   def delete
-    if(!(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
+    if(!(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
       redirect_to(:action => 'index')
     else
       @kid = Kid.find(params[:id])
