@@ -47,15 +47,15 @@
           </td>
           <td>
             <p class="cell-data"><%= kid.strengths %></p>
-            <div class="cell-edit"><%= f.text_area(:strengths, :size => '50x5') %></div>
+            <div class="cell-edit"><%= f.text_area(:strengths, :size => '10x3') %></div>
           </td>
           <td>
             <p class="cell-data"><%= kid.weaknesses %></p>
-            <div class="cell-edit"><%= f.text_area(:weaknesses, :size => '50x5') %></div>
+            <div class="cell-edit"><%= f.text_area(:weaknesses, :size => '10x3') %></div>
           </td>
           <td>
             <p class="cell-data"><%= kid.notes %></p>
-            <div class="cell-edit"><%= f.text_area(:notes, :size => '50x5') %></div>
+            <div class="cell-edit"><%= f.text_area(:notes, :size => '10x3') %></div>
           </td>
           <!-- add this if row is editable -->
           <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
@@ -71,9 +71,9 @@
           <td><%= f.text_field(:name) %></td>
           <td><%= f.text_field(:age) %></td>
           <td><%= f.text_field(:address) %></td>
-          <td><%= f.text_area(:strengths, :size => '50x5') %></td>
-          <td><%= f.text_area(:weaknesses, :size => '50x5') %></td>
-          <td><%= f.text_area(:notes, :size => '50x5') %></td>
+          <td><%= f.text_area(:strengths, :size => '10x3') %></td>
+          <td><%= f.text_area(:weaknesses, :size => '10x3') %></td>
+          <td><%= f.text_area(:notes, :size => '10x3') %></td>
           <% end %>
         </tr>
         

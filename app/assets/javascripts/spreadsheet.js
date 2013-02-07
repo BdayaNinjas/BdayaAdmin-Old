@@ -26,20 +26,18 @@ $(document).ready(function(){
  
 
 	// delete a row
-	$("delete-row > a").click(function(e) {		
+	$(".delete-row").click(function() {			
 		// do ajax request here
-		e.preventDefault();
+
+		var $form =$(this).closest("tr").find("form");
+
 		$.ajax({
-			url:$(this).attr("href"),
-			method:"delete",
+		    type     : "DELETE",
+		    cache    : false,
+		    url      : $form.attr('action'),
+		    data     : $form.serializeArray()
 		});
-		$(this).closest("tr").toggle();
-		return false;
-	});
-	
-	//update a row
-	$(".update-row").click(function() {		
-		// toggle the input fields
+		window.location.reload();
 	});
 	
 	
