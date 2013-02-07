@@ -4,7 +4,7 @@ class Member
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -17,7 +17,7 @@ class Member
 
   ## Rememberable
   field :remember_created_at, :type => Time
-
+  field :invitation_token
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
@@ -60,12 +60,15 @@ class Member
   has_many :created_meetings, class_name: "Meeting", inverse_of: :creator
   has_and_belongs_to_many :attending_meetings, class_name: "Meeting", inverse_of: :attendees
 
-  embeds_many :created_tasks, class_name: "Task", inverse_of: :created_by
-  embeds_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
+  has_many :created_tasks, class_name: "Task", inverse_of: :created_by
+  has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
+  field :invitation_sent_at
 
   belongs_to :hcommittee, class_name: "Committee", inverse_of: :head
   belongs_to :vcommittee, class_name: "Committee", inverse_of: :vices
   belongs_to :committee, class_name: "Committee", inverse_of: :members
+
+  has_many :evaluations, class_name: "Evaluation", inverse_of: :member
 =begin
   This Method to get the pending requests assigned to this member
   Author:Diab
@@ -159,11 +162,11 @@ class Member
   Author : Diab
   Committee/Project : Academics
 =end
-  def create_session (c , m , t)
+  def self.create_session (c , m , t , n)
     s = Session.new
     s.course = c
     s.member = m
-    t.timing = t
+    s.timing = t
     s.save
 
     r = Request.new
@@ -173,7 +176,7 @@ class Member
     r.room = "TBD"
     r.assigned = Member.where(:role => 2 , :committee => "Logistics")
     r.save
-    r.needers << self
+    r.needers << Member.where(:role => 1 , :committee => "Academics")
     r.needers << t
   end
 
@@ -181,44 +184,46 @@ class Member
   This 8 Methods to get the all members categorized by committees
   Author : Omar
 =end
+
   def self.getYesMembers
-    yes = Committee.where(:name => 'Yes')
-    return yes.members
+    return Committee.find_by(name: "Yes").members
   end
 
   def self.getCareMembers
-     care = Committee.where(:name => 'Care')
-    return care.members
+    return Committee.find_by(name: "Yes").members
   end
 
-  def self.getGenehMember
-      geneh = Committee.where(:name => 'Geneh')
-    return geneh.members
+  def self.getGenehMembers
+    return Committee.find_by(name: "Geneh").members
   end
 
   def self.getAcademicsMembers
-     academics = Committee.where(:name => 'Academics')
-    return academics.members
+    return Committee.find_by(name: "Academics").members
+  end
+  
+  def self.getTeamMembers
+    return Committee.find_by(name: "Team").members
   end
     
   def self.getFRMembers
-     fr = Committee.where(:name => 'FR')
-    return fr.members
+    return Committee.find_by(name: "FR").members
   end
 
   def self.getPRMembers
-     pr = Committee.where(:name => 'PR')
-    return pr.members
+    return Committee.find_by(name: "PR").members
   end
 
   def self.getHRMembers
-     hr = Committee.where(:name => 'HR')
-    return hr.members
+    return Committee.find_by(name: "HR").members
   end
 
   def self.getITMembers
-     it = Committee.where(:name => 'IT')
-    return it.members
+    return Committee.find_by(name: "IT").members
   end
+
+  def self.getCommitteeMembers (committee_name)
+    return Committee.find_by(name: committee_name).members
+  end
+  
 
 end

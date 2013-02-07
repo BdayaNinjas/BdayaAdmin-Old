@@ -34,7 +34,7 @@
       <th>Updated</th>
       <td><%= @kid.updated_at %></td>
     </tr>
-    <% if(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+    <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
     <tr><td>
         <%= link_to("Edit", {:action => 'edit', :id => @kid.id}) %>
         <%= link_to("Delete", {:action => 'delete', :id => @kid.id}) %>

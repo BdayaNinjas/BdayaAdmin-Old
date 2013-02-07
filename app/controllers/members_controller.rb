@@ -2,6 +2,7 @@ class MembersController < ApplicationController
 
   def index
     @members = Member.all
+    @committees = Committee.all
   end
 
   def show

@@ -12,6 +12,7 @@ class Evaluation
  	field :criteria8, type:Integer
  	field :criteria9, type:Integer
  	field :criteria10, type:Integer
+ 	# field :
 
 	belongs_to :member, class_name: "Member", inverse_of: :evaluations
 

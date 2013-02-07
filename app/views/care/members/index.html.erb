@@ -1,25 +1,29 @@
 <head>
-  <% @page_title = "Care Members" %>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag 'stylesheets/spreadsheets', :media => 'screen' %>
+  <% @page_title = "Members List" %>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag 'javascripts/spreadsheet' %>
+  <%= stylesheet_link_tag 'stylesheets/spreadsheet', :media => 'screen' %>
 </head>
 
 <body>
-
-  <center><h2>Care</h2></center>
-  <% if (@head.length>0) %>
-  <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
-  <%end%>
-  <h3>Vices: <% @vices.each do |vice| %>
-    <%= link_to(vice.name, {:action => 'show', :id => vice.id}) %>
-    <%end%></h3> 
-  <h3>Members</h3>
-
-  <div><%= pluralize(@members.size, 'member') %> found</div>
   
   <div class="spreadsheet">
-    <div class="spread-head">Members list</div>
+
+    <center><h2>Care</h2></center>
+    <% if (@head.length>0) %>
+    <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
+    <%end%>
+    <h3>Vices: <% @vices.each do |vice| %>
+      <%= link_to(vice.name, {:action => 'show', :id => vice.id}) %>
+      <%end%></h3> 
+    
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+
+      <h1>Members</h1>
+      <div style="padding-left:7em"><%= pluralize(@members.size, 'member') %> found</div>
+    </div>
     
     <table>
       <thead>
@@ -28,33 +32,69 @@
             <th>Email</th>
             <th>Semester</th>
             <th>Major</th>
-            <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-            <th>Actions</th>
-            <% end %>
+            <th>Role</th>
           </tr>
       </thead>
+      
       <tbody>
         <% @members.each do |member| %>
-          <tr>
-            <td><%= link_to(member.name, {:action => 'show', :id => member.id}) %></td>
-            <td><%= member.email %></td>
-            <td><%= member.semester %></td>
-            <td><%= member.major %></td>
-            <td>
-              <% if(current_member.email==member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
-                <%= link_to("Edit", {:action => 'edit', :id => member.id}) %>
+        <tr>
+          <%= form_for(member, :url => {:action => 'update', :id => member.id}, :method => 'PUT') do |f| %>
+          <td>
+            <p class="cell-data"><%= link_to(member.name, {:action => 'show', :id => member.id}) %></p>
+            <div class="cell-edit"><%= f.text_field(:name) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= member.email %></p>
+            <div class="cell-edit"><%= f.text_field(:email) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= member.semester %></p>
+            <div class="cell-edit"><%= f.text_field(:semester) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= member.major %></p>
+            <div class="cell-edit"><%= f.text_field(:major) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= member.role %></p>
+            <div class="cell-edit"><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></div>
+          </td>
+          <!-- add this if row is editable -->
+          <td class="edit"><div class="edit">
+            <% if(current_member.email==member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+                <div class="update-row">✎</div>
               <% end %>
               <% if(current_member.email!=member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
-              <%= link_to("Delete", {:action => 'delete', :id => member.id}) %>
+                <div class="delete-row">✖</div>
               <% end %>
-            </td>
-          </tr>
+          </div></td>
+          <% end %>
+        </tr>
         <% end %>
+        
+        <!-- "Create new data" form here -->
+        <%= form_for(:member, :url => {:action => 'create'}, :method => 'POST') do |f| %>
+        <tr class="add-row">
+          <td><%= f.text_field(:name) %></td>
+          <td><%= f.text_field(:email) %></td>
+          <td><%= f.text_field(:semester) %></td>
+          <%= f.hidden_field :password  , :value => "testtest" %>
+          <td><%= f.text_field(:major) %></td>
+          <td><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></td>
+        </tr>
+        <% end %>
+        
       </tbody>
     </table>
     
     <div class="spread-footer">
-      
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
     </div>
   </div>
+  
 </body>
