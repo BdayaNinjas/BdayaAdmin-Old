@@ -28,9 +28,9 @@ BdayaAdmin::Application.routes.draw do
     resources :sessions
   end
 
-  resources :logistics do
-    resources :requests
-  end
+    
+  resources :requests
+  
   resources :sponsers
 
   # The priority is based upon order of creation:
