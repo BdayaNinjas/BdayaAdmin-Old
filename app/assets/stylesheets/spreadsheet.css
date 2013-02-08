@@ -229,7 +229,7 @@ td.edit {
 	display: none;
 }
 div.edit {
-	background: url("images/edit-shadow.png") no-repeat bottom right;
+	background: url("../images/edit-shadow.png") no-repeat bottom right;
 	padding-bottom: 5px;
 	width: 35px;
 	height: 15px;

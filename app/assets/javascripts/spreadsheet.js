@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	/* -------------------------------------------------------------------- 
 		Actions to be implemented by the backenders using Ajax
 	--------------------------------------------------------------------  */ 
@@ -38,13 +38,13 @@ $(".delete-row").click(function() {
  	});
  	window.location.reload();
  });	
-	
-	
+
+
 	/* -------------------------------------------------------------------- 
 		Essential functionalities for the spreadsheet
 		***Don't Change***
 	--------------------------------------------------------------------  */ 
-	
+
 	// edit tab
 	$(".edit-spreadsheet").click(function() {
 		editOn(this);
@@ -61,17 +61,17 @@ $(".delete-row").click(function() {
 		spreadsheet.find(".spread-head").width("-=17");
 		spreadsheet.find(".spread-footer").width("-=17");
 		spreadsheet.find(".spread-footer").children().toggle();
-		
+
 	}
 	function editOff(x) {
 		var spreadsheet = $(x).closest(".spreadsheet");
-		
+
 		spreadsheet.find("td.edit").toggle();
 		spreadsheet.find(".spread-head").width("+=17");
 		spreadsheet.find(".spread-footer").width("+=17");
 		spreadsheet.find(".spread-footer").children().toggle();
 	}
-	
+
 	// edit row
 	$(".update-row").click(function() {
 		var row = $(this).closest("tr");
@@ -85,6 +85,21 @@ $(".delete-row").click(function() {
 	 $(".add").click(function() {
  	$(this).closest(".spreadsheet").find(".add-row").addClass("edited-row").toggle();
  });
-	
-	
+ 
+ 
+ 	/* spreadsheet head tabs */
+	// hide the inactive spreadsheets
+	$(".spread-head").children(".tab").not(".active").each(function() {
+		$("#"+$(this).attr("data-id")).hide();
+	});
+	//tab click action
+	$(".spread-head > .tab").click(function() {
+		$("#"+$(this).sibling(".active").attr("data-id")).hide();
+		$(this).sibling(".active").removeClass("active");
+
+		$(this).addClass("active");
+		$("#"+$(this).attr("data-id")).show();
+	});
+
+
 });

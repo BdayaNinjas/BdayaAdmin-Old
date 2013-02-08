@@ -2,7 +2,7 @@
     
     <div class="spread-head">
       <!-- spreadsheet title -->
-      <h1>Academics Sessions</h1>  
+      <h1>Sponsors</h1>  
       
       
       
@@ -13,47 +13,42 @@
     <table>
       <thead>
           <tr>
-            <th>Tutor</th>
-            <th>Course</th>
-            <th>Major</th>
-            <th>Semester</th>
-            <th>Timing</th>
-            <th>Room</th>
-            <th>Notes</th>  
+            <th>Company</th>
+            <th>Person</th>
+            <th>E-Mail</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Comments</th>  
           </tr>
       </thead>
       
       <tbody> 
-        <% @sessions.each do |session| %>
+        <% @sponsers.each do |sponser| %>
         <tr>
-          <%= form_for session, :url => {:controller => 'sessions', :action => 'update', :id => session.id} do |f| %>
+          <%= form_for sponser, :url => {:controller => 'sponsers', :action => 'update', :id => sponser.id} do |f| %>
           <td>
-            <p class="cell-data"><%= session.member.name %></p> 
+            <p class="cell-data"><%= sponser.company %></p> 
+            <div class="cell-edit"><%= f.text_field(:company) %></div> 
           </td>
-
           <td>
-            <p class="cell-data"><%= session.course.name %></p> 
+            <p class="cell-data"><%= sponser.person %></p> 
+            <div class="cell-edit"><%= f.text_field(:person) %></div> 
           </td>
-
           <td>
-            <p class="cell-data"><%= session.course.major %></p> 
+            <p class="cell-data"><%= sponser.phone %></p> 
+            <div class="cell-edit"><%= f.text_field(:phone) %></div> 
           </td>
-
           <td>
-            <p class="cell-data"><%= session.course.semester %></p> 
+            <p class="cell-data"><%= sponser.email %></p> 
+            <div class="cell-edit"><%= f.text_field(:email) %></div> 
           </td>
-
           <td>
-            <p class="cell-data"><%= session.timing %></p> 
+            <p class="cell-data"><%= sponser.address %></p> 
+            <div class="cell-edit"><%= f.text_field(:address) %></div> 
           </td>
-
           <td>
-            <p class="cell-data"><%= session.request.room %></p> 
-          </td>
-
-          <td>
-            <p class="cell-data"><%= session.notes %></p>
-            <div class="cell-edit"><%= f.text_field(:notes) %></div> 
+            <p class="cell-data"><%= sponser.comments %></p> 
+            <div class="cell-edit"><%= f.text_field(:comments) %></div> 
           </td>
          
           <td class="edit"><div class="edit"><div class="update-row">✎</div>
@@ -67,33 +62,29 @@
         
         <!-- "Create new data" form here -->
         <tr class="add-row">
-           <%= form_for @session=Session.new, :url => {:action => 'create'} do |f| %> 
+           <%= form_for @sponser=Sponser.new, :url => {:action => 'create'} do |f| %> 
           <td>
-                <%= f.text_field :member %>
+                <%= f.text_field :company %>
             </td>
             
             <td>
-                <%= f.text_field :course %>
+                <%= f.text_field :person %>
             </td>
             
             <td>
-                
+                <%= f.text_field :phone %>
             </td>
             
             <td>
-                
+                <%= f.text_field :email %>
             </td>
             
             <td>
-                <%= f.text_field :timing %>
+                <%= f.text_field :address %>
             </td>
 
             <td>
-                
-            </td>
-
-            <td>
-                <%= f.text_field :notes %>
+                <%= f.text_field :comments %>
             </td>
       
           <%end%> 

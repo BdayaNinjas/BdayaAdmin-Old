@@ -1,0 +1,141 @@
+    <div id="page">
+            <div class="spreadsheet">
+
+                <div class="spread-head">
+                    <!-- spreadsheet title -->
+                    <h1>Room Reservation Requests</h1>
+
+                    <!-- tabs, if needed -->
+                    <div class="tab active" data-id="link1">Pending Reservations</div>
+                    <div class="tab" data-id="link2">Finished Reservations</div>
+
+                    <!-- filter field -->
+                    <input value="filter..." />
+                </div>
+    
+    <table class="link-data" id="link1">
+      <thead>
+          <tr>
+            <th>Session Type</th>
+            <th>Timing</th>
+            <th>Requester</th>
+            <th>Room </th> 
+          </tr>
+      </thead>
+      
+      <tbody> 
+        <% @requests.each do |request| %> 
+        <tr>
+          <%= form_for request, :url => {:controller => 'requests', :action => 'update', :id => request.id} do |f| %> 
+          
+          <td>
+            <p class="cell-data">
+              <%if (request.session_type = 1)%>
+              <%= "Academics Session" %>
+              <%elsif (request.session_type = 2)%>
+              <%= "Yes Session" %>
+              <%elsif (request.session_type = 3)%>
+              <%= "Meeting" %>
+              <%end%>
+            </p>
+          </td>
+            
+            <td>
+              <p class="cell-data">
+                <%if (request.session_type = 1)%>
+                <%= request.session.timing %>
+                <%elsif (request.session_type = 3)%>
+                <%= request.meeting.meeting_time %>
+               <%end%>
+             </p>
+            </td>
+            
+            <td>
+              <p class="cell-data">
+                <%= request.needers[0].name %>
+              </p>    
+            </td>
+
+          <td>
+            <p class="cell-data"><%= request.room %></p> 
+            <div class="cell-edit"><%= f.text_field(:room) %></div> 
+          </td>
+         
+          <td class="edit"><div class="edit"><div class="update-row">✎</div>
+          
+          <%end%>  
+        </tr>
+        <%end%> 
+        
+        
+      </tbody>
+
+
+    </table>
+    
+    <table class="link-data" id="link2">
+      <thead>
+          <tr>
+            <th>Session Type</th>
+            <th>Timing</th>
+            <th>Requester</th>
+            <th>Room </th> 
+          </tr>
+      </thead>
+      
+      <tbody> 
+        <% @done_requests.each do |request| %> 
+        <tr>
+          <%= form_for request, :url => {:controller => 'requests', :action => 'update', :id => request.id} do |f| %> 
+          
+          <td>
+            <p class="cell-data">
+              <%if (request.session_type = 1)%>
+              <%= "Academics Session" %>
+              <%elsif (request.session_type = 2)%>
+              <%= "Yes Session" %>
+              <%elsif (request.session_type = 3)%>
+              <%= "Meeting" %>
+              <%end%>
+            </p>
+          </td>
+            
+            <td>
+              <p class="cell-data">
+                <%if (request.session_type = 1)%>
+                <%= request.session.timing %>
+                <%elsif (request.session_type = 3)%>
+                <%= request.meeting.meeting_time %>
+               <%end%>
+             </p>
+            </td>
+            
+            <td>
+              <p class="cell-data">
+                <%= request.needers[0].name %>
+              </p>    
+            </td>
+
+          <td>
+            <p class="cell-data"><%= request.room %></p> 
+            <div class="cell-edit"><%= f.text_field(:room) %></div> 
+          </td>
+         
+          <td class="edit"><div class="edit"><div class="update-row">✎</div>
+          
+          <%end%>  
+        </tr>
+        <%end%> 
+        
+        
+      </tbody>
+    </table>
+
+    <div class="spread-footer">
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+  </div>

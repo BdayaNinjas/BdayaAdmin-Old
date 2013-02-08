@@ -18,12 +18,14 @@ class MeetingsController < ApplicationController
   def create
     params[:meeting][:attendee_ids].shift
     @meeting = Meeting.new(params[:meeting])
+    @meeting.creator = current_member
     @meeting.save
-    redirect_to @meeting, notice: 'Meeting was successfully created.'
+    # redirect_to @meeting, notice: 'Meeting was successfully created.'
   end
 
   def update
     @meeting = Meeting.find(params[:id])
+    params[:meeting][:attendee_ids].shift
     @meeting.update_attributes(params[:meeting])
     @meeting.attendees.each do |attender|
       param_att = "attendance_"+attender.id
@@ -32,12 +34,12 @@ class MeetingsController < ApplicationController
       end
     end
     @meeting.save
-    redirect_to @meeting, notice: 'Meeting was successfully updated.'
+    # redirect_to @meeting, notice: 'Meeting was successfully updated.'
   end
 
   def destroy
     @meeting = Meeting.find(params[:id])
     @meeting.destroy
-    redirect_to meetings_path
+    # redirect_to meetings_path
   end
 end

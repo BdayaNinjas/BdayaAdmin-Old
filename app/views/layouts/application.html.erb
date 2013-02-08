@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  <div id="member_status">
-    <% if member_signed_in? %>
-      Signed in as <%= current_member.email %>. Not you? <br>
-      <%= current_member.notifications.size %><br>
-      <%= link_to 'logout', destroy_member_session_path, :method => :get %>
-    <% else %>
-      <%= link_to 'login', new_member_session_path, :method => :get %>
-    <% end %>
-  </div>
-
   <title>BdayaAdmin</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>  
   <%= javascript_include_tag "application" %>
@@ -64,6 +53,15 @@
     <div id="content">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+      <div id="member_status">
+    <% if member_signed_in? %>
+      Signed in as <%= current_member.email %>. Not you? <br>
+      <%= current_member.notifications.size %><br>
+      <%= link_to 'logout', destroy_member_session_path, :method => :get %>
+    <% else %>
+      <%= link_to 'login', new_member_session_path, :method => :get %>
+    <% end %>
+    </div>
       <%= yield %>
     </div>
   </div>

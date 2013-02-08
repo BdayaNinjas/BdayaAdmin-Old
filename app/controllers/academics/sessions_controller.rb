@@ -6,20 +6,21 @@ class Academics::SessionsController < ApplicationController
 
 	def create
 		@teacher = Member.find_by(:email => params[:session][:member])
-		@course = Course.find(:name => params[:session][:course])
+		@course = Course.find_by(:name => params[:session][:course])
 		@notes = params[:session][:notes]
 		@time = params[:session][:timing]
 
 		Session.create_session(@course , @teacher , @time , @notes)
-		redirect_to academics_sessions_path
+		#redirect_to academics_sessions_path
 	end
 
 	def update
-		# @session
+		@session = Session.find(params[:id])
+		@session.update_attributes(:notes => params[:session][:notes])
 	end
 
 	def show
-		@session = Session.find(params[:session_id])
+		@session = Session.find(params[:id])
 	end
 
 	def index
@@ -27,6 +28,8 @@ class Academics::SessionsController < ApplicationController
 	end
 
 	def destroy
-		@session = Session.destroy(params[:session_id])
+		@session = Session.find(params[:id])
+		@session.request.destroy
+		@session.destroy
 	end
 end

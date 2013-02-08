@@ -101,7 +101,12 @@ class Member
     request.room = assigned_room
     request.done = true
     request.save
-    #send_notification(request.needers)
+    request.needers.each do |needer|
+    Notification.send_notification(needer,
+                                  2,
+                                  2,
+                                  ("The Room ( " << assigned_room << " ) was Assigned for your Session/Meeting"))
+      end
   end
   
 =begin

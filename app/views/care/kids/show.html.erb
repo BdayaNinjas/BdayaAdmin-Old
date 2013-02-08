@@ -2,44 +2,34 @@
 
 <%= link_to("<< Back to List", {:action => 'index'}) %>
 
-<div>
-  <h2><%= @kid.name %></h2>
+<head>
+  <%= stylesheet_link_tag 'stylesheets/ProfileStyles', :media => 'screen' %>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="spreadsheet.css" type="text/css" charset="utf-8">
+  <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
+  <script type="text/javascript" charset="utf-8" src="spreadsheet.js"></script>
+</head>
 
-  <table summary="Kid detail view">
-    <tr>
-      <th>Age</th>
-      <td><%= @kid.age %></td>
-    </tr>
-    <tr>
-      <th>Address</th>
-      <td><%= @kid.address %></td>
-    </tr>
-    <tr>
-      <th>Strengths</th>
-      <td><%= @kid.strengths %></td>
-    </tr>
-    <tr>
-      <th>Weaknesses</th>
-      <td><%= @kid.weaknesses %></td>
-    </tr>
-    <tr>
-      <th>Notes</th>
-      <td><%= @kid.notes %></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td><%= @kid.created_at %></td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td><%= @kid.updated_at %></td>
-    </tr>
-    <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-    <tr><td>
-        <%= link_to("Edit", {:action => 'edit', :id => @kid.id}) %>
-        <%= link_to("Delete", {:action => 'delete', :id => @kid.id}) %>
-    </td></tr>
-    <% end %>
-  </table>
-  
+<body>
+ <div id="page">
+  <div id="pic">
+   <img src="/images/user_icon_200.png">
 </div>
+<div id="info">
+
+ <h1><%= @kid.name %></h1>
+ <h2></h2>
+ <div id="list1">
+   <b>Age: </b><%= @kid.age %><br><br>
+   <b>Address: </b><%= @kid.address %><br><br>
+   <b>Notes: </b><%= @kid.notes %>
+</div>
+<div id="list2">
+  <b>Strengths: </b><%= @kid.strengths %><br><br>
+  <b>Weaknesses: </b><%= @kid.weaknesses %><br><br>
+  <b>Joined Care: </b><%= @kid.created_at %><br><br>
+ </div>
+</div>
+
+</body>

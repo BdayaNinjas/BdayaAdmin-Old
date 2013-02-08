@@ -1,30 +1,10 @@
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>Meetings</title>
+<% @page_title = "Meetings List" %>
 
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-  <script src="http://malsup.github.com/jquery.form.js"></script> 
-  <script> 
-  $(document).ready(function() { 
-  $(".save").click(function() { 
-    var $form = $('.myForm');
- $.ajax({
-  type : "POST",
-  cache : false,
-  url : $form.attr('action'),
-  data : $form.serializeArray(),
-  success : function(data) {
-    alert("helloooo!");
-  }
-  });
+<div class="tasks list">
+  <h2>Meetings</h2>
 
-   });
-  }); 
-  </script>
-</head>
-
-<body>
-
+  <div><%= pluralize(@meetings.size, 'task') %></div>
+  
   <div class="spreadsheet">
 
     <div class="spread-head">
@@ -44,72 +24,229 @@
           <th>Meeting Minutes 3</th>
           <th>Room</th>
           <th>Meeting Date</th>
-          <th>Actions</th>
+          <th>Attendees</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr>
-          <% @meetings.each do |meeting| %>
+        <% @meetings.each do |meeting| %>
           <tr>
-            <%= form_for(meeting, :html => { :class => 'myForm'} ) do |f|%>
+            <%= form_for(meeting) do |f|%>
 
-            <td><%= meeting.title %>
-                <%= f.text_field :title %>
-            </td>
-            <td>
-              <% if(meeting.meeting_minutes1 == "" || meeting.meeting_minutes1 == nil) %>
-              <%= "Not Entered" %>
+              <% if(DateTime.now.end_of_day > meeting.meeting_time) %>
+
+                <td>
+                  <p class="cell-data">
+                    <%= meeting.title %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= meeting.title %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% if(meeting.meeting_minutes1 == "" || meeting.meeting_minutes1 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes1%>
+                    <%end%> 
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :meeting_minutes1 %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% if(meeting.meeting_minutes2 == "" || meeting.meeting_minutes2 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes2%>
+                    <%end%>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :meeting_minutes1 %>
+                  </p>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% if(meeting.meeting_minutes3 == "" || meeting.meeting_minutes3 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes3%>
+                    <%end%>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :meeting_minutes1 %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= meeting.room %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= meeting.room %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= meeting.meeting_time.to_date %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= meeting.meeting_time.to_date %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% meeting.attendees.each do |att| %>
+                      <%= att.name + " // " %>
+                    <% end %>
+                  </p>
+                  <div class="cell-edit">
+                    <% meeting.attendees.each do |attender| %>
+                      <table>
+                        <tr>
+                          <td>
+                            <%= attender.name %></td>
+                            <% @case = nil; %>
+                            <% meeting.attendance.each do |record|
+                              if(record[0] == attender.id)
+                                @case = record[1]
+                              end
+                            end %>
+                          <td>
+                            <%= if(@case != nil)
+                              @case
+                            else
+                              "Not Entered"
+                            end %>
+                          </td>
+                          <td><%= radio_button_tag 'attendance_'+attender.id, 'Attended' %> Attended </td>
+                          <td><%= radio_button_tag 'attendance_'+attender.id, 'Absent' %> Absent </td>
+                          <td><%= radio_button_tag 'attendance_'+attender.id, 'Execused' %> Execused </td>
+                        </tr>
+                      </table>
+                    <%end%>
+                  </div>
+                </td>
+
               <%else%>
-              <%=meeting.meeting_minutes1%>
-              <%end%> 
+
+                <td>
+                  <p class="cell-data">
+                    <%= meeting.title %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :title %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% if(meeting.meeting_minutes1 == "" || meeting.meeting_minutes1 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes1%>
+                    <%end%> 
+                  </p>
+                  <div class="cell-edit">
+                    <%= "Meeting's not Passed Yet" %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% if(meeting.meeting_minutes2 == "" || meeting.meeting_minutes2 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes2%>
+                    <%end%> 
+                  </p>
+                  <div class="cell-edit">
+                    <%= "Meeting's not Passed Yet" %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% if(meeting.meeting_minutes3 == "" || meeting.meeting_minutes3 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes3%>
+                    <%end%> 
+                  <p>
+                  <div class="cell-edit">
+                    <%= "Meeting's not Passed Yet" %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= meeting.room %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :room %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= meeting.meeting_time.to_date %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :meeting_time,value: meeting.meeting_time.to_date %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% meeting.attendees.each do |att| %>
+                      <%= att.name + " // " %>
+                    <% end %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.collection_select :attendee_ids, Member.order_by(:name.asc), :id, :name,{},{multiple: true} %>
+                  </div>
+                </td>
+              <%end%>
+            <%end%>
+            <td class="edit">
+              <div class="edit">
+                <div class="update-row">✎</div>
+                <div class="delete-row"><%= link_to '✖', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+              </div>
             </td>
 
-            <td>
-              <% if(meeting.meeting_minutes2 == "" || meeting.meeting_minutes1 == nil) %>
-              <%= "Not Entered" %>
-              <%else%>
-              <%=meeting.meeting_minutes2%>
-              <%end%> 
-            </td>
-
-            <td>
-              <% if(meeting.meeting_minutes2 == "" || meeting.meeting_minutes1 == nil) %>
-              <%= "Not Entered" %>
-              <%else%>
-              <%=meeting.meeting_minutes2%>
-              <%end%> 
-            </td> 
-            <td><%= meeting.room %></td>
-            <td><%= meeting.meeting_time.to_date %></td>
-
-            <td><%= link_to 'Show', meeting %>
-            <%= link_to 'Edit', edit_meeting_path(meeting) %>
-            <%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
-          <%end%>
           </tr>
-          <% end %>
+        <%end%>
+        
+        <!-- "Create new data" form here -->
+        <tr class="add-row">
+          <% @meeting=Meeting.new%>
+           <%= form_for @meeting, :url => {:action => 'create'} do |f| %>
+            <td><%= f.text_field :title %></td>
+            <td>Meeting Minutes1</td>
+            <td>Meeting Minutes2</td>
+            <td>Meeting Minutes3</td>
+            <td>Room</td>
+            <td><%= f.text_field :meeting_time %></td>
+            <td><%= f.collection_select :attendee_ids, Member.order_by(:name.asc), :id, :name,{},{multiple: true} %></td>
+          <%end%>
+        </tr>
+      </tbody>
+    </table>
 
-          <!-- add this if row is editable -->
-
-</td>
-</tr>
-
-</tbody>
-</table>
-
-<div class="spread-footer">
-  <!-- tab, add this if table is editable -->
-  <div class="tab edit-spreadsheet">Edit</div>
-  <!-- keep buttons if edit is enabled -->
-  <div class="btn green save">Save</div>
-  <div class="btn red cancel">Cancel</div>
-</div>
-<br />
-
-<%= link_to 'New Meeting', new_meeting_path %>
-
-</div>
-
-</body>
+    <div class="spread-footer">
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green add">+</div>
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+  </div>
