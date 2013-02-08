@@ -1,17 +1,3 @@
-  <script>
-            $(document).ready(function(){
-                $(".link-data").hide();
-                var ld = $(".active").attr("data-id");
-                $("#"+ld).show();
-
-                $(".tab").click(function () {
-                    $(".link-data").hide();
-                    $(".tab").removeClass("active");
-                    $(this).addClass("active");
-                    $("#"+$(this).attr("data-id")).show();
-                });
-            });
-  </script>
     <div id="page">
             <div class="spreadsheet">
 

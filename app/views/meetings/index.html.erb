@@ -1,12 +1,10 @@
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>Meetings</title>
+<% @page_title = "Meetings List" %>
 
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-</head>
+<div class="tasks list">
+  <h2>Meetings</h2>
 
-<body>
-
+  <div><%= pluralize(@meetings.size, 'task') %></div>
+  
   <div class="spreadsheet">
 
     <div class="spread-head">
@@ -252,4 +250,3 @@
       <div class="btn red cancel">Cancel</div>
     </div>
   </div>
-</body>

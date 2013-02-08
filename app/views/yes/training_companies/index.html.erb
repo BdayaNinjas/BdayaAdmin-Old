@@ -1,12 +1,10 @@
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>Training Company</title>
+<% @page_title = "Training Companies List" %>
 
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-</head>
+<div class="training companies list">
+  <h2>Training Companies</h2>
 
-<body>
-
+  <div><%= pluralize(@training_companies.size, 'trining companies') %></div>
+  
   <div class="spreadsheet">
 
     <div class="spread-head">
@@ -165,4 +163,3 @@
     </div>
 
   </div>
-</body>

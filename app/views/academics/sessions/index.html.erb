@@ -1,115 +1,113 @@
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>Academics Sessions</title>
-
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-  <script src="http://malsup.github.com/jquery.form.js"></script> 
-  <script> 
-  $(document).ready(function() { 
-  $(".save").click(function() { 
-    var $form = $('.myForm');
- $.ajax({
-  type : "POST",
-  cache : false,
-  url : $form.attr('action'),
-  data : $form.serializeArray(),
-  success : function(data) {
-    alert("helloooo!");
-  }
-  });
-
-   });
-  }); 
-  </script>
-</head>
-
-<body>
-
   <div class="spreadsheet">
-
+    
     <div class="spread-head">
       <!-- spreadsheet title -->
-      <h1>Academics Sessions</h1>
-
-      <!-- filter field -->
+      <h1>Academics Sessions</h1>  
+      
+      
+      
+      <!-- filter field. not needed for now -->
       <input value="filter..." />
     </div>
-
+    
     <table>
       <thead>
-        <tr>
-          <th>Tutor</th>
-          <th>Course</th>
-          <th>Major</th>
-          <th>Semester</th>
-          <th>Timing</th>
-          <th>Room</th>
-          <th>Notes</th>
-          
-          
-
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <% @sessions.each do |session| %>
           <tr>
-            
-
-            <td>
-              <%= session.member.name %>
-            </td>
-            
-            <td>
-              <%= session.course.name %>
-            </td>
-            
-            <td>
-              <%= session.course.major %>  
-            </td>
-
-             <td>
-              <%= session.course.semester %>  
-            </td>
-
-             <td>
-              <%= session.timing %>               
-            </td>
-
-            <td>
-              <%= session.request.room %>               
-            </td>
-
-            <td>
-              <%= session.notes %>               
-            </td>
-
-
-            <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
-          
+            <th>Tutor</th>
+            <th>Course</th>
+            <th>Major</th>
+            <th>Semester</th>
+            <th>Timing</th>
+            <th>Room</th>
+            <th>Notes</th>  
           </tr>
-          <% end %>
+      </thead>
+      
+      <tbody> 
+        <% @sessions.each do |session| %>
+        <tr>
+          <%= form_for session, :url => {:controller => 'sessions', :action => 'update', :id => session.id} do |f| %>
+          <td>
+            <p class="cell-data"><%= session.member.name %></p> 
+          </td>
 
-          <!-- add this if row is editable -->
+          <td>
+            <p class="cell-data"><%= session.course.name %></p> 
+          </td>
 
-</td>
-</tr>
+          <td>
+            <p class="cell-data"><%= session.course.major %></p> 
+          </td>
 
-</tbody>
-</table>
+          <td>
+            <p class="cell-data"><%= session.course.semester %></p> 
+          </td>
 
-<div class="spread-footer">
-  <!-- tab, add this if table is editable -->
-  <div class="tab edit-spreadsheet">Edit</div>
-  <!-- keep buttons if edit is enabled -->
-  <div class="btn green save">Save</div>
-  <div class="btn red cancel">Cancel</div>
-</div>
-<br />
-<%= link_to 'New Session', new_academics_session_path %>
+          <td>
+            <p class="cell-data"><%= session.timing %></p> 
+          </td>
 
+          <td>
+            <p class="cell-data"><%= session.request.room %></p> 
+          </td>
 
-</div>
+          <td>
+            <p class="cell-data"><%= session.notes %></p>
+            <div class="cell-edit"><%= f.text_field(:notes) %></div> 
+          </td>
+         
+          <td class="edit"><div class="edit"><div class="update-row">✎</div>
+          <!-- add this if the row can be deleted -->
+            <div class="delete-row">✖</div></div>
+          </td>
+          <%end%> 
+        </tr>
+        <%end%> 
+        
+        
+        <!-- "Create new data" form here -->
+        <tr class="add-row">
+           <%= form_for @session=Session.new, :url => {:action => 'create'} do |f| %> 
+          <td>
+                <%= f.text_field :member %>
+            </td>
+            
+            <td>
+                <%= f.text_field :course %>
+            </td>
+            
+            <td>
+                
+            </td>
+            
+            <td>
+                
+            </td>
+            
+            <td>
+                <%= f.text_field :timing %>
+            </td>
 
-</body>
+            <td>
+                
+            </td>
+
+            <td>
+                <%= f.text_field :notes %>
+            </td>
+      
+          <%end%> 
+        </tr>
+        
+      </tbody>
+    </table>
+    
+    <div class="spread-footer">
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green add">+</div>
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+  </div>

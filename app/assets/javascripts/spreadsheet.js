@@ -130,7 +130,22 @@ $(".delete-row").click(function() {
 	 $(".add").click(function() {
  	$(this).closest(".spreadsheet").find(".add-row").addClass("edited-row").toggle();
  });
+<<<<<<< HEAD
 >>>>>>> 13dca9997ec03fb51ed494fd4425f98d0f047587
+=======
+ 
+ // spreadsheet header tabs
+	$(".link-data").hide();
+        var ld = $(".active").attr("data-id");
+        $("#"+ld).show();
+
+        $(".tab").click(function () {
+        	$(".link-data").hide();
+                $(".tab").removeClass("active");
+                $(this).addClass("active");
+                $("#"+$(this).attr("data-id")).show();
+        });
+>>>>>>> b21b6d604cbce412771d43398e4ef06fa3ab4859
 	
 	
 });
