@@ -6,7 +6,7 @@ class Academics::SessionsController < ApplicationController
 
 	def create
 		@teacher = Member.find_by(:email => params[:session][:member])
-		@course = Course.find(:name => params[:session][:course])
+		@course = Course.find_by(:name => params[:session][:course])
 		@notes = params[:session][:notes]
 		@time = params[:session][:timing]
 
