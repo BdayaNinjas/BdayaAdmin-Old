@@ -18,7 +18,7 @@ class Logistics::RequestsController < ApplicationController
 	def update
 		@request = Request.find(params[:id])
 		current_member.reply_request(@request , params[:request][:room])
-		redirect_to logistics_requests_path
+		#redirect_to logistics_requests_path
 	end
 
 end

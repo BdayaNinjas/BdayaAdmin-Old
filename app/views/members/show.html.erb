@@ -3,6 +3,7 @@
 <%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
 <%= link_to("View Tasks", {:controller => 'tasks', :action => 'index', :id => @member.id}) %>
 
+<!-- <<<<<<< HEAD -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -324,6 +325,41 @@ $(document).ready(function(){
   <div id="heading">Performance</div>
   <div id="content"><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></div> -->
   
+<!-- ======= -->
+<div>
+  <h2><%= @member.name %></h2>
+
+  <table summary="Member detail view">
+    <tr>
+      <th>Email</th>
+      <td><%= @member.email %></td>
+    </tr>
+    <tr>
+      <th>Semester</th>
+      <td><%= @member.semester %></td>
+    </tr>
+    <tr>
+      <th>Major</th>
+      <td><%= @member.major %></td>
+    </tr>
+    <tr>
+      <th>Committee</th>
+      <td><%= @member.committee.name %></td>
+    </tr>
+    <tr>
+      <th>Role</th>
+      <td><%= @member.role %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @member.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @member.updated_at %></td>
+    </tr>
+  </table>
+<!-- >>>>>>> fd4fbfd9942491395b139dab3b200f7358461b73 -->
 </div>
 </body>
 </html>
