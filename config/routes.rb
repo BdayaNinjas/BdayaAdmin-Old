@@ -1,4 +1,6 @@
 BdayaAdmin::Application.routes.draw do
+  resources :evaluations
+
   resources :meetings
 
   #devise_for :members, :path => "auth", :path_names => { :sign_in => 'sign_in', :sign_out => 'sign_out', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up' }
