@@ -85,6 +85,18 @@ $(".delete-row").click(function() {
 	 $(".add").click(function() {
  	$(this).closest(".spreadsheet").find(".add-row").addClass("edited-row").toggle();
  });
+ 
+ // spreadsheet header tabs
+	$(".link-data").hide();
+        var ld = $(".active").attr("data-id");
+        $("#"+ld).show();
+
+        $(".tab").click(function () {
+        	$(".link-data").hide();
+                $(".tab").removeClass("active");
+                $(this).addClass("active");
+                $("#"+$(this).attr("data-id")).show();
+        });
 	
 	
 });
