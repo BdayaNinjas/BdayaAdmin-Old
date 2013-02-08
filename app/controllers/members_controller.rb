@@ -63,4 +63,12 @@ class MembersController < ApplicationController
     @IT = Member.getITMembers
   end
 
+  def id
+    return self.id.to_s
+  end
+
+ 
+
+  
+
 end

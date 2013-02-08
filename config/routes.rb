@@ -34,10 +34,16 @@ BdayaAdmin::Application.routes.draw do
     resources :sessions
   end
 
-    
-  resources :requests
+  namespace :fr do
+    resources :sponsers
+  end
+
+  namespace :logistics do
+    resources :requests
+  end    
   
-  resources :sponsers
+  
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
