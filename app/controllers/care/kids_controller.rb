@@ -65,4 +65,9 @@ class Care::KidsController < Care::CareController
     flash[:notice] = "Kid deleted."
     redirect_to(:action => 'index')
   end
+
+  def performance
+    @kid = Kid.find(params[:kid])
+    @fridays = @kid.fridays
+  end
 end

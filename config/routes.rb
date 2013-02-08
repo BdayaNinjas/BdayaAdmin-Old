@@ -9,7 +9,12 @@ BdayaAdmin::Application.routes.draw do
   # map.root :controller => "home"
 
   namespace :care do
-    resources :kids
+    resources :fridays
+    resources :kids do
+      collection do
+        get :performance
+      end
+    end
     resources :members
     resources :calendar do
       collection do

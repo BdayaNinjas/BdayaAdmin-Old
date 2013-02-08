@@ -2,10 +2,16 @@ class Session
   include Mongoid::Document
   field :timing, type: Time
   field :notes, type: String
+  field :performance, type: Integer
+  field :notes, type: String
+  field :room
+  field :assigned_teachers , type: Array
 
   belongs_to :member
   belongs_to :course
   has_one :request
+
+  belongs_to :friday , class_name: "CareFriday" , inverse_of: :sessions
 
 =begin
 	This Method to list all Sessions Descending order
