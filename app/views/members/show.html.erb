@@ -3,38 +3,6 @@
 <%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
 <%= link_to("View Tasks", {:controller => 'tasks', :action => 'index', :id => @member.id}) %>
 
-<!-- <<<<<<< HEAD -->
-<!DOCTYPE html>
-<html>
-<head>
- <%= stylesheet_link_tag 'stylesheets/ProfileStyles', :media => 'screen' %>
-<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="spreadsheet.css" type="text/css" charset="utf-8">
-<script type="text/javascript" charset="utf-8" src="jquery-1.9.1.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
-<script type="text/javascript" charset="utf-8" src="spreadsheet.js"></script>
-<script>
-$(document).ready(function(){
-   $("#Meetings").hide();
-  $("#Performance").hide();
- $("#t").click(function(){
-  $("#Meetings").hide();
-  $("#Performance").hide();
-  $("#Tasks").show();
-});
- $("#m").click(function(){
-  $("#Meetings").show();
-  $("#Performance").hide();
-  $("#Tasks").hide();
-});
-  $("#p").click(function(){
-  $("#Meetings").hide();
-  $("#Performance").show();
-  $("#Tasks").hide();
-});
-});
-</script>
-</head>
 <body>
  <div id="page">
   <div id="pic">

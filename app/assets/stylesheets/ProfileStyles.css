@@ -1,23 +1,23 @@
-            .content {
+            .{
                 border-bottom: 1px solid #DCDCDC;
                 border-left: 1px solid #DCDCDC;
                 border-right: 1px solid #DCDCDC;
                 min-height: 100px;
                 text-align: center;
             }
-            .content h1{
+            .h1{
                 color: #444444;
                 padding-bottom: 1px;
                 margin-top: 3px;
                 margin-bottom: 1px;
             }
-            .content h2{
+            .h2{
                 color: #444444;
                 font-weight: 300;
                 padding-top:1px;
                 margin-top: 1px;
             }
-            .content h3{
+            .h3{
                 font-family: "Arial";
                 font-weight: 700;
                 padding-left: 20px;
@@ -36,7 +36,7 @@
                 width: 200px;
                 float: left;
             }
-            div #info{
+            div#page div#info{
                 background-color: #EEEEEE;
                 font-family: "Arial";
                 color: #77AFC6;

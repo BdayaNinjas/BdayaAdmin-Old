@@ -21,7 +21,7 @@ $(document).ready(function(){
  	 // if (form.parent().attr("class") == "add-row edited-row")
  	 }
  	 });
- 	 window.location.reload();
+ 	 // window.location.reload();
  	});
  });
  
@@ -36,7 +36,7 @@ $(".delete-row").click(function() {
  	 url : $form.attr('action'),
  	 data : $form.serializeArray()
  	});
- 	window.location.reload();
+ 	// window.location.reload();
  });	
 
 
