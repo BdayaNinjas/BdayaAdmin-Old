@@ -4,29 +4,40 @@ $(document).ready(function(){
 		Actions to be implemented by the backenders using Ajax
 	--------------------------------------------------------------------  */ 
 	// saving changes (post forms)
-	$(".save").click(function() {		
-		// do ajax post here
-		// on success: editOff(this);
-		
-		$(this).closest(".spreadsheet").find("table > tbody").find("form").each(function() {
-			var $form = $(this);
+ $(".save").click(function() {
+ 	// do ajax post here
+ 	// on success: editOff(this);
+ 	 
+ 	 $(this).closest(".spreadsheet").find("table > tbody").find(".edited-row").each(function() {	  
+ 	 var $form = $(this).find("form");
+ 	 alert($form.attr('action'));
+ 	 $.ajax({
+ 	 type : "POST",
+ 	 cache : false,
+ 	 url : $form.attr('action'),
+ 	 data : $form.serializeArray(),
+ 	 complete : function(data) {
+ 	 alert(form.parent().attr("class") == "add-row edited-row");
+ 	 // if (form.parent().attr("class") == "add-row edited-row")
+ 	 }
+ 	 });
+ 	});
+ });
+ 
 
-			 $.ajax({
-		     type     : "POST",
-		     cache    : false,
-		     url      : $form.attr('action'),
-		     data     : $form.serializeArray(),
-		     success  : function() {
-		     	alert(1);
-		     }
-		    });
-			window.location.reload();
-		});
-		
-	});
-	
 	// delete a row
-	$(".delete-row").click(function() {		
+	// $("delete-row > a").click(function(e) {		
+	// 	// do ajax request here
+	// 	e.preventDefault();
+	// 	$.ajax({
+	// 		url:$(this).attr("href"),
+	// 		method:"delete",
+	// 	});
+	// 	$(this).closest("tr").toggle();
+	// 	return false;
+	// });
+
+	$(".delete-row").click(function() {			
 		// do ajax request here
 
 		var $form =$(this).closest("tr").find("form");
@@ -35,19 +46,28 @@ $(document).ready(function(){
 		    type     : "DELETE",
 		    cache    : false,
 		    url      : $form.attr('action'),
-		    data     : $form.serializeArray(),
-		    success  : function(data) {
-		      alert(2);
-		    }
+		    data     : $form.serializeArray()
 		});
 		window.location.reload();
 	});
 	
-	//update a row
-	$(".update-row").click(function() {		
-		// toggle the input fields
-	});
-	
+	// //update a row
+	// $(".update-row").click(function() {		
+	// 	// toggle the input fields
+	// });
+$(".delete-row").click(function() {	  
+ 	// do ajax request here
+
+ 	var $form =$(this).closest("tr").find("form");
+
+ 	$.ajax({
+ 	 type : "DELETE",
+ 	 cache : false,
+ 	 url : $form.attr('action'),
+ 	 data : $form.serializeArray()
+ 	});
+ 	window.location.reload();
+ });	
 	
 	
 	/* -------------------------------------------------------------------- 
@@ -85,14 +105,16 @@ $(document).ready(function(){
 	// edit row
 	$(".update-row").click(function() {
 		var row = $(this).closest("tr");
+		row.addClass("edited-row");
+
 		row.children("td").not(".edit").each(function() {
-			$(this).children("").toggle();
+			$(this).children().toggle();
 		});
 	});
 	// new row
-	$(".add").click(function() {
-		$(this).closest(".spreadsheet").find("table > tbody").append($(".add-row").clone().toggle().attr("class", "asda"));
-	})
+	 $(".add").click(function() {
+ 	$(this).closest(".spreadsheet").find(".add-row").addClass("edited-row").toggle();
+ });
 	
 	
 });

@@ -71,8 +71,8 @@
         <% end %>
         
         <!-- "Create new data" form here -->
-        <%= form_for(:member, :url => {:action => 'create'}, :method => 'POST') do |f| %>
         <tr class="add-row">
+          <%= form_for(:member, :url => {:action => 'create'}, :method => 'POST') do |f| %>
           <td><%= f.text_field(:name) %></td>
           <td><%= f.text_field(:email) %></td>
           <td><%= f.text_field(:semester) %></td>
@@ -80,8 +80,8 @@
           <td><%= f.text_field(:major) %></td>
           <td><%= f.select(:committee_id, @committees.collect {|p| [p.name, p.id]}) %></td>
           <td><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></td>
+          <% end %>
         </tr>
-        <% end %>
         
       </tbody>
     </table>

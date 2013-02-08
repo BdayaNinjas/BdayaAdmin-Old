@@ -5,16 +5,17 @@ class Academics::SessionsController < ApplicationController
 	end
 
 	def create
-		@teacher = Member.find(params[:teacher_id])
-		@course = Course.find(params[:course_id])
-		@notes = params[:notes]
-		@time = params[:timing]
+		@teacher = Member.find_by(:email => params[:session][:member])
+		@course = Course.find(:name => params[:session][:course])
+		@notes = params[:session][:notes]
+		@time = params[:session][:timing]
 
-		Session.create_session (c , m , t , n)
-		#redirect_to :action => index
+		Session.create_session(@course , @teacher , @time , @notes)
+		redirect_to academics_sessions_path
 	end
 
 	def update
+		# @session
 	end
 
 	def show

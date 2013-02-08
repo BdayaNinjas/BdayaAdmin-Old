@@ -7,6 +7,7 @@ BdayaAdmin::Application.routes.draw do
   devise_for :members, :path => "members", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up'},
              :controllers => { :invitations => 'members/invitations'}
 
+
   root :to => "members#index"
   namespace :care do
     resources :kids
@@ -20,7 +21,18 @@ BdayaAdmin::Application.routes.draw do
   
   resources :members do
     resources :tasks
+      post :extend_deadline
   end
+
+  namespace :academics do
+    resources :members
+    resources :sessions
+  end
+
+    
+  resources :requests
+  
+  resources :sponsers
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -71,7 +83,7 @@ BdayaAdmin::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'members#index'
+  # root :to => 'members#index'
 
   # See how all your routes lay out with "rake routes"
 
