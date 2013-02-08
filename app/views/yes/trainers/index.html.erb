@@ -1,0 +1,112 @@
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Trainers</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+  <div class="spreadsheet">
+
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+      <h1>Trainers</h1>
+
+      <!-- filter field -->
+      <input value="filter..." />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Work Place</th>
+          <th>Training Topics</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @trainers.each do |trainer| %>
+          <tr>
+            <%= form_for(trainer) do |f|%>
+                <td>
+                  <p class="cell-data">
+                    <%= trainer.name %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :name %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= trainer.phone %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :phone %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= trainer.email %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :email %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= trainer.work_place %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :work_place %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= trainer.training_topics %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :training_topics %>
+                  </div>
+                </td>
+
+                <td class="edit">
+                  <div class="edit">
+                    <div class="update-row">✎</div>
+                    <div class="delete-row"><%= link_to '✖', trainer, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                  </div>
+                </td>
+            <%end%>
+          </tr>
+        <%end%>
+        
+        <!-- "Create new data" form here -->
+        <tr class="add-row">
+          <% @trainer = Trainer.new %>
+          <%= form_for(@trainer) do |f| %>
+            <td><%= f.text_field :name %></td>
+            <td><%= f.text_field :phone %></td>
+            <td><%= f.text_field :email %></td>
+            <td><%= f.text_field :work_place %></td>
+            <td><%= f.text_field :training_topics %></td>
+          <%end%>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="spread-footer">
+      <div class="tab edit-spreadsheet">Edit</div>
+      <div class="btn green add">+</div>
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+    
+  </div>
+</body>

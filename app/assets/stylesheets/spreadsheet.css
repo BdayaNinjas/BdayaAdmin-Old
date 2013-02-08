@@ -148,7 +148,7 @@ div.red {
 	
 }
 
-div.cancel, div.save {
+div.cancel, div.save, div.add {
 	display: none;
 }
 
@@ -207,6 +207,14 @@ div.spreadsheet table th {
 	
 }
 
+div.cell-edit {
+	display: none;
+}
+
+tr.add-row {
+	display: none;
+}
+
 /*edit spread*/
 td.edit {
 	border-right: 1px solid white;
@@ -217,7 +225,7 @@ td.edit {
 	display: none;
 }
 div.edit {
-	background: url("images/edit-shadow.png") no-repeat bottom right;
+	background: url("../images/edit-shadow.png") no-repeat bottom right;
 	padding-bottom: 5px;
 	width: 35px;
 	height: 15px;

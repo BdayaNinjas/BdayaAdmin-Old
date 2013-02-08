@@ -3,27 +3,29 @@ class MeetingsController < ApplicationController
     @meetings = Meeting.all
   end
 
-  def show
-    @meeting = Meeting.find(params[:id])
-  end
+  # def show
+  #   @meeting = Meeting.find(params[:id])
+  # end
 
-  def new
-    @meeting = Meeting.new
-  end
+  # def new
+  #   @meeting = Meeting.new
+  # end
 
-  def edit
-    @meeting = Meeting.find(params[:id])
-  end
+  # def edit
+  #   @meeting = Meeting.find(params[:id])
+  # end
 
   def create
     params[:meeting][:attendee_ids].shift
     @meeting = Meeting.new(params[:meeting])
+    @meeting.creator = current_member
     @meeting.save
     redirect_to @meeting, notice: 'Meeting was successfully created.'
   end
 
   def update
     @meeting = Meeting.find(params[:id])
+    params[:meeting][:attendee_ids].shift
     @meeting.update_attributes(params[:meeting])
     @meeting.attendees.each do |attender|
       param_att = "attendance_"+attender.id

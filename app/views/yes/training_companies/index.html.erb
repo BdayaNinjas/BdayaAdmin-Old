@@ -1,0 +1,168 @@
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Training Company</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+  <div class="spreadsheet">
+
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+      <h1>Training Company</h1>
+
+      <!-- filter field -->
+      <input value="filter..." />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Training Courses Fields</th>
+          <th>Personal Contact</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @training_companies.each do |company| %>
+          <tr>
+            <%= form_for(company) do |f|%>
+                <td>
+                  <p class="cell-data">
+                    <%= company.name %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :name %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <%= company.phone %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :phone %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <% company.training_fields.each do |field| %>
+                      <%= field + ", " %>
+                    <% end %>
+                  </p>
+                  <div class="cell-edit">
+                    <%= f.text_field :training_fields %>
+                  </div>
+                </td>
+
+                <td>
+                  <p class="cell-data">
+                    <table>
+                      <tr>
+                        <th>Contact Title</th>
+                        <th>Contact Name</th>
+                        <th>Contact Phone</th>
+                        <th>Contact Email</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <%= company.contact_title %>
+                        </td>
+                        <td>
+                          <%= company.contact_name %>
+                        </td>
+                        <td>
+                          <%= company.contact_phone %>
+                        </td>
+                        <td>
+                          <%= company.contact_email %>
+                      </tr>
+                    </table>
+                  </p>
+                  <div class="cell-edit">
+                    <table>
+                      <tr>
+                        <th>Contact Title</th>
+                        <th>Contact Name</th>
+                        <th>Contact Phone</th>
+                        <th>Contact Email</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <%= f.text_field :contact_title %>
+                        </td>
+                        <td>
+                          <%= f.text_field :contact_name %>
+                        </td>
+                        <td>
+                          <%= f.text_field :contact_phone %>
+                        </td>
+                        <td>
+                          <%= f.text_field :contact_email %>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+            <%end%>
+
+            <td class="edit">
+              <div class="edit">
+                <div class="update-row">✎</div>
+                <div class="delete-row"><%= link_to '✖', training_company, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+              </div>
+            </td>
+
+          </tr>
+        <%end%>
+        
+        <!-- "Create new data" form here -->
+        <tr class="add-row">
+          <% @company = TrainingCompany.new %>
+          <%= form_for(@company) do |f| %>
+            <td><%= f.text_field :name %></td>
+            <td><%= f.text_field :phone %></td>
+            <td><%= f.text_field :training_fields %></td>
+            <td>
+              <table>
+                <tr>
+                  <th>Contact Title</th>
+                  <th>Contact Name</th>
+                  <th>Contact Phone</th>
+                  <th>Contact Email</th>
+                </tr>
+                <tr>
+                  <td>
+                    <%= f.text_field :contact_title %>
+                  </td>
+                  <td>
+                    <%= f.text_field :contact_name %>
+                  </td>
+                  <td>
+                    <%= f.text_field :contact_phone %>
+                  </td>
+                  <td>
+                    <%= f.text_field :contact_email %>
+                </tr>
+              </table>
+            </td>
+          <%end%>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="spread-footer">
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green add">+</div>
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+
+  </div>
+</body>
