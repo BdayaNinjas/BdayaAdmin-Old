@@ -11,7 +11,7 @@ class Academics::SessionsController < ApplicationController
 		@time = params[:session][:timing]
 
 		Session.create_session(@course , @teacher , @time , @notes)
-		redirect_to academics_sessions_path
+		#redirect_to academics_sessions_path
 	end
 
 	def update
