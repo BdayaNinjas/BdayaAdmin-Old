@@ -10,13 +10,16 @@ img#logo {
 	position: relative;
 	margin-top: -65px;
 	margin-bottom: 20px;
+	z-index: 10;
 }
+
 
 /*Top Bar*/
 
 div#topbar {
 	height: 60px;
 	position: relative;
+	z-index: 1;
 }
 
 div#topbar-content {	
@@ -110,17 +113,14 @@ div.fname {
 	font-weight: bold;
 }
 
-div#center {
-	height: 100%;
-	margin-top: 5px;
-}
-
 /*Left Bar*/
 
 div#leftbar {
+	position: absolute;
 	width: 100px;
-	height: 100%;
-	float: left;
+	left: 0;
+	top: 65px;
+	bottom: 0px;
 }
 
 div#leftbar-content {
@@ -193,8 +193,10 @@ div#icons-seperate {
 
 div#rightbar {
 	width: 300px;
-	height: 100%;
-	float: right;
+	position: absolute;
+	right: 0px;
+	top: 65px;
+	bottom: 0px;
 	
 	-webkit-transition:all 0.3s ease-in-out;
 	-moz-transition:all 0.3s ease-in-out;
@@ -231,8 +233,8 @@ div#rightbar-shadow {
 /*Content*/
 
 div#content {
-	height: 100%;
 	padding: 20px;
 	margin-left: 100px;
+	margin-right: 300px;
 }
 

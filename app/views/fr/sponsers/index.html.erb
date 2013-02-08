@@ -1,0 +1,104 @@
+  <div class="spreadsheet">
+    
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+      <h1>Sponsors</h1>  
+      
+      
+      
+      <!-- filter field. not needed for now -->
+      <input value="filter..." />
+    </div>
+    
+    <table>
+      <thead>
+          <tr>
+            <th>Company</th>
+            <th>Person</th>
+            <th>E-Mail</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Comments</th>  
+          </tr>
+      </thead>
+      
+      <tbody> 
+        <% @sponsers.each do |sponser| %>
+        <tr>
+          <%= form_for sponser, :url => {:controller => 'sponsers', :action => 'update', :id => sponser.id} do |f| %>
+          <td>
+            <p class="cell-data"><%= sponser.company %></p> 
+            <div class="cell-edit"><%= f.text_field(:company) %></div> 
+          </td>
+          <td>
+            <p class="cell-data"><%= sponser.person %></p> 
+            <div class="cell-edit"><%= f.text_field(:person) %></div> 
+          </td>
+          <td>
+            <p class="cell-data"><%= sponser.phone %></p> 
+            <div class="cell-edit"><%= f.text_field(:phone) %></div> 
+          </td>
+          <td>
+            <p class="cell-data"><%= sponser.email %></p> 
+            <div class="cell-edit"><%= f.text_field(:email) %></div> 
+          </td>
+          <td>
+            <p class="cell-data"><%= sponser.address %></p> 
+            <div class="cell-edit"><%= f.text_field(:address) %></div> 
+          </td>
+          <td>
+            <p class="cell-data"><%= sponser.comments %></p> 
+            <div class="cell-edit"><%= f.text_field(:comments) %></div> 
+          </td>
+         
+          <td class="edit"><div class="edit"><div class="update-row">✎</div>
+          <!-- add this if the row can be deleted -->
+            <div class="delete-row">✖</div></div>
+          </td>
+          <%end%> 
+        </tr>
+        <%end%> 
+        
+        
+        <!-- "Create new data" form here -->
+        <tr class="add-row">
+           <%= form_for @sponser=Sponser.new, :url => {:action => 'create'} do |f| %> 
+          <td>
+                <%= f.text_field :company %>
+            </td>
+            
+            <td>
+                <%= f.text_field :person %>
+            </td>
+            
+            <td>
+                <%= f.text_field :phone %>
+            </td>
+            
+            <td>
+                <%= f.text_field :email %>
+            </td>
+            
+            <td>
+                <%= f.text_field :address %>
+            </td>
+
+            <td>
+                <%= f.text_field :comments %>
+            </td>
+      
+          <%end%> 
+        </tr>
+        
+      </tbody>
+    </table>
+    
+    <div class="spread-footer">
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green add">+</div>
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+  </div>

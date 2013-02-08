@@ -2,7 +2,9 @@ class Evaluation
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :criteria1, type:Integer
+  #embeds_many :criteria, cascade_callbacks: true
+
+    field :criteria1, type:Integer
  	field :criteria2, type:Integer
  	field :criteria3, type:Integer
  	field :criteria4, type:Integer
@@ -12,8 +14,8 @@ class Evaluation
  	field :criteria8, type:Integer
  	field :criteria9, type:Integer
  	field :criteria10, type:Integer
- 	# field :
 
+ 	# field :
 	belongs_to :member, class_name: "Member", inverse_of: :evaluations
 
 	def evaluate

@@ -2,10 +2,16 @@ class Session
   include Mongoid::Document
   field :timing, type: Time
   field :notes, type: String
+  field :performance, type: Integer
+  field :notes, type: String
+  field :room
+  field :assigned_teachers , type: Array
 
   belongs_to :member
   belongs_to :course
   has_one :request
+
+  belongs_to :friday , class_name: "CareFriday" , inverse_of: :sessions
 
 =begin
 	This Method to list all Sessions Descending order
@@ -27,6 +33,7 @@ class Session
     s.course = c
     s.member = m
     s.timing = t
+    s.notes = n
     s.save
 
     r = Request.new
@@ -37,7 +44,7 @@ class Session
     r.assigned = Committee.find_by(:name => "Logistics").head
     r.save
     r.needers << Committee.find_by(:name => "Academics").head
-    r.needers << t
+    r.needers << m
   end
    
 end

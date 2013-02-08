@@ -1,18 +1,24 @@
 BdayaAdmin::Application.routes.draw do
+  resources :evaluations
+
   resources :meetings
   namespace :yes do
     resources :trainers
     resources :training_companies
   end
   #devise_for :members, :path => "auth", :path_names => { :sign_in => 'sign_in', :sign_out => 'sign_out', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up' }
-  devise_for :members, :path => "members", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
+  devise_for :members, :path => "members", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up'},
+             :controllers => { :invitations => 'members/invitations'}
 
-  # root :to => "home#care/kids"
-  # map.connect ':care/:kids/:index'
-  # map.root :controller => "home"
 
+  root :to => "members#index"
   namespace :care do
-    resources :kids
+    resources :fridays
+    resources :kids do
+      collection do
+        get :performance
+      end
+    end
     resources :members
     resources :calendar do
       collection do
@@ -23,7 +29,24 @@ BdayaAdmin::Application.routes.draw do
   
   resources :members do
     resources :tasks
+      post :extend_deadline
   end
+
+  namespace :academics do
+    resources :members
+    resources :sessions
+  end
+
+  namespace :fr do
+    resources :sponsers
+  end
+
+  namespace :logistics do
+    resources :requests
+  end    
+  
+  
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -74,7 +97,7 @@ BdayaAdmin::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'members#index'
+  # root :to => 'members#index'
 
   # See how all your routes lay out with "rake routes"
 

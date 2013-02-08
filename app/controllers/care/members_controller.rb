@@ -1,20 +1,13 @@
 class Care::MembersController < Care::CareController
 	
   def index
-    @head = Member.where(:committee => 'Care').where(:role => 'Head')
-    @vices = Member.where(:committee => 'Care').where(:role => 'Vice Head')
-    @members = Member.where(:committee => 'Care').where(:role => 'Member')
+    @members=Committee.find_by(name: "Care").members.where(:role => 'Member')
+    @head=Committee.find_by(name: "Care").members.where(:role => 'Head')
+    @vices=Committee.find_by(name: "Care").members.where(:role => 'Vice Head')
   end
 
   def show
     @member = Member.find(params[:id])
-  end
-   
-  def edit
-    @member = Member.find(params[:id])
-    if(!(current_member.email==@member.email||(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
-      redirect_to(:action => 'index')
-    end
   end
    
   def update
@@ -27,13 +20,6 @@ class Care::MembersController < Care::CareController
     else
       # If save fails, redisplay the form so user can fix problems
       render('edit')
-    end
-  end
-   
-  def delete
-    @member = Member.find(params[:id])
-    if(!(current_member.email!=@member.email&&(current_member.committee=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
-      redirect_to(:action => 'index')
     end
   end
    

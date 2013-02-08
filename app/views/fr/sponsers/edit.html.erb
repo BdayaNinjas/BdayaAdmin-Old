@@ -1,0 +1,43 @@
+<% @page_title = "Edit Sponser:" %>
+
+<div>
+  <h2>Update Sponsor</h2>
+
+  <%= form_for @sponser, :url => {:controller => 'sponsers', :action => 'update'} do |f| %>
+	<table summary="Sponser form fields">
+	  <tr>
+	    <th><%= f.label(:company) %></th>
+	    <td><%= f.text_field(:company) %></td>
+	  </tr>
+
+	  <tr>
+	    <th><%= f.label(:person) %></th>
+	    <td><%= f.text_field(:person) %></td>
+	  </tr>
+
+	  <tr>
+	    <th><%= f.label(:phone) %></th>
+	    <td><%= f.text_field(:phone) %></td>
+	  </tr>
+
+	  <tr>
+	    <th><%= f.label(:email) %></th>
+	    <td><%= f.text_field(:email) %></td>
+	  </tr>
+
+	  <tr>
+	    <th><%= f.label(:address) %></th>
+	    <td><%= f.text_field(:address) %></td>
+	  </tr>
+
+	  <tr>
+	    <th><%= f.label(:comments) %></th>
+	    <td><%= f.text_field(:comments) %></td>
+	  </tr>
+	  
+	</table>
+    <div>
+      <%= submit_tag("Update Sponsor") %>
+    </div>
+  <% end %>
+</div>

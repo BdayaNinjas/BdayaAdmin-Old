@@ -8,6 +8,6 @@ class Request
   belongs_to :assigned, class_name: "Member", inverse_of: :assigned_requests
 
   belongs_to :session
-
+  belongs_to :meeting
 
 end

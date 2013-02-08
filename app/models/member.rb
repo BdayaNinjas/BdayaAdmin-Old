@@ -17,7 +17,7 @@ class Member
 
   ## Rememberable
   field :remember_created_at, :type => Time
-
+  # field :invitation_token
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
@@ -62,6 +62,7 @@ class Member
 
   has_many :created_tasks, class_name: "Task", inverse_of: :created_by
   has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
+  # field :invitation_sent_at
 
   belongs_to :hcommittee, class_name: "Committee", inverse_of: :head
   belongs_to :vcommittee, class_name: "Committee", inverse_of: :vices
@@ -95,6 +96,8 @@ class Member
 =end
   def reply_request(request , assigned_room)
     request.room = assigned_room
+    request.done = true
+    request.save
     #send_notification(request.needers)
   end
   
@@ -155,29 +158,7 @@ class Member
     return mem 
   end
 
-=begin
-  This Method to create an Academic Session and send a request to Logistics
-  to reserve a room for it
-  Author : Diab
-  Committee/Project : Academics
-=end
-  def self.create_session (c , m , t , n)
-    s = Session.new
-    s.course = c
-    s.member = m
-    s.timing = t
-    s.save
 
-    r = Request.new
-    r.session = s
-    r.session_type = 1
-    r.done = false
-    r.room = "TBD"
-    r.assigned = Member.where(:role => 2 , :committee => "Logistics")
-    r.save
-    r.needers << Member.where(:role => 1 , :committee => "Academics")
-    r.needers << t
-  end
 
 =begin
   This 8 Methods to get the all members categorized by committees
@@ -189,7 +170,7 @@ class Member
   end
 
   def self.getCareMembers
-    return Committee.find_by(name: "Yes").members
+    return Committee.find_by(name: "Care").members
   end
 
   def self.getGenehMembers
@@ -224,5 +205,13 @@ class Member
     return Committee.find_by(name: committee_name).members
   end
   
-
+  def get_evaluation_graph
+    evaluations = self.evaluations
+    attributes = [ 'criteria1', 'criteria2', 'criteria3', 'criteria4', 'criteria5', 'criteria6', 'criteria7', 'criteria8', 'criteria9', 'criteria10']
+    graph = Array.new
+    attributes.each { |att|
+      graph.append(evaluations.map {|evaluation| [evaluation, evaluation.attributes[att]]})
+    }
+    return graph
+  end
 end
