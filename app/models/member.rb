@@ -41,10 +41,13 @@ class Member
 
 
   field :name, type: String
-  #field :email, type: String
+  field :email, type: String
   field :semester, type: Integer
   field :major, type: String
   field :role, type: String
+  field :mobile, type: String
+  field :t_shirt, type: String
+
 
   #freeSessions
   
@@ -166,39 +169,66 @@ class Member
 =end
 
   def self.getYesMembers
-    return Committee.find_by(name: "Yes").members
+    c = Committee.where(name: "Yes")[0]
+    if c != nil
+      return c.members
+    end
   end
 
   def self.getCareMembers
-    return Committee.find_by(name: "Care").members
+    c = Committee.where(name: "Care")[0]
+    if c != nil
+      return c.members
+    end 
   end
 
   def self.getGenehMembers
-    return Committee.find_by(name: "Geneh").members
+    c = Committee.where(name: "Geneh")[0]
+    if c != nil
+      return c.members
+    end
   end
 
   def self.getAcademicsMembers
-    return Committee.find_by(name: "Academics").members
+    c = Committee.where(name: "Academics")[0]
+    if c != nil
+      return c.members
+    end
   end
   
   def self.getTeamMembers
-    return Committee.find_by(name: "Team").members
+    c = Committee.where(name: "Team")[0]
+    if c != nil
+      return c.members
+    end
   end
     
   def self.getFRMembers
-    return Committee.find_by(name: "FR").members
+    c = Committee.where(name: "FR")[0]
+    if c != nil
+      return c.members
+    end
   end
 
   def self.getPRMembers
-    return Committee.find_by(name: "PR").members
+    c = Committee.where(name: "PR")[0]
+    if c != nil
+      return c.members
+    end
   end
 
   def self.getHRMembers
-    return Committee.find_by(name: "HR").members
+    c = Committee.where(name: "HR")[0]
+    if c != nil
+      return c.members
+    end
   end
 
   def self.getITMembers
-    return Committee.find_by(name: "IT").members
+    c = Committee.where(name: "IT")[0]
+    if c != nil
+      return c.members
+    end
   end
 
   def self.getCommitteeMembers (committee_name)
