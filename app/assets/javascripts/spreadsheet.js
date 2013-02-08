@@ -21,27 +21,23 @@ $(document).ready(function(){
  	 // if (form.parent().attr("class") == "add-row edited-row")
  	 }
  	 });
+ 	 window.location.reload();
  	});
  });
  
+$(".delete-row").click(function() {	  
+ 	// do ajax request here
 
-	// delete a row
-	$("delete-row > a").click(function(e) {		
-		// do ajax request here
-		e.preventDefault();
-		$.ajax({
-			url:$(this).attr("href"),
-			method:"delete",
-		});
-		$(this).closest("tr").toggle();
-		return false;
-	});
-	
-	//update a row
-	$(".update-row").click(function() {		
-		// toggle the input fields
-	});
-	
+ 	var $form =$(this).closest("tr").find("form");
+
+ 	$.ajax({
+ 	 type : "DELETE",
+ 	 cache : false,
+ 	 url : $form.attr('action'),
+ 	 data : $form.serializeArray()
+ 	});
+ 	window.location.reload();
+ });	
 	
 	
 	/* -------------------------------------------------------------------- 

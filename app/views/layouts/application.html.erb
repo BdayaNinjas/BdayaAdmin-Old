@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <div id="member_status">
     <% if member_signed_in? %>
       Signed in as <%= current_member.email %>. Not you? <br>
@@ -10,9 +11,8 @@
       <%= link_to 'login', new_member_session_path, :method => :get %>
     <% end %>
   </div>
+
   <title>BdayaAdmin</title>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
   <%= stylesheet_link_tag    "application", :media => "all" %>  
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -23,6 +23,7 @@
       <div id="user-info">
         <div id="vertical-bar"></div>
         
+        <% if(current_member != nil) %>
         <div id="info">
           <div id="pp">
             <img id="pp-glow" src="/images/pp-glow.png">
@@ -33,9 +34,10 @@
             <img src="/badges/redbadge.png">
             <img src="/badges/bluebadge.png">
           </div>
-          <div class="name fname">Gasser</div>
-          <div class="name">Akila</div>
+            <div class="name fname"><%= current_member.name %></div>
+            <div class="name"><%= current_member.email %></div>
         </div>
+        <% end %>
       </div>
     </div>
     <div id="topbar-shadow"></div>
@@ -60,6 +62,8 @@
     </div>
 
     <div id="content">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
     </div>
   </div>

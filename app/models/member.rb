@@ -170,7 +170,7 @@ class Member
   end
 
   def self.getCareMembers
-    return Committee.find_by(name: "Yes").members
+    return Committee.find_by(name: "Care").members
   end
 
   def self.getGenehMembers
@@ -205,5 +205,13 @@ class Member
     return Committee.find_by(name: committee_name).members
   end
   
-
+  def get_evaluation_graph
+    evaluations = self.evaluations
+    attributes = [ 'criteria1', 'criteria2', 'criteria3', 'criteria4', 'criteria5', 'criteria6', 'criteria7', 'criteria8', 'criteria9', 'criteria10']
+    graph = Array.new
+    attributes.each { |att|
+      graph.append(evaluations.map {|evaluation| [evaluation, evaluation.attributes[att]]})
+    }
+    return graph
+  end
 end

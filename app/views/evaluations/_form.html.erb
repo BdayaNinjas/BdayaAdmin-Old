@@ -1,0 +1,79 @@
+<%= form_for(@evaluation) do |f| %>
+  <% if @evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
+
+      <ul>
+      <% @evaluation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% field_values = [5, 10, 15] %>
+  <div class="field">
+    <%= f.label :criteria1 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria1, val %><%= val %>
+    <% end %>
+    <br />
+  </div>
+  <div class="field">
+    <%= f.label :criteria2 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria2, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :criteria3 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria3, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :criteria4 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria4, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :criteria5 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria5, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :criteria6 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria6, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :criteria7 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria7, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :criteria8 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria8, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :criteria9 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria9, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :criteria10 %><br />
+    <% for val in field_values%>
+        <%= f.radio_button :criteria10, val %><%= val %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

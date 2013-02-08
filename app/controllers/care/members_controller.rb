@@ -10,13 +10,6 @@ class Care::MembersController < Care::CareController
     @member = Member.find(params[:id])
   end
    
-  def edit
-    @member = Member.find(params[:id])
-    if(!(current_member.email==@member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
-      redirect_to(:action => 'index')
-    end
-  end
-   
   def update
     @member = Member.find(params[:id])
     # Update the object
@@ -27,13 +20,6 @@ class Care::MembersController < Care::CareController
     else
       # If save fails, redisplay the form so user can fix problems
       render('edit')
-    end
-  end
-   
-  def delete
-    @member = Member.find(params[:id])
-    if(!(current_member.email!=@member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))))
-      redirect_to(:action => 'index')
     end
   end
    
