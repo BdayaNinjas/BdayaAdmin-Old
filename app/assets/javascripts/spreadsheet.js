@@ -86,17 +86,20 @@ $(".delete-row").click(function() {
  	$(this).closest(".spreadsheet").find(".add-row").addClass("edited-row").toggle();
  });
  
- // spreadsheet header tabs
-	$(".link-data").hide();
-        var ld = $(".active").attr("data-id");
-        $("#"+ld).show();
-
-        $(".tab").click(function () {
-        	$(".link-data").hide();
-                $(".tab").removeClass("active");
-                $(this).addClass("active");
-                $("#"+$(this).attr("data-id")).show();
-        });
+ 
+ 	/* spreadsheet head tabs */
+	// hide the inactive spreadsheets
+	$(".spread-head").children(".tab").not(".active").each(function() {
+		$("#"+$(this).attr("data-id")).hide();
+	});
+	//tab click action
+	$(".spread-head > tab").click(function() {
+		$("#"+$(this).sibling(".active").attr("data-id")).hide();
+		$(this).sibling(".active").removeClass("active");
+		
+		$(this).addClass("active");
+		$("#"+$(this).attr("data-id")).show();
+	});
 	
 	
 });
