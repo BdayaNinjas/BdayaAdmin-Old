@@ -93,7 +93,7 @@ $(".delete-row").click(function() {
 		$("#"+$(this).attr("data-id")).hide();
 	});
 	//tab click action
-	$(".spread-head > tab").click(function() {
+	$(".spread-head > .tab").click(function() {
 		$("#"+$(this).sibling(".active").attr("data-id")).hide();
 		$(this).sibling(".active").removeClass("active");
 		
