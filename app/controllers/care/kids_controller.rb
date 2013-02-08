@@ -8,14 +8,6 @@ class Care::KidsController < Care::CareController
     @kid = Kid.find(params[:id])
   end
    
-  def new
-    if(!(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
-      redirect_to(:action => 'index')
-    else
-      @kid = Kid.new
-    end
-  end
-   
   def create
     # Instantiate a new object using form parameters
     @kid = Kid.new(params[:kid])
@@ -30,14 +22,6 @@ class Care::KidsController < Care::CareController
     end
   end
    
-  def edit
-    if(!(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
-      redirect_to(:action => 'index')
-    else
-      @kid = Kid.find(params[:id])
-    end
-  end
-   
   def update
     @kid = Kid.find(params[:id])
     # Update the object
@@ -48,14 +32,6 @@ class Care::KidsController < Care::CareController
     else
       # If save fails, redisplay the form so user can fix problems
       render('edit')
-    end
-  end
-   
-  def delete
-    if(!(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))
-      redirect_to(:action => 'index')
-    else
-      @kid = Kid.find(params[:id])
     end
   end
    
