@@ -39,6 +39,10 @@ BdayaAdmin::Application.routes.draw do
   
   resources :sponsers
 
+  namespace :hr do 
+    resources :members 
+   end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
