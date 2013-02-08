@@ -15,11 +15,12 @@ class Academics::SessionsController < ApplicationController
 	end
 
 	def update
-		# @session
+		@session = Session.find(params[:id])
+		@session.update_attributes(:notes => params[:session][:notes])
 	end
 
 	def show
-		@session = Session.find(params[:session_id])
+		@session = Session.find(params[:id])
 	end
 
 	def index
@@ -27,6 +28,8 @@ class Academics::SessionsController < ApplicationController
 	end
 
 	def destroy
-		@session = Session.destroy(params[:session_id])
+		@session = Session.find(params[:id])
+		@session.request.destroy
+		@session.destroy
 	end
 end
