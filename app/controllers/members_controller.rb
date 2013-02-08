@@ -24,7 +24,6 @@ class MembersController < ApplicationController
     # Save the object
     if @member.save
       # If save succeeds, redirect to the index action
-      Notification.send_notification(@member,12,3,'wenaby')
       flash[:notice] = "Member added."
       redirect_to(:action => 'index')
     else
@@ -86,6 +85,9 @@ class MembersController < ApplicationController
     @IT = Member.getITMembers
   end
 
+  def id
+    return self.id.to_s
+  end
 
  
 
