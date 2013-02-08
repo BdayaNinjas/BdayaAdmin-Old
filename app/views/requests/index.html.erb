@@ -1,58 +1,34 @@
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>Requests</title>
-
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-  <script src="http://malsup.github.com/jquery.form.js"></script> 
-  <script> 
-  $(document).ready(function() { 
-  $(".save").click(function() { 
-    var $form = $('.myForm');
- $.ajax({
-  type : "POST",
-  cache : false,
-  url : $form.attr('action'),
-  data : $form.serializeArray(),
-  success : function(data) {
-    alert("helloooo!");
-  }
-  });
-
-   });
-  }); 
-  </script>
-</head>
-
-<body>
 
   <div class="spreadsheet">
-
+    
     <div class="spread-head">
       <!-- spreadsheet title -->
-      <h1>Requests</h1>
-
-      <!-- filter field -->
+      <h1>Requests</h1>  
+      
+      <!-- tabs, if needed -->
+      <div class="tab active">Undone</div>
+      <div class="tab">Done</div>
+      
+      <!-- filter field. not needed for now -->
       <input value="filter..." />
     </div>
-
+    
     <table>
       <thead>
-        <tr>
-          <th>Session Type</th>
-          <th>Timing</th>
-          <th>Requester</th>
-          
-
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <% @requests.each do |request| %>
           <tr>
-            <%= form_for(request, :html => { :class => 'myForm'} ) do |f|%>
-
-            <td>
+            <th>Session Type</th>
+            <th>Timing</th>
+            <th>Requester</th>
+            <th>Room </th> 
+          </tr>
+      </thead>
+      
+      <tbody> 
+        <% @requests.each do |request| %> 
+        <tr>
+          <%= form_for request, :url => {:controller => 'requests', :action => 'update', :id => request.id} do |f| %> 
+          
+          <td>
               <%if (request.session_type = 1)%>
               <%= "Academics Session" %>
               <%elsif (request.session_type = 2)%>
@@ -73,32 +49,28 @@
               <%= request.needers[0].name %>  
             </td>
 
-            <td>
-            <%= link_to 'Assign Room', edit_request_path(request) %>
-            </td>
-            <td class="edit"><div class="edit"><div class="update-row">✎</div></div>
-          <%end%>
-          </tr>
-          <% end %>
-
-          <!-- add this if row is editable -->
-
-</td>
-</tr>
-
-</tbody>
-</table>
-
-<div class="spread-footer">
-  <!-- tab, add this if table is editable -->
-  <div class="tab edit-spreadsheet">Edit</div>
-  <!-- keep buttons if edit is enabled -->
-  <div class="btn green save">Save</div>
-  <div class="btn red cancel">Cancel</div>
-</div>
-<br />
-
-
-</div>
-
-</body>
+          <td>
+            <p class="cell-data"><%= request.room %></p> 
+            <div class="cell-edit"><%= f.text_field(:room) %></div> 
+          </td>
+         
+          <td class="edit"><div class="edit"><div class="update-row">✎</div>
+          
+          <%end%>  
+        </tr>
+        <%end%> 
+        
+        
+        
+        
+      </tbody>
+    </table>
+    
+    <div class="spread-footer">
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+  </div>
