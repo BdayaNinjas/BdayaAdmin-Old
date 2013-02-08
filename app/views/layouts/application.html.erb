@@ -12,6 +12,7 @@
       <div id="user-info">
         <div id="vertical-bar"></div>
         
+        <% if(current_member != nil) %>
         <div id="info">
           <div id="pp">
             <img id="pp-glow" src="/images/pp-glow.png">
@@ -22,8 +23,10 @@
             <img src="/badges/redbadge.png">
             <img src="/badges/bluebadge.png">
           </div>
-          
+            <div class="name fname"><%= current_member.name %></div>
+            <div class="name"><%= current_member.email %></div>
         </div>
+        <% end %>
       </div>
     </div>
     <div id="topbar-shadow"></div>
