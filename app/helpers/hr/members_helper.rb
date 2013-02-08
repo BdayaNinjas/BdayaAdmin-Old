@@ -1,0 +1,2 @@
+module Hr::MembersHelper
+end
