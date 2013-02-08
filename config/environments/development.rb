@@ -25,6 +25,14 @@ BdayaAdmin::Application.configure do
   # Should be changed in deployment
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  config.action_mailer.smtp_settings = {
+    address:                'smtp.gmail.com',
+    port:                   787,
+    user_name:              'mostafa@gmail.com',
+    password:               'helloworld',
+    authentication:         :plain,
+    enable_starttls_auto:   true,
+  }
   # Do not compress assets
   config.assets.compress = false
 

@@ -148,7 +148,7 @@ div.red {
 	
 }
 
-div.cancel, div.save {
+div.cancel, div.save, div.add {
 	display: none;
 }
 
@@ -161,6 +161,10 @@ div.spreadsheet table {
 	
 	border-spacing:0;
 	border-collapse:collapse;	
+}
+
+div.spreadsheet table input {
+	width: 100px;
 }
 
 table, th, td {
@@ -205,6 +209,14 @@ div.spreadsheet table th {
 	background: linear-gradient(to bottom,  #f2f6f7 0%,#eaf0f2 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f7', endColorstr='#eaf0f2',GradientType=0 ); /* IE6-9 */
 	
+}
+
+div.cell-edit {
+	display: none;
+}
+
+tr.add-row {
+	display: none;
 }
 
 /*edit spread*/
@@ -267,7 +279,9 @@ div.delete-row {
 
 
 
-
+.asda {
+	background: red;
+}
 
 
 

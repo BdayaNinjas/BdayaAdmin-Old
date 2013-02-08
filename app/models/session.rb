@@ -33,6 +33,7 @@ class Session
     s.course = c
     s.member = m
     s.timing = t
+    s.notes = n
     s.save
 
     r = Request.new
@@ -43,7 +44,7 @@ class Session
     r.assigned = Committee.find_by(:name => "Logistics").head
     r.save
     r.needers << Committee.find_by(:name => "Academics").head
-    r.needers << t
+    r.needers << m
   end
    
 end

@@ -8,38 +8,89 @@
 
   <div><%= pluralize(@tasks.size, 'task') %> found</div>
   
-  <table class="listing" summary="Tasks list">
-    <tr class="header">
-      <th>Descritpion</th>
-      <th>Status</th>
-      <th>Deadline</th>
-      <th>Requested Deadline</th>
-      <th>Comment</th>
-      <th>Excuse</th>
-      <th>Actions</th>
-    </tr>
-    <% @tasks.each do |task| %>
-    <tr class="<%= cycle('odd', 'even') %>">
-      <td><%= task.description %></td>
-      <td class="center"><%= task.status %></td>
-      <td class="center"><%= task.deadline %></td>
-      <td class="center"><%= task.requested_deadline %></td>
-      <td class="center"><%= task.comment %></td>
-      <td class="center"><%= task.excuse %></td>
-      <td class="actions">
-        <% if (task.status == "Not_done" || task.status == "Re_opened") %>
-          <%= link_to("Done", {:action => 'Done', :id => @member.id, :task_id => task.id}) %>
-        <% elsif (task.status == "Done" && current_member == task.created_by) %>
-          <%= link_to("Re_open", {:action => 'Re_open', :id => @member.id, :task_id => task.id}) %>
+  <div class="spreadsheet">
+    
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+      <h1>Assigned Tasks</h1>
+      
+      <!-- tabs, if needed -->
+      <div class="tab active">link1</div>
+      <div class="tab">link2</div>
+      
+      <!-- filter field -->
+      <input value="filter..." />
+    </div>
+    
+    <table>
+      <thead>
+          <tr>
+            <th>Descritpion</th>
+              <th>Status</th>
+              <th>Deadline</th>
+              <th>Requested Deadline</th>
+              <th>Comment</th>
+              <th>Excuse</th>
+          </tr>
+      </thead>
+      
+      <tbody>
+        <% @tasks.each do |task| %>
+        <tr>
+          <%= form_for task, :url => {:controller => 'tasks', :action => 'extend_deadline', :task_id => task.id, :member_id => @member.id} do |f| %>
+          <td>
+            <p class="cell-data"><%= task.description %></p>
+            <div class="cell-edit"></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= task.status %></p>
+            <div class="cell-edit"></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= task.deadline %></p>
+            <div class="cell-edit"></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= task.requested_deadline %></p>
+            <div class="cell-edit"><%= f.text_field(:requested_deadline) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= task.comment %></p>
+            <div class="cell-edit"></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= task.excuse %></p>
+            <div class="cell-edit"><%= f.text_field(:excuse) %></div>
+          </td>
+          <!-- add this if row is editable -->
+          <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+          </td>
+          <%end%>
+        </tr>
         <%end%>
-        <% if (current_member == task.assigned_to && task.request == false) %>
-        <%= link_to("Extend Deadline", {:action => 'edit', :member_id => @member.id, :id => task.id}) %>
-        <% elsif (current_member == task.created_by && task.request == true) %>
-        <%= link_to("Approve", {:action => 'approve', :member_id => @member.id, :id => task.id}) %>
-        <%= link_to("Disapprove", {:action => 'disapprove', :member_id => @member.id, :id => task.id}) %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
-</div>
+        
+        
+        <!-- "Create new data" form here -->
+        <tr class="add-row">
+           <%= form_for @task=Task.new, :url => {:action => 'create', :member_id => @member.id} do |f| %>
+          <td><%= f.text_field(:description)%> </td>
+          <td></td>
+          <td><%= f.text_field(:deadline) %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <%end%>
+        </tr>
+        
+      </tbody>
+    </table>
+    
+    <div class="spread-footer">
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green add">+</div>
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+  </div>
