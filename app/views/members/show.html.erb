@@ -35,13 +35,5 @@
       <th>Updated</th>
       <td><%= @member.updated_at %></td>
     </tr>
-    <tr><td>
-        <% if(current_member.email==@member.email||(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
-          <%= link_to("Edit", {:action => 'edit', :id => @member.id}) %>
-        <% end %>
-        <% if(current_member.email!=@member.email&&(current_member.committee=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
-          <%= link_to("Delete", {:action => 'delete', :id => @member.id}) %>
-        <% end %>
-    </td></tr>
   </table>
 </div>
