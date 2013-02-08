@@ -94,8 +94,8 @@ $(".delete-row").click(function() {
 	});
 	//tab click action
 	$(".spread-head > .tab").click(function() {
-		$("#"+$(this).sibling(".active").attr("data-id")).hide();
-		$(this).sibling(".active").removeClass("active");
+		$("#"+$(this).siblings(".active").eq(0).attr("data-id")).hide();
+		$(this).siblings(".active").eq(0).removeClass("active");
 
 		$(this).addClass("active");
 		$("#"+$(this).attr("data-id")).show();
