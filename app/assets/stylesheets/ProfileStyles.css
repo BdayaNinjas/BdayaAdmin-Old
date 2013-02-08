@@ -1,0 +1,111 @@
+            .content {
+                border-bottom: 1px solid #DCDCDC;
+                border-left: 1px solid #DCDCDC;
+                border-right: 1px solid #DCDCDC;
+                min-height: 100px;
+                text-align: center;
+            }
+            .content h1{
+                color: #444444;
+                padding-bottom: 1px;
+                margin-top: 3px;
+                margin-bottom: 1px;
+            }
+            .content h2{
+                color: #444444;
+                font-weight: 300;
+                padding-top:1px;
+                margin-top: 1px;
+            }
+            .content h3{
+                font-family: "Arial";
+                font-weight: 700;
+                padding-left: 20px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                color: #77AFC6;
+            }
+            div #pic{
+                background-color: #EEEEEE;
+                font-family: "Arial";
+                color: #77AFC6;
+                border-top: 1px solid #DCDCDC;
+                border-left: 1px solid #DCDCDC;
+                border-bottom: 1px solid #DCDCDC;
+                height: 200px;
+                width: 200px;
+                float: left;
+            }
+            div #info{
+                background-color: #EEEEEE;
+                font-family: "Arial";
+                color: #77AFC6;
+                border-top: 1px solid #DCDCDC;
+                border-right: 1px solid #DCDCDC;
+                border-bottom: 1px solid #DCDCDC;
+                margin-left: 200px;
+                padding-left: 10px;
+                height: 200px;
+            }
+            div #list1{
+                float: left;
+                width: 50%;
+            }
+            div #list2{
+                margin-left: 50%; 
+                width: 50%;
+            }
+            div #heading{
+                background-color: #EEEEEE;
+                font-family: "Arial";
+                font-weight: 700;
+                font-size: 16pt;
+                color: #77AFC6;
+                border-top: 1px solid #DCDCDC;
+                border-left: 1px solid #DCDCDC;
+                border-right: 1px solid #DCDCDC;
+                height: 50px;
+                line-height: 50px;
+                vertical-align: middle;
+            }
+            .tabbedmenu ul{
+                margin:0;
+                margin-left: 0px; /*margin between first menu item and left browser edge*/
+                padding: 0;
+                list-style: none;
+                height: 40px;
+            }
+
+            .tabbedmenu li{
+                display: inline;
+                margin: 0 2px 0 0;
+                padding: 0;
+                height: 40px;
+            }
+
+            .tabbedmenu a{
+                float: left;
+                display: block;
+                font: bold 16pt Arial;
+                color: #77AFC6;
+                text-decoration: none;
+                text-align: center;
+                margin: 0 0 0 0; /*Margin between each menu item*/
+                padding: 5px 10px;
+                width: auto;
+                height: 40px;
+                line-height: 40px;
+                vertical-align: middle;
+                background-color: #EEEEEE; /*Brown color theme*/ 
+                cursor: pointer;
+            }
+
+            .tabbedmenu a:hover{
+                background-color: #F7F6F6; /*Brown color theme*/ 
+                color: #77AFC6;
+            }
+
+            .tabbedmenu a.selected{ /*currently selected tab*/
+                background-color: white; /*Brown color theme*/ 
+                color: #77AFC6;
+            }
