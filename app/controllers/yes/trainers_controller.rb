@@ -17,11 +17,13 @@ class Yes::TrainersController < ApplicationController
   # end
 
   def create
+    params[:trainer][:topics] = params[:trainer][:topics].split(',')
     @trainer = Trainer.new(params[:trainer])
     redirect_to @trainer, notice: 'Trainer was successfully created.'
   end
 
   def update
+    params[:trainer][:topics] = params[:trainer][:topics].split(',')
     @trainer = Trainer.find(params[:id])
     redirect_to @trainer, notice: 'Trainer was successfully updated.'
   end

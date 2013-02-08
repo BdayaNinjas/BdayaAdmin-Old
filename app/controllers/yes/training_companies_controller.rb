@@ -17,12 +17,14 @@ class Yes::TrainingCompaniesController < ApplicationController
   # end
 
   def create
+    params[:training_company][:training_fields] = params[:training_company][:training_fields].split(',')
     @training_company = TrainingCompany.new(params[:training_company])
     @training_company.save
     # redirect_to @training_company, notice: 'Training company was successfully created.'
   end
 
   def update
+    params[:training_company][:training_fields] = params[:training_company][:training_fields].split(',')
     @training_company = TrainingCompany.find(params[:id])
     @training_company.update_attributes(params[:training_company])
     # redirect_to @training_company, notice: 'Training company was successfully updated.'
