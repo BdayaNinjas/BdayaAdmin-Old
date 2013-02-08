@@ -170,7 +170,7 @@ class Member
   end
 
   def self.getCareMembers
-    return Committee.find_by(name: "Yes").members
+    return Committee.find_by(name: "Care").members
   end
 
   def self.getGenehMembers
