@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Bdaya | Profile</title>
  <style type="text/css" media="screen">
  h1{
   color: #444444;
@@ -151,21 +150,21 @@ $(document).ready(function(){
 <body>
  <div id="page">
   <div id="pic">
-   <img src="http://muddam.com/model/winmarine.in/images/user_icon_200.png">
+   <img src="/images/user_icon_200.png">
 </div>
 <div id="info">
 
- <h1>Name</h1>
- <h2>Status</h2>
+ <h1><%= @member.name %></h1>
+ <h2></h2>
  <div id="list1">
-   <b>Info: </b>Information<br><br>
-   <b>Info: </b>Information<br><br>
-   <b>Info: </b>Information
+   <b>Email: </b><%= @member.email %><br><br>
+   <b>Major: </b><%= @member.major %><br><br>
+   <b>Semester: </b><%= @member.semester %>
 </div>
 <div id="list2">
-   <b>Info: </b>Information<br><br>
-   <b>Info: </b>Information<br><br>
-   <b>Info: </b>Information</div>
+  <b>Committee: </b><%= @member.committee.name %><br><br>
+   <b>Member since: </b><%= @member.created_at %><br><br>
+ </div>
 </div>
 <br>
 
@@ -326,40 +325,6 @@ $(document).ready(function(){
   <div id="content"><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></div> -->
   
 <!-- ======= -->
-<div>
-  <h2><%= @member.name %></h2>
 
-  <table summary="Member detail view">
-    <tr>
-      <th>Email</th>
-      <td><%= @member.email %></td>
-    </tr>
-    <tr>
-      <th>Semester</th>
-      <td><%= @member.semester %></td>
-    </tr>
-    <tr>
-      <th>Major</th>
-      <td><%= @member.major %></td>
-    </tr>
-    <tr>
-      <th>Committee</th>
-      <td><%= @member.committee.name %></td>
-    </tr>
-    <tr>
-      <th>Role</th>
-      <td><%= @member.role %></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td><%= @member.created_at %></td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td><%= @member.updated_at %></td>
-    </tr>
-  </table>
-<!-- >>>>>>> fd4fbfd9942491395b139dab3b200f7358461b73 -->
-</div>
 </body>
 </html>

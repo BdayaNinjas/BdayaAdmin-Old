@@ -1,39 +1,330 @@
 <% @page_title = "Show Member: #{@member.name}" %>
 
-<%= link_to("<< Back to List", {:action => 'index'}) %>
-<%= link_to("View Tasks", {:controller => 'tasks', :action => 'show', :id => @member.id}) %>
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to("View Tasks", {:controller => 'tasks', :action => 'index', :id => @member.id}) %>
 
-<div>
-  <h2><%= @member.name %></h2>
+<!-- <<<<<<< HEAD -->
+<!DOCTYPE html>
+<html>
+<head>
+ <style type="text/css" media="screen">
+ h1{
+  color: #444444;
+  padding-bottom: 1px;
+  margin-top: 3px;
+  margin-bottom: 1px;
+}
+h2{
+  color: #444444;
+  font-weight: 300;
+  padding-top:1px;
+  margin-top: 1px;
+}
+h3{
+  font-family: "Arial";
+  font-weight: 700;
+  padding-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #77AFC6;
+}
+div #pic{
+  background-color: #EEEEEE;
+  font-family: "Arial";
+  color: #77AFC6;
+  border-top: 1px solid #DCDCDC;
+  border-left: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  height: 200px;
+  width: 200px;
+  float: left;
+}
+div #info{
+  background-color: #EEEEEE;
+  font-family: "Arial";
+  color: #77AFC6;
+  border-top: 1px solid #DCDCDC;
+  border-right: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  margin-left: 200px;
+  padding-left: 10px;
+  height: 200px;
+}
+div #list1{
+  float: left;
+  width: 50%;
+}
+div #list2{
+  margin-left: 50%; 
+  width: 50%;
+}
+div #heading{
+  background-color: #EEEEEE;
+  font-family: "Arial";
+  font-weight: 700;
+  font-size: 16pt;
+  color: #77AFC6;
+  border-top: 1px solid #DCDCDC;
+  border-left: 1px solid #DCDCDC;
+  border-right: 1px solid #DCDCDC;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+}
+.content {
+  border-bottom: 1px solid #DCDCDC;
+  border-left: 1px solid #DCDCDC;
+  border-right: 1px solid #DCDCDC;
+  min-height: 100px;
+  text-align: center;
+}
+.tabbedmenu ul{
+  margin:0;
+  margin-left: 0px; /*margin between first menu item and left browser edge*/
+  padding: 0;
+  list-style: none;
+  height: 40px;
+}
 
-  <table summary="Member detail view">
-    <tr>
-      <th>Email</th>
-      <td><%= @member.email %></td>
-    </tr>
-    <tr>
-      <th>Semester</th>
-      <td><%= @member.semester %></td>
-    </tr>
-    <tr>
-      <th>Major</th>
-      <td><%= @member.major %></td>
-    </tr>
-    <tr>
-      <th>Committee</th>
-      <td><%= @member.committee.name %></td>
-    </tr>
-    <tr>
-      <th>Role</th>
-      <td><%= @member.role %></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td><%= @member.created_at %></td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td><%= @member.updated_at %></td>
-    </tr>
-  </table>
+.tabbedmenu li{
+  display: inline;
+  margin: 0 2px 0 0;
+  padding: 0;
+  height: 40px;
+}
+
+.tabbedmenu a{
+  float: left;
+  display: block;
+  font: bold 16pt Arial;
+  color: #77AFC6;
+  text-decoration: none;
+  text-align: center;
+  margin: 0 0 0 0; /*Margin between each menu item*/
+  padding: 5px 10px;
+  width: auto;
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  background-color: #EEEEEE; /*Brown color theme*/ 
+  cursor: pointer;
+}
+
+.tabbedmenu a:hover{
+  background-color: #F7F6F6; /*Brown color theme*/ 
+  color: #77AFC6;
+}
+
+.tabbedmenu a.selected{ /*currently selected tab*/
+  background-color: white; /*Brown color theme*/ 
+  color: #77AFC6;
+}
+</style>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="spreadsheet.css" type="text/css" charset="utf-8">
+<script type="text/javascript" charset="utf-8" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="spreadsheet.js"></script>
+<script>
+$(document).ready(function(){
+   $("#Meetings").hide();
+  $("#Performance").hide();
+ $("#t").click(function(){
+  $("#Meetings").hide();
+  $("#Performance").hide();
+  $("#Tasks").show();
+});
+ $("#m").click(function(){
+  $("#Meetings").show();
+  $("#Performance").hide();
+  $("#Tasks").hide();
+});
+  $("#p").click(function(){
+  $("#Meetings").hide();
+  $("#Performance").show();
+  $("#Tasks").hide();
+});
+});
+</script>
+</head>
+<body>
+ <div id="page">
+  <div id="pic">
+   <img src="/images/user_icon_200.png">
 </div>
+<div id="info">
+
+ <h1><%= @member.name %></h1>
+ <h2></h2>
+ <div id="list1">
+   <b>Email: </b><%= @member.email %><br><br>
+   <b>Major: </b><%= @member.major %><br><br>
+   <b>Semester: </b><%= @member.semester %>
+</div>
+<div id="list2">
+  <b>Committee: </b><%= @member.committee.name %><br><br>
+   <b>Member since: </b><%= @member.created_at %><br><br>
+ </div>
+</div>
+<br>
+
+<div id="heading" class="tabbedmenu">
+   <ul>
+    <li><a id="t">Tasks</a></li>
+    <li><a id="m">Meetings</a></li>
+    <li><a id="p">Performance</a></li></ul>
+ </div>
+ <div id="Tasks" class="content">
+   <div class="spreadsheet">
+      
+      <div class="spread-head">
+         <!-- spreadsheet title -->
+         <h1>Spreadsheet</h1>
+         
+         <!-- tabs, if needed -->
+         <div class="tab active">link1</div>
+         <div class="tab">link2</div>
+         
+         <!-- filter field -->
+         <input value="filter..." />
+      </div>
+      
+      <table>
+         <thead>
+             <tr>
+               <th>Month</th>
+               <th>Savings</th>
+              <th>Month</th>
+              <th>Savings</th>
+             </tr>
+         </thead>
+         
+         <tbody>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <!-- add this if row is editable -->
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+               </td>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>           
+            </tr>
+         </tbody>
+      </table>
+      
+      <div class="spread-footer">
+         <!-- tab, add this if table is editable -->
+         <div class="tab edit-spreadsheet">Edit</div>
+         <!-- keep buttons if edit is enabled -->
+         <div class="btn green save">Save</div>
+         <div class="btn red cancel">Cancel</div>
+      </div>
+   </div>
+ </div>
+ <div id="Meetings" class="content">
+   <div class="spreadsheet">
+      
+      <div class="spread-head">
+         <!-- spreadsheet title -->
+         <h1>Spreadsheet</h1>
+         
+         <!-- tabs, if needed -->
+         <div class="tab active">link1</div>
+         <div class="tab">link2</div>
+         
+         <!-- filter field -->
+         <input value="filter..." />
+      </div>
+      
+      <table>
+         <thead>
+             <tr>
+               <th>Month</th>
+               <th>Savings</th>
+              <th>Month</th>
+              <th>Savings</th>
+             </tr>
+         </thead>
+         
+         <tbody>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <!-- add this if row is editable -->
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+               </td>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>           
+            </tr>
+         </tbody>
+      </table>
+      
+      <div class="spread-footer">
+         <!-- tab, add this if table is editable -->
+         <div class="tab edit-spreadsheet">Edit</div>
+         <!-- keep buttons if edit is enabled -->
+         <div class="btn green save">Save</div>
+         <div class="btn red cancel">Cancel</div>
+      </div>
+   </div>
+ </div>
+ <div id="Performance"  class="content">
+ <img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG">
+</div>
+
+
+  <!-- <div id="heading">Tasks</div>
+  <div id="content"></div>
+  <br>
+  <div id="heading">Meetings</div>
+  <div id="content"></div>
+  <br>
+  <div id="heading">Performance</div>
+  <div id="content"><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></div> -->
+  
+<!-- ======= -->
+
+</body>
+</html>
