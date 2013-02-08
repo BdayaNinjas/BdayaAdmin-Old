@@ -43,6 +43,7 @@
           <%= form_for request, :url => {:controller => 'requests', :action => 'update', :id => request.id} do |f| %> 
           
           <td>
+            <p class="cell-data">
               <%if (request.session_type = 1)%>
               <%= "Academics Session" %>
               <%elsif (request.session_type = 2)%>
@@ -50,17 +51,23 @@
               <%elsif (request.session_type = 3)%>
               <%= "Meeting" %>
               <%end%>
-            </td>
+            </p>
+          </td>
             
-            <td><%if (request.session_type = 1)%>
-              <%= request.session.timing %>
-              <%elsif (request.session_type = 3)%>
-              <%= request.meeting.meeting_time %>
-              <%end%>
+            <td>
+              <p class="cell-data">
+                <%if (request.session_type = 1)%>
+                <%= request.session.timing %>
+                <%elsif (request.session_type = 3)%>
+                <%= request.meeting.meeting_time %>
+               <%end%>
+             </p>
             </td>
             
             <td>
-              <%= request.needers[0].name %>  
+              <p class="cell-data">
+                <%= request.needers[0].name %>
+              </p>    
             </td>
 
           <td>
@@ -96,6 +103,7 @@
           <%= form_for request, :url => {:controller => 'requests', :action => 'update', :id => request.id} do |f| %> 
           
           <td>
+            <p class="cell-data">
               <%if (request.session_type = 1)%>
               <%= "Academics Session" %>
               <%elsif (request.session_type = 2)%>
@@ -103,17 +111,23 @@
               <%elsif (request.session_type = 3)%>
               <%= "Meeting" %>
               <%end%>
-            </td>
+            </p>
+          </td>
             
-            <td><%if (request.session_type = 1)%>
-              <%= request.session.timing %>
-              <%elsif (request.session_type = 3)%>
-              <%= request.meeting.meeting_time %>
-              <%end%>
+            <td>
+              <p class="cell-data">
+                <%if (request.session_type = 1)%>
+                <%= request.session.timing %>
+                <%elsif (request.session_type = 3)%>
+                <%= request.meeting.meeting_time %>
+               <%end%>
+             </p>
             </td>
             
             <td>
-              <%= request.needers[0].name %>  
+              <p class="cell-data">
+                <%= request.needers[0].name %>
+              </p>    
             </td>
 
           <td>

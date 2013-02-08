@@ -45,6 +45,7 @@ class Session
     r.save
     r.needers << Committee.find_by(:name => "Academics").head
     r.needers << m
+    r.save
   end
    
 end
