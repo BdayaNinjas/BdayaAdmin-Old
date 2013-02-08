@@ -28,7 +28,7 @@
       <tbody>
         <% @training_companies.each do |company| %>
           <tr>
-            <%= form_for(company) do |f|%>
+            <%= form_for [:yes, company] do |f|%>
                 <td>
                   <p class="cell-data">
                     <%= company.name %>
@@ -111,7 +111,7 @@
             <td class="edit">
               <div class="edit">
                 <div class="update-row">✎</div>
-                <div class="delete-row"><%= link_to '✖', training_company, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                <div class="delete-row"><%= link_to '✖', [:yes, training_company], method: :delete, data: { confirm: 'Are you sure?' } %></div>
               </div>
             </td>
 
@@ -121,7 +121,7 @@
         <!-- "Create new data" form here -->
         <tr class="add-row">
           <% @company = TrainingCompany.new %>
-          <%= form_for(@company) do |f| %>
+          <%= form_for [:yes, @company] do |f| %>
             <td><%= f.text_field :name %></td>
             <td><%= f.text_field :phone %></td>
             <td><%= f.text_field :training_fields %></td>

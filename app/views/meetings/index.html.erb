@@ -227,8 +227,8 @@
         
         <!-- "Create new data" form here -->
         <tr class="add-row">
-          <% @meeting = Meeting.new %>
-          <%= form_for(@meeting) do |f| %>
+          <% @meeting=Meeting.new%>
+           <%= form_for @meeting, :url => {:action => 'create'} do |f| %>
             <td><%= f.text_field :title %></td>
             <td>Meeting Minutes1</td>
             <td>Meeting Minutes2</td>
