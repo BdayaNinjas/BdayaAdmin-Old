@@ -1,7 +1,10 @@
 BdayaAdmin::Application.routes.draw do
   resources :evaluations
 
+  resources :geneh
+
   resources :meetings
+  
   namespace :yes do
     resources :trainers
     resources :training_companies

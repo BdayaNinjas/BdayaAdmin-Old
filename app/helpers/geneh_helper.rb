@@ -1,0 +1,2 @@
+module GenehHelper
+end

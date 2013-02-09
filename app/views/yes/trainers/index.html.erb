@@ -4,7 +4,8 @@
   <h2>Trainers</h2>
 
   <div><%= pluralize(@trainers.size, 'trainers') %></div>
-  
+  <div>When Filling Training Topics split them by Commas => ','</div>
+
   <div class="spreadsheet">
 
     <div class="spread-head">
@@ -29,7 +30,7 @@
       <tbody>
         <% @trainers.each do |trainer| %>
           <tr>
-            <%= form_for [:yes, trainer] do |f|%>
+            <%= form_for [:yes, trainer], :method => 'PUT' do |f|%>
                 <td>
                   <p class="cell-data">
                     <%= trainer.name %>
@@ -67,12 +68,27 @@
                 </td>
 
                 <td>
-                  <p class="cell-data">
-                    <%= trainer.topics %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.text_field :topics %>
-                  </div>
+                  <% if(trainer.topics.size > 0)%>
+                    <%@text=trainer.topics[0]%>
+                    <% if(trainer.topics.size > 1)%>
+                      <% for i in 1..trainer.topics.size do%>
+                          <%@text+','%>
+                      <%end%>
+                    <%end%>
+                    <p class="cell-data">
+                      <%= @text %>
+                    </p>
+                    <div class="cell-edit">
+                      <%= f.text_field :topics,value: @text%>
+                    </div>
+                  <%else%>
+                    <p class="cell-data">
+                      No Topics
+                    </p>
+                    <div class="cell-edit">
+                      <%= f.text_field :topics%>
+                    </div>
+                  <%end%>
                 </td>
 
                 <td class="edit">
@@ -88,7 +104,7 @@
         <!-- "Create new data" form here -->
         <tr class="add-row">
           <% @trainer = Trainer.new %>
-          <%= form_for [:yes, @trainer] do |f| %>
+          <%= form_for [:yes, @trainer], :url => {:action => 'create'}, :method => 'POST' do |f| %>
             <td><%= f.text_field :name %></td>
             <td><%= f.text_field :phone %></td>
             <td><%= f.text_field :email %></td>
