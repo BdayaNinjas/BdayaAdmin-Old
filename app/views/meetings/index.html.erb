@@ -31,7 +31,7 @@
       <tbody>
         <% @meetings.each do |meeting| %>
           <tr>
-            <%= form_for(meeting) do |f|%>
+            <%= form_for(meeting, :url => {:action => 'update'}, :method => 'PUT') do |f|%>
 
               <% if(DateTime.now.end_of_day > meeting.meeting_time) %>
 
@@ -218,7 +218,8 @@
             <td class="edit">
               <div class="edit">
                 <div class="update-row">✎</div>
-                <div class="delete-row"><%= link_to '✖', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                <div class="delete-row"><%= link_to '✖', meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
               </div>
             </td>
 
@@ -228,7 +229,7 @@
         <!-- "Create new data" form here -->
         <tr class="add-row">
           <% @meeting=Meeting.new%>
-           <%= form_for @meeting, :url => {:action => 'create'} do |f| %>
+           <%= form_for @meeting, :url => {:action => 'create'}, :method => 'POST' do |f| %>
             <td><%= f.text_field :title %></td>
             <td>Meeting Minutes1</td>
             <td>Meeting Minutes2</td>

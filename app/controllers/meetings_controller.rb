@@ -3,17 +3,17 @@ class MeetingsController < ApplicationController
     @meetings = Meeting.all
   end
 
-  def show
-    @meeting = Meeting.find(params[:id])
-  end
+  # def show
+  #   @meeting = Meeting.find(params[:id])
+  # end
 
-  def new
-    @meeting = Meeting.new
-  end
+  # def new
+  #   @meeting = Meeting.new
+  # end
 
-  def edit
-    @meeting = Meeting.find(params[:id])
-  end
+  # def edit
+  #   @meeting = Meeting.find(params[:id])
+  # end
 
   def create
     params[:meeting][:attendee_ids].shift

@@ -13,6 +13,13 @@ img#logo {
 	z-index: 10;
 }
 
+div#center {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin-top: -60px; /* the bottom margin is the negative value of the footer's height */
+	position: relative;
+}
 
 /*Top Bar*/
 
@@ -233,7 +240,7 @@ div#rightbar-shadow {
 /*Content*/
 
 div#content {
-	padding: 20px;
+	padding: 70px 20px 20px 20px;
 	margin-left: 100px;
 	margin-right: 300px;
 }
