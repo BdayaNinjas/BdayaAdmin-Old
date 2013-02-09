@@ -20,19 +20,19 @@ class Yes::TrainingCompaniesController < ApplicationController
     params[:training_company][:training_fields] = params[:training_company][:training_fields].split(',')
     @training_company = TrainingCompany.new(params[:training_company])
     @training_company.save
-    # redirect_to @training_company, notice: 'Training company was successfully created.'
+    # redirect_to yes_training_companies_path
   end
 
   def update
     params[:training_company][:training_fields] = params[:training_company][:training_fields].split(',')
     @training_company = TrainingCompany.find(params[:id])
     @training_company.update_attributes(params[:training_company])
-    # redirect_to @training_company, notice: 'Training company was successfully updated.'
+    # redirect_to yes_training_companies_path
   end
 
   def destroy
     @training_company = TrainingCompany.find(params[:id])
     @training_company.destroy
-    # redirect_to yes_training_companies_url
+    # redirect_to yes_training_companies_path
   end
 end

@@ -31,7 +31,7 @@
       <tbody>
         <% @meetings.each do |meeting| %>
           <tr>
-            <%= form_for(meeting, :url => {:action => 'update'}, :method => 'PUT') do |f|%>
+            <%= form_for(meeting, :method => 'PUT') do |f|%>
 
               <% if(DateTime.now.end_of_day > meeting.meeting_time) %>
 
@@ -104,7 +104,7 @@
                 <td>
                   <p class="cell-data">
                     <% meeting.attendees.each do |att| %>
-                      <%= att.name + " // " %>
+                      <%= att.name + ", " %>
                     <% end %>
                   </p>
                   <div class="cell-edit">
@@ -206,7 +206,7 @@
                 <td>
                   <p class="cell-data">
                     <% meeting.attendees.each do |att| %>
-                      <%= att.name + " // " %>
+                      <%= att.name + ", " %>
                     <% end %>
                   </p>
                   <div class="cell-edit">

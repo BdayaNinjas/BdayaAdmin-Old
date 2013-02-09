@@ -30,7 +30,7 @@
       <tbody>
         <% @trainers.each do |trainer| %>
           <tr>
-            <%= form_for [:yes, trainer], :url => {:action => 'update'}, :method => 'PUT' do |f|%>
+            <%= form_for [:yes, trainer], :method => 'PUT' do |f|%>
                 <td>
                   <p class="cell-data">
                     <%= trainer.name %>
@@ -68,16 +68,27 @@
                 </td>
 
                 <td>
-                  <%@text=trainer.topics[0]%>
-                  <% for i in 1..trainer.topics.size do%>
-                      <%@text+','%>
+                  <% if(trainer.topics.size > 0)%>
+                    <%@text=trainer.topics[0]%>
+                    <% if(trainer.topics.size > 1)%>
+                      <% for i in 1..trainer.topics.size do%>
+                          <%@text+','%>
+                      <%end%>
+                    <%end%>
+                    <p class="cell-data">
+                      <%= @text %>
+                    </p>
+                    <div class="cell-edit">
+                      <%= f.text_field :topics,value: @text%>
+                    </div>
+                  <%else%>
+                    <p class="cell-data">
+                      No Topics
+                    </p>
+                    <div class="cell-edit">
+                      <%= f.text_field :topics%>
+                    </div>
                   <%end%>
-                  <p class="cell-data">
-                    <%= @text %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.text_field :topics,value: @text%>
-                  </div>
                 </td>
 
                 <td class="edit">

@@ -72,6 +72,11 @@ class Member
   belongs_to :committee, class_name: "Committee", inverse_of: :members
 
   has_many :evaluations, class_name: "Evaluation", inverse_of: :member
+
+  has_many :created_geneh_cases, class_name: "GenehCase", inverse_of: :creator
+  has_and_belongs_to_many :responsible_geneh_case, class_name: "GenehCase", inverse_of: :responsible_people
+
+
 =begin
   This Method to get the pending requests assigned to this member
   Author:Diab
