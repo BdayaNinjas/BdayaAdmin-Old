@@ -13,20 +13,7 @@ class Notification
 
   belongs_to :member
 
-  def unseen(x)
-    unseen = Array.new
-    notifications = Member.where(:id => x).notifications
-    notifications.each do |z|
-        if(z.unseen == true)
-            unseen << z
-        end
-    end
-    return unseen
-  end
-
-  def all(x)
-    return Member.where(:id => x).notifications
-  end
+  
 
   def set_seen
     self.seen = true
