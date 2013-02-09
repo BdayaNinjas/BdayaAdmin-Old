@@ -1,4 +1,4 @@
-h1{
+            h1{
                 color: #444444;
                 padding-bottom: 1px;
                 margin-top: 3px;
@@ -29,7 +29,7 @@ h1{
                 width: 200px;
                 float: left;
             }
-            div #info{
+            div#page div#info{
                 background-color: #EEEEEE;
                 font-family: "Arial";
                 color: #77AFC6;

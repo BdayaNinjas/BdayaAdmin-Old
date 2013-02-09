@@ -6,6 +6,7 @@ class Hr::MembersController < ApplicationController
   Author : Omar
 =end
   def index
+    @all = Member.all
     @yes = Member.getYesMembers
     @care = Member.getCareMembers
     @geneh = Member.getGenehMembers

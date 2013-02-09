@@ -5,7 +5,8 @@
             <h1>Members</h1>
 
             <!-- tabs, if needed -->
-            <div class="tab active" data-id="link8">IT</div>
+            <div class="tab active" data-id="link9">All Members</div>
+            <div class="tab" data-id="link8">IT</div>
             <div class="tab" data-id="link7">HR</div>
             <div class="tab" data-id="link6">FR</div>
             <div class="tab" data-id="link5">PR</div>
@@ -247,12 +248,28 @@
                 <%end%>
             </tbody>
         </table>
+        <table class="link-data" id="link9">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>Committee</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if @all != nil %>
+                    <% @all.each do |t| %>
+                <tr>
+                    <td><%= t.name %></td>
+                    <td><%= t.email %></td>
+                    <td><%= t.committee.name %></td>
+                </tr>
+                    <%end%>
+                <%end%>
+            </tbody>
+        </table>
         <div class="spread-footer">
-            <!-- tab, add this if table is editable -->
-            <div class="tab edit-spreadsheet">Edit</div>
-            <!-- keep buttons if edit is enabled -->
-            <div class="btn green save">Save</div>
-            <div class="btn red cancel">Cancel</div>
         </div>
     </div>
 
