@@ -4,6 +4,8 @@ class Session
   field :notes, type: String
   field :performance, type: Integer
   field :notes, type: String
+  field :session_type , type: Integer
+  
   field :room
   field :assigned_teachers , type: Array
 
@@ -19,7 +21,7 @@ class Session
   Committee/Project : Academics
 =end
   def self.get_sessions_date_desc
-  	Session.desc(:timing).to_a
+  	Session.where(:session_type => 1).desc(:timing).to_a
   end
 
 =begin
@@ -34,6 +36,7 @@ class Session
     s.member = m
     s.timing = t
     s.notes = n
+    s.session_type = 1
     s.save
 
     r = Request.new
