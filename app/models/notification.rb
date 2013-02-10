@@ -31,5 +31,19 @@ class Notification
       to.notifications << n
   end
 
+=begin
+ This Method to send a notification to all Heads from The HR head
+ to remind them to Evaluate their Members
+ Author : Diab
+ Committee/Project : HR
+=end
+  def self.remind_heads_evaluate
+    Committee.each do |com|
+      if (com.name != "HR")
+        Notification.send_notification(com.head,10,4,
+          "The HR head is reminding you to evaluate your members")
+      end
+    end     
+  end
 
 end
