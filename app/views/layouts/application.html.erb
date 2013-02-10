@@ -48,36 +48,37 @@
       <div id="rightbar-content">
         <!-- adding notifications -->
         <!-- the only thing missing howa after en notification is seen there is a method we should call t.set_seen to change seen to true -->
-
-        <% @all = current_member.notifications %>
-        <% if @all != nil %>
-          <% @all.each do |t| %>
-           <%if t.seen == false %> <!-- check notification is UNSEEN --> 
-             <% if t.type == 1 %>  <!-- check if type is REQUEST -->
-                <%= t.desc %>
-              <% elsif t.type == 2 %> <!-- check if type is ACCEPTANCE -->
-                <%= t.desc %>
-              <% elsif t.type == 3 %> <!-- check if type is DECLINING -->
-                <%= t.desc %>
-              <% elsif t.type == 4 %> <!-- check if type is REMINDER -->
-                <%= t.desc %>
-              <% else %> <!-- check if type is OTHER -->
-                <%= t.desc %>
+        <% if(current_member != nil) %>
+          <% @all = current_member.notifications %>
+          <% if @all != nil %>
+            <% @all.each do |t| %>
+             <%if t.seen == false %> <!-- check notification is UNSEEN --> 
+               <% if t.type == 1 %>  <!-- check if type is REQUEST -->
+                  <%= t.desc %>
+                <% elsif t.type == 2 %> <!-- check if type is ACCEPTANCE -->
+                  <%= t.desc %>
+                <% elsif t.type == 3 %> <!-- check if type is DECLINING -->
+                  <%= t.desc %>
+                <% elsif t.type == 4 %> <!-- check if type is REMINDER -->
+                  <%= t.desc %>
+                <% else %> <!-- check if type is OTHER -->
+                  <%= t.desc %>
+                <% end %>
+              <% else %> <!-- notification is SEEN before -->
+                <% if t.type == 1 %>  <!-- check if type is REQUEST -->
+                  <%= t.desc %>
+                <% elsif t.type == 2 %> <!-- check if type is ACCEPTANCE -->
+                  <%= t.desc %>
+                <% elsif t.type == 3 %> <!-- check if type is DECLINING -->
+                  <%= t.desc %>
+                <% elsif t.type == 4 %> <!-- check if type is REMINDER -->
+                  <%= t.desc %>
+                <% else %> <!-- check if type is OTHER -->
+                  <%= t.desc %>
+                <% end %>
               <% end %>
-            <% else %> <!-- notification is SEEN before -->
-              <% if t.type == 1 %>  <!-- check if type is REQUEST -->
-                <%= t.desc %>
-              <% elsif t.type == 2 %> <!-- check if type is ACCEPTANCE -->
-                <%= t.desc %>
-              <% elsif t.type == 3 %> <!-- check if type is DECLINING -->
-                <%= t.desc %>
-              <% elsif t.type == 4 %> <!-- check if type is REMINDER -->
-                <%= t.desc %>
-              <% else %> <!-- check if type is OTHER -->
-                <%= t.desc %>
-              <% end %>
-            <% end %>
-          <% end %>  
+            <% end %>  
+          <% end %>
         <% end %>
         <!-- finished adding notifications -->
       </div>
