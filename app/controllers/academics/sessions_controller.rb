@@ -1,4 +1,4 @@
-class Academics::SessionsController < ApplicationController
+class Academics::SessionsController < Academics::AcademicsController
 	
 	def new
 		@session = Session.new

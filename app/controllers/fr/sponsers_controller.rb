@@ -1,4 +1,4 @@
-class Fr::SponsersController < ApplicationController
+class Fr::SponsersController < FR::FRController
 
 	def index
 		@sponsers = Sponser.all	

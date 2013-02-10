@@ -42,10 +42,12 @@ BdayaAdmin::Application.routes.draw do
 
   namespace :fr do
     resources :sponsers
+    resources :members
   end
 
   namespace :logistics do
     resources :requests
+    resources :members
   end    
   
   
