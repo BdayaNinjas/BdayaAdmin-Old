@@ -1,9 +1,9 @@
-class Care::MembersController < Care::CareController
+class Geneh::MembersController < Geneh::GenehController
 	
   def index
-    @members = Committee.find_by(:name => "Academics").members
-    @head = Committee.find_by(:name => "Academics").head
-    @vices = Committee.find_by(:name => "Academics").vices
+    @members = Committee.find_by(:name => "Geneh").members
+    @head = Committee.find_by(:name => "Geneh").head
+    @vices = Committee.find_by(:name => "Geneh").vices
   end
 
   def show

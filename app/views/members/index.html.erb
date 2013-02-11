@@ -34,7 +34,7 @@
         <tr>
           <%= form_for(member, :url => {:action => 'update', :id => member.id}, :method => 'PUT') do |f| %>
           <td>
-            <p class="cell-data"><%= link_to(member.name, {:action => 'show', :id => member.id}) %></p>
+            <p class="cell-data"><%= link_to(member.name, {:action => 'show', :id => member.id, :c => 'members'}) %></p>
             <div class="cell-edit"><%= f.text_field(:name) %></div>
           </td>
           <td>
@@ -55,7 +55,7 @@
           </td>
           <td>
             <p class="cell-data"><%= member.role %></p>
-            <div class="cell-edit"><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></div>
+            <div class="cell-edit"><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></div>
           </td>
           <!-- add this if row is editable -->
           <td class="edit"><div class=email"edit">
@@ -79,7 +79,7 @@
           <%= f.hidden_field :password  , :value => "testtest" %>
           <td><%= f.text_field(:major) %></td>
           <td><%= f.select(:committee_id, @committees.collect {|p| [p.name, p.id]}) %></td>
-          <td><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></td>
+          <td><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></td>
           <% end %>
         </tr>
         

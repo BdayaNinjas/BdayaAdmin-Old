@@ -1,9 +1,9 @@
 class Fr::MembersController < FR::FRController
 	
   def index
-    @members=Committee.find_by(name: "FR").members.where(:role => 'Member')
-    @head=Committee.find_by(name: "FR").members.where(:role => 'Head')
-    @vices=Committee.find_by(name: "FR").members.where(:role => 'Vice Head')
+    @members = Committee.find_by(:name => "FR").members
+    @head = Committee.find_by(:name => "FR").head
+    @vices = Committee.find_by(:name => "FR").vices
   end
 
   def show

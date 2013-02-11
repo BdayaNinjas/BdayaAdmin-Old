@@ -1,7 +1,9 @@
 BdayaAdmin::Application.routes.draw do
   resources :evaluations
 
-  resources :geneh
+  namespace :geneh do
+    resources :members
+  end
 
   resources :meetings
   

@@ -1,65 +1,100 @@
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <% @page_title = "Members List" %>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag 'javascripts/spreadsheet' %>
+  <%= stylesheet_link_tag 'stylesheets/spreadsheet', :media => 'screen' %>
+</head>
+
+<body>
+  
   <div class="spreadsheet">
+
+    <center><h2>Academics</h2></center>
+    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:action => 'show', :id => @head[0].id, :c => 'academics/members'}) %> <%end%> </h3>
+    <h3>Vices: <% @vices.each do |vice| %>
+      <%= link_to(vice.name, {:action => 'show', :id => vice.id, :c => 'academics/members'}) %>
+      <%end%></h3> 
     
     <div class="spread-head">
       <!-- spreadsheet title -->
-      <h1>Academics Members</h1>  
-      
-      
-      
-      <!-- filter field. not needed for now -->
-      <input value="filter..." />
+
+      <h1>Members</h1>
+      <div style="padding-left:7em"><%= pluralize(@members.size, 'member') %> found</div>
     </div>
     
     <table>
       <thead>
           <tr>
-            <th>Name</th>
-            <th>Major</th>
-            <th>E-Mail</th>
+            <th>Member</th>
+            <th>Email</th>
             <th>Semester</th>
-            <th>Courses Teached</th> 
+            <th>Major</th>
+            <th>Role</th>
           </tr>
       </thead>
       
-      <tbody> 
+      <tbody>
         <% @members.each do |member| %>
         <tr>
-          <%= form_for member, :url => {:controller => 'members', :action => 'update', :id => member.id} do |f| %>
+          <%= form_for(member, :url => {:action => 'update', :id => member.id}, :method => 'PUT') do |f| %>
           <td>
-            <p class="cell-data"><%= member.name %></p> 
+            <p class="cell-data"><%= link_to(member.name, {:controller => '/members', :action => 'show', :id => member.id, :c => 'academics/members'}) %></p>
+            <div class="cell-edit"><%= f.text_field(:name) %></div>
           </td>
-
           <td>
-            <p class="cell-data"><%= member.major %></p> 
+            <p class="cell-data"><%= member.email %></p>
+            <div class="cell-edit"><%= f.text_field(:email) %></div>
           </td>
-
           <td>
-            <p class="cell-data"><%= member.email %></p> 
+            <p class="cell-data"><%= member.semester %></p>
+            <div class="cell-edit"><%= f.text_field(:semester) %></div>
           </td>
-
           <td>
-            <p class="cell-data"><%= member.semester %></p> 
+            <p class="cell-data"><%= member.major %></p>
+            <div class="cell-edit"><%= f.text_field(:major) %></div>
           </td>
-
           <td>
-            <p class="cell-data">
-              <%member.courses.each do |course|%>
-              <%= course.name %> </br>  
-              <%end%></p> 
+            <p class="cell-data"><%= member.role %></p>
+            <div class="cell-edit"><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></div>
           </td>
-          
-         
-          <%end%> 
+          <!-- add this if row is editable -->
+          <td class="edit"><div class="edit">
+            <% if(current_member.email==member.email||(current_member.committee.name=='Academics' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+                <div class="update-row">✎</div>
+              <% end %>
+              <% if(current_member.email!=member.email&&(current_member.committee.name=='Academics' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
+                <div class="delete-row">✖</div>
+              <% end %>
+          </div></td>
+          <% end %>
         </tr>
-        <%end%> 
+        <% end %>
         
-        
-        
+        <!-- "Create new data" form here -->
+        <%= form_for(:member, :url => {:action => 'create'}, :method => 'POST') do |f| %>
+        <tr class="add-row">
+          <td><%= f.text_field(:name) %></td>
+          <td><%= f.text_field(:email) %></td>
+          <td><%= f.text_field(:semester) %></td>
+          <%= f.hidden_field :password  , :value => "testtest" %>
+          <td><%= f.text_field(:major) %></td>
+          <td><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></td>
+        </tr>
+        <% end %>
         
       </tbody>
     </table>
     
     <div class="spread-footer">
-      
+      <% if(current_member.committee.name=='Academics' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
     </div>
+    <% end %>
   </div>
+  
+</body>
