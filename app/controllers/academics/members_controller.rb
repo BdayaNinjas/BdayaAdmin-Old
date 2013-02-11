@@ -1,4 +1,4 @@
-class Academics::MembersController < ApplicationController
+class Academics::MembersController < Academics::AcademicsController
 	
 	def filter_semester
 		@members = get_members_teach_semester(params[:sem])

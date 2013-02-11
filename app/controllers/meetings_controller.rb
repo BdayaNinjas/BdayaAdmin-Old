@@ -20,7 +20,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(params[:meeting])
     @meeting.creator = current_member
     @meeting.save
-    # redirect_to meetings_path
+    redirect_to meetings_path
   end
 
   def update
