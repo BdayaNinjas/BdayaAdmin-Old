@@ -11,9 +11,9 @@
   <div class="spreadsheet">
 
     <center><h2>FR</h2></center>
-    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:action => 'show', :id => @head[0].id, :c => 'fr/members'}) %> <%end%> </h3>
+    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:controller => '/members', :action => 'show', :id => @head.id, :c => 'fr/members'}) %> <%end%> </h3>
     <h3>Vices: <% @vices.each do |vice| %>
-      <%= link_to(vice.name, {:action => 'show', :id => vice.id, :c => 'fr/members'}) %>
+      <%= link_to(vice.name, {:controller => '/members', :action => 'show', :id => vice.id, :c => 'fr/members'}) %>
       <%end%></h3> 
     
     <div class="spread-head">
