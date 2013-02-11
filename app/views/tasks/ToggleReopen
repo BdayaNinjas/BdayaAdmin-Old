@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bdaya | Profile</title>
+        <style type="text/css" media="screen">
+            .redodiv{
+                display: none;
+                position: absolute;
+                top: 16px;
+                left: 17px;
+                z-index:1;
+                border-bottom: 1px solid #DCDCDC;
+                border-left: 1px solid #DCDCDC;
+                border-right: 1px solid #DCDCDC;
+                border-top: 1px solid #DCDCDC;
+                padding: 10px;
+            }
+            .page{
+                position:relative;
+            }
+            .redo{
+                width: 17px;
+            }
+        </style>
+        <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".redodiv").hide();
+                $(".redo").click(function(){
+                    $(this).next(".redodiv").toggle();
+                    
+                });               
+            });
+        </script>
+    </head>
+    <body>
+        <div class="page">
+            <div class="redo"><img src="C:\Users\Aya\Desktop\Extra-Curricular\BdayaIT\appcode\capture.JPG"></div>
+            <div class="redodiv">
+                Reason: 
+                <br>
+                <textarea></textarea>
+                <br>
+                <input type="submit" value="Reopen"></input>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="page">
+            <div class="redo"><img src="C:\Users\Aya\Desktop\Extra-Curricular\BdayaIT\appcode\capture.JPG"></div>
+            <div class="redodiv">
+                Reason: 
+                <br>
+                <textarea></textarea>
+                <br>
+                <input type="submit" value="Reopen"></input>
+            </div>
+        </div>
+    </body>
+</html>

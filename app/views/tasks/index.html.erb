@@ -1,13 +1,40 @@
+<head>
+        <title>Bdaya | Profile</title>
+        <style type="text/css" media="screen">
+            .redodiv{
+                display: none;
+                position: absolute;
+                top: 16px;
+                left: 17px;
+                z-index:1;
+                border-bottom: 1px solid #DCDCDC;
+                border-left: 1px solid #DCDCDC;
+                border-right: 1px solid #DCDCDC;
+                border-top: 1px solid #DCDCDC;
+                padding: 10px;
+            }
+            .page{
+                position:relative;
+            }
+            .redo{
+                width: 17px;
+                float: right;
+            }
+        </style>
+        <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".redodiv").hide();
+                $(".redo").click(function(){
+                    $(this).next(".redodiv").toggle();
+                    
+                });               
+            });
+        </script>
+    </head>
 <% @page_title = "Tasks List" %>
 
 <div class="tasks list">
-  <h2>Assigned Tasks</h2>
-  
-  <%= link_to("Add New Task", {:controller => 'tasks', :action => 'new', :id => @member.id }) %>
-<%= link_to("Back to Member", {:controller => 'members', :action => 'show', :id=> @member.id}) %>
-
-  <div><%= pluralize(@tasks.size, 'task') %> found</div>
-  
   <div class="spreadsheet">
     
     <div class="spread-head">
@@ -20,6 +47,7 @@
       
       <!-- filter field -->
       <input value="filter..." />
+      <div><%= pluralize(@tasks.size, 'task') %></div>
     </div>
     
     <table>
@@ -40,15 +68,25 @@
           <%= form_for task, :url => {:controller => 'tasks', :action => 'extend_deadline', :task_id => task.id, :member_id => @member.id} do |f| %>
           <td>
             <p class="cell-data"><%= task.description %></p>
-            <div class="cell-edit"></div>
+            <div class="cell-edit"><%= task.description %></div>
           </td>
           <td>
-            <p class="cell-data"><%= task.status %></p>
-            <div class="cell-edit"></div>
+            <p class="cell-data" width="auto"><%= task.status %></p>
+            <div class="page">
+            <div class="redo"><img src="C:\Users\Aya\Desktop\Extra-Curricular\BdayaIT\appcode\capture.JPG"></div>
+            <div class="redodiv">
+                Reason: 
+                <br>
+                <textarea></textarea>
+                <br>
+                <input type="submit" value="Reopen"></input>
+            </div>
+        </div>
+            <div class="cell-edit"><%= task.status %></div>
           </td>
           <td>
             <p class="cell-data"><%= task.deadline %></p>
-            <div class="cell-edit"></div>
+            <div class="cell-edit"><%= task.deadline %></div>
           </td>
           <td>
             <p class="cell-data"><%= task.requested_deadline %></p>
@@ -56,7 +94,7 @@
           </td>
           <td>
             <p class="cell-data"><%= task.comment %></p>
-            <div class="cell-edit"></div>
+            <div class="cell-edit"><%= task.comment %></div>
           </td>
           <td>
             <p class="cell-data"><%= task.excuse %></p>
