@@ -10,10 +10,10 @@
   
   <div class="spreadsheet">
 
-    <center><h2>YES</h2></center>
-    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:action => 'show', :id => @head[0].id, :c => 'yes/members'}) %> <%end%> </h3>
+    <center><h2>Geneh</h2></center>
+    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:action => 'show', :id => @head[0].id, :c => 'geneh/members'}) %> <%end%> </h3>
     <h3>Vices: <% @vices.each do |vice| %>
-      <%= link_to(vice.name, {:action => 'show', :id => vice.id, :c => 'yes/members'}) %>
+      <%= link_to(vice.name, {:action => 'show', :id => vice.id, :c => 'geneh/members'}) %>
       <%end%></h3> 
     
     <div class="spread-head">
@@ -39,7 +39,7 @@
         <tr>
           <%= form_for(member, :url => {:action => 'update', :id => member.id}, :method => 'PUT') do |f| %>
           <td>
-            <p class="cell-data"><%= link_to(member.name, {:controller => '/members', :action => 'show', :id => member.id, :c => 'yes/members'}) %></p>
+            <p class="cell-data"><%= link_to(member.name, {:controller => '/members', :action => 'show', :id => member.id, :c => 'geneh/members'}) %></p>
             <div class="cell-edit"><%= f.text_field(:name) %></div>
           </td>
           <td>
@@ -60,10 +60,10 @@
           </td>
           <!-- add this if row is editable -->
           <td class="edit"><div class="edit">
-            <% if(current_member.email==member.email||(current_member.committee.name=='YES' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+            <% if(current_member.email==member.email||(current_member.committee.name=='Geneh' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
                 <div class="update-row">✎</div>
               <% end %>
-              <% if(current_member.email!=member.email&&(current_member.committee.name=='YES' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
+              <% if(current_member.email!=member.email&&(current_member.committee.name=='Geneh' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
                 <div class="delete-row">✖</div>
               <% end %>
           </div></td>
@@ -87,7 +87,7 @@
     </table>
     
     <div class="spread-footer">
-      <% if(current_member.committee.name=='YES' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+      <% if(current_member.committee.name=='Geneh' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
       <!-- tab, add this if table is editable -->
       <div class="tab edit-spreadsheet">Edit</div>
       <!-- keep buttons if edit is enabled -->

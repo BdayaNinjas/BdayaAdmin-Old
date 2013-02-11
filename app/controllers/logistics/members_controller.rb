@@ -1,9 +1,9 @@
 class Logistics::MembersController < Logistics::LogisticsController
 	
   def index
-    @members=Committee.find_by(name: "Logistics").members.where(:role => 'Member')
-    @head=Committee.find_by(name: "Logistics").members.where(:role => 'Head')
-    @vices=Committee.find_by(name: "Logistics").members.where(:role => 'Vice Head')
+    @members = Committee.find_by(:name => "Logistics").members
+    @head = Committee.find_by(:name => "Logistics").head
+    @vices = Committee.find_by(:name => "Logistics").vices
   end
 
   def show

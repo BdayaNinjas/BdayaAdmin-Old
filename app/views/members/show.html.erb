@@ -1,6 +1,6 @@
 <% @page_title = "Show Member: #{@member.name}" %>
 
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", {:controller => @c, :action => 'index'}) %>
 <%= link_to("View Tasks", {:controller => 'tasks', :action => 'index', :id => @member.id}) %>
 
 <body>

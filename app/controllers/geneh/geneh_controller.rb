@@ -1,4 +1,4 @@
-class GenehController < ApplicationController
+class Geneh::GenehController < ApplicationController
   def index
     @geneh_cases = GenehCase.all
   end
