@@ -20,7 +20,7 @@ BdayaAdmin::Application.routes.draw do
     resources :fridays
     resources :kids do
       collection do
-        get :performance
+        post :add_performance
       end
     end
     resources :members
