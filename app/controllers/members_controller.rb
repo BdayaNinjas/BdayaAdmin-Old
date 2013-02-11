@@ -6,6 +6,7 @@ class MembersController < ApplicationController
   end
 
   def show
+    @c = params[:c]
     @member = Member.find(params[:id])
   end
    
@@ -20,8 +21,6 @@ class MembersController < ApplicationController
       redirect_to(:action => 'index')
     else
       # If save fails, redisplay the form so user can fix problems
-      new
-      render('new')
     end
   end
    
@@ -35,8 +34,6 @@ class MembersController < ApplicationController
       redirect_to(:action => 'show', :id => @member.id)
     else
       # If save fails, redisplay the form so user can fix problems
-      edit
-      render('edit')
     end
   end
    
@@ -51,9 +48,5 @@ class MembersController < ApplicationController
   def id
     return self.id.to_s
   end
-
- 
-
-  
 
 end

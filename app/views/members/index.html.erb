@@ -34,7 +34,7 @@
         <tr>
           <%= form_for(member, :url => {:action => 'update', :id => member.id}, :method => 'PUT') do |f| %>
           <td>
-            <p class="cell-data"><%= link_to(member.name, {:action => 'show', :id => member.id}) %></p>
+            <p class="cell-data"><%= link_to(member.name, {:action => 'show', :id => member.id, :c => 'members'}) %></p>
             <div class="cell-edit"><%= f.text_field(:name) %></div>
           </td>
           <td>

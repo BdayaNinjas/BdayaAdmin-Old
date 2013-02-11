@@ -12,10 +12,10 @@
 
     <center><h2>YES</h2></center>
     <% if (@head.length>0) %>
-    <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
+    <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id, :c => 'yes/members'}) %></h3> 
     <%end%>
     <h3>Vices: <% @vices.each do |vice| %>
-      <%= link_to(vice.name, {:action => 'show', :id => vice.id}) %>
+      <%= link_to(vice.name, {:action => 'show', :id => vice.id, :c => 'yes/members'}) %>
       <%end%></h3> 
     
     <div class="spread-head">
@@ -41,7 +41,7 @@
         <tr>
           <%= form_for(member, :url => {:action => 'update', :id => member.id}, :method => 'PUT') do |f| %>
           <td>
-            <p class="cell-data"><%= link_to(member.name, {:controller => '/members', :action => 'show', :id => member.id}) %></p>
+            <p class="cell-data"><%= link_to(member.name, {:controller => '/members', :action => 'show', :id => member.id, :c => 'yes/members'}) %></p>
             <div class="cell-edit"><%= f.text_field(:name) %></div>
           </td>
           <td>
