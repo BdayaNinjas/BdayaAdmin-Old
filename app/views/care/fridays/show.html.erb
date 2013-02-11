@@ -1,0 +1,63 @@
+<% @page_title = "Fridays" %>
+
+<div class="tasks list">
+  <h2>Fridays</h2>  
+  <div class="spreadsheet">
+
+    <div class="spread-head">
+      <!-- spreadsheet title -->
+      <h1>Fridays</h1>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Time</th>
+          <th>Teacher</th>
+          <th>Observer</th>
+          <th>Age Group</th>
+          <th>Room</th>
+          <th>Materials</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @sessions.each do |single_session| %>
+          <tr>
+            <td><%= single_session.course.name %> </td>
+            <td><%= single_session.timing.to_s %> </td>
+            <td><%= single_session.teacher.name %> </td>
+            <td><%= single_session.observer.name %> </td>
+            <td><%= single_session.age_group %> </td>
+            <td><%= single_session.room %> </td>
+            <td><%= single_session.materials %> </td>
+          </tr>
+        <%end%>
+        
+        <!-- "Create new data" form here -->
+        <tr class="add-row">
+           <%= form_for @friday.sessions.new , :url => {:action => 'create'}, :method => 'POST' do |f| %>
+
+            <td><%= f.select(:course_id, Course.where(type: "Care").collect {|p| [p.name, p.id]}) %></td>
+            <td><%= f.text_field :timing %></td>
+            <td><%= f.select(:teacher_id, Member.where(committee_id: Committee.where(name: "Care").last.id).collect {|p| [p.name, p.id]}) %></td>
+            <td><%= f.select(:observer, Member.where(committee_id: Committee.where(name: "Care").last.id).collect {|p| [p.name, p.id]}) %></td>
+            <td><%= f.text_field :age_group %></td>
+            <td><%= f.text_field :room %></td>
+            <td><%= f.text_field :materials %></td>
+            <td><%= f.hidden_field :friday_id, value: @friday.id %></td>
+          <%end%>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="spread-footer">
+      <!-- tab, add this if table is editable -->
+      <div class="tab edit-spreadsheet">Edit</div>
+      <!-- keep buttons if edit is enabled -->
+      <div class="btn green add">+</div>
+      <div class="btn green save">Save</div>
+      <div class="btn red cancel">Cancel</div>
+    </div>
+  </div>

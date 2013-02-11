@@ -5,8 +5,11 @@ class Session
   field :performance, type: Integer
   field :notes, type: String
   field :room
-  field :assigned_teachers , type: Array
+  field :age_group
+  field :materials
 
+  belongs_to :teacher , class_name: "Member"
+  belongs_to :observer , class_name: "Member"
   belongs_to :member
   belongs_to :course
   has_one :request

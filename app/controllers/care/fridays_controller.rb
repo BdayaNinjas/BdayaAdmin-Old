@@ -3,8 +3,6 @@ class Care::FridaysController < ApplicationController
 	def show
 		@friday = CareFriday.find(params[:id])
 		@sessions = @friday.sessions
-		@materials = @friday.materials
-
 	end
 
 	def index
@@ -15,13 +13,17 @@ class Care::FridaysController < ApplicationController
 		@friday = CareFriday.find(params[:id])
 	end
 
-	def update
-	end
 
-	def new
-	end
-
-	def create
-
-	end
+  def create
+    # params[:meeting][:attendee_ids].shift
+    # friday = CareFriday.find(params[:session]["friday"])
+    # puts params[:session]
+    # params[:session].delete("friday")
+    # puts params[:session]
+    session = Session.new(params[:session])
+    # session.friday = friday
+    if session.save
+      redirect_to session.friday
+    end
+  end
 end
