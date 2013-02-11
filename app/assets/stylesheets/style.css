@@ -279,6 +279,78 @@ div#rightbar-shadow {
 	background: url("/images/rightbar-shadow.png") repeat-y center left;
 }
 
+div#rightbar-content div#rightbar-tabs {
+	
+	padding: 20px 20px 30px 20px;
+	
+}
+div#rightbar-content ul {
+	font-weight: bold;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+div#rightbar-content ul li {
+	float: left;
+	margin-right: 5px;
+	color: white;
+	text-shadow: 1px 1px 1px #93b8c8;
+	cursor: pointer;
+}
+
+div#rightbar-content .tab {
+	display: none;
+	width: 170px;
+}
+div#rightbar-content .active {
+	display: block;
+}
+
+#noti-icon {
+	background: url("images/rightbar-icons.png") -28px 0px no-repeat;
+	width: 14px;
+	height: 16px;
+}
+#tasks-icon {
+	background: url("images/rightbar-icons.png") -0px 0px no-repeat;
+	width: 14px;
+	height: 16px;
+}
+#meetings-icon {
+	background: url("images/rightbar-icons.png") -14px 0px no-repeat;
+	width: 14px;
+	height: 16px;
+}
+
+div#rightbar-content div.item {
+	margin:20px;
+	padding: 5px;
+	border-bottom: 1px solid #80bed8;
+	cursor: pointer;
+	color: #508298;
+}
+div#rightbar-content div.item:hover {
+	background: url("images/rightbar-item-bg.png") repeat;
+	color: #628c9e;
+}
+
+div#rightbar-content div.data {
+	background: url("images/rightbar-tabs-shadow.png") center top repeat-x;
+	padding-top: 5px;
+}
+
+div#rightbar-content div.item h4 {
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+}
+div#rightbar-content div.item h5 {
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+}
+
+
 /*Content*/
 
 div#content {

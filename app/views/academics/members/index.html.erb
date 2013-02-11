@@ -11,9 +11,9 @@
   <div class="spreadsheet">
 
     <center><h2>Academics</h2></center>
-    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:action => 'show', :id => @head[0].id, :c => 'academics/members'}) %> <%end%> </h3>
+    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:controller => '/members', :action => 'show', :id => @head.id, :c => 'academics/members'}) %> <%end%> </h3>
     <h3>Vices: <% @vices.each do |vice| %>
-      <%= link_to(vice.name, {:action => 'show', :id => vice.id, :c => 'academics/members'}) %>
+      <%= link_to(vice.name, {:controller => '/members', :action => 'show', :id => vice.id, :c => 'academics/members'}) %>
       <%end%></h3> 
     
     <div class="spread-head">
@@ -31,6 +31,7 @@
             <th>Semester</th>
             <th>Major</th>
             <th>Role</th>
+            <th>Courses Teached</th>
           </tr>
       </thead>
       
@@ -57,6 +58,12 @@
           <td>
             <p class="cell-data"><%= member.role %></p>
             <div class="cell-edit"><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></div>
+          </td>
+          <td>
+            <p class="cell-data">
+              <%member.courses.each do |course|%>
+              <%= course.name %> </br>  
+              <%end%></p> 
           </td>
           <!-- add this if row is editable -->
           <td class="edit"><div class="edit">
