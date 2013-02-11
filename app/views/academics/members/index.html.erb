@@ -31,6 +31,7 @@
             <th>Semester</th>
             <th>Major</th>
             <th>Role</th>
+            <th>Courses Teached</th>
           </tr>
       </thead>
       
@@ -57,6 +58,12 @@
           <td>
             <p class="cell-data"><%= member.role %></p>
             <div class="cell-edit"><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></div>
+          </td>
+          <td>
+            <p class="cell-data">
+              <%member.courses.each do |course|%>
+              <%= course.name %> </br>  
+              <%end%></p> 
           </td>
           <!-- add this if row is editable -->
           <td class="edit"><div class="edit">
