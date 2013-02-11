@@ -15,8 +15,8 @@ class Academics::MembersController < Academics::AcademicsController
 
 	def index
 	    @members = Committee.find_by(:name => "Academics").members
-	    @head=Committee.find_by(name: "Academics").members.where(:role => 'Head')
-	    @vices=Committee.find_by(name: "Academics").members.where(:role => 'Vice Head')
+	    @head = Committee.find_by(:name => "Academics").head
+	    @vices = Committee.find_by(:name => "Academics").vices
   	end
 
 	def show

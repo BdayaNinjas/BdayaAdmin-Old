@@ -1,9 +1,9 @@
 class Care::MembersController < Care::CareController
 	
   def index
-    @members=Committee.find_by(name: "Care").members.where(:role => 'Member')
-    @head=Committee.find_by(name: "Care").members.where(:role => 'Head')
-    @vices=Committee.find_by(name: "Care").members.where(:role => 'Vice Head')
+    @members = Committee.find_by(:name => "Academics").members
+    @head = Committee.find_by(:name => "Academics").head
+    @vices = Committee.find_by(:name => "Academics").vices
   end
 
   def show

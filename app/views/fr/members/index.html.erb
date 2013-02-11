@@ -11,9 +11,7 @@
   <div class="spreadsheet">
 
     <center><h2>FR</h2></center>
-    <% if (@head.length>0) %>
-    <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id, :c => 'fr/members'}) %></h3> 
-    <%end%>
+    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:action => 'show', :id => @head[0].id, :c => 'fr/members'}) %> <%end%> </h3>
     <h3>Vices: <% @vices.each do |vice| %>
       <%= link_to(vice.name, {:action => 'show', :id => vice.id, :c => 'fr/members'}) %>
       <%end%></h3> 
@@ -58,7 +56,7 @@
           </td>
           <td>
             <p class="cell-data"><%= member.role %></p>
-            <div class="cell-edit"><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></div>
+            <div class="cell-edit"><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></div>
           </td>
           <!-- add this if row is editable -->
           <td class="edit"><div class="edit">
@@ -81,7 +79,7 @@
           <td><%= f.text_field(:semester) %></td>
           <%= f.hidden_field :password  , :value => "testtest" %>
           <td><%= f.text_field(:major) %></td>
-          <td><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></td>
+          <td><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></td>
         </tr>
         <% end %>
         
