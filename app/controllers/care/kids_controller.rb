@@ -6,6 +6,7 @@ class Care::KidsController < Care::CareController
 
   def show
     @kid = Kid.find(params[:id])
+    @fridays = @kid.fridays
   end
    
   def create
@@ -34,6 +35,11 @@ class Care::KidsController < Care::CareController
       render('edit')
     end
   end
+
+  def add_performance
+    hash = params[:new_performance]
+  end
+
    
   def destroy
     kid = Kid.find(params[:id])
@@ -42,8 +48,4 @@ class Care::KidsController < Care::CareController
     redirect_to(:action => 'index')
   end
 
-  def performance
-    @kid = Kid.find(params[:kid])
-    @fridays = @kid.fridays
-  end
 end
