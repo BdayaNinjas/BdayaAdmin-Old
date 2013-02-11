@@ -10,7 +10,7 @@
   
   <div class="spreadsheet">
 
-    <center><h2>Care</h2></center>
+    <center><h2>YES</h2></center>
     <% if (@head.length>0) %>
     <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
     <%end%>
@@ -62,10 +62,10 @@
           </td>
           <!-- add this if row is editable -->
           <td class="edit"><div class="edit">
-            <% if(current_member.email==member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+            <% if(current_member.email==member.email||(current_member.committee.name=='YES' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
                 <div class="update-row">✎</div>
               <% end %>
-              <% if(current_member.email!=member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
+              <% if(current_member.email!=member.email&&(current_member.committee.name=='YES' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
                 <div class="delete-row">✖</div>
               <% end %>
           </div></td>
@@ -89,7 +89,7 @@
     </table>
     
     <div class="spread-footer">
-      <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+      <% if(current_member.committee.name=='YES' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
       <!-- tab, add this if table is editable -->
       <div class="tab edit-spreadsheet">Edit</div>
       <!-- keep buttons if edit is enabled -->

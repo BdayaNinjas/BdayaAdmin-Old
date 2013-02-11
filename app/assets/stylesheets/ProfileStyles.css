@@ -35,6 +35,8 @@
                 height: 200px;
                 width: 200px;
                 float: left;
+                padding: 5px 5px 5px 5px;
+
             }
             div#page div#info{
                 background-color: #EEEEEE;

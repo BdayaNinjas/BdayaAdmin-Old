@@ -1,4 +1,4 @@
-class Yes::TrainersController < ApplicationController
+class Yes::TrainersController < Yes::YesController
 
   def index
     @trainers = Trainer.all
