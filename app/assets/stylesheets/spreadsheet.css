@@ -272,7 +272,7 @@ div.edit div:hover {
 div.update-row {
 	color: #004a99;
 }
-div.delete-row {
+div.delete-row, div.delete-row2 {
 	color: #da0101;
 }
 
