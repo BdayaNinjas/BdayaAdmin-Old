@@ -46,6 +46,7 @@
         <% Course.where(type:"Care").each do |c| %>
           <th><%= c.name%></th>
         <%end%>
+        <th></th>
       </tr>
     </thead>
 
@@ -53,18 +54,22 @@
       <% @fridays.each do |friday| %>
         <tr>
           <td><%= friday.date %></td>
+          <%= form_for :performance,  :url => {:action => 'add_performance' , :kid => @kid.id, :friday => friday.date.to_s}, :method => 'POST' do |f| %>
             <% friday.sessions.each do |session| %>
-              <td><%= session.performance %> </td>
+              <td>
+                <% if @kid.performance[friday.date.to_s][session.course.name].present? %>
+                  <%= @kid.performance[friday.date.to_s][session.course.name] %>
+                <% else %>
+                  0
+                <%end%>
+                <%= f.select "#{session.course.name}" , 0..10 %>
+              </td>
             <% end %>
+              <td><%= f.submit :update %></td>
+
+          <% end %>
         </tr>
       <%end%>
-      
-      <!-- "Create new data" form here -->
-      <tr class="add-row">
-        <%= form_for :new_performance , :url => {:controller => 'kids', :action => 'add_performance'}, :method => 'POST' do |f| %>
-          <td><%= f.select(:friday_id, CareFriday.all.collect {|p| [p.date, p.id]}) %></td>
-        <%end%>
-      </tr>
     </tbody>
   </table>
 
