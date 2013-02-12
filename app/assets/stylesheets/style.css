@@ -307,17 +307,17 @@ div#rightbar-content .active {
 }
 
 #noti-icon {
-	background: url("images/rightbar-icons.png") -28px 0px no-repeat;
+	background: url("/images/rightbar-icons.png") -28px 0px no-repeat;
 	width: 14px;
 	height: 16px;
 }
 #tasks-icon {
-	background: url("images/rightbar-icons.png") -0px 0px no-repeat;
+	background: url("/images/rightbar-icons.png") -0px 0px no-repeat;
 	width: 14px;
 	height: 16px;
 }
 #meetings-icon {
-	background: url("images/rightbar-icons.png") -14px 0px no-repeat;
+	background: url("/images/rightbar-icons.png") -14px 0px no-repeat;
 	width: 14px;
 	height: 16px;
 }
@@ -330,12 +330,12 @@ div#rightbar-content div.item {
 	color: #508298;
 }
 div#rightbar-content div.item:hover {
-	background: url("images/rightbar-item-bg.png") repeat;
+	background: url("/images/rightbar-item-bg.png") repeat;
 	color: #628c9e;
 }
 
 div#rightbar-content div.data {
-	background: url("images/rightbar-tabs-shadow.png") center top repeat-x;
+	background: url("/images/rightbar-tabs-shadow.png") center top repeat-x;
 	padding-top: 5px;
 }
 
