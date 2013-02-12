@@ -20,6 +20,16 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(params[:meeting])
     @meeting.creator = current_member
     @meeting.save
+
+    @request = Request.new
+    @request.session_type = 3
+    @request.done = false
+    @request.needers = @meeting.attendees
+    @request.needers << @meeting.creator
+    @request.assigned = Committee.find_by(:name => "Logistics").head
+    @request.meeting = @meeting
+    @request.save
+    
     redirect_to meetings_path
   end
 
