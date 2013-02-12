@@ -114,5 +114,21 @@ $(".delete-row2").click(function() {
 		$("#"+$(this).attr("data-id")).show();
 	});
 
+	//add member to event
+	 $(".spreadsheet .add-member").click(function() {
+	 	$(this).children(".members-list").show();
+	 });
+	 $(document).keyup(function(e) {
 
+	  if (e.keyCode == 27) {
+	 	$(".spreadsheet .add-member .members-list").hide();
+	 } // esc
+	 });
+ 
+	//agenda tabs
+	$(".agenda-content > ul > li").click(function() {
+		$(this).siblings(".active").eq(0).removeClass("active");
+		$(this).addClass("active");
+	});
+ 
 });

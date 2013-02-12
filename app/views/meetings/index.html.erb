@@ -19,9 +19,10 @@
       <thead>
         <tr>
           <th>Title</th>
-          <th>Meeting Minutes 1</th>
+<!--           <th>Meeting Minutes 1</th>
           <th>Meeting Minutes 2</th>
           <th>Meeting Minutes 3</th>
+ -->          
           <th>Room</th>
           <th>Meeting Date</th>
           <th>Attendees</th>
@@ -210,7 +211,11 @@
                     <% end %>
                   </p>
                   <div class="cell-edit">
+                    <div class="add-member">+
+                    <div class="members-list">
                     <%= f.collection_select :attendee_ids, Member.order_by(:name.asc), :id, :name,{},{multiple: true} %>
+                    </div> 
+                    </div>
                   </div>
                 </td>
               <%end%>
@@ -224,6 +229,24 @@
             </td>
 
           </tr>
+
+          <tr>
+            <td colspan="7">
+           <div class="agenda"><div class="wire"></div>
+           <div class="agenda-content">
+           <ul>
+           <li class="active">Agenda</li>
+           <li>Meeting Content</li>
+           <li>Meeting Minutes</li>
+           </ul>
+           <div class="data">
+           kdfjakljsdfkljaskldjfklajsdklfjklajsdfklj
+           </div>
+           </div>
+           </div>
+           </td>
+         </tr>
+
         <%end%>
         
         <!-- "Create new data" form here -->
