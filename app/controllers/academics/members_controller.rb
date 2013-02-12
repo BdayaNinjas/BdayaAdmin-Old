@@ -18,10 +18,6 @@ class Academics::MembersController < Academics::AcademicsController
 	    @head = Committee.find_by(:name => "Academics").head
 	    @vices = Committee.find_by(:name => "Academics").vices
   	end
-
-	def show
-	    @member = Member.find(params[:id])
-	end
 	   
 	def update
 	    @member = Member.find(params[:id])

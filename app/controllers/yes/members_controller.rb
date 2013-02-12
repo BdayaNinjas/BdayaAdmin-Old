@@ -6,10 +6,6 @@ class Yes::MembersController < Yes::YesController
     @vices = Committee.find_by(:name => "YES").vices
   end
 
-  def show
-    @member = Member.find(params[:id])
-  end
-   
   def update
     @member = Member.find(params[:id])
     # Update the object

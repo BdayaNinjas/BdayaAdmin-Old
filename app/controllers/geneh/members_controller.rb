@@ -5,10 +5,6 @@ class Geneh::MembersController < Geneh::GenehController
     @head = Committee.find_by(:name => "Geneh").head
     @vices = Committee.find_by(:name => "Geneh").vices
   end
-
-  def show
-    @member = Member.find(params[:id])
-  end
    
   def update
     @member = Member.find(params[:id])

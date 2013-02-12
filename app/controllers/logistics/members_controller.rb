@@ -5,10 +5,6 @@ class Logistics::MembersController < Logistics::LogisticsController
     @head = Committee.find_by(:name => "Logistics").head
     @vices = Committee.find_by(:name => "Logistics").vices
   end
-
-  def show
-    @member = Member.find(params[:id])
-  end
    
   def update
     @member = Member.find(params[:id])
