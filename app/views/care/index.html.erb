@@ -6,10 +6,15 @@
   
 
    <div class="spreadsheet">
+
+      <center><h2>Care</h2></center>
+    
+    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:controller => '/members', :action => 'show', :id => @head.id, :c => 'care'}) %> <%end%> </h3>
+    <h3>Vices: <% @vices.each do |vice| %>
+      <%= link_to(vice.name, {:controller => '/members', :action => 'show', :id => vice.id, :c => 'care'}) %>
+      <%end%></h3> 
       
       <div class="spread-head">
-         <!-- spreadsheet title -->
-         <h1>Spreadsheet</h1>
          
          <!-- tabs, if needed -->
          <div class="tab" data-id="link4">Calendar</div>
@@ -19,10 +24,116 @@
       </div>
       
       <table class="link-data" id="link1">
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>Email</th>
+            <th>Semester</th>
+            <th>Major</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+      
+      <tbody>
+        <% @members.each do |member| %>
+        <tr>
+          <%= form_for(member, :url => {:action => 'updateMember', :id => member.id}, :method => 'PUT') do |f| %>
+          <td>
+            <p class="cell-data"><%= link_to(member.name, {:controller => '/members', :action => 'show', :id => member.id, :c => 'care'}) %></p>
+            <div class="cell-edit"><%= f.text_field(:name) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= member.email %></p>
+            <div class="cell-edit"><%= f.text_field(:email) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= member.semester %></p>
+            <div class="cell-edit"><%= f.text_field(:semester) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= member.major %></p>
+            <div class="cell-edit"><%= f.text_field(:major) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= member.role %></p>
+            <div class="cell-edit"><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></div>
+          </td>
+          <% end %>
+          <!-- add this if row is editable -->
+          <td class="edit"><div class="edit">
+            <% if(current_member.email==member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
+                <div class="update-row">✎</div>
+              <% end %>
+              <% if(current_member.email!=member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
+                <%= form_for(member, :url => {:action => 'destroyMember', :id => member.id}, :method => 'DELETE') do |f| %><div class="delete-row2">✖</div><% end %>
+              <% end %>
+          </div></td>
+        </tr>
+        <% end %>
         
+      </tbody>
       </table>
       <table class="link-data" id="link2">
-         
+         <thead>
+          <tr>
+            <th>Kid</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Strengths</th>
+            <th>Weaknsesses</th>
+            <th>Notes</th>
+          </tr>
+         </thead>
+      
+      <tbody>
+        <% @kids.each do |kid| %>
+        <tr>
+          <%= form_for(kid, :url => {:action => 'updateKid', :id => kid.id}, :method => 'PUT') do |f| %>
+          <td>
+            <p class="cell-data"><%= link_to(kid.name, {:action => 'show', :id => kid.id}) %></p>
+            <div class="cell-edit"><%= f.text_field(:name) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.age %></p>
+            <div class="cell-edit"><%= f.text_field(:age) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.address %></p>
+            <div class="cell-edit"><%= f.text_field(:address) %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.strengths %></p>
+            <div class="cell-edit"><%= f.text_area(:strengths, :size => '10x3') %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.weaknesses %></p>
+            <div class="cell-edit"><%= f.text_area(:weaknesses, :size => '10x3') %></div>
+          </td>
+          <td>
+            <p class="cell-data"><%= kid.notes %></p>
+            <div class="cell-edit"><%= f.text_area(:notes, :size => '10x3') %></div>
+          </td>
+          <% end %>
+          <!-- add this if row is editable -->
+          <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+              <td class="edit"><div class="edit"><div class="update-row">✎</div> <%= form_for(kid, :url => {:action => 'destroyKid', :id => kid.id}, :method => 'DELETE') do |f| %><div class="delete-row2">✖</div><% end %></div></td>
+          <% end %>
+        </tr>
+        <% end %>
+        
+        <!-- Create new data" form here -->
+        <tr class="add-row">
+          <%= form_for(:kid, :url => {:action => 'createKid'}) do |f| %>
+          <td><%= f.text_field(:name) %></td>
+          <td><%= f.text_field(:age) %></td>
+          <td><%= f.text_field(:address) %></td>
+          <td><%= f.text_area(:strengths, :size => '10x3') %></td>
+          <td><%= f.text_area(:weaknesses, :size => '10x3') %></td>
+          <td><%= f.text_area(:notes, :size => '10x3') %></td>
+          <% end %>
+        </tr>
+        
+      </tbody>
       </table>
       <table class="link-data" id="link3">
          
@@ -31,12 +142,15 @@
          
       </table>
       <div class="spread-footer">
+         <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
          <!-- tab, add this if table is editable -->
          <div class="tab edit-spreadsheet">Edit</div>
          <!-- keep buttons if edit is enabled -->
          <div class="btn green save">Save</div>
          <div class="btn red cancel">Cancel</div>
-      </div>
+       </div>
+    <% end %>
+  </div>
    </div>
  </div>
 </body>
