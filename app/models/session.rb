@@ -2,7 +2,6 @@ class Session
   include Mongoid::Document
   field :timing, type: Time
   field :notes, type: String
-  field :performance, type: Integer
   field :notes, type: String
   field :session_type , type: Integer
   

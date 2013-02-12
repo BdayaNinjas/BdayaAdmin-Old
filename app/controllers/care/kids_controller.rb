@@ -6,7 +6,7 @@ class Care::KidsController < Care::CareController
 
   def show
     @kid = Kid.find(params[:id])
-    @fridays = @kid.fridays
+    @fridays = CareFriday.all
   end
    
   def create
@@ -22,7 +22,7 @@ class Care::KidsController < Care::CareController
       render('new')
     end
   end
-   
+  
   def update
     @kid = Kid.find(params[:id])
     # Update the object
@@ -37,7 +37,14 @@ class Care::KidsController < Care::CareController
   end
 
   def add_performance
-    hash = params[:new_performance]
+    puts 'walaaaa'
+    kid = Kid.find(params[:kid])
+    
+    params[:performance].keys.each do |session_name|
+      kid.performance[params[:friday]][session_name] = params[:performance][session_name]
+      kid.save
+    end
+    redirect_to care_kid_path(params[:kid])
   end
 
    

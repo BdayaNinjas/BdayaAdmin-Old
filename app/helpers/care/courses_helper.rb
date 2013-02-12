@@ -1,0 +1,2 @@
+module Care::CoursesHelper
+end

@@ -1,0 +1,5 @@
+<%= form_for :course , :url => {:action => 'create'}, :method => 'POST' do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.submit "Submit" %>
+<%end%>

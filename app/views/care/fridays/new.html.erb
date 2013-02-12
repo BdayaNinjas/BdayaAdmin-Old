@@ -1,0 +1,7 @@
+<% @page_title = "Create a new friday" %>
+</br>
+<%= form_for :friday , :url => {:action => 'create'}, :method => 'POST' do |f| %>
+	<%= f.label :date %>
+	<%= f.text_field :date %>
+	<%= f.submit :submit %>
+<%end%>

@@ -19,7 +19,13 @@ BdayaAdmin::Application.routes.draw do
 
   root :to => "members#index"
   namespace :care do
-    resources :fridays
+    resources :fridays do
+      collection do 
+        post :create_session
+      end
+    end
+
+    resources :courses
     resources :kids do
       collection do
         post :add_performance
