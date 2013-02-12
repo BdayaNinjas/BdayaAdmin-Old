@@ -1,13 +1,9 @@
 class Care::MembersController < Care::CareController
 	
   def index
-    @members = Committee.find_by(:name => "Academics").members
-    @head = Committee.find_by(:name => "Academics").head
-    @vices = Committee.find_by(:name => "Academics").vices
-  end
-
-  def show
-    @member = Member.find(params[:id])
+    @members = Committee.find_by(:name => "Care").members
+    @head = Committee.find_by(:name => "Care").head
+    @vices = Committee.find_by(:name => "Care").vices
   end
    
   def update
