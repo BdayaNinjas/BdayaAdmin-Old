@@ -1,9 +1,9 @@
 class Geneh::MembersController < Geneh::GenehController
 	
   def index
-    @members = Committee.find_by(:name => "Geneh").members
-    @head = Committee.find_by(:name => "Geneh").head
-    @vices = Committee.find_by(:name => "Geneh").vices
+    @members = Committee.find_by(:name => "Geneh").members.where(:role => 'Member')
+    @head = Committee.find_by(:name => "Geneh").members.where(:role => 'Head')[0]
+    @vices = Committee.find_by(:name => "Geneh").vices.where(:role => 'Vice Head')
   end
    
   def update
