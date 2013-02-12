@@ -6,6 +6,7 @@ class Care::KidsController < Care::CareController
 
   def show
     @kid = Kid.find(params[:id])
+    @fridays = CareFriday.all
   end
    
   def create
@@ -15,35 +16,34 @@ class Care::KidsController < Care::CareController
     if @kid.save
       # If save succeeds, redirect to the index action
       flash[:notice] = "Kid added."
-      redirect_to(:action => 'index')
-    else
-      # If save fails, redisplay the form so user can fix problems
-      render('new')
     end
   end
-   
+  
   def update
     @kid = Kid.find(params[:id])
     # Update the object
     if @kid.update_attributes(params[:kid])
       # If update succeeds, redirect to the show action
       flash[:notice] = "Kid updated."
-      redirect_to(:action => 'show', :id => @kid.id)
-    else
-      # If save fails, redisplay the form so user can fix problems
-      render('edit')
     end
   end
+
+  def add_performance
+    puts 'walaaaa'
+    kid = Kid.find(params[:kid])
+    
+    params[:performance].keys.each do |session_name|
+      kid.performance[params[:friday]][session_name] = params[:performance][session_name]
+      kid.save
+    end
+    redirect_to care_kid_path(params[:kid])
+  end
+
    
   def destroy
     kid = Kid.find(params[:id])
     kid.destroy
     flash[:notice] = "Kid deleted."
-    redirect_to(:action => 'index')
   end
 
-  def performance
-    @kid = Kid.find(params[:kid])
-    @fridays = @kid.fridays
-  end
 end

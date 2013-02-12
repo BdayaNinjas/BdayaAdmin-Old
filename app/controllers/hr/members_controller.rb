@@ -18,4 +18,12 @@ class Hr::MembersController < ApplicationController
     render('all')
   end
 
+=begin
+  This Action to send Reminders to Heads to evaluate their Members
+  Author : Diab
+=end
+  def remind_heads
+    Notification.remind_heads_evaluate
+  end
+
 end

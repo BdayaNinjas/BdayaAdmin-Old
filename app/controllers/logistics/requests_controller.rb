@@ -1,4 +1,4 @@
-class Logistics::RequestsController < ApplicationController
+class Logistics::RequestsController < Logistics::LogisticsController
 	
 
 	def index

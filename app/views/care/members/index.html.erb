@@ -11,11 +11,10 @@
   <div class="spreadsheet">
 
     <center><h2>Care</h2></center>
-    <% if (@head.length>0) %>
-    <h3>Head: <%= link_to(@head[0].name, {:action => 'show', :id => @head[0].id}) %></h3> 
-    <%end%>
+    
+    <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:controller => '/members', :action => 'show', :id => @head.id, :c => 'care/members'}) %> <%end%> </h3>
     <h3>Vices: <% @vices.each do |vice| %>
-      <%= link_to(vice.name, {:action => 'show', :id => vice.id}) %>
+      <%= link_to(vice.name, {:controller => '/members', :action => 'show', :id => vice.id, :c => 'care/members'}) %>
       <%end%></h3> 
     
     <div class="spread-head">
@@ -41,7 +40,7 @@
         <tr>
           <%= form_for(member, :url => {:action => 'update', :id => member.id}, :method => 'PUT') do |f| %>
           <td>
-            <p class="cell-data"><%= link_to(member.name, {:action => 'show', :id => member.id}) %></p>
+            <p class="cell-data"><%= link_to(member.name, {:controller => '/members', :action => 'show', :id => member.id, :c => 'care/members'}) %></p>
             <div class="cell-edit"><%= f.text_field(:name) %></div>
           </td>
           <td>
@@ -58,7 +57,7 @@
           </td>
           <td>
             <p class="cell-data"><%= member.role %></p>
-            <div class="cell-edit"><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></div>
+            <div class="cell-edit"><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></div>
           </td>
           <!-- add this if row is editable -->
           <td class="edit"><div class="edit">
@@ -70,18 +69,6 @@
               <% end %>
           </div></td>
           <% end %>
-        </tr>
-        <% end %>
-        
-        <!-- "Create new data" form here -->
-        <%= form_for(:member, :url => {:action => 'create'}, :method => 'POST') do |f| %>
-        <tr class="add-row">
-          <td><%= f.text_field(:name) %></td>
-          <td><%= f.text_field(:email) %></td>
-          <td><%= f.text_field(:semester) %></td>
-          <%= f.hidden_field :password  , :value => "testtest" %>
-          <td><%= f.text_field(:major) %></td>
-          <td><%= f.select(:role, ['Member', 'President', 'OC VP', 'Projects VP', 'FC VP', 'Head', 'Vice Head']) %></td>
         </tr>
         <% end %>
         

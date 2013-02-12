@@ -29,7 +29,6 @@ $(".delete-row").click(function() {
  	// do ajax request here
 
  	var $form =$(this).closest("tr").find("form");
-
  	$.ajax({
  	 type : "DELETE",
  	 cache : false,
@@ -38,6 +37,20 @@ $(".delete-row").click(function() {
  	});
  	// window.location.reload();
  });	
+
+$(".delete-row2").click(function() {	  
+ 	// do ajax request here
+
+ 	var $form =$(this).closest("td").find("form");
+	alert($form.attr('action'));
+ 	$.ajax({
+ 	 type : "DELETE",
+ 	 cache : false,
+ 	 url : $form.attr('action'),
+ 	 data : $form.serializeArray()
+ 	});
+ 	// window.location.reload();
+ });
 
 
 	/* -------------------------------------------------------------------- 
@@ -101,5 +114,21 @@ $(".delete-row").click(function() {
 		$("#"+$(this).attr("data-id")).show();
 	});
 
+	//add member to event
+	 $(".spreadsheet .add-member").click(function() {
+	 	$(this).children(".members-list").show();
+	 });
+	 $(document).keyup(function(e) {
 
+	  if (e.keyCode == 27) {
+	 	$(".spreadsheet .add-member .members-list").hide();
+	 } // esc
+	 });
+ 
+	//agenda tabs
+	$(".agenda-content > ul > li").click(function() {
+		$(this).siblings(".active").eq(0).removeClass("active");
+		$(this).addClass("active");
+	});
+ 
 });

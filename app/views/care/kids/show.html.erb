@@ -32,4 +32,55 @@
  </div>
 </div>
 
+<div class="spreadsheet">
+
+  <div class="spread-head">
+    <!-- spreadsheet title -->
+    <h1>Performance</h1>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Friday</th>
+        <% Course.where(type:"Care").each do |c| %>
+          <th><%= c.name%></th>
+        <%end%>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @fridays.each do |friday| %>
+        <tr>
+          <td><%= friday.date %></td>
+          <%= form_for :performance,  :url => {:action => 'add_performance' , :kid => @kid.id, :friday => friday.date.to_s}, :method => 'POST' do |f| %>
+            <% friday.sessions.each do |session| %>
+              <td>
+                <% if @kid.performance[friday.date.to_s][session.course.name].present? %>
+                  <%= @kid.performance[friday.date.to_s][session.course.name] %>
+                <% else %>
+                  0
+                <%end%>
+                <%= f.select "#{session.course.name}" , 0..10 %>
+              </td>
+            <% end %>
+              <td><%= f.submit :update %></td>
+
+          <% end %>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+
+  <div class="spread-footer">
+    <!-- tab, add this if table is editable -->
+    <div class="tab edit-spreadsheet">Edit</div>
+    <!-- keep buttons if edit is enabled -->
+    <div class="btn green add">+</div>
+    <div class="btn green save">Save</div>
+    <div class="btn red cancel">Cancel</div>
+  </div>
+</div>
+
 </body>

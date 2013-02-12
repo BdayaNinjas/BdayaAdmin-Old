@@ -1,6 +1,6 @@
 <% @page_title = "Show Member: #{@member.name}" %>
 
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", {:controller => @c, :action => 'index'}) %>
 <%= link_to("View Tasks", {:controller => 'tasks', :action => 'index', :id => @member.id}) %>
 
 <body>
@@ -22,15 +22,7 @@
    <b>Member since: </b><%= @member.created_at %><br><br>
  </div>
 </div>
-<br>
 
-<div id="heading" class="tabbedmenu">
-   <ul>
-    <li><a id="t">Tasks</a></li>
-    <li><a id="m">Meetings</a></li>
-    <li><a id="p">Performance</a></li></ul>
- </div>
- <div id="Tasks" class="content">
    <div class="spreadsheet">
       
       <div class="spread-head">
@@ -38,14 +30,12 @@
          <h1>Spreadsheet</h1>
          
          <!-- tabs, if needed -->
-         <div class="tab active">link1</div>
-         <div class="tab">link2</div>
-         
-         <!-- filter field -->
-         <input value="filter..." />
+         <div class="tab" data-id="link3">Performance</div>
+         <div class="tab" data-id="link2">Meetings</div>
+         <div class="tab active" data-id="link1">Tasks</div>
       </div>
       
-      <table>
+      <table class="link-data" id="link1">
          <thead>
              <tr>
                <th>Month</th>
@@ -88,32 +78,7 @@
             </tr>
          </tbody>
       </table>
-      
-      <div class="spread-footer">
-         <!-- tab, add this if table is editable -->
-         <div class="tab edit-spreadsheet">Edit</div>
-         <!-- keep buttons if edit is enabled -->
-         <div class="btn green save">Save</div>
-         <div class="btn red cancel">Cancel</div>
-      </div>
-   </div>
- </div>
- <div id="Meetings" class="content">
-   <div class="spreadsheet">
-      
-      <div class="spread-head">
-         <!-- spreadsheet title -->
-         <h1>Spreadsheet</h1>
-         
-         <!-- tabs, if needed -->
-         <div class="tab active">link1</div>
-         <div class="tab">link2</div>
-         
-         <!-- filter field -->
-         <input value="filter..." />
-      </div>
-      
-      <table>
+      <table class="link-data" id="link2">
          <thead>
              <tr>
                <th>Month</th>
@@ -147,16 +112,15 @@
                <td>Data</td>
                <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
             </tr>
+         </tbody>
+      </table>
+      <table class="link-data" id="link3">
+         <tbody>
             <tr>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>           
+               <td><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></td>
             </tr>
          </tbody>
       </table>
-      
       <div class="spread-footer">
          <!-- tab, add this if table is editable -->
          <div class="tab edit-spreadsheet">Edit</div>
@@ -166,21 +130,5 @@
       </div>
    </div>
  </div>
- <div id="Performance"  class="content">
- <img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG">
-</div>
-
-
-  <!-- <div id="heading">Tasks</div>
-  <div id="content"></div>
-  <br>
-  <div id="heading">Meetings</div>
-  <div id="content"></div>
-  <br>
-  <div id="heading">Performance</div>
-  <div id="content"><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></div> -->
-  
-<!-- ======= -->
-
 </body>
 </html>

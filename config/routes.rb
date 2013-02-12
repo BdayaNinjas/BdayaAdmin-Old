@@ -1,24 +1,35 @@
 BdayaAdmin::Application.routes.draw do
   resources :evaluations
 
-  resources :geneh
+  namespace :geneh do
+    resources :members
+  end
 
   resources :meetings
   
   namespace :yes do
     resources :trainers
+    resources :members
     resources :training_companies
   end
   #devise_for :members, :path => "auth", :path_names => { :sign_in => 'sign_in', :sign_out => 'sign_out', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up' }
   devise_for :members, :path => "members", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up'},
              :controllers => { :invitations => 'devise/invitations'}
 
+  get 'care/index'
+
   root :to => "members#index"
   namespace :care do
-    resources :fridays
+    resources :fridays do
+      collection do 
+        post :create_session
+      end
+    end
+
+    resources :courses
     resources :kids do
       collection do
-        get :performance
+        post :add_performance
       end
     end
     resources :members
@@ -41,10 +52,12 @@ BdayaAdmin::Application.routes.draw do
 
   namespace :fr do
     resources :sponsers
+    resources :members
   end
 
   namespace :logistics do
     resources :requests
+    resources :members
   end    
   
   
