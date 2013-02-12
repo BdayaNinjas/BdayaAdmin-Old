@@ -1,0 +1,8 @@
+<%= link_to "New Course", new_care_course_path %>
+</br>
+
+<% @courses.each do |course| %>
+	
+	<%= course.name %>
+	</br>
+<%end%>

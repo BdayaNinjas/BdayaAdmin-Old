@@ -37,7 +37,7 @@
         
         <!-- "Create new data" form here -->
         <tr class="add-row">
-           <%= form_for @friday.sessions.new , :url => {:action => 'create'}, :method => 'POST' do |f| %>
+           <%= form_for @friday.sessions.new , :url => {:action => 'create_session'}, :method => 'POST' do |f| %>
 
             <td><%= f.select(:course_id, Course.where(type: "Care").collect {|p| [p.name, p.id]}) %></td>
             <td><%= f.text_field :timing %></td>

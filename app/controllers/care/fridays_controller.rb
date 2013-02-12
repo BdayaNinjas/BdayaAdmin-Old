@@ -1,4 +1,4 @@
-class Care::FridaysController < ApplicationController
+class Care::FridaysController < Care::CareController
 
 	def show
 		@friday = CareFriday.find(params[:id])
@@ -13,16 +13,27 @@ class Care::FridaysController < ApplicationController
 		@friday = CareFriday.find(params[:id])
 	end
 
+  def new
+    @friday = CareFriday.new()
+  end
 
   def create
-    # params[:meeting][:attendee_ids].shift
-    # friday = CareFriday.find(params[:session]["friday"])
-    # puts params[:session]
-    # params[:session].delete("friday")
-    # puts params[:session]
+    friday = CareFriday.create(params[:friday])
+    Kid.all.each do |kid|
+      kid.performance.merge!(friday.date.to_s => {})
+      kid.save
+    end
+    redirect_to care_fridays_path
+  end
+
+  def create_session
     session = Session.new(params[:session])
-    # session.friday = friday
     if session.save
+      Kid.all.each do |kid|
+        puts session.friday.date.to_s
+        kid.performance[session.friday.date.to_s].merge!(session.course.name => {})
+        kid.save        
+      end
       redirect_to session.friday
     end
   end
