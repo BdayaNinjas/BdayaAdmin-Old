@@ -23,6 +23,6 @@ class Members::InvitationsController < ApplicationController
 private
 
   def allowed_params
-    params.permit(:utf8,:authenticity_token,:invitation_token, :_method, {member:[:invitation_token,:password,:password_confirmation]}, :commit, :action, :controller)
+    params.permit(:utf8,:authenticity_token,:invitation_token, :_method, {member:[:invitation_token,:password,:password_confirmation, :name]}, :commit, :action, :controller)
   end
 end
