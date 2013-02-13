@@ -230,23 +230,38 @@
 
           </tr>
 
-          <tr>
-            <td colspan="7">
-           <div class="agenda">
-            <div class="wire"></div>
-           <div class="agenda-content">
-           <ul>
-           <li class="active">Agenda</li>
-           <li>Meeting Content</li>
-           <li>Meeting Minutes</li>
-           </ul>
-           <div class="data">
-           kdfjakljsdfkljaskldjfklajsdklfjklajsdfklj
-           </div>
-           </div>
-           </div>
-           </td>
-         </tr>
+          <tr><td colspan="4">
+  				<div class="agenda"><div class="wire"></div>
+						<div class="agenda-content">
+							<ul>
+								<li class="active" data-id="#agenda-data">Agenda</li>
+								<li data-id="#meeting-data">Meeting Content</li>
+								<li data-id="#minutes-data">Meeting Minutes</li>
+							</ul>
+							<div id="agenda-data" class="data">
+  						 <% if(meeting.meeting_minutes1 == "" || meeting.meeting_minutes1 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes1%>
+               <%end%> 
+							</div>
+							<div id="meeting-data" class="data">
+  						 <% if(meeting.meeting_minutes1 == "" || meeting.meeting_minutes1 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes1%>
+               <%end%> 
+							</div>
+							<div id="minutes-data" class="data">
+  						 <% if(meeting.meeting_minutes1 == "" || meeting.meeting_minutes1 == nil) %>
+                    <%= "Not Entered" %>
+                    <%else%>
+                    <%=meeting.meeting_minutes1%>
+               <%end%> 
+							</div>
+						</div>
+					</div>
+				</td></tr>
 
         <%end%>
         
