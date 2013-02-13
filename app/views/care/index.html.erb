@@ -169,12 +169,6 @@
           </div></td>
         </tr>
         <% end %>
-        <tr class="add-row">
-          <% @friday = CareFriday.new %>
-          <%= form_for :friday , :url => {:action => 'create'}, :method => 'POST' do |f| %>
-            <%= f.text_field :date %>
-          <%end%>
-        </tr>
       </tbody>
          
       </table>
@@ -186,7 +180,6 @@
          <!-- tab, add this if table is editable -->
          <div class="tab edit-spreadsheet">Edit</div>
          <!-- keep buttons if edit is enabled -->
-         <div class="btn green add">+</div>
          <div class="btn green save">Save</div>
          <div class="btn red cancel">Cancel</div>
        </div>
