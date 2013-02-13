@@ -40,7 +40,7 @@ class Session
     s.notes = n
     s.session_type = 1
     s.save
-
+    Notification.send_notification (m , 8 , 4 , "You Have Been Assigned to a Session on " << s << " in Course : " << c.name)
     r = Request.new
     r.session = s
     r.session_type = 1
