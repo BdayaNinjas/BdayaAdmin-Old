@@ -14,8 +14,9 @@ BdayaAdmin::Application.routes.draw do
   end
   #devise_for :members, :path => "auth", :path_names => { :sign_in => 'sign_in', :sign_out => 'sign_out', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up' }
   devise_for :members, :path => "members", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'sign_up'},
-             :controllers => { :invitations => 'members/invitations'}
+             :controllers => { :invitations => 'devise/invitations'}
 
+  get 'care/index'
 
   root :to => "members#index"
   namespace :care do

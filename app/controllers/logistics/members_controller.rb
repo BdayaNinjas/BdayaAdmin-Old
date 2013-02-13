@@ -1,13 +1,9 @@
 class Logistics::MembersController < Logistics::LogisticsController
 	
   def index
-    @members = Committee.find_by(:name => "Logistics").members
-    @head = Committee.find_by(:name => "Logistics").head
-    @vices = Committee.find_by(:name => "Logistics").vices
-  end
-
-  def show
-    @member = Member.find(params[:id])
+    @members = Committee.find_by(:name => "Logistics").members.where(:role => 'Member')
+    @head = Committee.find_by(:name => "Logistics").members.where(:role => 'Head')[0]
+    @vices = Committee.find_by(:name => "Logistics").vices.where(:role => 'Vice Head')
   end
    
   def update

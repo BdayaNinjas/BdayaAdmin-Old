@@ -1,15 +1,11 @@
 class Fr::MembersController < FR::FRController
 	
   def index
-    @members = Committee.find_by(:name => "FR").members
-    @head = Committee.find_by(:name => "FR").head
-    @vices = Committee.find_by(:name => "FR").vices
+    @members = Committee.find_by(:name => "FR").members.where(:role => 'Member')
+    @head = Committee.find_by(:name => "FR").members.where(:role => 'Head')[0]
+    @vices = Committee.find_by(:name => "FR").vices.where(:role => 'Vice Head')
   end
 
-  def show
-    @member = Member.find(params[:id])
-  end
-   
   def update
     @member = Member.find(params[:id])
     # Update the object

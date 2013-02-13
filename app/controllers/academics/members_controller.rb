@@ -14,14 +14,10 @@ class Academics::MembersController < Academics::AcademicsController
 	end
 
 	def index
-	    @members = Committee.find_by(:name => "Academics").members
-	    @head = Committee.find_by(:name => "Academics").head
-	    @vices = Committee.find_by(:name => "Academics").vices
+	    @members = Committee.find_by(:name => "Academics").members.where(:role => 'Member')
+    @head = Committee.find_by(:name => "Academics").members.where(:role => 'Head')[0]
+    @vices = Committee.find_by(:name => "Academics").vices.where(:role => 'Vice Head')
   	end
-
-	def show
-	    @member = Member.find(params[:id])
-	end
 	   
 	def update
 	    @member = Member.find(params[:id])

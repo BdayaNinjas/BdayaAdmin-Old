@@ -1,15 +1,11 @@
 class Yes::MembersController < Yes::YesController
 	
   def index
-    @members = Committee.find_by(:name => "YES").members
-    @head = Committee.find_by(:name => "YES").head
-    @vices = Committee.find_by(:name => "YES").vices
+    @members = Committee.find_by(:name => "YES").members.where(:role => 'Member')
+    @head = Committee.find_by(:name => "YES").members.where(:role => 'Head')[0]
+    @vices = Committee.find_by(:name => "YES").vices.where(:role => 'Vice Head')
   end
 
-  def show
-    @member = Member.find(params[:id])
-  end
-   
   def update
     @member = Member.find(params[:id])
     # Update the object

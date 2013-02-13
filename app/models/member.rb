@@ -1,10 +1,11 @@
 class Member
   include Mongoid::Document
   include Mongoid::Timestamps
+  include DeviseInvitable::Inviter
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -17,7 +18,8 @@ class Member
 
   ## Rememberable
   field :remember_created_at, :type => Time
-  # field :invitation_token
+  field :invitation_token
+  field :invitation_accepted_at, type: DateTime
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
@@ -65,7 +67,7 @@ class Member
 
   has_many :created_tasks, class_name: "Task", inverse_of: :created_by
   has_many :assigned_tasks, class_name: "Task", inverse_of: :assigned_to
-  # field :invitation_sent_at
+  field :invitation_sent_at
 
   belongs_to :hcommittee, class_name: "Committee", inverse_of: :head
   belongs_to :vcommittee, class_name: "Committee", inverse_of: :vices
@@ -257,4 +259,9 @@ class Member
     
   end
 
+  def has_invitations_left?
+    return self.committee.name == "HR"
+  end
+
 end
+

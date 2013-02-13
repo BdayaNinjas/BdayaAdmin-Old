@@ -71,18 +71,6 @@
         </tr>
         <% end %>
         
-        <!-- "Create new data" form here -->
-        <%= form_for(:member, :url => {:action => 'create'}, :method => 'POST') do |f| %>
-        <tr class="add-row">
-          <td><%= f.text_field(:name) %></td>
-          <td><%= f.text_field(:email) %></td>
-          <td><%= f.text_field(:semester) %></td>
-          <%= f.hidden_field :password  , :value => "testtest" %>
-          <td><%= f.text_field(:major) %></td>
-          <td><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></td>
-        </tr>
-        <% end %>
-        
       </tbody>
     </table>
     
