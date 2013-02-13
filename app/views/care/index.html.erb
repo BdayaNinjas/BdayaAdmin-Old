@@ -17,7 +17,7 @@
       <div class="spread-head">
          
          <!-- tabs, if needed -->
-         <div class="tab" data-id="link4">Calendar</div>
+         <div class="tab" data-id="link4">Courses</div>
          <div class="tab" data-id="link3">Fridays</div>
          <div class="tab" data-id="link2">Kids</div>
          <div class="tab active" data-id="link1">Members</div>
@@ -63,10 +63,10 @@
           <td class="edit"><div class="edit">
             <% if(current_member.email==member.email||(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
                 <div class="update-row">✎</div>
-              <% end %>
-              <% if(current_member.email!=member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
+            <% end %>
+            <% if(current_member.email!=member.email&&(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
                 <%= form_for(member, :url => {:action => 'destroyMember', :id => member.id}, :method => 'DELETE') do |f| %><div class="delete-row2">✖</div><% end %>
-              <% end %>
+            <% end %>
           </div></td>
         </tr>
         <% end %>
@@ -173,7 +173,16 @@
          
       </table>
       <table class="link-data" id="link4">
-         
+        <thead>
+          <tr>
+            <th>Course name</th>
+          </tr>
+        </thead>
+          <tbody>
+            <% @courses.each do |course| %>
+             <tr><td><%= course.name %></td></tr>
+            <%end%>
+          </tbody>
       </table>
       <div class="spread-footer">
          <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
