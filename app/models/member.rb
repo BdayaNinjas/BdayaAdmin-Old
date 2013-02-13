@@ -246,12 +246,15 @@ class Member
   end
   
   def get_evaluation_graph
+    # evaluations = self.evaluations
+    # attributes = [ 'criteria1', 'criteria2', 'criteria3', 'criteria4', 'criteria5', 'criteria6', 'criteria7', 'criteria8', 'criteria9', 'criteria10']
+    # graph = Array.new
+    # attributes.each { |att|
+    #   graph.append(evaluations.map {|evaluation| [evaluation, evaluation.attributes[att]]})
+    # }
+    # return graph
     evaluations = self.evaluations
-    attributes = [ 'criteria1', 'criteria2', 'criteria3', 'criteria4', 'criteria5', 'criteria6', 'criteria7', 'criteria8', 'criteria9', 'criteria10']
-    graph = Array.new
-    attributes.each { |att|
-      graph.append(evaluations.map {|evaluation| [evaluation, evaluation.attributes[att]]})
-    }
-    return graph
+    
   end
+
 end

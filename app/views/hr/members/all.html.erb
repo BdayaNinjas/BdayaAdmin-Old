@@ -260,11 +260,13 @@
             <tbody>
                 <% if @all != nil %>
                     <% @all.each do |t| %>
-                <tr>
-                    <td><%= t.name %></td>
-                    <td><%= t.email %></td>
-                    <td><%= t.committee.name %></td>
-                </tr>
+                        <% if t.committee != nil %>
+                            <tr>
+                                <td><%= t.name %></td>
+                                <td><%= t.email %></td>
+                                <td><%= t.committee.name %></td>
+                            </tr>
+                        <%end%>
                     <%end%>
                 <%end%>
             </tbody>
