@@ -74,7 +74,10 @@ $(".delete-row2").click(function() {
 		spreadsheet.find(".spread-head").width("-=17");
 		spreadsheet.find(".spread-footer").width("-=17");
 		spreadsheet.find(".spread-footer").children().toggle();
-
+		
+		
+		var data = $(spreadsheet.find(".agenda > .agenda-content > ul > .active").attr("data-id")).hide().html();
+		$("<textarea/>").appendTo(spreadsheet.find(".agenda > .agenda-content")).val(data).addClass("data").show();
 	}
 	function editOff(x) {
 		var spreadsheet = $(x).closest(".spreadsheet");
@@ -83,6 +86,9 @@ $(".delete-row2").click(function() {
 		spreadsheet.find(".spread-head").width("+=17");
 		spreadsheet.find(".spread-footer").width("+=17");
 		spreadsheet.find(".spread-footer").children().toggle();
+		
+		$(spreadsheet.find(".agenda > .agenda-content > ul > .active").attr("data-id")).show();
+		spreadsheet.find(".agenda > .agenda-content > textarea.data").hide();
 	}
 
 	// edit row
@@ -126,9 +132,14 @@ $(".delete-row2").click(function() {
 	 });
  
 	//agenda tabs
+	$($(".agenda-content > ul > li.active").attr("data-id")).show();
 	$(".agenda-content > ul > li").click(function() {
+		$($(this).siblings(".active").eq(0).attr("data-id")).hide()
 		$(this).siblings(".active").eq(0).removeClass("active");
+		
 		$(this).addClass("active");
+		$($(this).attr("data-id")).show();
+		
 	});
  
 });
