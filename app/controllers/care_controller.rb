@@ -5,6 +5,7 @@ class CareController < ApplicationController
     	@vices = Committee.find_by(:name => "Care").vices.where(:role => 'Vice Head')
     	@kids = Kid.all.order_by([[ :age, :asc ]])
         @fridays = CareFriday.all
+        @courses = Course.where(type: "Care")
 	end
 
 	def updateMember

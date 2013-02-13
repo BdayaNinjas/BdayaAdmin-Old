@@ -19,7 +19,6 @@ class MeetingsController < ApplicationController
     params[:meeting][:attendee_ids].shift
     @meeting = Meeting.new(params[:meeting])
     @meeting.creator = current_member
-
     @request = Request.new
     @request.session_type = 3
     @request.done = false
@@ -29,7 +28,9 @@ class MeetingsController < ApplicationController
     @meeting.request = @request
     @request.save
     @meeting.save
+    Notification.send_notification(Committee.find_by(:name => "Logistics").head, 1, 1, "You have a new Room-Reservation request")
     redirect_to meetings_path
+
   end
 
   def update
