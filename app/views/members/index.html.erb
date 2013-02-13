@@ -50,8 +50,10 @@
             <div class="cell-edit"><%= f.text_field(:major) %></div>
           </td>
           <td>
+            <% if member.committee != nil %>
             <p class="cell-data"><%= member.committee.name %></p>
             <div class="cell-edit"><%= f.select(:committee_id, @committees.collect {|p| [p.name, p.id]}) %></div>
+            <%end%>
           </td>
           <td>
             <p class="cell-data"><%= member.role %></p>

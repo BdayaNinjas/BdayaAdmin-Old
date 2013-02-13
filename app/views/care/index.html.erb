@@ -90,7 +90,7 @@
         <tr>
           <%= form_for(kid, :url => {:action => 'updateKid', :id => kid.id}, :method => 'PUT') do |f| %>
           <td>
-            <p class="cell-data"><%= link_to(kid.name, {:action => 'show', :id => kid.id}) %></p>
+            <p class="cell-data"><%= link_to(kid.name, {:controller => 'care/kids', :action => 'show', :id => kid.id}) %></p>
             <div class="cell-edit"><%= f.text_field(:name) %></div>
           </td>
           <td>
@@ -136,6 +136,46 @@
       </tbody>
       </table>
       <table class="link-data" id="link3">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Sessions</th>
+            <th>Kids</th>
+          </tr>
+        </thead>
+      
+      <tbody>
+        <% @fridays.each do |friday| %>
+        <tr>
+          <%= form_for :friday , :url => {:action => 'create'}, :method => 'POST' do |f| %>
+          <td>
+            <p class="cell-data"> <%= link_to friday.date , friday %></p>
+            <div class="cell-edit"><%= f.text_field(:date) %></div>
+          </td>
+          <%end%>
+          <td>
+            <p class="cell-data"><%= friday.sessions.count%></p>
+          </td>
+          <td>
+            <p class="cell-data"> <%= friday.kids.count %></p>
+          </td>
+          <!-- add this if row is editable -->
+          <td class="edit"><div class="edit">
+            <% if(current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
+                <div class="update-row">✎</div>
+              <% end %>
+              <% if (current_member.committee.name=='Care' && (current_member.role=='Head'||current_member.role=='Vice Head'))%>
+              <% end %>
+          </div></td>
+        </tr>
+        <% end %>
+        <tr class="add-row">
+          <% @friday = CareFriday.new %>
+          <%= form_for :friday , :url => {:action => 'create'}, :method => 'POST' do |f| %>
+            <%= f.text_field :date %>
+          <%end%>
+        </tr>
+      </tbody>
          
       </table>
       <table class="link-data" id="link4">
@@ -146,6 +186,7 @@
          <!-- tab, add this if table is editable -->
          <div class="tab edit-spreadsheet">Edit</div>
          <!-- keep buttons if edit is enabled -->
+         <div class="btn green add">+</div>
          <div class="btn green save">Save</div>
          <div class="btn red cancel">Cancel</div>
        </div>

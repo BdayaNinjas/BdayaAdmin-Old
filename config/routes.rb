@@ -58,6 +58,8 @@ BdayaAdmin::Application.routes.draw do
   namespace :logistics do
     resources :requests
     resources :members
+    resources :materials
+    resources :resources
   end    
   
   
