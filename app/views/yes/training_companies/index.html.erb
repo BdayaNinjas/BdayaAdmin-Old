@@ -2,6 +2,7 @@
 
 <div class="training companies list">
   <h2>Training Companies</h2>
+  <center><%= link_to(Members, {:controller => '/yes/members', :action => 'index'}) %> <%= link_to(Trainers, {:controller => '/yes/trainers', :action => 'index'}) %> <%= link_to(Training Companies, {:controller => '/yes/training_companies', :action => 'index'}) %></center>
 
   <div><%= pluralize(@training_companies.size, 'trining companies') %></div>
   <div>When Filling Training Courses Fields split them by Commas => ','</div>

@@ -1,4 +1,5 @@
 <%= link_to "Create a new friday" , new_care_friday_path %>
+<center><%= link_to(Members, {:controller => '/care/members', :action => 'index'}) %> <%= link_to(Kids, {:controller => '/care/kids', :action => 'index'}) %> <%= link_to(Fridays, {:controller => '/care/fridays', :action => 'index'}) %> <%= link_to(Courses, {:controller => '/care/courses', :action => 'index'}) %></center>
 <% @fridays.each do |friday| %>
 	<%= link_to friday.date , friday %>
 	</br>

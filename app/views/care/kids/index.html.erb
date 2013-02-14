@@ -14,6 +14,7 @@
       <!-- spreadsheet title -->
 
       <h1>Kids</h1>
+      <center><%= link_to(Members, {:controller => '/care/members', :action => 'index'}) %> <%= link_to(Kids, {:controller => '/care/kids', :action => 'index'}) %> <%= link_to(Fridays, {:controller => '/care/fridays', :action => 'index'}) %> <%= link_to(Courses, {:controller => '/care/courses', :action => 'index'}) %></center>
       <div style="padding-left:7em"><%= pluralize(@kids.size, 'kid') %> found</div>
     </div>
     

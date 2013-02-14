@@ -11,6 +11,7 @@
   <div class="spreadsheet">
 
     <center><h2>YES</h2></center>
+    <center><%= link_to(Members, {:controller => '/yes/members', :action => 'index'}) %> <%= link_to(Trainers, {:controller => '/yes/trainers', :action => 'index'}) %> <%= link_to(Training Companies, {:controller => '/yes/training_companies', :action => 'index'}) %></center>
     <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:controller => '/members', :action => 'show', :id => @head.id, :c => 'yes/members'}) %> <%end%> </h3>
     <h3>Vices: <% @vices.each do |vice| %>
       <%= link_to(vice.name, {:controller => '/members', :action => 'show', :id => vice.id, :c => 'yes/members'}) %>
