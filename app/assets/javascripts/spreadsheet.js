@@ -11,7 +11,7 @@ $(document).ready(function(){
  	 $(this).closest(".spreadsheet").find("table > tbody").find(".edited-row").each(function() {	  
  	 var $form = $(this).find("form");
  	 alert($form.attr('action'));
- 	 $.ajax({
+ 	 $.ajax({	
  	 type : "POST",
  	 cache : false,
  	 url : $form.attr('action'),
