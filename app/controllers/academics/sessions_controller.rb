@@ -24,7 +24,8 @@ class Academics::SessionsController < Academics::AcademicsController
 	end
 
 	def index
-		@sessions = Session.get_sessions_date_desc
+		@sessions = Session.all
+		# get_sessions_date_desc
 	end
 
 	def destroy

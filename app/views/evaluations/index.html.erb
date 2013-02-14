@@ -1,0 +1,85 @@
+<script type="text/javascript" charset="utf-8">
+  //This is a method that will be called on viewing this page it gets the data that will be added to the graph + what's the start
+   //point and also what is the interval between each two points default will be 1 day also it takes the names of the things it
+   //view across time by default for a story we will view no of shares , no of likes, no of dislikes and no of spams and no of comments
+   //and then call method kl that will view the graph with the parameters already stated.
+   
+   //also this method gets the start date of data flow from get_interest_start_date method in interestshelper
+
+  var $j = jQuery.noConflict();
+  $j(document).ready(function() {
+     //get The user's array of arrays of data
+      // data= <%= @member.get_evaluation_graph(@member.id) %>;
+    // gasser.evaluations.map{|evaluation| [evaluation.criteria1]}.flatten
+      data = [@member.evaluations.map{|evaluation| [evaluation.criteria1]}.flatten,@member.evaluations.map{|evaluation| [evaluation.criteria2]}.flatten,@member.evaluations.map{|evaluation| [evaluation.criteria3]}.flatten,@member.evaluations.map{|evaluation| [evaluation.criteria4]}.flatten,@member.evaluations.map{|evaluation| [evaluation.criteria5]}.flatten]
+      //the graphs that we want to show
+      // names=["No Of Shares","No Of Likes","No of Dislikes","No of Spams","No of Comments"];
+      names = [ 'criteria1', 'criteria2', 'criteria3', 'criteria4', 'criteria5'];
+      // , 'criteria6', 'criteria7', 'criteria8', 'criteria9', 'criteria10'] 
+      //the time interval between one point and another in the graph.
+      pointInterval= <%= 14.days %>; 
+      // Start point of the graph.
+      // x = <%= @member.evaluations.map{|eval| [eval.created_at.day]} %>
+        // x = <%= get_user_start_date(@id).to_i %>;
+        // if(x != -1) {
+        //   x=x+1;
+    pointStart= <%= @member.created_at.day %>;
+         //Label for x-axis 
+         xl="Day"; 
+        //Label for y-axis
+        yl="Number";
+        //Label for graph title
+        titleOfGraph="User Stat";
+        //call the method that renders the graph with the calculated parameters.
+         document.getElementById("deactivatedUser").style.display= "none"; 
+        Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);
+       // } 
+       // else {
+       //   document.getElementById("deactivatedUser").style.display = "block";
+       //   document.getElementById("ccc").style.display = "none";
+      }  
+   });
+</script>
+
+<h1>Listing evaluations</h1>
+
+<table>
+  <tr>
+    <th>Criteria1</th>
+    <th>Criteria2</th>
+    <th>Criteria3</th>
+    <th>Criteria4</th>
+    <th>Criteria5</th>
+    <th>Criteria6</th>
+    <th>Criteria7</th>
+    <th>Criteria8</th>
+    <th>Criteria9</th>
+    <th>Criteria10</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @evaluations.each do |evaluation| %>
+  <tr>
+    <td><%= evaluation.criteria1 %></td>
+    <td><%= evaluation.criteria2 %></td>
+    <td><%= evaluation.criteria3 %></td>
+    <td><%= evaluation.criteria4 %></td>
+    <td><%= evaluation.criteria5 %></td>
+    <td><%= evaluation.criteria6 %></td>
+    <td><%= evaluation.criteria7 %></td>
+    <td><%= evaluation.criteria8 %></td>
+    <td><%= evaluation.criteria9 %></td>
+    <td><%= evaluation.criteria10 %></td>
+    <td><%= link_to 'Show', evaluation %></td>
+    <td><%= link_to 'Edit', edit_evaluation_path(evaluation) %></td>
+    <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<div id= "ccc"> 
+</div>
+<br />
+
+<%= link_to 'New Evaluation', new_evaluation_path %>

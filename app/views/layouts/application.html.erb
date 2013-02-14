@@ -9,6 +9,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if(current_member == nil) %>
+  <%=yield%>
+  <%end%>
+  <% if(current_member != nil) %>
   <div id="topbar">
     <div id="topbar-content">
       <div id="user-info">
@@ -38,36 +42,26 @@
       <div id="leftbar-shadow"></div>
       <div id="leftbar-content">
         <img src="/images/logo.png" id="logo">
-        <div id="home-icon" class="leftbar-icon"></div>
+        <div id="home-icon" class="leftbar-icon"><%link_to "Profile", :controller => "members", :action => "show", :id => current_member.id%></div>
         <div id="icons-seperate"></div>
         <div id="committee-icon" class="leftbar-icon">
           <div class="menu-list">
   					<ul>
-							Group1
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							
+							Projects
+							<li><a href="/geneh/members">Geneh</a></li>
+							<li><a href="/care/members">Care</a></li>
+							<li><a href="/yes/members">Yes</a></li>
+							<li><a href="/academics/members">Academics</a></li>
+							<li><a href="#">Team</a></li>
 						</ul>
 						<ul>
-							Group2
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
-							<li><a href="#">link</a></li>
+							OCs
+							<li><a href="/fr/members">FR</a></li>
+							<li><a href="/logistics/members">Logistics</a></li>
+							<li><a href="/hr/members">HR</a></li>
+							<li><a href="#">PR</a></li>
+							<li><a href="#">Design</a></li>
+							<li><a href="#">IT</a></li>
 						</ul>
 					</div>
         </div>
@@ -154,3 +148,4 @@
   </div>
 
 </body>
+<%end%>

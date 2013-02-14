@@ -132,6 +132,7 @@ div#leftbar {
 	left: 0;
 	top: 65px;
 	bottom: 0px;
+	z-index: 20;
 }
 
 div#leftbar-content {

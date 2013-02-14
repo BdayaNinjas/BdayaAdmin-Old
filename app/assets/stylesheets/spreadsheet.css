@@ -315,14 +315,14 @@ div.agenda {
 div.agenda div.wire {
 	width: 130px;
 	border-left: 1px solid lightgrey;
-	background: url("images/agenda-wire.png") top right repeat-y;
+	background: url("../images/agenda-wire.png") top right repeat-y;
 	position: absolute;
 	right: 0px;
 	bottom: 0px;
 	top: 0px;
 }
 div.agenda div.agenda-content {
-	background: url("images/agenda-line.png") top center repeat;
+	background: url("../images/agenda-line.png") top center repeat;
 	
 	padding: 20px 70px 20px 20px;
 	margin: 0px 80px 0px 20px;

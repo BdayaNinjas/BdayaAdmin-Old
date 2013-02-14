@@ -1,7 +1,7 @@
 <% @page_title = "Training Companies List" %>
 
 <div class="training companies list">
-  <h2>Training Companies</h2>
+  <center><h2>YES</h2></center>
   <center><%= link_to("Members", {:controller => '/yes/members', :action => 'index'}) %> <%= link_to("Trainers", {:controller => '/yes/trainers', :action => 'index'}) %> <%= link_to("Training Companies", {:controller => '/yes/training_companies', :action => 'index'}) %></center>
 
   <div><%= pluralize(@training_companies.size, 'trining companies') %></div>
