@@ -4,6 +4,7 @@
                 <div class="spread-head">
                     <!-- spreadsheet title -->
                     <h1>Room Reservation Requests</h1>
+                    <center><%= link_to(Members, {:controller => '/logistics/members', :action => 'index'}) %> <%= link_to(Materials, {:controller => '/logistics/materials', :action => 'index'}) %> <%= link_to(Requests, {:controller => '/logistics/requests', :action => 'index'}) %> <%= link_to(Resources, {:controller => '/logistics/resources', :action => 'index'}) %></center>
 
                     <!-- tabs, if needed -->
                     <div class="tab active" data-id="link1">Pending Reservations</div>
