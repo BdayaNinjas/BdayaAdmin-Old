@@ -1,4 +1,4 @@
-class Geneh::MembersController < Geneh::GenehController
+class Geneh::MembersController < ApplicationController
 	
   def index
     @members = Committee.find_by(:name => "Geneh").members.where(:role => 'Member')

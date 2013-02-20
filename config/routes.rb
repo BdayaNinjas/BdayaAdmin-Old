@@ -3,6 +3,7 @@ BdayaAdmin::Application.routes.draw do
 
   namespace :geneh do
     resources :members
+    resources :geneh_cases
   end
 
   resources :meetings

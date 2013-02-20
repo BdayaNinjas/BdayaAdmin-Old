@@ -24,11 +24,11 @@ class MeetingsController < ApplicationController
     @request.done = false
     @request.needers = @meeting.attendees
     @request.needers << @meeting.creator
-    @request.assigned = Committee.find_by(:name => "Logistics").head
+    @request.assigned = Committee.find_by(:name => "Logistics").members.where(:role => 'Head')[0]
     @meeting.request = @request
     @request.save
     @meeting.save
-    Notification.send_notification(Committee.find_by(:name => "Logistics").head, 1, 1, "You have a new Room-Reservation request")
+    Notification.send_notification(Committee.find_by(:name => "Logistics").members.where(:role => 'Head')[0], 1, 1, "You have a new Room-Reservation request")
     redirect_to meetings_path
 
   end
