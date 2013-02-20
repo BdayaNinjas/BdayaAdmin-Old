@@ -7,11 +7,12 @@
                 top: 16px;
                 left: 17px;
                 z-index:1;
-                border-bottom: 1px solid #DCDCDC;
-                border-left: 1px solid #DCDCDC;
-                border-right: 1px solid #DCDCDC;
-                border-top: 1px solid #DCDCDC;
                 padding: 10px;
+                background: #e2eaee;
+                color: #95b2be;
+                -moz-box-shadow: 1px 1px 0px 0px #aeccda;
+                -webkit-box-shadow: 1px 1px 0px 0px #aeccda;
+                box-shadow: 1px 1px 0px 0px #aeccda;
             }
             .page{
                 position:relative;
@@ -24,11 +25,9 @@
         <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
         <script>
             $(document).ready(function(){
-                $(".redodiv").hide();
                 $(".redo").click(function(){
-                    $(this).next(".redodiv").toggle();
-                    
-                });               
+                    $(this).next().toggle();
+                });
             });
         </script>
     </head>
@@ -42,11 +41,10 @@
       <h1>Assigned Tasks</h1>
       
       <!-- tabs, if needed -->
-      <div class="tab active">link1</div>
-      <div class="tab">link2</div>
+      <div class="tab active">Undone</div>
+      <div class="tab">Done</div>
       
       <!-- filter field -->
-      <input value="filter..." />
       <div><%= pluralize(@tasks.size, 'task') %></div>
     </div>
     
@@ -56,54 +54,56 @@
             <th>Descritpion</th>
               <th>Status</th>
               <th>Deadline</th>
-              <th>Requested Deadline</th>
-              <th>Comment</th>
-              <th>Excuse</th>
+              <th>Actions</th>
           </tr>
       </thead>
       
       <tbody>
         <% @tasks.each do |task| %>
         <tr>
-          <%= form_for task, :url => {:controller => 'tasks', :action => 'extend_deadline', :task_id => task.id, :member_id => @member.id} do |f| %>
           <td>
             <p class="cell-data"><%= task.description %></p>
             <div class="cell-edit"><%= task.description %></div>
           </td>
           <td>
-            <p class="cell-data" width="auto"><%= task.status %></p>
+            <%= form_for task, :url => {:controller => 'tasks', :action => 'Re_open', :task_id => task.id, :id => @member.id} do |f| %>
             <div class="page">
-            <div class="redo"><img src="C:\Users\Aya\Desktop\Extra-Curricular\BdayaIT\appcode\capture.JPG"></div>
-            <div class="redodiv">
-                Reason: 
-                <br>
-                <textarea></textarea>
-                <br>
-                <input type="submit" value="Reopen"></input>
-            </div>
-        </div>
-            <div class="cell-edit"><%= task.status %></div>
+              <div class="redo"><img src="/images/capture.JPG"></div>
+                <div class="redodiv">
+                  Comment: 
+                  <textarea></textarea>
+                  <input type="submit" value="Reopen"></input>
+                </div>
+              </div>
+              <p class="cell-data" width="auto"><%= task.status %></p>
+                <%end%>
           </td>
           <td>
-            <p class="cell-data"><%= task.deadline %></p>
-            <div class="cell-edit"><%= task.deadline %></div>
+            <%= form_for task, :url => {:controller => 'tasks', :action => 'extend_deadline', :task_id => task.id, :id => @member.id } do |f| %>
+              <div class="page">
+              <div class="redo"><img src="/images/capture.JPG"></div>
+                <div class="redodiv">
+                  Requested Deadline:
+                  <%= f.text_field(:requested_deadline) %>                  
+                  <br/>
+                  Excuse:
+                  <br/>
+                  <textarea></textarea>
+                  <input type="submit" value="Extend Deadline"></input>
+                </div>
+              </div>
+              <p class="cell-data" width="auto"><%= task.deadline %></p>
+                <%end%>
           </td>
           <td>
-            <p class="cell-data"><%= task.requested_deadline %></p>
-            <div class="cell-edit"><%= f.text_field(:requested_deadline) %></div>
-          </td>
-          <td>
-            <p class="cell-data"><%= task.comment %></p>
-            <div class="cell-edit"><%= task.comment %></div>
-          </td>
-          <td>
-            <p class="cell-data"><%= task.excuse %></p>
-            <div class="cell-edit"><%= f.text_field(:excuse) %></div>
+            <%= link_to("Approve", {:controller => 'tasks', :action => 'approve', :id => @member.id, :task_id => task.id}) %>
+            <%= link_to("Disapprove", {:controller => 'tasks', :action => 'disapprove', :id => @member.id, :task_id => task.id}) %>
+            <%= link_to("Done", {:controller => 'tasks', :action => 'Done', :id => @member.id, :task_id => task.id}) %>
           </td>
           <!-- add this if row is editable -->
           <td class="edit"><div class="edit"><div class="update-row">✎</div></div>
           </td>
-          <%end%>
+        
         </tr>
         <%end%>
         

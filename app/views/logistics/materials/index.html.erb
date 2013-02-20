@@ -1,8 +1,8 @@
 <% @page_title = "Materials List" %>
 
 <div class="materials list">
-  <h2>Materials</h2>
-  <center><%= link_to(Members, {:controller => '/logistics/members', :action => 'index'}) %> <%= link_to(Materials, {:controller => '/logistics/materials', :action => 'index'}) %> <%= link_to(Requests, {:controller => '/logistics/requests', :action => 'index'}) %> <%= link_to(Resources, {:controller => '/logistics/resources', :action => 'index'}) %></center>
+  <center><h2>Logistics</h2></center>
+  <center><%= link_to("Members", {:controller => '/logistics/members', :action => 'index'}) %> <%= link_to("Materials", {:controller => '/logistics/materials', :action => 'index'}) %> <%= link_to("Requests", {:controller => '/logistics/requests', :action => 'index'}) %> <%= link_to("Resources", {:controller => '/logistics/resources', :action => 'index'}) %></center>
 
   <div><%= pluralize(@materials.size, 'material') %></div>
 

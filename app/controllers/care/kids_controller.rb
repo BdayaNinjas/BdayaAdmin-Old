@@ -1,6 +1,7 @@
 class Care::KidsController < Care::CareController
 
   def index
+    #get all kids sorted by age
     @kids = Kid.all.order_by([[ :age, :asc ]])
   end
 
@@ -14,7 +15,7 @@ class Care::KidsController < Care::CareController
     @kid = Kid.new(params[:kid])
     # Save the object
     if @kid.save
-      # If save succeeds, redirect to the index action
+      # If save succeeds, flash a message
       flash[:notice] = "Kid added."
     end
   end
@@ -23,7 +24,7 @@ class Care::KidsController < Care::CareController
     @kid = Kid.find(params[:id])
     # Update the object
     if @kid.update_attributes(params[:kid])
-      # If update succeeds, redirect to the show action
+      # If update succeeds, flash a message
       flash[:notice] = "Kid updated."
     end
   end

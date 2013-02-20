@@ -1,13 +1,17 @@
 class MembersController < ApplicationController
 
   def index
+    # Get all members and committees in Bdaya
     @members = Member.all
     @committees = Committee.all
   end
 
   def show
+    # Save the controller that the user navigated from
     @c = params[:c]
+    #Get the member data to display in the profile, and his tasks
     @member = Member.find(params[:id])
+    @tasks = Task.get_tasks(@member)
   end
    
   def create
@@ -16,11 +20,8 @@ class MembersController < ApplicationController
     @committees = Committee.all
     # Save the object
     if @member.save
-      # If save succeeds, redirect to the index action
+      # If save succeeds, flash a message
       flash[:notice] = "Member added."
-      redirect_to(:action => 'index')
-    else
-      # If save fails, redisplay the form so user can fix problems
     end
   end
    
@@ -29,21 +30,21 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     # Update the object
     if @member.update_attributes(params[:member])
-      # If update succeeds, redirect to the show action
+      # If update succeeds, flash a message
       flash[:notice] = "Member updated."
-      redirect_to(:action => 'show', :id => @member.id)
-    else
-      # If save fails, redisplay the form so user can fix problems
     end
   end
    
   def destroy
     member = Member.find(params[:id])
     member.destroy
+    # Delete the object
     flash[:notice] = "Member deleted."
-    redirect_to(:action => 'index')
   end
 
+  def lawlab
+    redirect_to(:action => 'show', :id => current_member.id, :c => '/members')
+  end
 
   def id
     return self.id.to_s

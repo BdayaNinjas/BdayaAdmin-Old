@@ -1,5 +1,5 @@
 <%= link_to "New Course", new_care_course_path %>
-<center><%= link_to(Members, {:controller => '/care/members', :action => 'index'}) %> <%= link_to(Kids, {:controller => '/care/kids', :action => 'index'}) %> <%= link_to(Fridays, {:controller => '/care/fridays', :action => 'index'}) %> <%= link_to(Courses, {:controller => '/care/courses', :action => 'index'}) %></center>
+<center><%= link_to("Members", {:controller => '/care/members', :action => 'index'}) %> <%= link_to("Kids", {:controller => '/care/kids', :action => 'index'}) %> <%= link_to("Fridays", {:controller => '/care/fridays', :action => 'index'}) %> <%= link_to("Courses", {:controller => '/care/courses', :action => 'index'}) %></center>
 </br>
 
 <% @courses.each do |course| %>

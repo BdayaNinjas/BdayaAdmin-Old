@@ -1,7 +1,8 @@
 <% @page_title = "Trainers List" %>
 
 <div class="trainers list">
-  <h2>Trainers</h2>
+<center>  <h2>YES</h2></center>
+<center><%= link_to("Members", {:controller => '/yes/members', :action => 'index'}) %> <%= link_to("Trainers", {:controller => '/yes/trainers', :action => 'index'}) %> <%= link_to("Training Companies", {:controller => '/yes/training_companies', :action => 'index'}) %></center>
 
   <div><%= pluralize(@trainers.size, 'trainers') %></div>
   <div>When Filling Training Topics split them by Commas => ','</div>
@@ -11,10 +12,8 @@
     <div class="spread-head">
       <!-- spreadsheet title -->
       <h1>Trainers</h1>
-      <center><%= link_to(Members, {:controller => '/yes/members', :action => 'index'}) %> <%= link_to(Trainers, {:controller => '/yes/trainers', :action => 'index'}) %> <%= link_to(Training Companies, {:controller => '/yes/training_companies', :action => 'index'}) %></center>
-
       <!-- filter field -->
-      <input value="filter..." />
+      <!-- <input value="filter..." /> -->
     </div>
 
     <table>

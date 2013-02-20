@@ -2,6 +2,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations
   # GET /evaluations.json
   def index
+
     @evaluations = Evaluation.all.keep_if {|x| not x.has_key? 'member' or x['member'] == 'mostafa'}
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show
+    @member = Member.find_by(name:"gasser")
     @evaluation = Evaluation.find(params[:id])
 
     respond_to do |format|

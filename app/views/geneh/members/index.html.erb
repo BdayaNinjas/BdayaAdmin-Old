@@ -7,15 +7,13 @@
 </head>
 
 <body>
-  
-  <div class="spreadsheet">
-
-    <center><h2>Geneh</h2></center>
+  <center><h2>Geneh</h2></center>
     <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:controller => '/members', :action => 'show', :id => @head.id, :c => 'geneh/members'}) %> <%end%> </h3>
     <h3>Vices: <% @vices.each do |vice| %>
-      <%= link_to(vice.name, {:controller => '/members', :action => 'show', :id => vice.id, :c => 'geneh/members'}) %>
+      <%= link_to(vice.name, {:controller => 'geneh/geneh_cases', :action => 'show', :id => vice.id, :c => 'geneh/members'}) %>
       <%end%></h3> 
     
+  <div class="spreadsheet">
     <div class="spread-head">
       <!-- spreadsheet title -->
 

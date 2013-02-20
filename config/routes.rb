@@ -19,7 +19,7 @@ BdayaAdmin::Application.routes.draw do
 
   get 'care/index'
 
-  root :to => "members#index"
+  root :to => "members#lawlab"
   namespace :care do
     resources :fridays do
       collection do 

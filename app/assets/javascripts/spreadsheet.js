@@ -11,13 +11,13 @@ $(document).ready(function(){
  	 $(this).closest(".spreadsheet").find("table > tbody").find(".edited-row").each(function() {	  
  	 var $form = $(this).find("form");
  	 alert($form.attr('action'));
- 	 $.ajax({
+ 	 $.ajax({	
  	 type : "POST",
  	 cache : false,
  	 url : $form.attr('action'),
  	 data : $form.serializeArray(),
  	 complete : function(data) {
- 	 alert(form.parent().attr("class") == "add-row edited-row");
+ 	 // alert(form.parent().attr("class") == "add-row edited-row");
  	 // if (form.parent().attr("class") == "add-row edited-row")
  	 }
  	 });
@@ -42,7 +42,7 @@ $(".delete-row2").click(function() {
  	// do ajax request here
 
  	var $form =$(this).closest("td").find("form");
-	alert($form.attr('action'));
+	// alert($form.attr('action'));
  	$.ajax({
  	 type : "DELETE",
  	 cache : false,

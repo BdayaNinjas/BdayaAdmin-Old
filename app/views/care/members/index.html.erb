@@ -11,7 +11,7 @@
   <div class="spreadsheet">
 
     <center><h2>Care</h2></center>
-    <center><%= link_to(Members, {:controller => '/care/members', :action => 'index'}) %> <%= link_to(Kids, {:controller => '/care/kids', :action => 'index'}) %> <%= link_to(Fridays, {:controller => '/care/fridays', :action => 'index'}) %> <%= link_to(Courses, {:controller => '/care/courses', :action => 'index'}) %></center>
+    <center><%= link_to("Members", {:controller => '/care/members', :action => 'index'}) %> <%= link_to("Kids", {:controller => '/care/kids', :action => 'index'}) %> <%= link_to("Fridays", {:controller => '/care/fridays', :action => 'index'}) %> <%= link_to("Courses", {:controller => '/care/courses', :action => 'index'}) %></center>
     
     <h3>Head: <% if (@head!=nil) %> <%= link_to(@head.name, {:controller => '/members', :action => 'show', :id => @head.id, :c => 'care/members'}) %> <%end%> </h3>
     <h3>Vices: <% @vices.each do |vice| %>
