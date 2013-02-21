@@ -29,8 +29,8 @@ class Care::KidsController < Care::CareController
     end
   end
 
+  # add kid's performance , by accessing the hash with the friday and the session
   def add_performance
-    puts 'walaaaa'
     kid = Kid.find(params[:kid])
     
     params[:performance].keys.each do |session_name|
