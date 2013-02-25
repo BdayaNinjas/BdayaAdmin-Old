@@ -5,7 +5,6 @@
    //and then call method kl that will view the graph with the parameters already stated.
    
    //also this method gets the start date of data flow from get_interest_start_date method in interestshelper
-
   var $j = jQuery.noConflict();
   $j(document).ready(function() {
      //get The user's array of arrays of data
@@ -18,7 +17,6 @@
       //the time interval between one point and another in the graph.
       pointInterval= <%= 14.days * 1000 %>; 
       // Start point of the graph.
-      // x = <%= @member.evaluations.first.created_at.day %>
         // if(x != -1) {
         //   x=x+1;
          //Label for x-axis 
@@ -59,7 +57,9 @@
    <b>Semester: </b><%= @member.semester %>
 </div>
 <div id="list2">
+  <% if @member.committee != nil %>
   <b>Committee: </b><%= @member.committee.name %><br><br>
+  <%end%>
    <b>Member since: </b><%= @member.created_at %><br><br>
  </div>
 </div>
@@ -191,8 +191,10 @@
   </div>
       </table>
             <center><h1><%= link_to("Evaluate Member", {:controller => 'evaluations', :action => 'new', :id => @member.id}) %></h1></center>
-      <div id="ccc"></div>
-   </div>
+         <% if @member.evaluations != nil %>
+            <div id="ccc"></div>
+            </div> 
+          <%end%>
  </div>
 </body>
 </html>

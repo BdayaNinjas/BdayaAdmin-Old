@@ -16,15 +16,14 @@ class Task
   belongs_to :created_by, class_name: "Member", inverse_of: :created_tasks
   belongs_to :assigned_to, class_name: "Member", inverse_of: :assigned_tasks
 
+=begin
+  This method takes a member as an input and returns the tasks assigned to this member.
+  Author : Gasser
+  Inputs: Member 
+  Committee/Project : All
+=end
   def self.get_tasks (member)
   	member.assigned_tasks
   end
 
-  # def update_status (comment)
-  #   if (self.status == "Not_done" || self.status == "Re_opened")
-  #       self.update_attributes (status: 'Done')
-  #   else 
-  #     self.update_attributes (status: 'Done', comment: comment)
-  #   end
-  # end
 end
