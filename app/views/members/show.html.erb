@@ -107,6 +107,86 @@
       <h1>Assigned Tasks</h1>
       
       
+<<<<<<< HEAD
+      <table class="link-data" id="link1">
+         <thead>
+             <tr>
+               <th>Month</th>
+               <th>Savings</th>
+              <th>Month</th>
+              <th>Savings</th>
+             </tr>
+         </thead>
+         
+         <tbody>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <!-- add this if row is editable -->
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+               </td>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td>Data</td>
+               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>           
+            </tr>
+         </tbody>
+      </table>
+      <table class="link-data" id="link2">
+         <thead>
+             <tr>
+               <th>Title</th>
+               <th>Room</th>
+               <th>Meeting Date</th>
+             </tr>
+         </thead>
+         
+         <tbody>
+            <% @member.attending_meeting_ids.each do |meeting| %>
+               <% Meeting.find(meeting) != true %>
+                  <% @meeting = Meeting.find(meeting) %>
+                  <tr>
+                     <td><%= link_to @meeting.title, @meeting %></td>
+                     <td>
+                        <%if @meeting.room == nil || @meeting.room == "" %>
+                           <%= "Not Decided" %>
+                        <%else%>
+                           <%= @meeting.room %>
+                        <%end%>
+                     </td>
+                     <td>@meeting.meeting_time.to_date</td>
+                     </td>
+                  </tr>
+               <%end%>
+            <%end%>
+         </tbody>
+      </table>
+      <table class="link-data" id="link3">
+         <tbody>
+            <tr>
+               <td><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></td>
+            </tr>
+         </tbody>
+=======
       
       <!-- filter field -->
       <div><%= pluralize(@tasks.size, 'task') %></div>
@@ -189,6 +269,7 @@
       
     </div>
   </div>
+>>>>>>> 2203c852d1ebb480b66d3bdb811c1cdae8ff02fc
       </table>
             <center><h1><%= link_to("Evaluate Member", {:controller => 'evaluations', :action => 'new', :id => @member.id}) %></h1></center>
          <% if @member.evaluations != nil %>

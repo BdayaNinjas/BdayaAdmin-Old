@@ -6,7 +6,8 @@ class Calendar
   field :events, type: Hash , default: {}
 
   before_create -> { self.initialize_calendar! }
-
+  #author: mehrez
+  #this method initializes the calendar on creation , creates a hash; each key represent the day
   def initialize_calendar!
     hash = {}
     for i in 1..31
