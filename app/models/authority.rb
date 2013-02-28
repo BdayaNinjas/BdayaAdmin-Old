@@ -42,7 +42,9 @@ class Authority
   			end
   		end
   		return flag
-  	end
+  	else
+      return false
+    end
   end
 
 end
