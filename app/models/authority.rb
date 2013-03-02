@@ -22,29 +22,18 @@ class Authority
 	# Easily this way,, You can just check the authorization of a user in the form:
 		# Authority.has_authority(Member.last, "create_geneh_case")
 
-  def has_authority(user, action)
+  def self.has_authority(user, action)
   	auth = Authority.find_by(name: action)
   	if(auth != nil)
-  		flag = false
   		auth.tuples.each do |ath|
-  			if(ath[1] == "head")
-  				if(ath[0].head == user)
-  					flag = true
-  				end
-  			elsif(ath[1] == "vices")
-  				if(ath[0].vices.include?(user))
-  					flag = true
-  				end
-  			elsif(ath[1] == "members")
-  				if(ath[0].members.include?(user))
-  					flag = true
-  				end
+  			if((ath[1] == "Head"&&Committee.find(ath[0]).head == user)||
+          (ath[1] == "Vice Head"&&Committee.find(ath[0]).vices.include?(user))||
+          (ath[1] == "Member"&&Committee.find(ath[0]).members.include?(user)))
+  				return true
   			end
-  		end
-  		return flag
-  	else
-      return false
+  	  end
     end
+    return false
   end
 
 end
