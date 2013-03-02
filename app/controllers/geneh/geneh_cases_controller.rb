@@ -4,6 +4,11 @@ class Geneh::GenehCasesController < ApplicationController
     @geneh_cases = GenehCase.all
   end
 
+  def new 
+    @geneh_case = GenehCase.new
+    render ('new'), :layout => false
+  end
+
   def create
     #the multi-select sends the first item in list as empty string "", so .shift delets first
     #it's received as list of ids
@@ -11,6 +16,7 @@ class Geneh::GenehCasesController < ApplicationController
     @geneh_case = GenehCase.new(params[:geneh_case])
     @geneh_case.creator = current_member
     @geneh_case.save
+    index
   end
 
   def update

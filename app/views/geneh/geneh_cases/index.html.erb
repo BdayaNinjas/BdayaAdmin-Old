@@ -1,24 +1,19 @@
-<% @page_title = "Geneh Cases List" %>
+<spreadsheet
+  options='{
+    "title":  "Hello World",
+    "content":  ["#data1"],
+    "tabs":   [
+            {"name":"tab1", "content":"#data1"}
+          ]
+  }'
+  id=   "spread1"
+></spreadsheet>
 
-<div class="geneh cases list">
-  <h2>Geneh Cases</h2>
 
-  <div><%= pluralize(@geneh_cases.size, 'task') %></div>
-  
-  <div class="spreadsheet">
-
-    <div class="spread-head">
-      <!-- spreadsheet title -->
-      <h1>Geneh Cases</h1>
-
-      <!-- filter field -->
-      <input value="filter..." />
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Bdaya Member</th>
+<table id="data1">
+  <thead>
+    <tr>
+      <th>Bdaya Member</th>
           <th>Case Name</th>
           <th>Description</th>
           <th>Phone</th>
@@ -26,123 +21,24 @@
           <th>Case Number</th>
           <th>People Responsible</th>
           <th>Notes</th>
-        </tr>
-      </thead>
+    </tr>
+  </thead>
+  <tbody>
+    <% @geneh_cases.each do |geneh| %>
+    <tr>
+      <td><%= geneh.creator.name %></td>
+      <td><%= geneh.case_name %></td>
+      <td><%= geneh.description %></td>
+      <td><%= geneh.phone %></td>
+      <td><%= geneh.address %></td>
+      <td><%= geneh.case_number %></td>
+      <td><%= geneh.case_number %></td>
+      <td><%= geneh.notes %></td>
+    <%end%>
+    </tr>
+  </tbody>
+</table>
 
-      <tbody>
-        <% @geneh_cases.each do |geneh| %>
-          <tr>
-            <%= form_for(geneh, :url => geneh_geneh_case_path(geneh), :html => { :method => "PUT" }) do |f|%>
-                <td>
-                  <p class="cell-data">
-                    <%= geneh.creator.name %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.collection_select :creator_id, Member.order_by(:name.asc), :id, :name,{} %>
-                  </div>
-                </td>
-
-                <td>
-                  <p class="cell-data">
-                    <%= geneh.case_name %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.text_field :case_name %>
-                  </div>
-                </td>
-
-                <td>
-                  <p class="cell-data">
-                    <%= geneh.description %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.text_field :description %>
-                  </div>
-                </td>
-
-                <td>
-                  <p class="cell-data">
-                    <%= geneh.phone %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.text_field :phone %>
-                  </div>
-                </td>
-
-                <td>
-                  <p class="cell-data">
-                    <%= geneh.address %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.text_field :address %>
-                  </div>
-                </td>
-
-                <td>
-                  <p class="cell-data">
-                    <%= geneh.case_number %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.text_field :case_number %>
-                  </div>
-                </td>
-
-                <td>
-                  <p class="cell-data">
-                    <% @text =''%>
-                    <% geneh.responsible_people.each do |one|%>
-                      <% @text = one.name + ', '%>
-                    <%end%>
-                    <%= @text%>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.collection_select :responsible_person_ids, Member.order_by(:name.asc), :id, :name,{},{multiple: true} %>
-                  </div>
-                </td>
-
-                <td>
-                  <p class="cell-data">
-                    <%= geneh.notes %>
-                  </p>
-                  <div class="cell-edit">
-                    <%= f.text_field :notes %>
-                  </div>
-                </td>
-
-            <td class="edit">
-              <div class="edit">
-                <div class="update-row">✎</div>
-                <div class="delete-row"><%= link_to '✖', [:geneh,geneh], method: :delete, data: { confirm: 'Are you sure?' } %>
-                </div>
-              </div>
-            </td>
-
-          </tr>
-        <%end%>
-      <%end%>
-        <!-- "Create new data" form here -->
-        <tr class="add-row">
-          <% @geneh=GenehCase.new%>
-           <%= form_for @geneh, :url => { :action => 'create'}, :method => 'POST' do |f| %>
-            <td><%= current_member.name %></td>
-            <td><%= f.text_field :case_name %></td>
-            <td><%= f.text_field :description %></td>
-            <td><%= f.text_field :phone %></td>
-            <td><%= f.text_field :address %></td>
-            <td><%= f.text_field :case_number %></td>
-            <td><%= f.collection_select :responsible_person_ids, Member.order_by(:name.asc), :id, :name,{},{multiple: true} %></td>
-            <td><%= f.text_field :notes %></td>
-          <%end%>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="spread-footer">
-      <!-- tab, add this if table is editable -->
-      <div class="tab edit-spreadsheet">Edit</div>
-      <!-- keep buttons if edit is enabled -->
-      <div class="btn green add">+</div>
-      <div class="btn green save">Save</div>
-      <div class="btn red cancel">Cancel</div>
-    </div>
-  </div>
+<div class="add-form">
+  <%= link_to 'new', new_geneh_geneh_case_path, id: "asd", remote: true %>
+</div>

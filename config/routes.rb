@@ -1,6 +1,6 @@
 BdayaAdmin::Application.routes.draw do
   resources :evaluations
-
+  resources :hegzas
   namespace :geneh do
     resources :members
     resources :geneh_cases
