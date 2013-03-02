@@ -3,7 +3,7 @@ class Authority
   include Mongoid::Document
 
   field :name, type:String
-  field :tubles, type:Array
+  field :tuples, type:Array
 
 # We should already have authorities (for each action on the website) created like Committies first on launching the website in the Seeds file
 	
@@ -11,13 +11,13 @@ class Authority
 	
 	# It'll be saved when updating Authorities page in Admin, in the form (example):
 		# auth = Authority.find_by(name: "update_yes")
-		# auth.tubles = Params[tubles] // if updating the whole authorities of that Authority
-			# or// auth.tubles << Params[tubles] // when just adding new authority
+		# auth.tuples = Params[tuples] // if updating the whole authorities of that Authority
+			# or// auth.tuples << Params[tuples] // when just adding new authority
 		# auth.save
 
 	# The Authority will be in the form:
 		# name => "edit_yes"
-		# tubles => [[yes(a Committee Object), "head"],[geneh, "vises"], [geneh, "members"]]
+		# tuples => [[yes(a Committee Object), "head"],[geneh, "vices"], [geneh, "members"]]
 	
 	# Easily this way,, You can just check the authorization of a user in the form:
 		# Authority.has_authority(Member.last, "create_geneh_case")
@@ -26,12 +26,12 @@ class Authority
   	auth = Authority.find_by(name: action)
   	if(auth != nil)
   		flag = false
-  		auth.tubles.each do |ath|
+  		auth.tuples.each do |ath|
   			if(ath[1] == "head")
   				if(ath[0].head == user)
   					flag = true
   				end
-  			elsif(ath[1] == "vises")
+  			elsif(ath[1] == "vices")
   				if(ath[0].vices.include?(user))
   					flag = true
   				end

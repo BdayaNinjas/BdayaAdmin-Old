@@ -107,7 +107,6 @@
       <h1>Assigned Tasks</h1>
       
       
-<<<<<<< HEAD
       <table class="link-data" id="link1">
          <thead>
              <tr>
@@ -162,7 +161,7 @@
          
          <tbody>
             <% @member.attending_meeting_ids.each do |meeting| %>
-               <% Meeting.find(meeting) != true %>
+               <% if Meeting.find(meeting) != true %>
                   <% @meeting = Meeting.find(meeting) %>
                   <tr>
                      <td><%= link_to @meeting.title, @meeting %></td>
@@ -186,7 +185,6 @@
                <td><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></td>
             </tr>
          </tbody>
-=======
       
       <!-- filter field -->
       <div><%= pluralize(@tasks.size, 'task') %></div>
@@ -269,7 +267,6 @@
       
     </div>
   </div>
->>>>>>> 2203c852d1ebb480b66d3bdb811c1cdae8ff02fc
       </table>
             <center><h1><%= link_to("Evaluate Member", {:controller => 'evaluations', :action => 'new', :id => @member.id}) %></h1></center>
       <div id="ccc"></div>
