@@ -1,0 +1,13 @@
+<div class="addd">
+	<%= form_for(@geneh_case, :url => new_geneh_geneh_case_path(@geneh_case)) do |f|%>
+		<%= f.collection_select :creator_id, Member.order_by(:name.asc), :id, :name,{} %>
+		<%= f.text_field :case_name %>
+		<%= f.text_field :description %>
+		<%= f.text_field :phone %>
+		<%= f.text_field :address %>
+		<%= f.text_field :case_number %>
+		<%= f.collection_select :responsible_person_ids, Member.order_by(:name.asc), :id, :name,{},{multiple: true} %>
+		<%= f.text_field :notes %>
+		<%= f.submit %>
+	<%end%>
+</div>

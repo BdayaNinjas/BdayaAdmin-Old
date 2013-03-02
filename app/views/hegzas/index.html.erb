@@ -1,0 +1,12 @@
+<div id="hegzas">
+	<% @hegzas.each do |hegza| %>
+	<%= hegza.name %>
+	<%= hegza.number %>
+</br>
+	<% end %>
+</div>
+
+<%= link_to "new hegza", new_hegza_path, id: "new_hegza", remote: true %>
+
+
+
