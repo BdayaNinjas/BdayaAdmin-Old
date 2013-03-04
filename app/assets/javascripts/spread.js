@@ -82,4 +82,30 @@ $(document).ready(function(){
 		$(this).next(".panel").slideToggle();
 	});
 
+/************** PLUGINS **************/
+	
+	//Edit form
+	(function( $ ){
+
+	  $.fn.appendEdit = function() {  
+	    return this.find("form").ready(function() {
+
+	    	var $this = $(this);
+	    	var row = $("<tr/>");
+	    	var data = "";
+
+	    	$this.find("input, select").each(function() {
+	    		if ($(this).attr("type") != "hidden")
+	    			data += ("<td>" + $(this).get(0).outerHTML + "</td>");
+	    		else
+	    			data += $(this).get(0).outerHTML;
+	    	});
+	    	row.html(data);
+	    	row.appendTo("table");
+	    });
+
+	  };
+	})( jQuery );
+
+
 });
