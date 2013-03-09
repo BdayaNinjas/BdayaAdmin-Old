@@ -1,5 +1,5 @@
-<div class="_form">
-	<%= form_for(@geneh_case, :url => new_geneh_geneh_case_path(@geneh_case)) do |f|%>
+<div class="form">
+	<%= form_for [:geneh, @geneh_case]  do |f|%>
 		<%= f.collection_select :creator_id, Member.order_by(:name.asc), :id, :name,{} %>
 		<%= f.text_field :case_name %>
 		<%= f.text_field :description %>

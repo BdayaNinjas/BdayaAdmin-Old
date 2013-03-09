@@ -39,6 +39,25 @@ $(document).ready(function(){
 				});
 			});
 
+			//Spreadfooter
+			var footerContent = $("<div/>").addClass("main-content");
+				//Edit
+				if (options.edit != false) {
+					footerContent.append($("<div/>").addClass("tab edit-button").html("Edit"));
+
+					var editContent = $("<div/>").addClass("edit-content");
+
+					//New Row Button
+					editContent.append($("<div/>").addClass("btn new-row").html($(".add-form").html()));
+					$(".add-form").hide();
+
+					//Save Button
+					editContent.append($("<div/>").addClass("btn green save").html("Save"));
+
+					spreadfooter.append(editContent.hide());
+				}
+			spreadfooter.append(footerContent);
+
 		//----------- APPENDING ---------//
 
 			//Spreadhead
@@ -82,30 +101,107 @@ $(document).ready(function(){
 		$(this).next(".panel").slideToggle();
 	});
 
+	//Edit
+	$(".spreadsheet > .spread-footer > .main-content > .edit-button").click(function() {
+		$(this).closest(".main-content").hide().siblings(".edit-content").eq(0).show();
+	});
+
+	//Svae
+	$(".save").click(function() {
+		// do ajax post here
+		// on success: editOff(this);
+		$(".spreadsheet").find("table > tbody").find(".changedrow").each(function() {			
+			var formid = $(this).attr("formid");
+			var $form = $("#"+formid).find("form");
+			alert(formid);
+			alert($form.attr('action'));
+				$.ajax({
+				type     : "POST",
+				cache    : false,
+				url      : $form.attr('action'),
+				data     : $form.serializeArray(),
+				success  : function(data) {
+					alert("asd");
+		     	}
+		    });
+		});
+	});
+
 /************** PLUGINS **************/
 	
-	//Edit form
 	(function( $ ){
 
-	  $.fn.appendEdit = function() {  
-	    return this.find("form").ready(function() {
+		$.fn.trToForm = function() {  
+			return this.each(function() {
+				$(this).html("");
+				var formid = $(this).attr("formid");
+				if(!formid)
+					throw "This tr cann't be converted to inoput, there is no formid.";
+				$tr = $(this);
+				$("#"+formid).find("input, textarea, select").not("[type=submit], [type=hidden], button").each(function() {
+					$tr.append("<td>" + $(this).get(0).outerHTML + "</td>");
+				});
+			});
+		};
 
-	    	var $this = $(this);
-	    	var row = $("<tr/>");
-	    	var data = "";
+		$.fn.formToTr = function() {  
+			return this.each(function() {
+				var formid = $(this).attr("id");
+				if(!formid)
+					throw "This form cann't be converted to tr, there is no id.";
+				$tr = $("td[formid="+formid+"]");
+				$(this).find("input, textarea, select").not("[type=submit], [type=hidden], button").each(function() {
+					$tr.append("<td>" + $(this).get(0).outerHTML + "</td>");
+				});
+			});
+		};
 
-	    	$this.find("input, select").each(function() {
-	    		if ($(this).attr("type") != "hidden")
-	    			data += ("<td>" + $(this).get(0).outerHTML + "</td>");
-	    		else
-	    			data += $(this).get(0).outerHTML;
-	    	});
-	    	row.html(data);
-	    	row.appendTo("table");
-	    });
-
-	  };
 	})( jQuery );
 
-
 });
+
+var id=0;
+function appendEdit(form) {
+	form = $(form);
+	form.attr("id", "formid" + id);
+
+	var row = $("<tr/>");
+	var data = "";
+	form.find("form").find("input, textarea, select").not("[type=submit], button").each(function() {
+		if ($(this).attr("type") != "hidden")
+			data += ("<td>" + $(this).get(0).outerHTML + "</td>");
+		else
+			data += $(this).get(0).outerHTML;
+	});
+	row.html(data).appendTo("table > tbody").attr("formid", "formid"+id);
+
+	$(".add-form").after(form.hide());
+	id++;
+}
+
+$(".spreadsheet input, .spreadsheet select, .spreadsheet textarea").live("change", function(event) {
+	var formId = $(this).closest("tr").addClass("changedrow").attr("formid");
+	$("#"+formId).find("#"+ $(this).attr("id")).val($(this).val());
+	$("#"+formId).find("form").addClass("changedform");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

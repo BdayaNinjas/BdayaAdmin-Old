@@ -27,15 +27,15 @@
     <% @geneh_cases.each do |geneh| %>
     <tr>
       <td><%= geneh.creator.name %></td>
-      <td><%= geneh.case_name %></td>
+      <td><%= geneh.case_name %><%= link_to 'edit', edit_geneh_geneh_case_path(geneh), id: "assd", remote: true %></td>
       <td><%= geneh.description %></td>
       <td><%= geneh.phone %></td>
       <td><%= geneh.address %></td>
       <td><%= geneh.case_number %></td>
       <td><%= geneh.case_number %></td>
       <td><%= geneh.notes %></td>
-    <%end%>
     </tr>
+    <%end%>
   </tbody>
 </table>
 
