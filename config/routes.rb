@@ -3,7 +3,9 @@ BdayaAdmin::Application.routes.draw do
   resources :hegzas
   namespace :geneh do
     resources :members
-    resources :geneh_cases 
+    resources :geneh_cases do
+      # put :update
+    end
   end
 
   resources :meetings

@@ -21,6 +21,11 @@ class Geneh::GenehCasesController < ApplicationController
     render ('index')
   end
 
+  def edit
+    @geneh_case = GenehCase.find(params[:id])
+    render ('edit'), :layout => false
+  end
+
   def update
     @geneh_case = GenehCase.find(params[:id])
     #if there are responsible_person_ids send remove the first item because of the multi-select issue to make the list ready

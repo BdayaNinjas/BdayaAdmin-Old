@@ -27,7 +27,7 @@
     <% @geneh_cases.each do |geneh| %>
     <tr>
       <td><%= geneh.creator.name %></td>
-      <td><%= geneh.case_name %></td>
+      <td><%= geneh.case_name %><%= link_to 'edit', edit_geneh_geneh_case_path(geneh), id: "assd", remote: true %></td>
       <td><%= geneh.description %></td>
       <td><%= geneh.phone %></td>
       <td><%= geneh.address %></td>
@@ -41,5 +41,4 @@
 
 <div class="add-form">
   <%= link_to 'new', new_geneh_geneh_case_path, id: "asd", remote: true %>
-  <%= link_to 'edit', edit_geneh_geneh_case_path, id: "assd", remote: true %>
 </div>
