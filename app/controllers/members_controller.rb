@@ -1,8 +1,10 @@
 class MembersController < ApplicationController
 
   def index
+    # filter query
+    @q=params[:q]
     # Get all members and committees in Bdaya
-    @members = Member.all
+    @members = Member.any_of({:name => /#{@q}/}, {:email => /#{@q}/}, {:semester => /#{@q}/}, {:major => /#{@q}/}, {:role => /#{@q}/}, {:mobile => /#{@q}/}, {:tshirt => /#{@q}/})
     @committees = Committee.all
   end
 
