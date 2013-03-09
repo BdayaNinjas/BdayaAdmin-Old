@@ -147,10 +147,6 @@ div.red {
 	
 }
 
-div.cancel, div.save, div.add {
-	display: none;
-}
-
 /*spread body*/
 div.spreadsheet table {
 	width: 99.8%;
