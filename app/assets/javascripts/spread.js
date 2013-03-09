@@ -51,6 +51,9 @@ $(document).ready(function(){
 					editContent.append($("<div/>").addClass("btn new-row").html($(".add-form").html()));
 					$(".add-form").hide();
 
+					//Save Button
+					editContent.append($("<div/>").addClass("btn green save").html("Save"));
+
 					spreadfooter.append(editContent.hide());
 				}
 			spreadfooter.append(footerContent);
@@ -101,6 +104,27 @@ $(document).ready(function(){
 	//Edit
 	$(".spreadsheet > .spread-footer > .main-content > .edit-button").click(function() {
 		$(this).closest(".main-content").hide().siblings(".edit-content").eq(0).show();
+	});
+
+	//Svae
+	$(".save").click(function() {
+		// do ajax post here
+		// on success: editOff(this);
+		$(".spreadsheet").find("table > tbody").find(".changedrow").each(function() {			
+			var formid = $(this).attr("formid");
+			var $form = $("#"+formid).find("form");
+			alert(formid);
+			alert($form.attr('action'));
+				$.ajax({
+				type     : "POST",
+				cache    : false,
+				url      : $form.attr('action'),
+				data     : $form.serializeArray(),
+				success  : function(data) {
+					alert("asd");
+		     	}
+		    });
+		});
 	});
 
 /************** PLUGINS **************/
