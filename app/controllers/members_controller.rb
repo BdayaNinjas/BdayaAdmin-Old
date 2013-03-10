@@ -6,6 +6,10 @@ class MembersController < ApplicationController
     # Get all members and committees in Bdaya
     @members = Member.any_of({:name => /#{@q}/}, {:email => /#{@q}/}, {:semester => /#{@q}/}, {:major => /#{@q}/}, {:role => /#{@q}/}, {:mobile => /#{@q}/}, {:tshirt => /#{@q}/})
     @committees = Committee.all
+
+    if (@q)
+      render ('_search'), :layout => false
+    end
   end
 
   def show

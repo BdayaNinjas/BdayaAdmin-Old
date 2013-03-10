@@ -1,104 +1,39 @@
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <% @page_title = "Members List" %>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-  <%= javascript_include_tag 'javascripts/spreadsheet' %>
-  <%= stylesheet_link_tag 'stylesheets/spreadsheet', :media => 'screen' %>
-</head>
+<spreadsheet
+  options='{
+    "title":    "Members",
+    "content":  ["#data1"],
+    "tabs":   [
+                {"name":"tab1", "content":"#data1"}
+              ],
+    "filter":   true
+  }'
+  id=   "spread1"
+></spreadsheet>
 
-<body>
-  
-  <div class="spreadsheet">
-    
-    <div class="spread-head">
-      <!-- spreadsheet title -->
 
-      <h1>Members</h1>
-      <div style="padding-left:7em"><%= pluralize(@members.size, 'member') %> found</div>
-    </div>
-    
-    <table>
-      <thead>
-          <tr>
-            <th>Member</th>
-            <th>Email</th>
-            <th>Semester</th>
-            <th>Major</th>
-            <th>Committee</th>
-            <th>Role</th>
-          </tr>
-      </thead>
-      
-      <tbody>
-        <% @members.each do |member| %>
-        <tr>
-          <%= form_for(member, :url => {:action => 'update', :id => member.id}, :method => 'PUT') do |f| %>
-          <td>
-            <p class="cell-data"><%= link_to(member.name, {:action => 'show', :id => member.id, :c => 'members'}) %></p>
-            <div class="cell-edit"><%= f.text_field(:name) %></div>
-          </td>
-          <td>
-            <p class="cell-data"><%= member.email %></p>
-            <div class="cell-edit"><%= f.text_field(:email) %></div>
-          </td>
-          <td>
-            <p class="cell-data"><%= member.semester %></p>
-            <div class="cell-edit"><%= f.text_field(:semester) %></div>
-          </td>
-          <td>
-            <p class="cell-data"><%= member.major %></p>
-            <div class="cell-edit"><%= f.text_field(:major) %></div>
-          </td>
-          <td>
-            <% if member.committee != nil %>
-            <p class="cell-data"><%= member.committee.name %></p>
-            <div class="cell-edit"><%= f.select(:committee_id, @committees.collect {|p| [p.name, p.id]}) %></div>
-            <%end%>
-          </td>
-          <td>
-            <p class="cell-data"><%= member.role %></p>
-            <div class="cell-edit"><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></div>
-          </td>
-          <!-- add this if row is editable -->
-          <td class="edit"><div class=email"edit">
-              <% if(current_member.email==member.email||(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head'))) %>
-                    <div class="update-row">✎</div>
-              <% end %>
-              <% if(current_member.email!=member.email&&(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')))%>
-                    <div class="delete-row">✖</div>
-              <% end %>
-              <% end %>
-          </div></td>
-        </tr>
-        <% end %>
-        
-        <!-- "Create new data" form here -->
-        <tr class="add-row">
-          <%= form_for(:member, :url => {:action => 'create'}, :method => 'POST') do |f| %>
-          <td><%= f.text_field(:name) %></td>
-          <td><%= f.text_field(:email) %></td>
-          <td><%= f.text_field(:semester) %></td>
-          <%= f.hidden_field :password  , :value => "testtest" %>
-          <td><%= f.text_field(:major) %></td>
-          <td><%= f.select(:committee_id, @committees.collect {|p| [p.name, p.id]}) %></td>
-          <td><%= f.select(:role, ['Member', 'Head', 'Vice Head']) %></td>
-          <% end %>
-        </tr>
-        
-      </tbody>
-    </table>
-    
-    <div class="spread-footer">
-      <!-- tab, add this if table is editable -->
-      <div class="tab edit-spreadsheet">Edit</div>
-      <!-- keep buttons if edit is enabled -->
-      <% #if(current_member.committee.name=='HR' && (current_member.role=='Head'||current_member.role=='Vice Head')) %>
-      <% if Authority.has_authority(current_member, "members_edit") %>
-        <div class="btn green add">+</div>
-      <% end %>
-      <div class="btn green save">Save</div>
-      <div class="btn red cancel">Cancel</div>
-    </div>
-  </div>
+<table id="data1">
+  <thead>
+      <tr>
+        <th>Member</th>
+        <th>Email</th>
+        <th>Semester</th>
+        <th>Major</th>
+        <th>Committee</th>
+        <th>Role</th>
+      </tr>
+  </thead>
   
-</body>
+  <tbody>
+    <% @members.each do |member| %>
+    <tr>
+      <td><%= link_to(member.name, {:action => 'show', :id => member.id, :c => 'members'}) %></div>
+      </td>
+      <td><%= member.email %></td>
+      <td><%= member.semester %></td>
+      <td><%= member.major %></td>
+      <td><% if member.committee != nil %><%= member.committee.name %></p><%end%></td>
+      <td><%= member.role %></td>
+    </tr>
+    <% end %>    
+  </tbody>
+</table>

@@ -1,0 +1,11 @@
+<% @members.each do |member| %>
+<tr>
+  <td><%= link_to(member.name, {:action => 'show', :id => member.id, :c => 'members'}) %></div>
+  </td>
+  <td><%= member.email %></td>
+  <td><%= member.semester %></td>
+  <td><%= member.major %></td>
+  <td><% if member.committee != nil %><%= member.committee.name %></p><%end%></td>
+  <td><%= member.role %></td>
+</tr>
+<% end %>

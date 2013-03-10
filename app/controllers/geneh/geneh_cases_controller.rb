@@ -7,7 +7,7 @@ class Geneh::GenehCasesController < ApplicationController
 
   def new 
     @geneh_case = GenehCase.new
-    render ('new'), :layout => false
+    render ('_form'), :layout => false
   end
 
   def create
@@ -23,7 +23,7 @@ class Geneh::GenehCasesController < ApplicationController
 
   def edit
     @geneh_case = GenehCase.find(params[:id])
-    render ('edit'), :layout => false
+    render ('_form'), :layout => false
   end
 
   def update
@@ -34,6 +34,10 @@ class Geneh::GenehCasesController < ApplicationController
     end
     @geneh_case.update_attributes(params[:geneh_case])
     @geneh_case.save
+
+    # FIX THIS ***********************************************************************
+    @geneh_cases = GenehCase.all
+    render ('index')
   end
 
   def destroy
