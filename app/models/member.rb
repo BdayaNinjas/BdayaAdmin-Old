@@ -1,6 +1,7 @@
 class Member
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Search
   include DeviseInvitable::Inviter
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -27,6 +28,8 @@ class Member
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
+
+
   ## Confirmable
   # field :confirmation_token,   :type => String
   # field :confirmed_at,         :type => Time
@@ -49,7 +52,7 @@ class Member
   field :role, type: String
   field :mobile, type: String
   field :t_shirt, type: String
-
+  search_in :email, :name, :full_name, committee: :name
 
   #freeSessions
   
@@ -79,6 +82,9 @@ class Member
   has_and_belongs_to_many :responsible_geneh_case, class_name: "GenehCase", inverse_of: :responsible_people
 
 
+  def full_name
+    name.blank? ? email.split('@')[0] : name
+  end
 =begin
   This Method to get the pending requests assigned to this member
   Author:Diab

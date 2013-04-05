@@ -8,6 +8,9 @@ gem 'rails', '3.2.8'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'jquery-rails'
+gem 'mongoid_search'
+gem 'chosen-rails'
+gem 'rails3-jquery-autocomplete'
 
 # Gems used only for assets and not required
 # in production environments by default.

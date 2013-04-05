@@ -1,6 +1,8 @@
 BdayaAdmin::Application.routes.draw do
   resources :evaluations
+#  resources :members
   resources :hegzas
+  resources :events
   namespace :geneh do
     resources :members
     resources :geneh_cases do
@@ -8,6 +10,8 @@ BdayaAdmin::Application.routes.draw do
     end
   end
 
+  match '/search/' => 'application#search', as: 'search'
+  get 'application/auto_complete', as: 'auto_complete'
   resources :meetings
   
   namespace :yes do

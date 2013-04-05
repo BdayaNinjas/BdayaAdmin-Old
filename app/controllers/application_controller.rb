@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :authenticate_member!
-
   # before_filter :check_form
 
   # def check_form
@@ -13,4 +12,21 @@ class ApplicationController < ActionController::Base
   # 	logger.error @object.to_json
 
   # end
+
+  def search 
+    if params[:search]
+      @members = Member.full_text_search params[:search]
+      @events = Event.full_text_search params[:search]
+    end
+    render 'shared/search_results'
+  end
+
+  def auto_complete
+    members = Member.full_text_search params[:text]
+    arr = []
+    for member in members
+      arr << member.full_name
+    end
+    render json: arr
+  end
 end

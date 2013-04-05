@@ -10,7 +10,7 @@
 </head>
 <body>
   <% if(current_member == nil) %>
-  <%=yield%>
+  <%= yield %>
   <%end%>
   <% if(current_member != nil) %>
   <div id="topbar">
@@ -130,7 +130,14 @@
         <!-- finished adding notifications -->
       </div>
     </div>
-
+    <%= form_tag search_path, method: :get, class: "search-form" do  %>
+      <%= text_field_tag :search, params[:search], class: "seach-field" %>
+      <div class="auto">
+        <ul>
+        </ul>
+      </div>
+      <%= submit_tag "Search", class:"submit-search" %>
+    <% end %>
     <div id="content">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
@@ -144,8 +151,33 @@
     <% end %>
     </div>
       <%= yield %>
+
     </div>
   </div>
 
 </body>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.auto li').live('click',function(e){
+      text = $(this).html();
+      $('.seach-field').val(text);
+      $('.submit-search').click();
+    });
+    $('.seach-field').keyup(function(event){
+      text = $('.seach-field').val();
+      if(text.length < 2)
+        return;
+      $.ajax({
+        type: "get",
+        url: "<%= auto_complete_path %>",
+        data: { text: text }
+      }).done(function( data ) {
+        $('.auto ul').html('');
+        $.each(data, function(i, v){
+          $('.auto ul').append('<li>'+v+'</li>');
+        });
+      });
+    });
+  });
+</script>
 <%end%>

@@ -26,7 +26,7 @@
   <tbody>
     <% @members.each do |member| %>
     <tr>
-      <td><%= link_to(member.name, {:action => 'show', :id => member.id, :c => 'members'}) %></div>
+      <td><%= link_to member.full_name, member_path(member, c: 'members')  %></div>
       </td>
       <td><%= member.email %></td>
       <td><%= member.semester %></td>

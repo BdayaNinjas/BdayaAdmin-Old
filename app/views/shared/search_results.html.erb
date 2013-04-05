@@ -1,0 +1,20 @@
+Events:
+<div>
+	<% unless @events.empty? %>
+		<% @events.each do |event| %>
+			<%= link_to event.title, event_path(event) %> <br>
+		<% end %>
+	<% else %>
+		No events match this search
+	<% end %>
+</div>
+Members:
+<div>
+	<% unless @members.empty? %>
+		<% @members.each do |member| %>
+			<%= link_to member.full_name, member_path(member) %> <br>
+		<% end %>
+	<% else %>
+		No members match this search
+	<% end %>
+</div>
