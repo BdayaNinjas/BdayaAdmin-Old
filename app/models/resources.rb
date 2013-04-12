@@ -9,4 +9,5 @@ class Resources
   field :contact_name, type:String
   field :contact_number, type:Integer
   field :comments, type:String
+  
 end

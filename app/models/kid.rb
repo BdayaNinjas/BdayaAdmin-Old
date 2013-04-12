@@ -15,5 +15,4 @@ class Kid
   field :performance, type: Hash , default: {}
   has_and_belongs_to_many :fridays, class_name: "CareFriday" , inverse_of: :kids
 
-
 end

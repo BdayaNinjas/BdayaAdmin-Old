@@ -12,6 +12,9 @@ gem 'mongoid_search'
 gem 'chosen-rails'
 gem 'rails3-jquery-autocomplete'
 
+# gem "mini_magick", "~> 3.5.0"
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -19,10 +22,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-
-
+# gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'devise'
-
 gem 'devise_invitable'
 
 # To use ActiveModel has_secure_password

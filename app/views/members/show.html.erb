@@ -45,8 +45,13 @@
 <body>
  <div id="page">
   <div id="pic">
-   <img src="/images/user_icon_200.png">
+    <% if @member.image.url != nil %>
+      <%= image_tag @member.image.url, :style=>"width:200px;height:200px;" %>
+    <% else %>
+      <img src="/images/user_icon_200.png">
+    <% end %>
 </div>
+
 <div id="info">
 
  <h1><%= @member.name %></h1>
@@ -55,6 +60,12 @@
    <b>Email: </b><%= @member.email %><br><br>
    <b>Major: </b><%= @member.major %><br><br>
    <b>Semester: </b><%= @member.semester %>
+
+    <%= form_for(@member, :url => update_image_member_path(@member), :html => { :method => :post, :multipart => true }) do |f| %>
+      <b>Update Avatar</b></label> <%= f.file_field :image %>
+      <%= f.submit "Upload Avatar" %>
+    <% end %>
+
 </div>
 <div id="list2">
   <% if @member.committee != nil %>

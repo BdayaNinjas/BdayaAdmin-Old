@@ -14,8 +14,6 @@ class Fc
   field :netFunds, type: String
   field :comments, type: String
 
-
-
   def self.get_all
     return Fc.all.to_a
   end

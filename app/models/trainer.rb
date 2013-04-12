@@ -7,4 +7,5 @@ class Trainer
   field :email, type: String
   field :work_place, type: String
   field :topics, type: Array
+  
 end

@@ -48,6 +48,9 @@ BdayaAdmin::Application.routes.draw do
   end
   
   resources :members do
+    member do
+      post :update_image
+    end
     resources :tasks
       post :extend_deadline
   end

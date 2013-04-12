@@ -41,6 +41,12 @@ class MembersController < ApplicationController
     end
   end
    
+  def update_image
+    @member = Member.find(params[:id])
+    @member.update_attributes(params[:member])
+    redirect_to root_path
+  end
+
   def destroy
     member = Member.find(params[:id])
     member.destroy

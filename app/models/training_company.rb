@@ -9,4 +9,5 @@ class TrainingCompany
   field :contact_name, type: String
   field :contact_phone, type: String
   field :contact_email, type: String
+  
 end
