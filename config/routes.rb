@@ -2,7 +2,11 @@ BdayaAdmin::Application.routes.draw do
   resources :evaluations
 #  resources :members
   resources :hegzas
-  resources :events
+  resources :events do
+    member do
+      get 'approve'
+    end
+  end
   namespace :geneh do
     resources :members
     resources :geneh_cases do

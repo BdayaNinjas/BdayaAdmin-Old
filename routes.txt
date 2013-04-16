@@ -1,208 +1,203 @@
-                         evaluations GET    /evaluations(.:format)                          evaluations#index
-                                     POST   /evaluations(.:format)                          evaluations#create
-                      new_evaluation GET    /evaluations/new(.:format)                      evaluations#new
-                     edit_evaluation GET    /evaluations/:id/edit(.:format)                 evaluations#edit
-                          evaluation GET    /evaluations/:id(.:format)                      evaluations#show
-                                     PUT    /evaluations/:id(.:format)                      evaluations#update
-                                     DELETE /evaluations/:id(.:format)                      evaluations#destroy
-                             members GET    /members(.:format)                              members#index
-                                     POST   /members(.:format)                              members#create
-                          new_member GET    /members/new(.:format)                          members#new
-                         edit_member GET    /members/:id/edit(.:format)                     members#edit
-                              member GET    /members/:id(.:format)                          members#show
-                                     PUT    /members/:id(.:format)                          members#update
-                                     DELETE /members/:id(.:format)                          members#destroy
-                              hegzas GET    /hegzas(.:format)                               hegzas#index
-                                     POST   /hegzas(.:format)                               hegzas#create
-                           new_hegza GET    /hegzas/new(.:format)                           hegzas#new
-                          edit_hegza GET    /hegzas/:id/edit(.:format)                      hegzas#edit
-                               hegza GET    /hegzas/:id(.:format)                           hegzas#show
-                                     PUT    /hegzas/:id(.:format)                           hegzas#update
-                                     DELETE /hegzas/:id(.:format)                           hegzas#destroy
-                              events GET    /events(.:format)                               events#index
-                                     POST   /events(.:format)                               events#create
-                           new_event GET    /events/new(.:format)                           events#new
-                          edit_event GET    /events/:id/edit(.:format)                      events#edit
-                               event GET    /events/:id(.:format)                           events#show
-                                     PUT    /events/:id(.:format)                           events#update
-                                     DELETE /events/:id(.:format)                           events#destroy
-application_autocomplete_member_name GET    /application/autocomplete_member_name(.:format) application#autocomplete_member_name
-                       geneh_members GET    /geneh/members(.:format)                        geneh/members#index
-                                     POST   /geneh/members(.:format)                        geneh/members#create
-                    new_geneh_member GET    /geneh/members/new(.:format)                    geneh/members#new
-                   edit_geneh_member GET    /geneh/members/:id/edit(.:format)               geneh/members#edit
-                        geneh_member GET    /geneh/members/:id(.:format)                    geneh/members#show
-                                     PUT    /geneh/members/:id(.:format)                    geneh/members#update
-                                     DELETE /geneh/members/:id(.:format)                    geneh/members#destroy
-                   geneh_geneh_cases GET    /geneh/geneh_cases(.:format)                    geneh/geneh_cases#index
-                                     POST   /geneh/geneh_cases(.:format)                    geneh/geneh_cases#create
-                new_geneh_geneh_case GET    /geneh/geneh_cases/new(.:format)                geneh/geneh_cases#new
-               edit_geneh_geneh_case GET    /geneh/geneh_cases/:id/edit(.:format)           geneh/geneh_cases#edit
-                    geneh_geneh_case GET    /geneh/geneh_cases/:id(.:format)                geneh/geneh_cases#show
-                                     PUT    /geneh/geneh_cases/:id(.:format)                geneh/geneh_cases#update
-                                     DELETE /geneh/geneh_cases/:id(.:format)                geneh/geneh_cases#destroy
-                              search        /search(.:format)                               application#search
-                            meetings GET    /meetings(.:format)                             meetings#index
-                                     POST   /meetings(.:format)                             meetings#create
-                         new_meeting GET    /meetings/new(.:format)                         meetings#new
-                        edit_meeting GET    /meetings/:id/edit(.:format)                    meetings#edit
-                             meeting GET    /meetings/:id(.:format)                         meetings#show
-                                     PUT    /meetings/:id(.:format)                         meetings#update
-                                     DELETE /meetings/:id(.:format)                         meetings#destroy
-                        yes_trainers GET    /yes/trainers(.:format)                         yes/trainers#index
-                                     POST   /yes/trainers(.:format)                         yes/trainers#create
-                     new_yes_trainer GET    /yes/trainers/new(.:format)                     yes/trainers#new
-                    edit_yes_trainer GET    /yes/trainers/:id/edit(.:format)                yes/trainers#edit
-                         yes_trainer GET    /yes/trainers/:id(.:format)                     yes/trainers#show
-                                     PUT    /yes/trainers/:id(.:format)                     yes/trainers#update
-                                     DELETE /yes/trainers/:id(.:format)                     yes/trainers#destroy
-                         yes_members GET    /yes/members(.:format)                          yes/members#index
-                                     POST   /yes/members(.:format)                          yes/members#create
-                      new_yes_member GET    /yes/members/new(.:format)                      yes/members#new
-                     edit_yes_member GET    /yes/members/:id/edit(.:format)                 yes/members#edit
-                          yes_member GET    /yes/members/:id(.:format)                      yes/members#show
-                                     PUT    /yes/members/:id(.:format)                      yes/members#update
-                                     DELETE /yes/members/:id(.:format)                      yes/members#destroy
-              yes_training_companies GET    /yes/training_companies(.:format)               yes/training_companies#index
-                                     POST   /yes/training_companies(.:format)               yes/training_companies#create
-            new_yes_training_company GET    /yes/training_companies/new(.:format)           yes/training_companies#new
-           edit_yes_training_company GET    /yes/training_companies/:id/edit(.:format)      yes/training_companies#edit
-                yes_training_company GET    /yes/training_companies/:id(.:format)           yes/training_companies#show
-                                     PUT    /yes/training_companies/:id(.:format)           yes/training_companies#update
-                                     DELETE /yes/training_companies/:id(.:format)           yes/training_companies#destroy
-                  new_member_session GET    /members/login(.:format)                        devise/sessions#new
-                      member_session POST   /members/login(.:format)                        devise/sessions#create
-              destroy_member_session GET    /members/logout(.:format)                       devise/sessions#destroy
-                     member_password POST   /members/secret(.:format)                       devise/passwords#create
-                 new_member_password GET    /members/secret/new(.:format)                   devise/passwords#new
-                edit_member_password GET    /members/secret/edit(.:format)                  devise/passwords#edit
-                                     PUT    /members/secret(.:format)                       devise/passwords#update
-          cancel_member_registration GET    /members/register/cancel(.:format)              devise_invitable/registrations#cancel
-                 member_registration POST   /members/register(.:format)                     devise_invitable/registrations#create
-             new_member_registration GET    /members/register/sign_up(.:format)             devise_invitable/registrations#new
-            edit_member_registration GET    /members/register/edit(.:format)                devise_invitable/registrations#edit
-                                     PUT    /members/register(.:format)                     devise_invitable/registrations#update
-                                     DELETE /members/register(.:format)                     devise_invitable/registrations#destroy
-            accept_member_invitation GET    /members/invitation/accept(.:format)            devise/invitations#edit
-                   member_invitation POST   /members/invitation(.:format)                   devise/invitations#create
-               new_member_invitation GET    /members/invitation/new(.:format)               devise/invitations#new
-                                     PUT    /members/invitation(.:format)                   devise/invitations#update
-                          care_index GET    /care/index(.:format)                           care#index
-                                root        /                                               members#lawlab
-         create_session_care_fridays POST   /care/fridays/create_session(.:format)          care/fridays#create_session
-                        care_fridays GET    /care/fridays(.:format)                         care/fridays#index
-                                     POST   /care/fridays(.:format)                         care/fridays#create
-                     new_care_friday GET    /care/fridays/new(.:format)                     care/fridays#new
-                    edit_care_friday GET    /care/fridays/:id/edit(.:format)                care/fridays#edit
-                         care_friday GET    /care/fridays/:id(.:format)                     care/fridays#show
-                                     PUT    /care/fridays/:id(.:format)                     care/fridays#update
-                                     DELETE /care/fridays/:id(.:format)                     care/fridays#destroy
-                        care_courses GET    /care/courses(.:format)                         care/courses#index
-                                     POST   /care/courses(.:format)                         care/courses#create
-                     new_care_course GET    /care/courses/new(.:format)                     care/courses#new
-                    edit_care_course GET    /care/courses/:id/edit(.:format)                care/courses#edit
-                         care_course GET    /care/courses/:id(.:format)                     care/courses#show
-                                     PUT    /care/courses/:id(.:format)                     care/courses#update
-                                     DELETE /care/courses/:id(.:format)                     care/courses#destroy
-           add_performance_care_kids POST   /care/kids/add_performance(.:format)            care/kids#add_performance
-                           care_kids GET    /care/kids(.:format)                            care/kids#index
-                                     POST   /care/kids(.:format)                            care/kids#create
-                        new_care_kid GET    /care/kids/new(.:format)                        care/kids#new
-                       edit_care_kid GET    /care/kids/:id/edit(.:format)                   care/kids#edit
-                            care_kid GET    /care/kids/:id(.:format)                        care/kids#show
-                                     PUT    /care/kids/:id(.:format)                        care/kids#update
-                                     DELETE /care/kids/:id(.:format)                        care/kids#destroy
-                        care_members GET    /care/members(.:format)                         care/members#index
-                                     POST   /care/members(.:format)                         care/members#create
-                     new_care_member GET    /care/members/new(.:format)                     care/members#new
-                    edit_care_member GET    /care/members/:id/edit(.:format)                care/members#edit
-                         care_member GET    /care/members/:id(.:format)                     care/members#show
-                                     PUT    /care/members/:id(.:format)                     care/members#update
-                                     DELETE /care/members/:id(.:format)                     care/members#destroy
-       add_event_care_calendar_index GET    /care/calendar/add_event(.:format)              care/calendar#add_event
-                 care_calendar_index GET    /care/calendar(.:format)                        care/calendar#index
-                                     POST   /care/calendar(.:format)                        care/calendar#create
-                   new_care_calendar GET    /care/calendar/new(.:format)                    care/calendar#new
-                  edit_care_calendar GET    /care/calendar/:id/edit(.:format)               care/calendar#edit
-                       care_calendar GET    /care/calendar/:id(.:format)                    care/calendar#show
-                                     PUT    /care/calendar/:id(.:format)                    care/calendar#update
-                                     DELETE /care/calendar/:id(.:format)                    care/calendar#destroy
-                        member_tasks GET    /members/:member_id/tasks(.:format)             tasks#index
-                                     POST   /members/:member_id/tasks(.:format)             tasks#create
-                     new_member_task GET    /members/:member_id/tasks/new(.:format)         tasks#new
-                    edit_member_task GET    /members/:member_id/tasks/:id/edit(.:format)    tasks#edit
-                         member_task GET    /members/:member_id/tasks/:id(.:format)         tasks#show
-                                     PUT    /members/:member_id/tasks/:id(.:format)         tasks#update
-                                     DELETE /members/:member_id/tasks/:id(.:format)         tasks#destroy
-              member_extend_deadline POST   /members/:member_id/extend_deadline(.:format)   members#extend_deadline
-                                     GET    /members(.:format)                              members#index
-                                     POST   /members(.:format)                              members#create
-                                     GET    /members/new(.:format)                          members#new
-                                     GET    /members/:id/edit(.:format)                     members#edit
-                                     GET    /members/:id(.:format)                          members#show
-                                     PUT    /members/:id(.:format)                          members#update
-                                     DELETE /members/:id(.:format)                          members#destroy
-                   academics_members GET    /academics/members(.:format)                    academics/members#index
-                                     POST   /academics/members(.:format)                    academics/members#create
-                new_academics_member GET    /academics/members/new(.:format)                academics/members#new
-               edit_academics_member GET    /academics/members/:id/edit(.:format)           academics/members#edit
-                    academics_member GET    /academics/members/:id(.:format)                academics/members#show
-                                     PUT    /academics/members/:id(.:format)                academics/members#update
-                                     DELETE /academics/members/:id(.:format)                academics/members#destroy
-                  academics_sessions GET    /academics/sessions(.:format)                   academics/sessions#index
-                                     POST   /academics/sessions(.:format)                   academics/sessions#create
-               new_academics_session GET    /academics/sessions/new(.:format)               academics/sessions#new
-              edit_academics_session GET    /academics/sessions/:id/edit(.:format)          academics/sessions#edit
-                   academics_session GET    /academics/sessions/:id(.:format)               academics/sessions#show
-                                     PUT    /academics/sessions/:id(.:format)               academics/sessions#update
-                                     DELETE /academics/sessions/:id(.:format)               academics/sessions#destroy
-                         fr_sponsers GET    /fr/sponsers(.:format)                          fr/sponsers#index
-                                     POST   /fr/sponsers(.:format)                          fr/sponsers#create
-                      new_fr_sponser GET    /fr/sponsers/new(.:format)                      fr/sponsers#new
-                     edit_fr_sponser GET    /fr/sponsers/:id/edit(.:format)                 fr/sponsers#edit
-                          fr_sponser GET    /fr/sponsers/:id(.:format)                      fr/sponsers#show
-                                     PUT    /fr/sponsers/:id(.:format)                      fr/sponsers#update
-                                     DELETE /fr/sponsers/:id(.:format)                      fr/sponsers#destroy
-                          fr_members GET    /fr/members(.:format)                           fr/members#index
-                                     POST   /fr/members(.:format)                           fr/members#create
-                       new_fr_member GET    /fr/members/new(.:format)                       fr/members#new
-                      edit_fr_member GET    /fr/members/:id/edit(.:format)                  fr/members#edit
-                           fr_member GET    /fr/members/:id(.:format)                       fr/members#show
-                                     PUT    /fr/members/:id(.:format)                       fr/members#update
-                                     DELETE /fr/members/:id(.:format)                       fr/members#destroy
-                  logistics_requests GET    /logistics/requests(.:format)                   logistics/requests#index
-                                     POST   /logistics/requests(.:format)                   logistics/requests#create
-               new_logistics_request GET    /logistics/requests/new(.:format)               logistics/requests#new
-              edit_logistics_request GET    /logistics/requests/:id/edit(.:format)          logistics/requests#edit
-                   logistics_request GET    /logistics/requests/:id(.:format)               logistics/requests#show
-                                     PUT    /logistics/requests/:id(.:format)               logistics/requests#update
-                                     DELETE /logistics/requests/:id(.:format)               logistics/requests#destroy
-                   logistics_members GET    /logistics/members(.:format)                    logistics/members#index
-                                     POST   /logistics/members(.:format)                    logistics/members#create
-                new_logistics_member GET    /logistics/members/new(.:format)                logistics/members#new
-               edit_logistics_member GET    /logistics/members/:id/edit(.:format)           logistics/members#edit
-                    logistics_member GET    /logistics/members/:id(.:format)                logistics/members#show
-                                     PUT    /logistics/members/:id(.:format)                logistics/members#update
-                                     DELETE /logistics/members/:id(.:format)                logistics/members#destroy
-                 logistics_materials GET    /logistics/materials(.:format)                  logistics/materials#index
-                                     POST   /logistics/materials(.:format)                  logistics/materials#create
-              new_logistics_material GET    /logistics/materials/new(.:format)              logistics/materials#new
-             edit_logistics_material GET    /logistics/materials/:id/edit(.:format)         logistics/materials#edit
-                  logistics_material GET    /logistics/materials/:id(.:format)              logistics/materials#show
-                                     PUT    /logistics/materials/:id(.:format)              logistics/materials#update
-                                     DELETE /logistics/materials/:id(.:format)              logistics/materials#destroy
-                 logistics_resources GET    /logistics/resources(.:format)                  logistics/resources#index
-                                     POST   /logistics/resources(.:format)                  logistics/resources#create
-              new_logistics_resource GET    /logistics/resources/new(.:format)              logistics/resources#new
-             edit_logistics_resource GET    /logistics/resources/:id/edit(.:format)         logistics/resources#edit
-                  logistics_resource GET    /logistics/resources/:id(.:format)              logistics/resources#show
-                                     PUT    /logistics/resources/:id(.:format)              logistics/resources#update
-                                     DELETE /logistics/resources/:id(.:format)              logistics/resources#destroy
-                          hr_members GET    /hr/members(.:format)                           hr/members#index
-                                     POST   /hr/members(.:format)                           hr/members#create
-                       new_hr_member GET    /hr/members/new(.:format)                       hr/members#new
-                      edit_hr_member GET    /hr/members/:id/edit(.:format)                  hr/members#edit
-                           hr_member GET    /hr/members/:id(.:format)                       hr/members#show
-                                     PUT    /hr/members/:id(.:format)                       hr/members#update
-                                     DELETE /hr/members/:id(.:format)                       hr/members#destroy
-                                            /:controller(/:action(/:id))(.:format)          :controller#:action
+                  evaluations GET    /evaluations(.:format)                        evaluations#index
+                              POST   /evaluations(.:format)                        evaluations#create
+               new_evaluation GET    /evaluations/new(.:format)                    evaluations#new
+              edit_evaluation GET    /evaluations/:id/edit(.:format)               evaluations#edit
+                   evaluation GET    /evaluations/:id(.:format)                    evaluations#show
+                              PUT    /evaluations/:id(.:format)                    evaluations#update
+                              DELETE /evaluations/:id(.:format)                    evaluations#destroy
+                       hegzas GET    /hegzas(.:format)                             hegzas#index
+                              POST   /hegzas(.:format)                             hegzas#create
+                    new_hegza GET    /hegzas/new(.:format)                         hegzas#new
+                   edit_hegza GET    /hegzas/:id/edit(.:format)                    hegzas#edit
+                        hegza GET    /hegzas/:id(.:format)                         hegzas#show
+                              PUT    /hegzas/:id(.:format)                         hegzas#update
+                              DELETE /hegzas/:id(.:format)                         hegzas#destroy
+                approve_event GET    /events/:id/approve(.:format)                 events#approve
+                       events GET    /events(.:format)                             events#index
+                              POST   /events(.:format)                             events#create
+                    new_event GET    /events/new(.:format)                         events#new
+                   edit_event GET    /events/:id/edit(.:format)                    events#edit
+                        event GET    /events/:id(.:format)                         events#show
+                              PUT    /events/:id(.:format)                         events#update
+                              DELETE /events/:id(.:format)                         events#destroy
+                geneh_members GET    /geneh/members(.:format)                      geneh/members#index
+                              POST   /geneh/members(.:format)                      geneh/members#create
+             new_geneh_member GET    /geneh/members/new(.:format)                  geneh/members#new
+            edit_geneh_member GET    /geneh/members/:id/edit(.:format)             geneh/members#edit
+                 geneh_member GET    /geneh/members/:id(.:format)                  geneh/members#show
+                              PUT    /geneh/members/:id(.:format)                  geneh/members#update
+                              DELETE /geneh/members/:id(.:format)                  geneh/members#destroy
+            geneh_geneh_cases GET    /geneh/geneh_cases(.:format)                  geneh/geneh_cases#index
+                              POST   /geneh/geneh_cases(.:format)                  geneh/geneh_cases#create
+         new_geneh_geneh_case GET    /geneh/geneh_cases/new(.:format)              geneh/geneh_cases#new
+        edit_geneh_geneh_case GET    /geneh/geneh_cases/:id/edit(.:format)         geneh/geneh_cases#edit
+             geneh_geneh_case GET    /geneh/geneh_cases/:id(.:format)              geneh/geneh_cases#show
+                              PUT    /geneh/geneh_cases/:id(.:format)              geneh/geneh_cases#update
+                              DELETE /geneh/geneh_cases/:id(.:format)              geneh/geneh_cases#destroy
+                       search        /search(.:format)                             application#search
+                auto_complete GET    /application/auto_complete(.:format)          application#auto_complete
+                     meetings GET    /meetings(.:format)                           meetings#index
+                              POST   /meetings(.:format)                           meetings#create
+                  new_meeting GET    /meetings/new(.:format)                       meetings#new
+                 edit_meeting GET    /meetings/:id/edit(.:format)                  meetings#edit
+                      meeting GET    /meetings/:id(.:format)                       meetings#show
+                              PUT    /meetings/:id(.:format)                       meetings#update
+                              DELETE /meetings/:id(.:format)                       meetings#destroy
+                 yes_trainers GET    /yes/trainers(.:format)                       yes/trainers#index
+                              POST   /yes/trainers(.:format)                       yes/trainers#create
+              new_yes_trainer GET    /yes/trainers/new(.:format)                   yes/trainers#new
+             edit_yes_trainer GET    /yes/trainers/:id/edit(.:format)              yes/trainers#edit
+                  yes_trainer GET    /yes/trainers/:id(.:format)                   yes/trainers#show
+                              PUT    /yes/trainers/:id(.:format)                   yes/trainers#update
+                              DELETE /yes/trainers/:id(.:format)                   yes/trainers#destroy
+                  yes_members GET    /yes/members(.:format)                        yes/members#index
+                              POST   /yes/members(.:format)                        yes/members#create
+               new_yes_member GET    /yes/members/new(.:format)                    yes/members#new
+              edit_yes_member GET    /yes/members/:id/edit(.:format)               yes/members#edit
+                   yes_member GET    /yes/members/:id(.:format)                    yes/members#show
+                              PUT    /yes/members/:id(.:format)                    yes/members#update
+                              DELETE /yes/members/:id(.:format)                    yes/members#destroy
+       yes_training_companies GET    /yes/training_companies(.:format)             yes/training_companies#index
+                              POST   /yes/training_companies(.:format)             yes/training_companies#create
+     new_yes_training_company GET    /yes/training_companies/new(.:format)         yes/training_companies#new
+    edit_yes_training_company GET    /yes/training_companies/:id/edit(.:format)    yes/training_companies#edit
+         yes_training_company GET    /yes/training_companies/:id(.:format)         yes/training_companies#show
+                              PUT    /yes/training_companies/:id(.:format)         yes/training_companies#update
+                              DELETE /yes/training_companies/:id(.:format)         yes/training_companies#destroy
+           new_member_session GET    /members/login(.:format)                      devise/sessions#new
+               member_session POST   /members/login(.:format)                      devise/sessions#create
+       destroy_member_session GET    /members/logout(.:format)                     devise/sessions#destroy
+              member_password POST   /members/secret(.:format)                     devise/passwords#create
+          new_member_password GET    /members/secret/new(.:format)                 devise/passwords#new
+         edit_member_password GET    /members/secret/edit(.:format)                devise/passwords#edit
+                              PUT    /members/secret(.:format)                     devise/passwords#update
+   cancel_member_registration GET    /members/register/cancel(.:format)            devise_invitable/registrations#cancel
+          member_registration POST   /members/register(.:format)                   devise_invitable/registrations#create
+      new_member_registration GET    /members/register/sign_up(.:format)           devise_invitable/registrations#new
+     edit_member_registration GET    /members/register/edit(.:format)              devise_invitable/registrations#edit
+                              PUT    /members/register(.:format)                   devise_invitable/registrations#update
+                              DELETE /members/register(.:format)                   devise_invitable/registrations#destroy
+     accept_member_invitation GET    /members/invitation/accept(.:format)          devise/invitations#edit
+            member_invitation POST   /members/invitation(.:format)                 devise/invitations#create
+        new_member_invitation GET    /members/invitation/new(.:format)             devise/invitations#new
+                              PUT    /members/invitation(.:format)                 devise/invitations#update
+                   care_index GET    /care/index(.:format)                         care#index
+                         root        /                                             members#lawlab
+  create_session_care_fridays POST   /care/fridays/create_session(.:format)        care/fridays#create_session
+                 care_fridays GET    /care/fridays(.:format)                       care/fridays#index
+                              POST   /care/fridays(.:format)                       care/fridays#create
+              new_care_friday GET    /care/fridays/new(.:format)                   care/fridays#new
+             edit_care_friday GET    /care/fridays/:id/edit(.:format)              care/fridays#edit
+                  care_friday GET    /care/fridays/:id(.:format)                   care/fridays#show
+                              PUT    /care/fridays/:id(.:format)                   care/fridays#update
+                              DELETE /care/fridays/:id(.:format)                   care/fridays#destroy
+                 care_courses GET    /care/courses(.:format)                       care/courses#index
+                              POST   /care/courses(.:format)                       care/courses#create
+              new_care_course GET    /care/courses/new(.:format)                   care/courses#new
+             edit_care_course GET    /care/courses/:id/edit(.:format)              care/courses#edit
+                  care_course GET    /care/courses/:id(.:format)                   care/courses#show
+                              PUT    /care/courses/:id(.:format)                   care/courses#update
+                              DELETE /care/courses/:id(.:format)                   care/courses#destroy
+    add_performance_care_kids POST   /care/kids/add_performance(.:format)          care/kids#add_performance
+                    care_kids GET    /care/kids(.:format)                          care/kids#index
+                              POST   /care/kids(.:format)                          care/kids#create
+                 new_care_kid GET    /care/kids/new(.:format)                      care/kids#new
+                edit_care_kid GET    /care/kids/:id/edit(.:format)                 care/kids#edit
+                     care_kid GET    /care/kids/:id(.:format)                      care/kids#show
+                              PUT    /care/kids/:id(.:format)                      care/kids#update
+                              DELETE /care/kids/:id(.:format)                      care/kids#destroy
+                 care_members GET    /care/members(.:format)                       care/members#index
+                              POST   /care/members(.:format)                       care/members#create
+              new_care_member GET    /care/members/new(.:format)                   care/members#new
+             edit_care_member GET    /care/members/:id/edit(.:format)              care/members#edit
+                  care_member GET    /care/members/:id(.:format)                   care/members#show
+                              PUT    /care/members/:id(.:format)                   care/members#update
+                              DELETE /care/members/:id(.:format)                   care/members#destroy
+add_event_care_calendar_index GET    /care/calendar/add_event(.:format)            care/calendar#add_event
+          care_calendar_index GET    /care/calendar(.:format)                      care/calendar#index
+                              POST   /care/calendar(.:format)                      care/calendar#create
+            new_care_calendar GET    /care/calendar/new(.:format)                  care/calendar#new
+           edit_care_calendar GET    /care/calendar/:id/edit(.:format)             care/calendar#edit
+                care_calendar GET    /care/calendar/:id(.:format)                  care/calendar#show
+                              PUT    /care/calendar/:id(.:format)                  care/calendar#update
+                              DELETE /care/calendar/:id(.:format)                  care/calendar#destroy
+          update_image_member POST   /members/:id/update_image(.:format)           members#update_image
+                 member_tasks GET    /members/:member_id/tasks(.:format)           tasks#index
+                              POST   /members/:member_id/tasks(.:format)           tasks#create
+              new_member_task GET    /members/:member_id/tasks/new(.:format)       tasks#new
+             edit_member_task GET    /members/:member_id/tasks/:id/edit(.:format)  tasks#edit
+                  member_task GET    /members/:member_id/tasks/:id(.:format)       tasks#show
+                              PUT    /members/:member_id/tasks/:id(.:format)       tasks#update
+                              DELETE /members/:member_id/tasks/:id(.:format)       tasks#destroy
+       member_extend_deadline POST   /members/:member_id/extend_deadline(.:format) members#extend_deadline
+                      members GET    /members(.:format)                            members#index
+                              POST   /members(.:format)                            members#create
+                   new_member GET    /members/new(.:format)                        members#new
+                  edit_member GET    /members/:id/edit(.:format)                   members#edit
+                       member GET    /members/:id(.:format)                        members#show
+                              PUT    /members/:id(.:format)                        members#update
+                              DELETE /members/:id(.:format)                        members#destroy
+            academics_members GET    /academics/members(.:format)                  academics/members#index
+                              POST   /academics/members(.:format)                  academics/members#create
+         new_academics_member GET    /academics/members/new(.:format)              academics/members#new
+        edit_academics_member GET    /academics/members/:id/edit(.:format)         academics/members#edit
+             academics_member GET    /academics/members/:id(.:format)              academics/members#show
+                              PUT    /academics/members/:id(.:format)              academics/members#update
+                              DELETE /academics/members/:id(.:format)              academics/members#destroy
+           academics_sessions GET    /academics/sessions(.:format)                 academics/sessions#index
+                              POST   /academics/sessions(.:format)                 academics/sessions#create
+        new_academics_session GET    /academics/sessions/new(.:format)             academics/sessions#new
+       edit_academics_session GET    /academics/sessions/:id/edit(.:format)        academics/sessions#edit
+            academics_session GET    /academics/sessions/:id(.:format)             academics/sessions#show
+                              PUT    /academics/sessions/:id(.:format)             academics/sessions#update
+                              DELETE /academics/sessions/:id(.:format)             academics/sessions#destroy
+                  fr_sponsers GET    /fr/sponsers(.:format)                        fr/sponsers#index
+                              POST   /fr/sponsers(.:format)                        fr/sponsers#create
+               new_fr_sponser GET    /fr/sponsers/new(.:format)                    fr/sponsers#new
+              edit_fr_sponser GET    /fr/sponsers/:id/edit(.:format)               fr/sponsers#edit
+                   fr_sponser GET    /fr/sponsers/:id(.:format)                    fr/sponsers#show
+                              PUT    /fr/sponsers/:id(.:format)                    fr/sponsers#update
+                              DELETE /fr/sponsers/:id(.:format)                    fr/sponsers#destroy
+                   fr_members GET    /fr/members(.:format)                         fr/members#index
+                              POST   /fr/members(.:format)                         fr/members#create
+                new_fr_member GET    /fr/members/new(.:format)                     fr/members#new
+               edit_fr_member GET    /fr/members/:id/edit(.:format)                fr/members#edit
+                    fr_member GET    /fr/members/:id(.:format)                     fr/members#show
+                              PUT    /fr/members/:id(.:format)                     fr/members#update
+                              DELETE /fr/members/:id(.:format)                     fr/members#destroy
+           logistics_requests GET    /logistics/requests(.:format)                 logistics/requests#index
+                              POST   /logistics/requests(.:format)                 logistics/requests#create
+        new_logistics_request GET    /logistics/requests/new(.:format)             logistics/requests#new
+       edit_logistics_request GET    /logistics/requests/:id/edit(.:format)        logistics/requests#edit
+            logistics_request GET    /logistics/requests/:id(.:format)             logistics/requests#show
+                              PUT    /logistics/requests/:id(.:format)             logistics/requests#update
+                              DELETE /logistics/requests/:id(.:format)             logistics/requests#destroy
+            logistics_members GET    /logistics/members(.:format)                  logistics/members#index
+                              POST   /logistics/members(.:format)                  logistics/members#create
+         new_logistics_member GET    /logistics/members/new(.:format)              logistics/members#new
+        edit_logistics_member GET    /logistics/members/:id/edit(.:format)         logistics/members#edit
+             logistics_member GET    /logistics/members/:id(.:format)              logistics/members#show
+                              PUT    /logistics/members/:id(.:format)              logistics/members#update
+                              DELETE /logistics/members/:id(.:format)              logistics/members#destroy
+          logistics_materials GET    /logistics/materials(.:format)                logistics/materials#index
+                              POST   /logistics/materials(.:format)                logistics/materials#create
+       new_logistics_material GET    /logistics/materials/new(.:format)            logistics/materials#new
+      edit_logistics_material GET    /logistics/materials/:id/edit(.:format)       logistics/materials#edit
+           logistics_material GET    /logistics/materials/:id(.:format)            logistics/materials#show
+                              PUT    /logistics/materials/:id(.:format)            logistics/materials#update
+                              DELETE /logistics/materials/:id(.:format)            logistics/materials#destroy
+          logistics_resources GET    /logistics/resources(.:format)                logistics/resources#index
+                              POST   /logistics/resources(.:format)                logistics/resources#create
+       new_logistics_resource GET    /logistics/resources/new(.:format)            logistics/resources#new
+      edit_logistics_resource GET    /logistics/resources/:id/edit(.:format)       logistics/resources#edit
+           logistics_resource GET    /logistics/resources/:id(.:format)            logistics/resources#show
+                              PUT    /logistics/resources/:id(.:format)            logistics/resources#update
+                              DELETE /logistics/resources/:id(.:format)            logistics/resources#destroy
+                   hr_members GET    /hr/members(.:format)                         hr/members#index
+                              POST   /hr/members(.:format)                         hr/members#create
+                new_hr_member GET    /hr/members/new(.:format)                     hr/members#new
+               edit_hr_member GET    /hr/members/:id/edit(.:format)                hr/members#edit
+                    hr_member GET    /hr/members/:id(.:format)                     hr/members#show
+                              PUT    /hr/members/:id(.:format)                     hr/members#update
+                              DELETE /hr/members/:id(.:format)                     hr/members#destroy
+                                     /:controller(/:action(/:id))(.:format)        :controller#:action
