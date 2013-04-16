@@ -80,7 +80,7 @@ class Member
   has_many :created_geneh_cases, class_name: "GenehCase", inverse_of: :creator
   has_and_belongs_to_many :responsible_geneh_case, class_name: "GenehCase", inverse_of: :responsible_people
 
-
+  has_many :managed_events, class_name: "Event", inverse_of: :event_manager
   def full_name
     name.blank? ? email.split('@')[0] : name
   end
