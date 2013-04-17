@@ -27,7 +27,7 @@ class EventsController < ApplicationController
   end
 
   def approve
-    @event = Event.find(params[:id])
+    @event = Event.find params[:id]
     @event.update_attribute :approved, true
     redirect_to :back
   end
