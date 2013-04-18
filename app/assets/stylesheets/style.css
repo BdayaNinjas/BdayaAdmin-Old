@@ -1,4 +1,5 @@
 body {
+	margin-top: 0px;
 	margin-left: 10%;
 	padding: 0px;
 	width: 80%;
@@ -17,7 +18,8 @@ div#center {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin-top: -60px; /* the bottom margin is the negative value of the footer's height */
+	/*margin-top: -60px; /* the bottom margin is the negative value of the footer's height */
+	top:-77px;
 	position: relative;
 }
 
@@ -31,6 +33,7 @@ div#topbar {
 	height: 60px;
 	position: relative;
 	z-index: 1;
+	top:-19px;
 }
 
 div#topbar-content {	
@@ -359,10 +362,30 @@ div#content {
 	margin-left: 100px;
 	margin-right: 300px;
 }
+.redodiv{
+  display: none;
+  position: absolute;
+  top: 16px;
+  left: 17px;
+  z-index:1;
+  padding: 10px;
+  background: #e2eaee;
+  color: #95b2be;
+  -moz-box-shadow: 1px 1px 0px 0px #aeccda;
+  -webkit-box-shadow: 1px 1px 0px 0px #aeccda;
+  box-shadow: 1px 1px 0px 0px #aeccda;
+}
+.page{
+  position:relative;
+}
+.redo{
+  width: 17px;
+  float: right;
+}
 
 .search-form{
 	position: relative;
-	top: 30px;
+	top: 20px;
 	z-index: 100;
 	left:100px;
 }

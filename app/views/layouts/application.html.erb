@@ -1,183 +1,177 @@
-<head>
-  <title>BdayaAdmin</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>  
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "exporting" %>
-  <%= javascript_include_tag "jquery.min" %>
-  <%= javascript_include_tag "highcharts" %>
-  <%= javascript_include_tag "graph" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <% if(current_member == nil) %>
-  <%= yield %>
-  <%end%>
-  <% if(current_member != nil) %>
-  <div id="topbar">
-    <div id="topbar-content">
-      <div id="user-info">
-        <div id="vertical-bar"></div>
-        
-        <% if(current_member != nil) %>
-        <div id="info">
-          <div id="pp">
-            <img id="pp-glow" src="/images/pp-glow.png">
+<html>
+  <head>
+    <title>BdayaAdmin</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>  
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= yield unless current_member %>
+    <% if current_member %>
+    <div id="topbar">
+      <div id="topbar-content">
+        <div id="user-info">
+          <div id="vertical-bar"></div>
+          
+          <% if(current_member != nil) %>
+          <div id="info">
+            <div id="pp">
+              <img id="pp-glow" src="/images/pp-glow.png">
+            </div>
+            <div id="badges">
+              <img src="/badges/star.png">
+              <img src="/badges/diamond.png">
+              <img src="/badges/redbadge.png">
+              <img src="/badges/bluebadge.png">
+            </div>
+              <div class="name fname"><%= current_member.name %></div>
+              <div class="name"><%= current_member.email %></div>
           </div>
-          <div id="badges">
-            <img src="/badges/star.png">
-            <img src="/badges/diamond.png">
-            <img src="/badges/redbadge.png">
-            <img src="/badges/bluebadge.png">
-          </div>
-            <div class="name fname"><%= current_member.name %></div>
-            <div class="name"><%= current_member.email %></div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-    <div id="topbar-shadow"></div>
-  </div>
-  <div id="center">
-    <div id="leftbar">
-      <div id="leftbar-shadow"></div>
-      <div id="leftbar-content">
-        <img src="/images/logo.png" id="logo">
-        <div id="home-icon" class="leftbar-icon"><%link_to "Profile", :controller => "members", :action => "show", :id => current_member.id%></div>
-        <div id="icons-seperate"></div>
-        <div id="committee-icon" class="leftbar-icon">
-          <div class="menu-list">
-  					<ul>
-							Projects
-							<li><a href="/geneh/members">Geneh</a></li>
-							<li><a href="/care/members">Care</a></li>
-							<li><a href="/yes/members">Yes</a></li>
-							<li><a href="/academics/members">Academics</a></li>
-							<li><a href="#">Team</a></li>
-						</ul>
-						<ul>
-							OCs
-							<li><a href="/fr/members">FR</a></li>
-							<li><a href="/logistics/members">Logistics</a></li>
-							<li><a href="/hr/members">HR</a></li>
-							<li><a href="#">PR</a></li>
-							<li><a href="#">Design</a></li>
-							<li><a href="#">IT</a></li>
-						</ul>
-					</div>
-        </div>
-        <div id="icons-seperate"></div>
-        <div id="calendar-icon" class="leftbar-icon"></div>
-        <div id="icons-seperate"></div>
-        <div id="edit-icon" class="leftbar-icon"></div>
-      </div>
-    </div>
-    <div id="rightbar">
-      <div id="rightbar-shadow"></div>
-      <div id="rightbar-content">
-      
-      	<div id="rightbar-tabs">
-      		<ul>
-			<li id="noti-icon"></li><li class="tab active">NOTIFICATIONS</li>
-			<li id="tasks-icon"></li><li class="tab">TASKS</li>
-			<li id="meetings-icon"></li><li class="tab">MEETINGS</li>
-		</ul>
-	</div>
-	
-	<div class="data" id="noti-data">
-	<% if(current_member != nil) %>
-          <% @all = current_member.notifications %>
-          <% if @all != nil %>
-            <% @all.each do |t| %>
-		<div class="item">
-			<h4></h4>
-			<h5>
-				<%if t.seen == false %> <!-- check notification is UNSEEN --> 
-				               <% if t.type == 1 %>  <!-- check if type is REQUEST -->
-				                  <%= t.desc %>
-				                <% elsif t.type == 2 %> <!-- check if type is ACCEPTANCE -->
-				                  <%= t.desc %>
-				                <% elsif t.type == 3 %> <!-- check if type is DECLINING -->
-				                  <%= t.desc %>
-				                <% elsif t.type == 4 %> <!-- check if type is REMINDER -->
-				                  <%= t.desc %>
-				                <% else %> <!-- check if type is OTHER -->
-				                  <%= t.desc %>
-				                <% end %>
-				              <% else %> <!-- notification is SEEN before -->
-				                <% if t.type == 1 %>  <!-- check if type is REQUEST -->
-				                  <%= t.desc %>
-				                <% elsif t.type == 2 %> <!-- check if type is ACCEPTANCE -->
-				                  <%= t.desc %>
-				                <% elsif t.type == 3 %> <!-- check if type is DECLINING -->
-				                  <%= t.desc %>
-				                <% elsif t.type == 4 %> <!-- check if type is REMINDER -->
-				                  <%= t.desc %>
-				                <% else %> <!-- check if type is OTHER -->
-				                  <%= t.desc %>
-				                <% end %>
-				              <% end %>	
-			</h5>
-		</div>
-		<% end %>  
           <% end %>
-        <% end %>
-	</div>
-        <!-- adding notifications -->
-        <!-- the only thing missing howa after en notification is seen there is a method we should call t.set_seen to change seen to true -->
+        </div>
+      </div>
+      <div id="topbar-shadow"></div>
+    </div>
+    <div id="center">
+      <div id="leftbar">
+        <div id="leftbar-shadow"></div>
+        <div id="leftbar-content">
+          <img src="/images/logo.png" id="logo">
+          <div id="home-icon" class="leftbar-icon"><%link_to "Profile", :controller => "members", :action => "show", :id => current_member.id%></div>
+          <div id="icons-seperate"></div>
+          <div id="committee-icon" class="leftbar-icon">
+            <div class="menu-list">
+    					<ul>
+  							Projects
+  							<li><a href="/geneh/members">Geneh</a></li>
+  							<li><a href="/care/members">Care</a></li>
+  							<li><a href="/yes/members">Yes</a></li>
+  							<li><a href="/academics/members">Academics</a></li>
+  							<li><a href="#">Team</a></li>
+  						</ul>
+  						<ul>
+  							OCs
+  							<li><a href="/fr/members">FR</a></li>
+  							<li><a href="/logistics/members">Logistics</a></li>
+  							<li><a href="/hr/members">HR</a></li>
+  							<li><a href="#">PR</a></li>
+  							<li><a href="#">Design</a></li>
+  							<li><a href="#">IT</a></li>
+  						</ul>
+  					</div>
+          </div>
+          <div id="icons-seperate"></div>
+          <div id="calendar-icon" class="leftbar-icon"></div>
+          <div id="icons-seperate"></div>
+          <div id="edit-icon" class="leftbar-icon"></div>
+        </div>
+      </div>
+      <div id="rightbar">
+        <div id="rightbar-shadow"></div>
+        <div id="rightbar-content">
         
-             
-            
-        <!-- finished adding notifications -->
+        <div id="rightbar-tabs">
+        	<ul>
+      			<li id="noti-icon"></li><li class="tab active">NOTIFICATIONS</li>
+      			<li id="tasks-icon"></li><li class="tab">TASKS</li>
+      			<li id="meetings-icon"></li><li class="tab">MEETINGS</li>
+      		</ul>
+      	</div>
+  	
+  	<div class="data" id="noti-data">
+  	<% if current_member %>
+      <% @all = current_member.notifications %>
+      <% if @all != nil %>
+        <% @all.each do |t| %>
+      		<div class="item">
+      			<h4></h4>
+      			<h5>
+      				<%if t.seen == false %> <!-- check notification is UNSEEN --> 
+               <% if t.type == 1 %>  <!-- check if type is REQUEST -->
+                  <%= t.desc %>
+                <% elsif t.type == 2 %> <!-- check if type is ACCEPTANCE -->
+                  <%= t.desc %>
+                <% elsif t.type == 3 %> <!-- check if type is DECLINING -->
+                  <%= t.desc %>
+                <% elsif t.type == 4 %> <!-- check if type is REMINDER -->
+                  <%= t.desc %>
+                <% else %> <!-- check if type is OTHER -->
+                  <%= t.desc %>
+                <% end %>
+              <% else %> <!-- notification is SEEN before -->
+                <% if t.type == 1 %>  <!-- check if type is REQUEST -->
+                  <%= t.desc %>
+                <% elsif t.type == 2 %> <!-- check if type is ACCEPTANCE -->
+                  <%= t.desc %>
+                <% elsif t.type == 3 %> <!-- check if type is DECLINING -->
+                  <%= t.desc %>
+                <% elsif t.type == 4 %> <!-- check if type is REMINDER -->
+                  <%= t.desc %>
+                <% else %> <!-- check if type is OTHER -->
+                  <%= t.desc %>
+                <% end %>
+              <% end %>	
+      			</h5>
+      		</div>
+      	<% end %>  
+      <% end %>
+    <% end %>
+  	</div>
+          <!-- adding notifications -->
+          <!-- the only thing missing howa after en notification is seen there is a method we should call t.set_seen to change seen to true -->
+          
+               
+              
+          <!-- finished adding notifications -->
+        </div>
+      </div>
+      <%= form_tag search_path, method: :get, class: "search-form" do  %>
+        <%= text_field_tag :search, params[:search], class: "seach-field" %>
+        <div class="auto">
+          <ul>
+          </ul>
+        </div>
+        <%= submit_tag "Search", class:"submit-search" %>
+      <% end %>
+      <div id="content">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <div id="member_status">
+      <% if member_signed_in? %>
+        Signed in as <%= current_member.email %>. Not you? <br>
+        <%= current_member.notifications.size %><br>
+        <%= link_to 'logout', destroy_member_session_path, :method => :get %>
+      <% else %>
+        <%= link_to 'login', new_member_session_path, :method => :get %>
+      <% end %>
+      </div>
+        <%= yield %>
       </div>
     </div>
-    <%= form_tag search_path, method: :get, class: "search-form" do  %>
-      <%= text_field_tag :search, params[:search], class: "seach-field" %>
-      <div class="auto">
-        <ul>
-        </ul>
-      </div>
-      <%= submit_tag "Search", class:"submit-search" %>
-    <% end %>
-    <div id="content">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <div id="member_status">
-    <% if member_signed_in? %>
-      Signed in as <%= current_member.email %>. Not you? <br>
-      <%= current_member.notifications.size %><br>
-      <%= link_to 'logout', destroy_member_session_path, :method => :get %>
-    <% else %>
-      <%= link_to 'login', new_member_session_path, :method => :get %>
-    <% end %>
-    </div>
-      <%= yield %>
-
-    </div>
-  </div>
-
-</body>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.auto li').live('click',function(e){
-      text = $(this).html();
-      $('.seach-field').val(text);
-      $('.submit-search').click();
-    });
-    $('.seach-field').keyup(function(event){
-      text = $('.seach-field').val();
-      if(text.length < 2)
-        return;
-      $.ajax({
-        type: "get",
-        url: "<%= auto_complete_path %>",
-        data: { text: text }
-      }).done(function( data ) {
-        $('.auto ul').html('');
-        $.each(data, function(i, v){
-          $('.auto ul').append('<li>'+v+'</li>');
+  <% end %>
+  </body>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.auto li').live('click',function(e){
+        text = $(this).html();
+        $('.seach-field').val(text);
+        $('.submit-search').click();
+      });
+      $('.seach-field').keyup(function(event){
+        text = $('.seach-field').val();
+        if(text.length < 2)
+          return;
+        $.ajax({
+          type: "get",
+          url: "<%= auto_complete_path %>",
+          data: { text: text }
+        }).done(function( data ) {
+          $('.auto ul').html('');
+          $.each(data, function(i, v){
+            $('.auto ul').append('<li>'+v+'</li>');
+          });
         });
       });
     });
-  });
-</script>
-<%end%>
+  </script>
+</html>

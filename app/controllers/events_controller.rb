@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @members = Member.all - [current_member]
+    @members = Member.all# - [current_member]
   end
 
   def create

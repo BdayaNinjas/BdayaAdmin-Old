@@ -10,6 +10,7 @@ gem 'bson_ext'
 gem 'jquery-rails'
 gem 'mongoid_search'
 gem 'rails3-jquery-autocomplete'
+gem 'chosen-rails'
 
 # gem "mini_magick", "~> 3.5.0"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
@@ -20,7 +21,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'chosen-rails'
 end
 # gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'devise'

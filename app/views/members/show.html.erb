@@ -42,246 +42,209 @@
 <%= link_to("<< Back to List", {:controller => @c, :action => 'index'}) %>
 <%= link_to("View Tasks", {:controller => 'tasks', :action => 'index', :id => @member.id}) %>
 
-<body>
- <div id="page">
+<div id="page">
   <div id="pic">
     <% if @member.image.url != nil %>
       <%= image_tag @member.image.url, :style=>"width:200px;height:200px;" %>
     <% else %>
       <img src="/images/user_icon_200.png">
     <% end %>
-</div>
+  </div>
 
-<div id="info">
-
- <h1><%= @member.name %></h1>
- <h2></h2>
- <div id="list1">
-   <b>Email: </b><%= @member.email %><br><br>
-   <b>Major: </b><%= @member.major %><br><br>
-   <b>Semester: </b><%= @member.semester %>
-
-    <%= form_for(@member, :url => update_image_member_path(@member), :html => { :method => :post, :multipart => true }) do |f| %>
-      <b>Update Avatar</b></label> <%= f.file_field :image %>
-      <%= f.submit "Upload Avatar" %>
-    <% end %>
-
-</div>
-<div id="list2">
-  <% if @member.committee != nil %>
-  <b>Committee: </b><%= @member.committee.name %><br><br>
-  <%end%>
-   <b>Member since: </b><%= @member.created_at %><br><br>
- </div>
-</div>
-
-         <head>
-        <title>Bdaya | Profile</title>
-        <style type="text/css" media="screen">
-            .redodiv{
-                display: none;
-                position: absolute;
-                top: 16px;
-                left: 17px;
-                z-index:1;
-                padding: 10px;
-                background: #e2eaee;
-                color: #95b2be;
-                -moz-box-shadow: 1px 1px 0px 0px #aeccda;
-                -webkit-box-shadow: 1px 1px 0px 0px #aeccda;
-                box-shadow: 1px 1px 0px 0px #aeccda;
-            }
-            .page{
-                position:relative;
-            }
-            .redo{
-                width: 17px;
-                float: right;
-            }
-        </style>
-        <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
-        <script>
-            $(document).ready(function(){
-                $(".redo").click(function(){
-                    $(this).next().toggle();
-                });
-            });
-        </script>
-    </head>
-<% @page_title = "Tasks List" %>
-
-<div class="tasks list">
-  <div class="spreadsheet">
-    
-    <div class="spread-head">
-      <!-- spreadsheet title -->
-      <h1>Assigned Tasks</h1>
-      <table class="link-data" id="link1">
-         <thead>
-             <tr>
-               <th>Month</th>
-               <th>Savings</th>
-              <th>Month</th>
-              <th>Savings</th>
-             </tr>
-         </thead>
-         
-         <tbody>
-            <tr>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <!-- add this if row is editable -->
-               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
-               </td>
-            </tr>
-            <tr>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
-            </tr>
-            <tr>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
-            </tr>
-            <tr>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td>Data</td>
-               <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>           
-            </tr>
-         </tbody>
-      </table>
-      <table class="link-data" id="link2">
-         <thead>
-             <tr>
-               <th>Title</th>
-               <th>Room</th>
-               <th>Meeting Date</th>
-             </tr>
-         </thead>
-         
-         <tbody>
-            <% @member.attending_meeting_ids.each do |meeting| %>
-               <% if Meeting.find(meeting) != true %>
-                  <% @meeting = Meeting.find(meeting) %>
-                  <tr>
-                     <td><%= link_to @meeting.title, @meeting %></td>
-                     <td>
-                        <%if @meeting.room == nil || @meeting.room == "" %>
-                           <%= "Not Decided" %>
-                        <%else%>
-                           <%= @meeting.room %>
-                        <%end%>
-                     </td>
-                     <td>@meeting.meeting_time.to_date</td>
-                     </td>
-                  </tr>
-               <%end%>
-            <%end%>
-         </tbody>
-      </table>
-      <table class="link-data" id="link3">
-         <tbody>
-            <tr>
-               <td><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></td>
-            </tr>
-         </tbody>
-      
-      <!-- filter field -->
-      <div><%= pluralize(@tasks.size, 'task') %></div>
+  <div id="info">
+    <h1><%= @member.name %></h1>
+    <div id="list1">
+      <b>Email: </b><%= @member.email %><br><br>
+      <b>Major: </b><%= @member.major %><br><br>
+      <b>Semester: </b><%= @member.semester %>
+      <%= form_for(@member, :url => update_image_member_path(@member), :html => { :method => :post, :multipart => true }) do |f| %>
+        <b>Update Avatar</b> <%= f.file_field :image %>
+        <%= f.submit "Upload Avatar" %>
+      <% end %>
     </div>
-    
-    <table>
-      <thead>
-          <tr>
-            <th>Descritpion</th>
-              <th>Status</th>
-              <th>Deadline</th>
-              <th>Actions</th>
-          </tr>
-      </thead>
-      
-      <tbody>
-        <% @tasks.each do |task| %>
-        <tr>
-          <td>
-            <p class="cell-data"><%= task.description %></p>
-            <div class="cell-edit"><%= task.description %></div>
-          </td>
-          <td>
-            <%= form_for task, :url => {:controller => 'tasks', :action => 'Re_open', :task_id => task.id, :id => @member.id} do |f| %>
-            <div class="page">
-              <div class="redo"><img src="/images/capture.JPG"></div>
-                <div class="redodiv">
-                  Comment: 
-                  <textarea></textarea>
-                  <input type="submit" value="Reopen"></input>
-                </div>
-              </div>
-              <p class="cell-data" width="auto"><%= task.status %></p>
-                <%end%>
-          </td>
-          <td>
-            <%= form_for task, :url => {:controller => 'tasks', :action => 'extend_deadline', :task_id => task.id, :id => @member.id } do |f| %>
-              <div class="page">
-              <div class="redo"><img src="/images/capture.JPG"></div>
-                <div class="redodiv">
-                  Requested Deadline:
-                  <%= f.text_field(:requested_deadline) %>                  
-                  <br/>
-                  Excuse:
-                  <br/>
-                  <textarea></textarea>
-                  <input type="submit" value="Extend Deadline"></input>
-                </div>
-              </div>
-              <p class="cell-data" width="auto"><%= task.deadline %></p>
-                <%end%>
-          </td>
-          <td>
-            <%= link_to("Approve", {:controller => 'tasks', :action => 'approve', :id => @member.id, :task_id => task.id}) %>
-            <%= link_to("Disapprove", {:controller => 'tasks', :action => 'disapprove', :id => @member.id, :task_id => task.id}) %>
-            <%= link_to("Done", {:controller => 'tasks', :action => 'Done', :id => @member.id, :task_id => task.id}) %>
-          </td>
-          <!-- add this if row is editable -->
-        
-        </tr>
-        <%end%>
-        
-        
-        <!-- "Create new data" form here -->
-        <tr class="add-row">
-           <%= form_for @task=Task.new, :url => {:action => 'create', :member_id => @member.id} do |f| %>
-          <td><%= f.text_field(:description)%> </td>
-          <td></td>
-          <td><%= f.text_field(:deadline) %></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <%end%>
-        </tr>
-        
-      </tbody>
-    </table>
-    
-    <div class="spread-footer">
-      
+    <div id="list2">
+      <% if @member.committee != nil %>
+      <b>Committee: </b><%= @member.committee.name %><br><br>
+      <%end%>
+       <b>Member since: </b><%= @member.created_at %><br><br>
     </div>
   </div>
-      </table>
-            <center><h1><%= link_to("Evaluate Member", {:controller => 'evaluations', :action => 'new', :id => @member.id}) %></h1></center>
-         <% if @member.evaluations != nil %>
-            <div id="ccc"></div>
-            </div> 
+  <script>
+    $(document).ready(function(){
+      $(".redo").click(function(){
+          $(this).next().toggle();
+      });
+    });
+  </script>
+  <% @page_title = "Tasks List" %>
+
+  <div class="tasks list">
+    <div class="spreadsheet">
+      <div class="spread-head">
+        <!-- spreadsheet title -->
+        <h1>Assigned Tasks</h1>
+        <table class="link-data" id="link1">
+           <thead>
+               <tr>
+                 <th>Month</th>
+                 <th>Savings</th>
+                <th>Month</th>
+                <th>Savings</th>
+               </tr>
+           </thead>
+           
+           <tbody>
+              <tr>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <!-- add this if row is editable -->
+                 <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+              </tr>
+              <tr>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>
+              </tr>
+              <tr>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td>Data</td>
+                 <td class="edit"><div class="edit"><div class="update-row">✎</div><div class="delete-row">✖</div></div>           
+              </tr>
+           </tbody>
+        </table>
+        <table class="link-data" id="link2">
+           <thead>
+               <tr>
+                 <th>Title</th>
+                 <th>Room</th>
+                 <th>Meeting Date</th>
+               </tr>
+           </thead>
+           
+           <tbody>
+              <% @member.attending_meeting_ids.each do |meeting| %>
+                 <% if Meeting.find(meeting) != true %>
+                    <% @meeting = Meeting.find(meeting) %>
+                    <tr>
+                       <td><%= link_to @meeting.title, @meeting %></td>
+                       <td>
+                          <%if @meeting.room == nil || @meeting.room == "" %>
+                             <%= "Not Decided" %>
+                          <%else%>
+                             <%= @meeting.room %>
+                          <%end%>
+                       </td>
+                       <td>@meeting.meeting_time.to_date</td>
+                    </tr>
+                 <%end%>
+              <%end%>
+           </tbody>
+        </table>
+        <table class="link-data" id="link3">
+           <tbody>
+              <tr>
+                 <td><img src="http://static.bdo.uk.com/assets/images/2011/03/India_Talk_Shop_Graphs.JPG"></td>
+              </tr>
+           </tbody>
+        </table>
+        <!-- filter field -->
+        <div><%= pluralize(@tasks.size, 'task') %></div>
+      </div>
+      
+      <table>
+        <thead>
+            <tr>
+              <th>Descritpion</th>
+                <th>Status</th>
+                <th>Deadline</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+          <% @tasks.each do |task| %>
+          <tr>
+            <td>
+              <p class="cell-data"><%= task.description %></p>
+              <div class="cell-edit"><%= task.description %></div>
+            </td>
+            <td>
+              <%= form_for task, :url => {:controller => 'tasks', :action => 'Re_open', :task_id => task.id, :id => @member.id} do |f| %>
+              <div class="page">
+                <div class="redo"><img src="/images/capture.JPG"></div>
+                  <div class="redodiv">
+                    Comment: 
+                    <textarea></textarea>
+                    <input type="submit" value="Reopen"/>
+                  </div>
+                </div>
+                <p class="cell-data" width="auto"><%= task.status %></p>
+                  <%end%>
+            </td>
+            <td>
+              <%= form_for task, :url => {:controller => 'tasks', :action => 'extend_deadline', :task_id => task.id, :id => @member.id } do |f| %>
+                <div class="page">
+                <div class="redo"><img src="/images/capture.JPG"></div>
+                  <div class="redodiv">
+                    Requested Deadline:
+                    <%= f.text_field(:requested_deadline) %>                  
+                    <br/>
+                    Excuse:
+                    <br/>
+                    <textarea></textarea>
+                    <input type="submit" value="Extend Deadline"/>
+                  </div>
+                </div>
+                <p class="cell-data" width="auto"><%= task.deadline %></p>
+                  <%end%>
+            </td>
+            <td>
+              <%= link_to("Approve", {:controller => 'tasks', :action => 'approve', :id => @member.id, :task_id => task.id}) %>
+              <%= link_to("Disapprove", {:controller => 'tasks', :action => 'disapprove', :id => @member.id, :task_id => task.id}) %>
+              <%= link_to("Done", {:controller => 'tasks', :action => 'Done', :id => @member.id, :task_id => task.id}) %>
+            </td>
+            <!-- add this if row is editable -->
+          
+          </tr>
           <%end%>
- </div>
-</body>
-</html>
+          
+          
+          <!-- "Create new data" form here -->
+          <tr class="add-row">
+             <%= form_for @task=Task.new, :url => {:action => 'create', :member_id => @member.id} do |f| %>
+            <td><%= f.text_field(:description)%> </td>
+            <td></td>
+            <td><%= f.text_field(:deadline) %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <%end%>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+      <div class="spread-footer">
+        
+      </div>
+    </div>
+  </div>
+<h1><%= link_to("Evaluate Member", {:controller => 'evaluations', :action => 'new', :id => @member.id}) %></h1>
+<% if @member.evaluations != nil %>
+  <div id="ccc"></div>
+<%end%>
+</div>
