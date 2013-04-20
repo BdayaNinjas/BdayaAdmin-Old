@@ -1,0 +1,12 @@
+<b>Name:</b>
+  <%= @event.title %>
+<b>Project Manager:</b>
+  <%= @event.event_manager.name %>
+<b>Description:</b>
+  <%= @event.description %>
+<b>General Info:</b>
+  <%= @event.general_info %>
+<b>Date:</b>
+  <%= @event.date %>
+
+<%= link_to 'Edit Header', edit_event_path(@event) %>

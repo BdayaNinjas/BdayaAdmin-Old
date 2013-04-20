@@ -10,6 +10,8 @@ class Event
   field :duration, type: Integer
   field :approved, type: Boolean
 
+  field :general_info, type: String
+
   ##RELATIONS
   belongs_to :event_manager, class_name: "Member", inverse_of: :managed_events
 
