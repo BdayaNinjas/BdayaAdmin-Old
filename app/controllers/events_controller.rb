@@ -20,20 +20,16 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find params[:id]
-  end
-
-  def edit
-    @event = Event.find params[:id]
     @members = Member.all
   end
 
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
-    redirect_to(@event)
-  else
-    render "edit"
-  end
+      redirect_to(@event)
+    else
+      render "edit"
+    end
   end
 
   def destroy
