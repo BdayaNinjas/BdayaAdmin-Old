@@ -30,10 +30,10 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
-    redirect_to(@event)
-  else
-    render "edit"
-  end
+      redirect_to(@event)
+    else
+      render "edit"
+    end
   end
 
   def destroy

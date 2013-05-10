@@ -1,6 +1,7 @@
 <% @events.each do |event| %>
   <%= link_to event.title, event_path(event) %>
   <%= link_to "Approve", approve_event_path(event) unless event.approved %>
+  <br>
 <% end %>
 <div class="approved">
   
