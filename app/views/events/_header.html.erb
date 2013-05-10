@@ -1,12 +1,72 @@
-<b>Name:</b>
-  <%= @event.title %>
-<b>Project Manager:</b>
-  <%= @event.event_manager.name %>
-<b>Description:</b>
-  <%= @event.description %>
-<b>General Info:</b>
-  <%= @event.general_info %>
-<b>Date:</b>
-  <%= @event.date %>
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<%= form_for @event do |f| %> 
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this company from being saved:</h2>
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div id="name">
+    <b>Name:</b>
+    <%= @event.title %>
+  </div>
+  <div class="field" id="name_edit" style="display:none">
+    <b>Name:</b>
+    <%= f.text_field :title, placeholder: @event.title %>
+    <%= f.submit "Save" %>
+    <button id="name_cancel_btn"> Cancel
+  </div>
 
-<%= link_to 'Edit Event Header', edit_event_path(@event) %>
+  <div id="manager">
+    <b>Project Manager:</b>
+    <%= @event.event_manager.name %>
+  </div>
+  <div class = "field" id="manager_edit" style="display:none">
+    <b>Project Manager:</b>
+    <%= f.collection_select :event_manager_id, @members, :id, :name, {}, { multiple: false } %>
+    <%= f.submit "Save" %>
+    <button id="manager_cancel_btn"> Cancel
+  </div>
+
+  <div id="description">
+    <b>Description:</b>
+    <%= @event.description %>
+  </div>
+  <div id="description_edit" style="display:none">
+    <b>Description:</b>
+    <%= f.text_field :description, placeholder: @event.description %>
+    <%= f.submit "Save" %>
+    <button id="description_cancel_btn"> Cancel
+  </div>
+
+  <div id="general_info">
+    <b>General Info:</b>
+    <%= @event.general_info %>
+  </div>
+  <div id="general_info_edit" style="display:none">
+    <b>General Info:</b>
+    <%= f.text_field :general_info, placeholder: @event.general_info %>
+    <%= f.submit "Save" %>
+    <button id="general_info_cancel_btn"> Cancel
+  </div>
+
+  <div id="date">
+    <b>Date:</b>
+    <%= @event.date.to_date %>
+  </div>
+  <div id="date_edit" style="display:none">
+    <b>Date:</b>
+    <%= f.text_field :date,class:"fn bday",id:"datepicker", placeholder: @event.date %>
+    <%= f.submit "Save" %>
+    <button id="date_cancel_btn"> Cancel
+  </div>
+  <script type="text/javascript">
+    $(function() {
+      $( "#datepicker" ).datepicker();
+    });
+  </script>
+<% end %>
