@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  
   def index
     @events = Event.all
     @approved = nil
@@ -6,6 +7,10 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    #3.times { @event.posters.build }
+    @event.build_booth
+    @event.build_logo
+    @event.logo.build_image
     @members = Member.all# - [current_member]
   end
 
@@ -20,6 +25,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find params[:id]
+    3.times { @event.posters.build }
+    @event.build_booth
+    @event.build_logo
     @members = Member.all
   end
 

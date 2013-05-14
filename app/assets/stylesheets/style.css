@@ -405,3 +405,13 @@ div#content {
 .auto li:hover{
 	background-color: #ddd;
 }
+.chzn-drop{
+	width: 198px !important;
+}
+
+.chzn-container{
+	width: 200px !important;
+}
+.design{
+	display: none;
+}

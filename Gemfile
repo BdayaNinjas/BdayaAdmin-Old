@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
@@ -12,8 +13,10 @@ gem 'mongoid_search'
 gem 'rails3-jquery-autocomplete'
 gem 'chosen-rails'
 
-# gem "mini_magick", "~> 3.5.0"
+gem "mini_magick", "~> 3.5.0"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+#gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+#gem 'aws-s3',            require: 'aws/s3'
 
 # Gems used only for assets and not required
 # in production environments by default.

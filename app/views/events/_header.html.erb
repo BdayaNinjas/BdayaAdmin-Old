@@ -1,8 +1,8 @@
-<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<%= image_tag @event.logo.image.image.url if @event.logo.image %>
 <%= form_for @event do |f| %> 
   <% if @event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this company from being saved:</h2>
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
       <ul>
       <% @event.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -69,4 +69,25 @@
       $( "#datepicker" ).datepicker();
     });
   </script>
+
+  <div class="design">
+    <h3>Design Team</h3>
+    <div class="logo">
+      <b>Logo</b>
+      <%= f.fields_for :logo do |builder| %>
+        <%= builder.file_field :image %>
+      <% end %>
+    </div>
+    <div class="poster">
+      <b>Posters</b>
+      <%= f.fields_for :posters do |builder| %>
+        <%= builder.file_field :image %>
+      <% end %>
+    </div>
+    <div class="booth">
+      <b>Booth</b>
+      <%= f.fields_for :booth do |builder| %>
+        <%= builder.file_field :image %>
+      <% end %></div>
+  </div>
 <% end %>

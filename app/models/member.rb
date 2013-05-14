@@ -2,6 +2,7 @@ class Member
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Search
+#  include Mongoid::Paperclip
   include DeviseInvitable::Inviter
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -27,6 +28,8 @@ class Member
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
+
+#  has_mongoid_attached_file :image
   
   mount_uploader :image, ImageUploader
   ## Confirmable
@@ -82,8 +85,19 @@ class Member
 
   has_many :managed_events, class_name: "Event", inverse_of: :event_manager
   
+  #CALLBACKS
+
+  after_create :set_name
+
   def full_name
     name.blank? ? email.split('@')[0] : name
+  end
+
+  def set_name
+    if name.blank?
+      self.name = email.split('@')[0]
+    end
+    self.save!
   end
 =begin
   This Method to get the pending requests assigned to this member
