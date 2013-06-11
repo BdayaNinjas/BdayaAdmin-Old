@@ -9,7 +9,7 @@ class Event
   # header
   field :title, type: String
   field :description, type: String
-  field :date , type: Date
+  field :date , type: Date, default: Date.today
   field :duration, type: Integer
   field :general_info, type: String
 
