@@ -28,16 +28,14 @@ class EventsController < ApplicationController
     3.times { @event.posters.build }
     @event.build_booth
     @event.build_logo
-    @members = Member.all
+    @members = Event.list_project_manager_options
   end
 
+  respond_to :html, :json
   def update
     @event = Event.find(params[:id])
-    if @event.update_attributes(params[:event])
-      redirect_to(@event)
-    else
-      render "edit"
-    end
+    @event.update_attributes(params[:event])
+    respond_with @event
   end
 
   def destroy

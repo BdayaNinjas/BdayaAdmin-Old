@@ -1,0 +1,27 @@
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<div style="background-color:#e5e5e5; color:#525252; padding:10px">
+<%= form_for @event do |f| %> 
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this company from being saved:</h2>
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <h4 style="border-bottom: 1px solid"> Slogan </h4>
+    <%= best_in_place @event, :slogan%>
+
+    <h4 style="border-bottom: 1px solid"> Attention Getter </h4>
+    <%= best_in_place @event, :attention_getter %>
+
+    <h4 style="border-bottom: 1px solid"> Booth Message </h4>
+    <%= best_in_place @event, :booth_message %>
+
+    <h4 style="border-bottom: 1px solid"> Social Media </h4>
+    <%= best_in_place @event, :social_media %>
+</div>
+<% end %>

@@ -283,5 +283,9 @@ class Member
     return self.committee.name == "HR"
   end
 
+  def self.list_members_id_name
+    Member.all.map {|x| [x.id, x.name] }
+  end
+
 end
 
