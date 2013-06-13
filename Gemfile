@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.8'
 
+gem 'bootstrap-sass'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -12,7 +14,10 @@ gem 'jquery-rails'
 gem 'mongoid_search'
 gem 'rails3-jquery-autocomplete'
 gem 'chosen-rails'
+
 gem 'best_in_place'
+
+gem 'mongoid_taggable'
 
 gem "mini_magick", "~> 3.5.0"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'

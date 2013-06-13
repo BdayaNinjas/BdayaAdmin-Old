@@ -2,6 +2,7 @@ class Event
   include Mongoid::Document
   include Mongoid::Search
   include Mongoid::Timestamps
+  include Mongoid::Taggable
 
   ##FIELDS
   field :approved, type: Boolean
@@ -17,7 +18,10 @@ class Event
   field :slogan, type: String
   field :attention_getter, type: String
   field :social_media, type: String
-  field :booth_message, type: String  
+  field :booth_message, type: String
+
+  #materials
+  field :materials_delivered, type: Array, default: []
 
   ##RELATIONS
   belongs_to :event_manager, class_name: "Member", inverse_of: :managed_events
