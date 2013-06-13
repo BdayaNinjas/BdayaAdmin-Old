@@ -13,6 +13,10 @@ gem 'mongoid_search'
 gem 'rails3-jquery-autocomplete'
 gem 'chosen-rails'
 
+gem 'best_in_place'
+
+gem 'mongoid_taggable'
+
 gem "mini_magick", "~> 3.5.0"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 #gem 'mongoid-paperclip', require: 'mongoid_paperclip'

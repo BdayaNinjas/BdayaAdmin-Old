@@ -5,6 +5,8 @@ BdayaAdmin::Application.routes.draw do
   resources :events do
     member do
       get 'approve'
+      get 'add_tag'
+      get 'deliver_material'
     end
   end
   namespace :geneh do

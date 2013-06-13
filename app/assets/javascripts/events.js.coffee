@@ -5,42 +5,4 @@ $_ ->
     allow_single_deselect: true
     no_results_text: 'No results matched'
 
-  $("#name").click ->
-    $("#name").hide()
-    $("#name_edit").show()
-
-  $("#manager").click ->
-    $("#manager").hide()
-    $("#manager_edit").show()
-
-  $("#description").click ->
-    $("#description").hide()
-    $("#description_edit").show()
-
-  $("#general_info").click ->
-    $("#general_info").hide()
-    $("#general_info_edit").show()
-
-  $("#date").click ->
-    $("#date").hide()
-    $("#date_edit").show()
-
-  $("#name_cancel_btn").click ->
-  	$("#name_edit").hide()
-  	$("#name").show()
-
-  $("#manager_cancel_btn").click ->
-  	$("#manager_edit").hide()
-  	$("#manager").show()
-
-  $("#description_cancel_btn").click ->
-  	$("#description_edit").hide()
-  	$("#description").show()
-
-  $("#general_info_cancel_btn").click ->
-  	$("#general_info_edit").hide()
-  	$("#general_info").show()
-
-  $("#date_cancel_btn").click ->
-  	$("#date_edit").hide()
-  	$("#date").show()
+  $('.best_in_place').best_in_place()
