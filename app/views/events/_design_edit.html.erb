@@ -1,0 +1,12 @@
+<% @event.posters.each do |poster| %>
+  <%= image_tag poster.image.image.url if poster.image %>
+  <br>
+<% end %>
+<%= nested_form_for(@event, :url => upload_image_event_path(@event), :html => { :method => :post, :multipart => true }) do |f| %>
+  <%= f.fields_for @poster do |poster| %>
+    <%=  poster.fields_for Image.new do |image| %>
+      <b>Upload to Poster</b> <%= image.file_field :event_image %>
+    <% end %>
+  <% end %>
+  <%= f.submit "Upload Image  " %>
+<% end %>
