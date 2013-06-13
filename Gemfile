@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'mongoid_search'
 gem 'rails3-jquery-autocomplete'
 gem 'chosen-rails'
+gem 'nested_form'
 
 gem 'best_in_place'
 

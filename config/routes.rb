@@ -7,6 +7,7 @@ BdayaAdmin::Application.routes.draw do
       get 'approve'
       get 'add_tag'
       get 'deliver_material'
+      post 'upload_image'
     end
   end
   namespace :geneh do

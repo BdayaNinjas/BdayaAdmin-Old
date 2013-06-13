@@ -85,6 +85,7 @@ class Member
 
   has_many :managed_events, class_name: "Event", inverse_of: :event_manager
   
+  has_many :images
   #CALLBACKS
 
   after_create :set_name

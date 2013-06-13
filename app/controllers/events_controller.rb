@@ -1,5 +1,10 @@
 class EventsController < ApplicationController
-  
+  before_filter :extract_file
+
+  def extract_file
+   # @file = params[:event][:poster][:image].delete(:event_image) if params[:event]
+  end
+
   def index
     @events = Event.all
     @approved = nil
@@ -25,9 +30,12 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find params[:id]
-    3.times { @event.posters.build }
-    @event.build_booth
-    @event.build_logo
+    #3.times { @event.posters.build }
+    #@event.build_poster
+    @poster = @event.posters.build
+    @poster.build_image
+    ##@event.build_booth
+    #@event.build_logo
     @members = Event.list_project_manager_options
     @tags = Event.tags
   end
@@ -67,5 +75,13 @@ class EventsController < ApplicationController
     new_delivered_array[params[:tag_index].to_i] = true
     @event.update_attribute :materials_delivered, new_delivered_array
     redirect_to :back
+  end
+
+  def upload_image
+    @event = Event.find(params[:id])
+    @event.update_attributes(params[:event])
+    #@event.posters.first.image = @file.
+    @event.save
+    redirect_to @event, notice: 'Event uccessfully updated'
   end
 end

@@ -11,7 +11,7 @@ class Event
   field :title, type: String
   field :description, type: String
   field :date , type: Date, default: Date.today
-  field :duration, type: Integer
+  field :duration, type: Integer,  default: 1
   field :general_info, type: String
 
   # marketing campaign
@@ -28,10 +28,43 @@ class Event
   has_one :logo
   has_one :booth
   has_many :posters
+  has_many :event_days
 
   search_in :title, :description
 
+  #attr_accessible :posters_attributes
+
   accepts_nested_attributes_for :logo, :booth, :posters
+
+  ##CALLBACKS
+
+  after_create :init_atts
+
+  before_update :update_dates
+
+  def init_atts
+    self.booth = Booth.create
+    self.posters << Poster.create
+    self.logo = Logo.create
+    create_dates
+    self.save
+  end
+
+  def update_dates
+    count = self.event_days.count
+    diff = duration - count
+    for i in count..(count+diff)
+      day = EventDay.create date: (self.date + i.days)
+      self.event_days << day
+    end
+  end
+
+  def create_dates
+    for i in 0..duration-1
+      day = EventDay.create date: (self.date + i.days)
+      self.event_days << day
+    end
+  end
 
   def self.list_project_manager_options
     Member.list_members_id_name

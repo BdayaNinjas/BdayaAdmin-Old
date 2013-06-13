@@ -18,8 +18,10 @@
 
   <div style="color:#525252">
     <h4 style="border-bottom: 1px solid"> Date </h4>
-    <%= best_in_place @event, :date, :type => :date%>
-
+    <%= best_in_place @event, :date, :type => :date%> to <%= @event.event_days.last.date.to_date %>
+    <h4 style="border-bottom: 1px solid"> Duration </h4>
+    <%= best_in_place @event, :duration %>
+    
     <h4 style="border-bottom: 1px solid"> Project Manager </h4>
     <%= best_in_place @event, :event_manager_id, type: :select, collection: @members, :nil => "Choose Manager" %>
 
