@@ -46,7 +46,7 @@ class Event
     self.booth = Booth.create
     self.posters << Poster.create
     self.logo = Logo.create
-    create_dates
+    update_dates
     self.save
   end
 
@@ -54,13 +54,6 @@ class Event
     count = self.event_days.count
     diff = duration - count
     for i in count..(count+diff)
-      day = EventDay.create date: (self.date + i.days)
-      self.event_days << day
-    end
-  end
-
-  def create_dates
-    for i in 0..duration-1
       day = EventDay.create date: (self.date + i.days)
       self.event_days << day
     end
