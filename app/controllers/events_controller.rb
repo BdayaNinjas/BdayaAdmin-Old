@@ -13,9 +13,6 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     #3.times { @event.posters.build }
-    @event.build_booth
-    @event.build_logo
-    @event.logo.build_image
     @members = Member.all# - [current_member]
   end
 
@@ -32,8 +29,9 @@ class EventsController < ApplicationController
     @event = Event.find params[:id]
     #3.times { @event.posters.build }
     #@event.build_poster
-    @poster = @event.posters.build
-    @poster.build_image
+    @new_item = @event.event_items.create
+    @items = @event.event_items
+    @image = @new_item.build_image
     ##@event.build_booth
     #@event.build_logo
     @members = Event.list_project_manager_options
@@ -79,9 +77,14 @@ class EventsController < ApplicationController
 
   def upload_image
     @event = Event.find(params[:id])
-    @event.update_attributes(params[:event])
+    logger.info "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    logger.info params[:image].to_s
+    @image = Image.new(params[:image])
+    @image.save!
+    item = @image.event_item
+    item.update(params[:image][:event_item])
+    #@event.update_attributes(params[:event])
     #@event.posters.first.image = @file.
-    @event.save
     redirect_to @event, notice: 'Event uccessfully updated'
   end
 end

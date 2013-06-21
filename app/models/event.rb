@@ -25,10 +25,11 @@ class Event
 
   ##RELATIONS
   belongs_to :event_manager, class_name: "Member", inverse_of: :managed_events
+  has_many :event_items
+  has_many :event_days
   has_one :logo
   has_one :booth
   has_many :posters
-  has_many :event_days
 
   search_in :title, :description
 

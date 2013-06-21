@@ -1,12 +1,14 @@
-<% @event.posters.each do |poster| %>
-  <%= image_tag poster.image.image.url if poster.image %>
+<% @items.each do |item| %>
+  <%= image_tag item.image.image if item.image %>
+  <br>
+  <%= item.name %>
   <br>
 <% end %>
-<%= nested_form_for(@event, :url => upload_image_event_path(@event), :html => { :method => :post, :multipart => true }) do |f| %>
-  <%= f.fields_for @poster do |poster| %>
-    <%=  poster.fields_for Image.new do |image| %>
-      <b>Upload to Poster</b> <%= image.file_field :event_image %>
-    <% end %>
-  <% end %>
+<%= nested_form_for(@image, :url => upload_image_event_path(@event), :html => { :method => :post, :multipart => true }) do |f| %>
+      <b>Upload to Poster</b> <%= f.file_field :event_image %>
+      <%= f.hidden_field :event_item_id, value: @new_item.id.to_s %>
+      <%= f.fields_for @image.event_item do |item|  %>
+        <%= item.text_field :name %>
+      <% end %>
   <%= f.submit "Upload Image  " %>
 <% end %>

@@ -5,9 +5,7 @@ class Image
 
   #has_mongoid_attached_file :image, styles: { small: '100>', medium: '250>', large: '666>'}
   mount_uploader :event_image, ImageUploader
-  belongs_to :poster
-  belongs_to :booth
-  belongs_to :logo
+  belongs_to :event_item
   belongs_to :event_day
   belongs_to :member
 
