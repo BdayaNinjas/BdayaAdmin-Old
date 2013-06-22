@@ -8,7 +8,7 @@ class Member
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :token_authenticatable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -29,6 +29,7 @@ class Member
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
+
 #  has_mongoid_attached_file :image
   
   mount_uploader :image, ImageUploader
@@ -44,7 +45,7 @@ class Member
   # field :locked_at,       :type => Time
 
   ## Token authenticatable
-  # field :authentication_token, :type => String
+   field :authentication_token, :type => String
 
 
   field :name, type: String
@@ -86,12 +87,17 @@ class Member
   has_many :managed_events, class_name: "Event", inverse_of: :event_manager
   
   has_many :images
+  has_many :ratings
   #CALLBACKS
 
-  after_create :set_name
+  after_create :set_name, :set_auth_token
 
   def full_name
     name.blank? ? email.split('@')[0] : name
+  end
+
+  def set_auth_token
+    self.reset_authentication_token
   end
 
   def set_name
@@ -279,6 +285,12 @@ class Member
     evaluations = self.evaluations
     
   end
+
+  def criterium_rating criterium
+    rating = self.ratings.find_by criterium_id: criterium.id
+    rating ? rating.value : 0
+  end
+
 
   def has_invitations_left?
     return self.committee.name == "HR"

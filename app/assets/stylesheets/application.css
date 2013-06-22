@@ -17,3 +17,103 @@ input[type=text]{
   border-radius: 5px;
   padding: 2px
 }
+.rating > div > span, .rating-prev > span{
+  background-image: url("star.png");
+  width:22px;
+  height: 25px;
+  display: inline-block;
+  position: relative;
+  top:5px;
+}
+.rating-prev-small > div > span{
+  background-image: url("star-small.png");
+  width:18px;
+  height: 20px;
+  display: inline-block;
+}
+.marked{
+  background-position: 0px -25px;
+}
+.marked-s{
+  background-position: 0px -20px;
+}
+.over{
+  background-position: 0px -50px;
+}
+.rating , .rating-prev {
+  width: 150px;
+  font-size: 0px;
+  margin-left: 0px !important;
+  padding: 0px !important;
+}
+.rating-prev-small{
+  height: 20px;
+  width: 105px;
+  font-size: 0px;
+}
+.upload{
+  position: relative;
+  top: -5px;
+  margin-right: 10px;
+  width: 60%;
+}
+.upload input{
+  width:140px;
+}
+.upload .btn{
+  position: relative;
+  right:-300px;
+}
+.choose_file{
+  position: relative;
+  z-index: 100;
+  float:right;
+  width:0px;
+}
+.choose_file input{
+  position: relative;
+  left:-400px;
+}
+.design_header{
+  padding-left: 20px;
+  top: 10px;
+  position: relative;
+}
+.design_carousel{
+  padding-top: 10px;
+}
+.prev_items li{
+  padding:5px;
+  margin-bottom: 20px;
+}
+.prev_items li div.wrp{
+  background-color: #eee;
+  font-size: 1.03em;
+  margin-left: 20px;
+  padding: 11px;
+  font-weight: bold;
+  width: 230px;
+  overflow: hidden;
+  border-radius: 0px 0px 10px 10px;
+}
+.image_wrapper{
+  max-height: 200px;
+  overflow: hidden;
+}
+#design_carousel{
+  top:-40px;
+}
+.prev_items{
+  position: relative;
+  top: -60px;
+}
+.prev_items img{
+  border: 1px solid #ccc;
+  margin-left: 20px;
+  max-width: 250px;
+  width:250px;
+}
+.crit{
+  margin-left: 0px !important;
+  padding: 0px !important;
+}

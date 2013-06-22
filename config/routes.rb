@@ -8,6 +8,7 @@ BdayaAdmin::Application.routes.draw do
       get 'add_tag'
       get 'deliver_material'
       post 'upload_image'
+      post 'rate_design'
     end
   end
   namespace :geneh do

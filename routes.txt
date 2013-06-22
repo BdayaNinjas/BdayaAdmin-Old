@@ -13,6 +13,10 @@
                               PUT    /hegzas/:id(.:format)                         hegzas#update
                               DELETE /hegzas/:id(.:format)                         hegzas#destroy
                 approve_event GET    /events/:id/approve(.:format)                 events#approve
+                add_tag_event GET    /events/:id/add_tag(.:format)                 events#add_tag
+       deliver_material_event GET    /events/:id/deliver_material(.:format)        events#deliver_material
+           upload_image_event POST   /events/:id/upload_image(.:format)            events#upload_image
+            rate_design_event POST   /events/:id/rate_design(.:format)             events#rate_design
                        events GET    /events(.:format)                             events#index
                               POST   /events(.:format)                             events#create
                     new_event GET    /events/new(.:format)                         events#new
@@ -78,6 +82,7 @@
                               PUT    /members/register(.:format)                   devise_invitable/registrations#update
                               DELETE /members/register(.:format)                   devise_invitable/registrations#destroy
      accept_member_invitation GET    /members/invitation/accept(.:format)          devise/invitations#edit
+     remove_member_invitation GET    /members/invitation/remove(.:format)          devise/invitations#destroy
             member_invitation POST   /members/invitation(.:format)                 devise/invitations#create
         new_member_invitation GET    /members/invitation/new(.:format)             devise/invitations#new
                               PUT    /members/invitation(.:format)                 devise/invitations#update

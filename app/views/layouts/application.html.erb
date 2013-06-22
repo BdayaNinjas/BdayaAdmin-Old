@@ -134,8 +134,18 @@
         <%= submit_tag "Search", class:"submit-search" %>
       <% end %>
       <div id="content">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <% if alert %>
+          <div class="alert alert-error">
+            <button class="close" data-dismiss="alert">×</button>
+            <%= alert %>
+          </div>
+        <% end -%>
+        <% if notice %>
+          <div class="alert alert-success">
+            <button class="close" data-dismiss="alert">×</button>
+            <%= notice %>
+          </div>
+        <% end -%>
         <div id="member_status">
       <% if member_signed_in? %>
         Signed in as <%= current_member.email %>. Not you? <br>

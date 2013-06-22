@@ -1,14 +1,129 @@
-<% @items.each do |item| %>
-  <%= image_tag item.image.image if item.image %>
-  <br>
-  <%= item.name %>
-  <br>
-<% end %>
 <%= nested_form_for(@image, :url => upload_image_event_path(@event), :html => { :method => :post, :multipart => true }) do |f| %>
-      <b>Upload to Poster</b> <%= f.file_field :event_image %>
+  <h3>Add your design</h3> 
+  <div class="design_header">
+    <div class="choose_file">
+      <%= f.file_field :event_image %>
       <%= f.hidden_field :event_item_id, value: @new_item.id.to_s %>
+    </div>
+    <div class="upload">
       <%= f.fields_for @image.event_item do |item|  %>
-        <%= item.text_field :name %>
+        <%= item.text_field :name, placeholder: 'Title' %>
       <% end %>
-  <%= f.submit "Upload Image  " %>
+      <%= content_tag :button, type: :submit, class: 'btn btn-success' do %>
+        <i class="icon-upload icon-white"></i> Upload
+      <% end %>
+    </div>
+  </div>
 <% end %>
+<% if @items.count > 0 %>
+  <h3>Previous designs</h3>
+  <div id="design_carousel" class="design_items carousel slide">
+    <ol class="carousel-indicators">
+      <% for i in 0..(@items.count-1) %>
+        <li data-target='#design_carousel' id="<%= i %>d" data-slide-to='<%= i %>' class="<%= 'active' if i == 0 %>"></li>
+      <% end %>
+    </ol>
+    <div class="carousel-inner">
+      <% @items.each_with_index do |item,i| %>
+        <% next if item.new_record? %>
+        <div id="<%= i %>p"class="item <%= 'active' if i == 0 %>">
+          <%= image_tag item.image.image, height: '400px !important' %>
+          <div class="carousel-caption title">
+              <h4><%= item.name %></h4>
+          </div>
+          <div class="carousel-caption">
+            <h4>Rating: <%= item.rating %></h4>
+            <div class="rating">
+                <div>
+                  <% item_rating = item.rating.to_f %>
+                  <% for i in 1..5 %>
+                    <% marked = if i <= item_rating then "marked" else "" end %>
+                    <span class="<%= marked %>"></span>
+                  <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <a class="carousel-control left" href="#design_carousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#design_carousel" data-slide="next">&rsaquo;</a>
+  </div>
+  <div class="prev_items">
+    <ul class="nav nav-pills">
+      <% @items.each_with_index do |item, i| %>
+        <% next if item.new_record? %>
+        <% if i%2 == 0 %>
+          <br>
+        <% end %>
+        <li>
+          <div class="image_wrapper">
+            <%= image_tag item.image.image, id: i %>
+          </div>
+          <div id="<%= item.id %>" class="wrp">
+            <h4><%= item.name %></h4>
+            Rating: <span class='crating'><%= item.rating %></span>
+            <div class="rating wrp">
+              Your Rating:
+              <br>
+              <% item.criteria.each do |crit| %>
+                <div id="<%= crit.id %>" class="crit">
+                  <%= crit.name %>
+                  <% user_rating = crit.user_rating current_member.id %>
+                  <% for i in 1..5 %>
+                    <% marked = if i <= user_rating then "marked" else "" end %>
+                    <span id="<%= crit.id %>_<%= i %>" class="<%= marked %>"></span>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.carousel').carousel({interval: 5000});
+    $('.carousel').hover(function () {   
+    $(this).carousel('pause');
+    },
+    function(){
+      $(this).carousel({interval: 5000});
+    });
+
+    $('.rating span').hover(
+      function(){
+        //alert($(this).attr('id'));
+        var crit = $(this).attr('id').split('_')[0];
+        var num = $(this).attr('id').split('_')[1];
+        var index = parseInt(num);
+        //alert(index);
+        for(i=1;i<=index;i++)
+        $('.rating div').children('#'+crit+'_'+i).addClass('over');
+    }, 
+      function(){
+        var crit = $(this).attr('id').split('_')[0];
+        for(i=1;i<=5;i++)
+        $('.rating div').children('#'+crit+'_'+i).removeClass('over');
+    });
+    $('.rating span').click(function(){
+      var ratingv = $(this).attr('id').split('_')[1];
+      $.ajax({
+              url:"<%= rate_design_event_path(@event) %>",
+              type:'POST',
+              datatype:'json',
+              traditional:true,
+              data:{
+                criterium_id: $(this).parent().attr('id'),
+                rating: ratingv
+              },
+              timeout: 20000,
+              success: function(){
+              }
+            });
+    });
+  });
+</script>

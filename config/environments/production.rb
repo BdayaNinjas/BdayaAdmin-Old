@@ -19,7 +19,6 @@ BdayaAdmin::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
-
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
@@ -57,7 +56,7 @@ BdayaAdmin::Application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
-
+  Mongoid.raise_not_found_error = false
   config.action_mailer.smtp_settings = {
     address:                'smtp.gmail.com',
     port:                   787,

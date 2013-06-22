@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :extract_file
+  protect_from_forgery except: :rate_design
 
   def extract_file
    # @file = params[:event][:poster][:image].delete(:event_image) if params[:event]
@@ -29,8 +30,8 @@ class EventsController < ApplicationController
     @event = Event.find params[:id]
     #3.times { @event.posters.build }
     #@event.build_poster
-    @new_item = @event.event_items.create
     @items = @event.event_items
+    @new_item = @event.event_items.build
     @image = @new_item.build_image
     ##@event.build_booth
     #@event.build_logo
@@ -76,15 +77,36 @@ class EventsController < ApplicationController
   end
 
   def upload_image
-    @event = Event.find(params[:id])
-    logger.info "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    logger.info params[:image].to_s
-    @image = Image.new(params[:image])
+    @event = Event.find params[:id] 
+    @image = Image.new params[:image]
+    if @image.image.blank?
+      redirect_to @event, alert: 'You should select an image to upload!'
+      return
+    end
     @image.save!
     item = @image.event_item
-    item.update(params[:image][:event_item])
+    item.update params[:image][:event_item]
+    item.event = @event
+    if item.name.blank?
+      @image.destroy
+      redirect_to @event, alert: 'Title can not be blank'
+      return
+    end
+    item.save!
     #@event.update_attributes(params[:event])
     #@event.posters.first.image = @file.
-    redirect_to @event, notice: 'Event uccessfully updated'
+    redirect_to @event, notice: 'Image uploaded successfully!'
+  end
+
+  def rate_design
+    @event = Event.find params[:id]
+    criterium = Criterium.find params[:criterium_id]
+    rating = params[:rating].to_i
+    user_id = current_member.id
+    criterium.add_rating user_id, rating
+    @new_rating = criterium.event_item.rating
+    @user_rating = rating
+    @criterium_id = criterium.id
+    @item_id = criterium.event_item.id
   end
 end

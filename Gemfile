@@ -11,7 +11,6 @@ gem 'bson_ext'
 gem 'jquery-rails'
 gem 'mongoid_search'
 gem 'rails3-jquery-autocomplete'
-gem 'chosen-rails'
 gem 'nested_form'
 
 gem 'best_in_place'
@@ -29,10 +28,18 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'bootstrap-sass', '~> 2.3.1.2'
+  gem 'chosen-rails'
+  gem 'jquery-ui-rails'
 end
 # gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'devise'
 gem 'devise_invitable'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
