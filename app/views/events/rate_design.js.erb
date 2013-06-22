@@ -1,0 +1,11 @@
+var new_rating = '<%= @new_rating %>';
+var user_rating = parseInt('<%= @user_rating %>');
+var crit_id = '<%= @criterium_id %>';
+var item_id = '<%= @item_id %>'
+for(i=1;i<=5;i++){
+  $('#'+crit_id+' span').removeClass('marked');
+}
+for(i=1;i<=user_rating;i++)
+  $('#'+crit_id+'_'+i).addClass('marked');
+
+$("#"+item_id+" .crating").html("").append("<%= @new_rating %>");

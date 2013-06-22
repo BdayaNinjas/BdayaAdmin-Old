@@ -1,0 +1,74 @@
+@import "bootstrap";
+
+input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
+  height: 25px;
+  margin-bottom: 0px;
+}
+.title{
+  top: 0px;
+  bottom: auto;
+  height: 20px;
+  padding:10px 20px 10px 20px;
+}
+.item img{
+  padding-top: 40px;
+}
+.carousel-inner{
+  margin-top: 50px;
+}
+.carousel img{
+  height: 400px;
+  margin: auto;
+}
+.navbar-inverse .navbar-inner {
+  background-color: #28343f;
+  border: none;
+  background-image: none;
+  box-shadow: 0px -2px 16px 0px #000 inset;
+}
+.navbar-inverse .brand {
+  position: relative;
+  left: 20px;
+}
+.navbar .nav.pull-right {
+  position: relative;
+  left: 50px;
+}
+.navbar-inner a {
+  background-color: none;
+}
+.navbar-inner a:hover {
+  color: #ffff00;
+}
+.navbar-inverse .navbar-inner ul.nav li {
+  border-right: 1px solid #000;
+  line-height: 60px
+}
+.nav .caret {
+  width: 1px;
+  height: 1px;
+  border-top-color: white;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+.navbar .nav>li>a {
+  color: #fff;
+}
+.navbar .nav>li>a:hover {
+  background-color: rgb(80, 82, 85);
+}
+.btn-inverse {
+  background-color: #171b22;
+}
+.close {
+  opacity: 1;
+  margin-right: 20px;
+}
+.modal {
+  border-radius: 2px;
+}
+.btn {
+  broder-radius: 6px;
+}
+
+@import "bootstrap-responsive";
