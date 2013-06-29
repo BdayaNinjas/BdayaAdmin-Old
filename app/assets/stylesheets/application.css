@@ -23,7 +23,7 @@ input[type=text]{
   height: 25px;
   display: inline-block;
   position: relative;
-  top:5px;
+  top:8px;
 }
 .rating-prev-small > div > span{
   background-image: url("star-small.png");
