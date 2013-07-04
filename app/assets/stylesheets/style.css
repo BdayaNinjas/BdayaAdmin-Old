@@ -1,8 +1,7 @@
 body {
-	margin-top: 0px;
-	margin-left: 10%;
+	margin: 0px;
 	padding: 0px;
-	width: 80%;
+	
 	font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 	font-family: 'Rambla', sans-serif;	  
 }
@@ -18,8 +17,7 @@ div#center {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	/*margin-top: -60px; /* the bottom margin is the negative value of the footer's height */
-	top:-77px;
+	margin-top: -60px; /* the bottom margin is the negative value of the footer's height */
 	position: relative;
 }
 
@@ -33,7 +31,6 @@ div#topbar {
 	height: 60px;
 	position: relative;
 	z-index: 1;
-	top:-19px;
 }
 
 div#topbar-content {	
@@ -245,7 +242,7 @@ div#leftbar #committee-icon:hover > div.menu-list {
 /*Right Bar*/
 
 div#rightbar {
-	width: 300px;
+	width: 240px;
 	position: absolute;
 	right: 0px;
 	top: 65px;
@@ -360,8 +357,13 @@ div#rightbar-content div.item h5 {
 div#content {
 	padding: 70px 20px 20px 20px;
 	margin-left: 100px;
-	margin-right: 300px;
+	margin-right: 220px;
 }
+
+
+
+
+
 .redodiv{
   display: none;
   position: absolute;
