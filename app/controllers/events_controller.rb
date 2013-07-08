@@ -65,7 +65,6 @@ class EventsController < ApplicationController
     end
     @event.update_attribute :tags_array, @event.tags_array << params[:new_tag]
     @event.update_attribute :materials_delivered, @event.materials_delivered << false
-    redirect_to :back
   end
 
   def deliver_material
@@ -73,7 +72,6 @@ class EventsController < ApplicationController
     new_delivered_array = @event.materials_delivered
     new_delivered_array[params[:tag_index].to_i] = true
     @event.update_attribute :materials_delivered, new_delivered_array
-    redirect_to :back
   end
 
   def upload_image

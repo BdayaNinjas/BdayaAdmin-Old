@@ -1,4 +1,4 @@
-<div style="background-color:#e5e5e5; color:#525252; padding:10px">
+<div style="background-color:#e5e5e5; padding:10px">
   <%= form_for @event do |f| %> 
     <% if @event.errors.any? %>
       <div id="error_explanation">
@@ -12,18 +12,26 @@
     <% end %>
   <% end %>
 
-  <h4 style="border-bottom: 1px solid"> Slogan </h4>
-  <%= best_in_place @event, :slogan%>
+  <table>
+    <tr class="tobeupdated">
+      <td style="width:70%;color:#525252; ">
+        <h4 style="border-bottom: 1px solid"> Slogan </h4>
+        <%= best_in_place @event, :slogan%>
 
-  <h4 style="border-bottom: 1px solid"> Attention Getter </h4>
-  <%= best_in_place @event, :attention_getter %>
+        <h4 style="border-bottom: 1px solid"> Attention Getter </h4>
+        <%= best_in_place @event, :attention_getter %>
 
-  <h4 style="border-bottom: 1px solid"> Booth Message </h4>
-  <%= best_in_place @event, :booth_message %>
+        <h4 style="border-bottom: 1px solid"> Booth Message </h4>
+        <%= best_in_place @event, :booth_message %>
 
-  <h4 style="border-bottom: 1px solid"> Social Media </h4>
-  <%= best_in_place @event, :social_media %>
-
-  <%= render 'materials' %>
-  
+        <h4 style="border-bottom: 1px solid"> Social Media </h4>
+        <%= best_in_place @event, :social_media %>
+      </td>
+      <td style="width:30%;vertical-align:top;">
+        <div id="materials_div">
+          <%= render 'materials' %>
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>

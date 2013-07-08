@@ -1,17 +1,17 @@
-<%= form_tag add_tag_event_path(@event), :method => :get do  %>
+<%= form_tag add_tag_event_path(@event), :method => :get, :remote => true do  %>
   <%= label_tag 'Request New Materials' %>
   <%= text_field_tag 'new_tag' %>
 <% end %>
 
 <% (0..@event.tags_array.length - 1).each do |i| %>
   <% if( @event.materials_delivered[i] ) %>
-    <div class="tag-delivered">
+    <span class="tag-delivered">
       <%= @event.tags_array[i] %>
-    </div>
+    </span>
   <% else %>
-    <div class="tag-not-delivered">
+    <span class="tag-not-delivered">
       <%= @event.tags_array[i] %>
-      <%= link_to "Deliver", deliver_material_event_path(@event, tag_index: i) %>
-    </div>
+      <%= link_to "Deliver", deliver_material_event_path(@event, tag_index: i), remote: true %>
+    </span>
   <% end %>    
 <% end %>

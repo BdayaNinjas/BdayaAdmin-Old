@@ -8,6 +8,7 @@ class Image
   belongs_to :event_item
   belongs_to :event_day
   belongs_to :member
+  belongs_to :logo
 
   field :accepted,    type: Boolean
 
