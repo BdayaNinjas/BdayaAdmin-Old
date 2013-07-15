@@ -1,6 +1,6 @@
-<% @events.each do |event| %>
-  <%= link_to event.title, event_path(event) %>
-  <%= link_to "Approve", approve_event_path(event) unless event.approved %>
+<% @events.each_with_index do |event, i| %>
+  <h4><%= i+1 %> - <%= link_to event.title, event_path(event) %></h4>
+  <%= link_to "Approve", approve_event_path(event), class: 'btn btn-success' unless event.approved %>
   <br>
 <% end %>
 <div class="approved">

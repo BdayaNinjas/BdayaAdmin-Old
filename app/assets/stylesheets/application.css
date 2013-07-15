@@ -62,7 +62,7 @@ input[type=text]{
 }
 .upload .btn{
   position: relative;
-  right:-300px;
+  right:-105%;
 }
 .choose_file{
   position: relative;
@@ -103,17 +103,20 @@ input[type=text]{
 #design_carousel{
   top:-40px;
 }
-.prev_items{
-  position: relative;
-  top: -60px;
-}
 .prev_items img{
   border: 1px solid #ccc;
   margin-left: 20px;
   max-width: 250px;
   width:250px;
 }
+.prev_items p{
+  margin-left: 20px;
+}
 .crit{
   margin-left: 0px !important;
   padding: 0px !important;
+}
+.gray-box{
+  padding: 10px;
+  background-color: #e5e5e5;
 }

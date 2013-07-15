@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  before_filter :extract_file
   protect_from_forgery except: :rate_design
 
   def extract_file
@@ -13,7 +12,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    #3.times { @event.posters.build }
     @members = Member.all# - [current_member]
   end
 
@@ -28,13 +26,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find params[:id]
-    #3.times { @event.posters.build }
-    #@event.build_poster
     @items = @event.event_items
     @new_item = @event.event_items.build
     @image = @new_item.build_image
-    ##@event.build_booth
-    #@event.build_logo
     @members = Event.list_project_manager_options
     @tags = Event.tags
   end
@@ -91,8 +85,6 @@ class EventsController < ApplicationController
       return
     end
     item.save!
-    #@event.update_attributes(params[:event])
-    #@event.posters.first.image = @file.
     redirect_to @event, notice: 'Image uploaded successfully!'
   end
 
