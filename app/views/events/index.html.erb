@@ -4,6 +4,7 @@
   <%= link_to "Approve", approve_event_path(event), class: 'btn btn-success' unless event.approved %>
   <br>
 <% end %>
+<%= link_to "Create event", new_event_path, class: 'btn btn-primary' %>
 <div class="approved">
   
 </div>
