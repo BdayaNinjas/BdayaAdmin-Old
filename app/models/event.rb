@@ -14,6 +14,7 @@ class Event
   field :duration, type: Integer,  default: 1
   field :general_info, type: String
 
+
   # marketing campaign
   field :slogan, type: String
   field :attention_getter, type: String
@@ -25,17 +26,11 @@ class Event
 
   ##RELATIONS
   belongs_to :event_manager, class_name: "Member", inverse_of: :managed_events
-  has_many :event_items
-  has_many :event_days
-  has_one :logo
-  has_one :booth
-  has_many :posters
+  has_many :event_items, dependent: :destroy
+  has_many :event_days, dependent: :destroy
+
 
   search_in :title, :description
-
-  #attr_accessible :posters_attributes
-
-  accepts_nested_attributes_for :logo, :booth, :posters
 
   ##CALLBACKS
 
@@ -44,9 +39,6 @@ class Event
   before_update :update_dates
 
   def init_atts
-    self.booth = Booth.create
-    self.posters << Poster.create
-    self.logo = Logo.create
     update_dates
     self.save
   end
